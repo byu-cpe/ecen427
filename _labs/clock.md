@@ -107,5 +107,5 @@ One of the goals of this lab is to learn to work with different interrupt source
   1. The buttons generate an interrupt each time a change in their value is detected. This change could occur because the user pressed or released a button. In either case, you reset the debouncing timer..
   1. Other than various initializations and set up, your ''main()'' must contain only a while(1) loop that waits for interrupts to occur. If the loop has anything else then you are probably doing the forbidden, a.k.a. polling. See the figure below.
   1. The only place you should read the buttons is in the interrupt handler for the buttons (and possibly in your initialization code that runs once). After reading the buttons you can store their value in a variable/memory and use it in the FIT interrupt handler, but the FIT interrupt handler should NEVER read the buttons directly i.e., read the GPIO data register for the buttons.
+  
   <img src = "{% link media/labs/lab2_polling.jpg %}">
-

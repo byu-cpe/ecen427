@@ -5,7 +5,10 @@
                 {{ site.class_number }}</a>
         </div>
         <div class="list-group list-group-flush sidebar-color">
-            {% for item in site.pages %}
+
+            {% assign pages_sorted = site.pages | sort : "order" %}
+
+            {% for item in pages_sorted %}
             {% if item.sidebar %}
             <a href="{% link {{ item.path }} %}"
                 class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">

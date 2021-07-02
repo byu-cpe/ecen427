@@ -36,7 +36,7 @@ Before proceeding to setup VSCode, you will need to create an SSH config file on
   * This SSH configuration file is used to tell the SSH program about computers you can connect to, and to save settings for each computer.  This file may be empty right now, but you should add a new entry like this:
 
 ```
-Host pynq13
+Host pynq<number>
     Hostname pynq03.ee.byu.edu
     User byu
 ```
@@ -51,9 +51,9 @@ from the WSL terminal.  If you are using Mac or Linux, you don't need to create 
 
 ### Connecting via SSH 
   - Click the green button in the bottom left of VSCode, and select *Remote-SSH: Connect to Host..*
-  - If your SSH config file is set up correctly, you should now be given a list of the machines available in your SSH config file.  Select your *pynq13* board.
+  - If your SSH config file is set up correctly, you should now be given a list of the machines available in your SSH config file.  Select your *pynq\<number>* board.
   - A new VSCode window should pop up, and the VSCode server will be installed on your PYNQ board.  This can take a few minutes.  If an error pops up, try clicking *Retry* a few times.
-  - Once connected, the green status bar in the lower left corner should read *SSH: pynq13*
+  - Once connected, the green status bar in the lower left corner should read *SSH: pynq\<number>*
   - You can now click *File->Open Folder* and then select your *ecen427* repository folder that you cloned earlier.
 
 ### Re-Connecting
