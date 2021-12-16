@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="345 280 64 65" width="64" height="65">
+  <defs/>
+  <metadata> Produced by OmniGraffle 7.17.2\n2020-08-24 16:34:41 +0000</metadata>
+  <g id="Canvas_1" fill="none" fill-opacity="1" stroke-dasharray="none" stroke="none" stroke-opacity="1">
+    <title>Canvas 1</title>
+    <rect fill="white" x="345" y="280" width="64" height="65"/>
+    <g id="Canvas_1_Layer_1">
+      <title>Layer 1</title>
+      <g id="Graphic_2">
+        <rect x="347" y="282.5" width="60.5" height="14.5" fill="#495057"/>
+        <rect x="347" y="282.5" width="60.5" height="14.5" stroke="#495057" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+      <g id="Graphic_3">
+        <rect x="347" y="297" width="60.5" height="11.5" stroke="#495057" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+      <g id="Graphic_4">
+        <rect x="347" y="308.5" width="60.5" height="11.5" stroke="#495057" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+      <g id="Graphic_5">
+        <rect x="347" y="320" width="60.5" height="11.5" stroke="#495057" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+      <g id="Graphic_6">
+        <rect x="347" y="331.5" width="60.5" height="11.5" stroke="#495057" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+    </g>
+  </g>
+</svg>
