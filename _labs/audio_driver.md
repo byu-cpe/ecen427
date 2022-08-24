@@ -129,7 +129,8 @@ In this milestone you will add an *ioctl* interface to your driver to allow user
     - Turn on looping for the current audio clip.
     - Turn off looping for the current audio clip.  
   * Integrate sound into Space Invaders by generating the following sounds during game operation:
-    * the “marching” sound the aliens make as they move back and forth across the screen. There are 4 sounds (wave1, wave2, wave3, wave4 in the Box directory). You start with wave1 the first time an alien moves and then play the next sound in the sequence on each successive move, cycling back to wave1.
+    * WAVE files are provided [here](https://github.com/byu-cpe/ecen427_student/tree/master/resources/wavFiles).
+    * the "marching" sound the aliens make as they move back and forth across the screen is comprised of four separate walk1, walk2, walk3, and walk4 sounds.  You start with walk1 the first time an alien moves and then play the next sound in the sequence on each successive move, cycling back to wave1.
     * the sound that the red flying saucer makes as it flies across the screen (use your looping functionality for this)
     * the explosion noise that occurs when your tank is hit by an alien bullet,
     * the explosion noise that occurs when an alien is hit by a tank bullet,
@@ -232,7 +233,6 @@ Some resources to help you with the kernel function calls:
   * Read LDD3 chapter 6, the first section on *ioctl*.
   * Use `.unlocked_ioctl` in the `struct file_operations` (`.ioctl` as the text suggests is out of date). Even with this update, you still use the `ioctl()` system call in your user-space code for space invaders.
   * The *ioctl* interface must be implemented as described in LDD3.  Make sure the *ioctl* command values are created using the `_IO*` macros.  An example of these are given on pages 138-139 of LDD3.
-  * There are WAV files for the sound clips available on the course [Box site](https://byu.box.com/s/u1v4trpfpsu0f4xpnpw2tjfva6u1bi0m).  They are 16-bit, mono WAV files.
   * You probably want to read all of the WAVE files and store them in arrays at the startup of you game.  Then each time you want to play a sound effect you can pass the appropriate array buffer to the driver.  This avoids repeatedly reading the WAVE files each time you play a sound.
   * No sound mixing is required for this lab, simply play one sound at a time.
 

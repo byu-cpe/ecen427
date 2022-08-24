@@ -99,6 +99,7 @@ li {
     > ol {
         margin-bottom: 0;
     }
+    padding-bottom: 5px;
 }
 
 /**
@@ -232,4 +233,13 @@ pre {
 
 .navbar {
     background-color: $nav-color;
+}
+
+.search-bar {
+    padding: 0.75rem 1.25rem;
+}
+
+.search-box {
+    width: 200px;
+    border-radius: 10px;
 }

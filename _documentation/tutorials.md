@@ -11,9 +11,9 @@ Now that you can SSH into your PYNQ board, you have access to a Linux system to 
 
 ## Linux Tutorial 
 
-Carefully read through and practice the examples found in this [Linux tutorial](https://ryanstutorials.net/linuxtutorial/), including Sections 1-12. TAs will randomly select sections from the tutorial for quizzing purposes during pass off. You are responsible to completely understand and know all material in the tutorial except for these limitations:
+Carefully read through and practice the examples found in this [Linux tutorial](https://ryanstutorials.net/linuxtutorial/), including Sections 1-12. You are responsible to completely understand and know all material in the tutorial except for these limitations:
   * sed: you can ignore anything about sed.
-  * You can use the Regular Expression Overview Section as a cheat sheet. Print it out and bring it with you when you are ready to pass off.
+  * You can use the Regular Expression Overview Section as a cheat sheet. You can reference this during the quiz on Learning Suite.
 
 ## Git and Github
 

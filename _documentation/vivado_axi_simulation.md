@@ -25,7 +25,7 @@ Add a new testbench to your project:
 The testbench has to be written in SystemVerilog.  I've provided my testbench below. It was created based on a simple tutorial here: <http://www.wiki.xilinx.com/Using+the+AXI4+VIP+as+a+master+to+read+and+write+to+an+AXI4-Lite+slave+interface>.  
 
 It should work for you with a few minor modifications.  The testbench performs two writes to registers in the PIT IP.  You will likely want to perform more reads or writes to the PIT to make sure it is designed to specification correctly.  A few notes:
-  * The `import design_1_axi_vip_0_0_pkg::*;` assumes your VIP simulation package is named `design_1_axi_vip_0_0`.  Depending on how you chose to name things, yours could have a different name.  You can check *Sources*, *IP Sources*, *Simulation* for the name of the VIP simulation package in your project.  Note that Vivado will underline these lines in red (indicating an error) even if they are written correctly.
+  * The `import design_1_axi_vip_0_0_pkg::*;` assumes your VIP simulation package is named `design_1_axi_vip_0_0`.  Depending on how you chose to name things, yours could have a different name.  You can expand and check *Sources*, *IP Sources*, *Simulation* for the name of the VIP simulation package in your project.  Note that Vivado will underline these lines in red (indicating an error) even if they are written correctly.
   * The datatype of `master_agent` will be *\<package_name\>_mst_t*. 
   * The instantiation of the block design might be a bit different depending on how you named your block design file and the external ports.
   * Change the addresses (`32'h44A0_0000` and `32'h44A0_0004`) to appropriate addresses for the PIT in your design.

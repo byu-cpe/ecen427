@@ -21,15 +21,17 @@ Your PIT IP must include the following:
   - A 32-bit programmable control register that must be readable and writeable from the CPU. You will control the behavior of the PIT by programming specific bits in the control register, as follows:
     * bit 0: enables the counter to decrement if set to '1', holds the counter at its current value if set to a '0'.
     * bit 1: enables interrupts if set to a '1', disables interrupts if set to a '0'.
-    *You may use the remaining bits in the programmable control register as you see fit.
+    * You may use the remaining bits in the programmable control register as you see fit.
   - A 32-bit delay-value register that must be readable and writeable from the CPU. This value is loaded into the timer-counter as described above.
   - When the timer-counter is running, and it reaches 0, it should be reloaded based on the contents of the delay-value register, and continue decrementing.
-  - If you disable the counter, and then re-enable it, it should just continue as if it had not been disabled.
-==== Basic Operation ====
+  - If you disable the counter, and then re-enable it, it should just continue as if it had not been disabled.  Interrupts should not occur when disabled (i.e., if you happen to disable it exactly when the counter == 0).
+
+### Basic Operation
   * When the PIT generates an interrupt, the interrupt must be asserted for a single system clock cycle. The interrupt must occur for a single cycle on the same cycle that the counter reaches 0.
   * Your PIT must reset along with the rest of the system (just use the system reset). After a system reset, the counter should contain the value 0 and not decrement, the delay-value register must contain 0, and interrupts must not be generated.
-  * During normal operation, you program the delay-value register to contain a value that indicates how often an interrupt occurs.  If you set the delay-value register to N, then an interrupt should occur every Nth cycle.  For example, when the delay-value register contains a '1', the interrupt output is a square wave with a 50% duty cycle.
+  * During normal operation, you program the delay-value register to contain a value that indicates how often an interrupt occurs.  If you set the delay-value register to N, then an interrupt should occur every (N+1) cycles.  For example, when the delay-value register contains a '1', the interrupt output is a square wave with a 50% duty cycle. When the register is set to '2', an interrupt occurs every third cycle.  You don't have to worry about what happens when the register is set to '0'; that behavior is undefined.
   * When the counter is enabled, the counter is first loaded with the appropriate value based on the contents of the delay-value register, and then begins to decrement.
+  * If the delay-value register is changed, the counter should be updated to match.
 
 
 ## How to Get Started 
@@ -47,6 +49,8 @@ Your PIT IP must include the following:
 
 
 ## Pass-Off / Submission 
+
+Before pass-off and submission, make sure you compile a new bitstream.  See [Compiling a New Bitstream]({% link _documentation/vivado.md %}#compiling-a-new-bitstream ).
 
 ### Pass-Off
 For this lab, pass-off will be done in person with a TA.  

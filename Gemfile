@@ -28,6 +28,7 @@ gem "wdm", "~> 0.1.0" if Gem.win_platform?
 gem "jekyll"
 gem "kramdown-parser-gfm"
 gem "jekyll-watch"
+gem "jekyll-sitemap"
 
 gem 'rake'
 gem 'html-proofer'

@@ -23,5 +23,5 @@ jobs:
           ruby-version: 2.6 
           bundler-cache: true 
       - name: Check links
-        run: make check_links
+        run: make check_links || make check_links || make check_links
         

@@ -39,6 +39,8 @@ Create a *bitmap_accelerator.c* file where you implement this function.  You can
 
 Some test code is provided to you in *bitmap_accelerator_test.c* to ensure that you implement it correctly.  This will be used in the next step.
 
+**Note:** You may want to review the [HDMI Driver]({% link _documentation/hdmi.md %}) page to review the layout of the pixel buffer.  Although you are interfacing directly with the pixel buffer in memory, the memory layout provided by the HDMI driver is nearly identical.  The only exception is the byte ordering of colors; **in hardware the color ordering is (green, blue, red)** (when you used the HDMI driver you supplied it in (red, green, blue) and the driver re-ordered before writing to memory).
+
 ## Vitis HLS
 
 ### Creating a Project
@@ -202,6 +204,8 @@ Now that you have a working driver, you should make use of it in your Space Inva
 2. When you draw the five rows of aliens, use your accelerator to draw them quickly.  Again, add a single *printf* message that states how long it took to draw them.
 
 Your accelerator can be used to copy one alien to many different locations quickly.  However, you may be wondering the best way to do this; since aliens can be destroyed, and can move around, you can't always rely on one being at a specific location to copy from.  To make this easier, we have added 40 extra rows of pixels below the screen that you can use to temporarily store your sprites.  If you draw aliens to this "off-screen" region using the original software method, you can then reliably copy from these locations using your accelerator throughout gameplay.
+
+**Note:** You are free to work with your lab3 partner(s) to perform this stage of the lab.  However, make sure you commit the changes to your *individual* Github repository.
 
 ## Submission
 

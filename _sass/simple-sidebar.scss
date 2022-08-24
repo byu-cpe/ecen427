@@ -28,7 +28,7 @@ body {
 }
 
 #sidebar-wrapper .sidebar-heading-big {
-  padding: 0.875rem 1.25rem;
+  padding: 0.875rem 1.25rem 0 1.25rem;
   font-size: 1.5rem;
   font-family: muli, sans-serif;
 }
@@ -84,4 +84,13 @@ a.sidebar-item:hover {
   #wrapper.toggled #sidebar-wrapper {
     margin-left: -16rem;
   }
+}
+
+.search-bar {
+  padding: 0.75rem 1.25rem;
+}
+
+.search-box {
+  width: 200px;
+  border-radius: 10px;
 }

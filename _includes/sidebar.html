@@ -3,7 +3,16 @@
         <div class="sidebar-heading-big">
             <a href="{% link index.md %}">
                 {{ site.class_number }}</a>
+
         </div>
+
+        <div class="search-bar">
+            <form method="get" action="https://www.google.com/search" target="_blank">
+                <input class="search-box" type="hidden" name="sitesearch" value="{{ site.url }}{{ site.baseurl }}" />
+                <input class="search-box" type="text" name="q" maxlength="255" placeholder="Search" />
+            </form>
+        </div>
+
         <div class="list-group list-group-flush sidebar-color">
 
             {% assign pages_sorted = site.pages | sort : "order" %}

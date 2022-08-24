@@ -22,7 +22,7 @@ The last setup step involves compiling and running a *Hello, World!* application
 
 This page describes how to set up your computer and PYNQ board for the labs in this class.  This takes some time, but it is essential that you get all of these things working before moving on the later labs.  
 
-If you run into issues, post on Piazza.  <ins>**Do not skip any setup steps**</ins>.  For convenience, these setup steps are also shown in the sidebar.
+If you run into issues, post on Slack.  <ins>**Do not skip any setup steps**</ins>.  For convenience, these setup steps are also shown in the sidebar.
 
   * [Setup your home computer]({% link _documentation/setup_home_computer.md %}).  You can use a Windows, Linux or Mac computer.
   * [Setup the PYNQ board]({% link _documentation/setup_pynq_board.md %})  
@@ -43,10 +43,9 @@ After you have completed these steps, do the following:
 
 ##  Submission
 
-<span style="color:red">Fix to Github URL</span>.
-We need to know your Github username.  Complete the Learning Suite "quiz" titled "Github username".  (Don't worry, it's easy to get 100% on this quiz).  **Don't forget to do this!**
+We need to know your Github repository URL.  Complete the Learning Suite "quiz" titled "Github URL".  **Don't forget to do this!**
 
-Follow the instructions on the [/Submission]({% link _other/submission.md %}) page.
+Follow the instructions on the [Submission]({% link _other/submission.md %}) page.
 
 ## Resources
   * [Official PYNQ documentation](http://pynq.readthedocs.io/en/latest/getting_started.html)

@@ -26,9 +26,6 @@ Sharing your source code  is prohibited and is a violation of the Honor Code.  *
 ### Coding Standard 
 This class follows a [Coding Standard]({% link _other/coding_standard.md %}).  It is currently identical to the ECEn 330 standard.
 
-## TA Schedule 
-TBD
-
 
 ## Prerequisites
 
@@ -36,7 +33,7 @@ ECEn 330 & ECEn 323
 
 ## Textbook
 
-TBD
+Linux Device Drivers, Third Edition. <https://lwn.net/Kernel/LDD3/>
 
 
 ## Grade Breakdown
