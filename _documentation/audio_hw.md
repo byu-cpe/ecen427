@@ -16,7 +16,7 @@ The audio codec chip on the PYNQ-Z2 board must be configured before it will oper
 ## Playing Audio Data 
 
 ### Audio Data Format 
-The audio hardware expects audio data in 24-bit PCM format, at 48kHZ. Accordingly, the **audio_tx** hardware contains small FIFOs to store several audio sample, which is send to the audio chip at 48kHZ.  You can read more about the PCM format in this [document from the University of Toronto](http://www-ug.eecg.toronto.edu/msl/nios_devices/datasheets/sound_codec_power_point.pdf).  Although this document is for a different hardware configuration than ours, the concepts still apply the same.
+The audio hardware expects audio data in 24-bit PCM format, at 48kHZ. Accordingly, the **audio_tx** hardware contains small FIFOs to store several audio samples, which is sent to the audio chip at 48kHZ.  You can read more about the PCM format in this [document from the University of Toronto](http://www-ug.eecg.toronto.edu/msl/nios_devices/datasheets/sound_codec_power_point.pdf).  Although this document is for a different hardware configuration than ours, the concepts still apply the same.
 
 In order to play audio clips, you will want to open and read data from WAVE (.wav) audio files.  Fortunately, WAVE files store their audio data in PCM format, so minimal processing will be required between reading the audio data from the WAVE file and writing in to the TX FIFOs.
 
