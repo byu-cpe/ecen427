@@ -10,10 +10,10 @@ order: 2
 
 | Lab           | Time      |   Due Date          |
 |---------------|-----------|---------------------|
-|1              | 1 week    | Wed, Sep 7, 2022  |
-|2              | 2 weeks   | Wed, Sep 21, 2022 |
-|3 (M1)         | 1 week    | Wed, Sep 28, 2022 |
-|3 (M2)         | 1 week    | Wed, Oct 5, 2022  |
+|1              | 1 week    | Fri, Sep 2, 2022  |
+|2              | 1.5 weeks | Wed, Sep 14, 2022 |
+|3 (M1)         | 1 week    | Wed, Sep 21, 2022 |
+|3 (M2)         | 2 week    | Wed, Sep 28, 2022  |
 |3 (M3)         | 1 week    | Wed, Oct 12, 2022 |
 |4 (M1)         | 1 week    | Wed, Oct 19, 2022 |
 |4 (M2)         | 1 week    | Wed, Oct 26, 2022 |
