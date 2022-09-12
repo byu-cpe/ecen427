@@ -16,7 +16,7 @@ Class lecture will be used to cover difficult concepts, introduce labs, and to a
 ## Lectures and Attendance 
 
 ### Late Policy 
-Labs pass off and code submission is due as indicated in learning suite. You lose 20% per day for each day either is late. Weekends do not count. The bottom cutoff is 20%.
+Labs are due as indicated on the [schedule page]({% link _pages/schedule.md %}). You lose 20% per day for each day either is late. Weekends do not count. The maximum late penalty is 60%.
 
 
 ### Sharing Source Code 
@@ -41,7 +41,7 @@ Linux Device Drivers, Third Edition. <https://lwn.net/Kernel/LDD3/>
 | Component                 | % of Grade    |
 |---------------------------|---------------|
 | Labs                      | 80            |
-| Midterm                   | 15            |
+| Exam                      | 15            |
 | Quizzes                   | 5            |
 
 

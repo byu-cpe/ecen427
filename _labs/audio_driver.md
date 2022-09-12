@@ -161,7 +161,7 @@ A few notes about the provided code:
   * In our driver we are going to assume that the character device is only ever opened by one user program at a time.  Otherwise, we would need to handle parallel accesses and deal with race conditions.  LDD3, Ch 6, *Single-Open Devices* discusses how you can enforce this property.  You can implement this enforcement if you like.
 
 Things to remember:
-  * **MAKE SURE** you pay close attention to the return values of every function you call, and handle any errors.  Not all functions return a negative number on error.  Functions that return pointers often [encode errors differently](https://www.kernel.org/doc/htmldocs/kernel-hacking/convention-returns.html).  (See LDD3, Ch 11 *Pointers and Error Values*)
+  * **MAKE SURE** you pay close attention to the return values of every function you call, and handle any errors.  Not all functions return a negative number on error.  Functions that return pointers often [encode errors differently](https://www.kernel.org/doc/htmldocs/kernel-hacking/convention-returns.html).  (See LDD3, Ch 10 *Pointers and Error Values*)
   * Add lots of kernel logging messages to help with debugging
 
 Error handling:
