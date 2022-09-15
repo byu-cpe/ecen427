@@ -23,11 +23,6 @@ Once your empty lab 3 repository is created, use the **Import Code** button to i
 
 ### Milestone 1
 
-#### Part A 
-Write a document describing your software organization.  You can use [this document]({% link media/labs/ecen427_si_doc_example.pdf %}) as an example.  Submit your document via Learning Suite.
-
-#### Part B 
-
 <iframe width="500" height="350"
 src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200">
 </iframe>
