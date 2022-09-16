@@ -11,7 +11,7 @@ Write the software that implements all video functionality for Space Invaders. Y
 
 ## Team Git Repository 
 
-This is the only lab where you will be permitted to work in a team of two.  You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.
+This is the only lab where you will be permitted to work in a team.  Your team can be up to three students.  You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.
 
 Follow this link to create a new shared Github repository for lab 3: <https://classroom.github.com/a/07y5GqVV>
   * The first team member to sign up should create a new team name.
@@ -84,21 +84,15 @@ const uint32_t sprite_alien_bottom_in_12x8[] =
 
 One of the requirements is for the sprites to be scaled to be the same size as in the video.  Using this suggested implementation, it is easy to dynamically scale the sprites when they are being displayed.
 
-Note: the function provided below may not be exactly what you want to use in your game code. It is provided to see how you actually interpret the packed words.
-
-  * [print_alien_test.c](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/space_invaders/print_alien_test.c)
-
 ### Alien Shapes Defined in C Code 
 
 To save some time, we will give you the definitions of the aliens in their two guises, the spaceship, etc. These definitions are useful if you use the approach that was discussed above.
 
-  * [sprites.c](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/space_invaders/sprites.c)
-  * [sprites.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/space_invaders/sprites.h)
+  * [sprites.c](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/space_invaders/resources/sprites.c)
+  * [sprites.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/space_invaders/resources/sprites.h)
 
 ### Bunker Erosion Patterns 
 
-The patterns for the bunker erosions are depicted in this pdf file. By studying this file and watching some of the provided game videos, you should be able to figure out how to code the bunker erosions. If you watch the game carefully, you will see that the bunkers are composed of blocks that go through predictable patterns as they are hit with bullets.
-
-[bunker_damage.pdf]({% link media/labs/bunker_damage.pdf %})
+The patterns for the bunker erosions are depicted in this pdf file. By studying this file and watching some of the provided game videos, you should be able to figure out how to code the bunker erosions. If you watch the game carefully, you will see that the bunkers are composed of blocks that go through predictable patterns as they are hit with bullets.  Take a look at the [sprites.c](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/space_invaders/resources/sprites.c) file for erosion patterns.
 
 The corners of the bunkers should erode such that no pixels get set that weren't set before they started to erode.  So, although the erosion patterns are square in shape, the corners of the bunkers should erode within their original pixel constraints.
