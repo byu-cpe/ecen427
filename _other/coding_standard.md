@@ -67,5 +67,4 @@ The run clang-tidy:
 
 Similar to the traditional coding standard checker, you will be deducted one point for each linting warning.  Also like the traditional coding standard, you will lose a point for each infraction, not just each type of infraction; however, the maximum number of points you can lose for each type of infraction is 3.
 
-It seems that this approach will cause clang-tidy to be run on your library code as well; however, you are only responsible for fixing linter errors in your space invaders application code.
 
