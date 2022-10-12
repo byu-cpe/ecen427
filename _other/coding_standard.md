@@ -50,6 +50,12 @@ The run clang-tidy:
       find_program(CLANG_TIDY_EXE NAMES "clang-tidy" REQUIRED)
       set(CLANG_TIDY_COMMAND "${CLANG_TIDY_EXE}" "-checks=modernize-*,bugprone-*,clang-analyzer-*,cppcoreguidelines-*,google-*,misc-*,portability-*,-google-readability-braces-around-statements")
     ```
+1. Add the following to your *CMakeLists.txt* for your space invaders target executable:
+  ```
+  if (TIDY)
+    set_target_properties(space_invaders PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
+  endif()
+  ```
 
 1. When you run cmake, specify the TIDY option:
   ```
@@ -60,4 +66,6 @@ The run clang-tidy:
 1. Compile as usual, and note that a warning will be printed for each clang-tidy linter error.
 
 Similar to the traditional coding standard checker, you will be deducted one point for each linting warning.  Also like the traditional coding standard, you will lose a point for each infraction, not just each type of infraction; however, the maximum number of points you can lose for each type of infraction is 3.
+
+It seems that this approach will cause clang-tidy to be run on your library code as well; however, you are only responsible for fixing linter errors in your space invaders application code.
 
