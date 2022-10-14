@@ -8,6 +8,10 @@ title: Linux Device Drivers, Chapter 9
 
 Intro, I/O Ports and I/O Memory (235-239), Using I/O Memory (248-251)
 
+
+## Slides
+* [Slides]({% link media/ldd/ldd3-ch6,9,10.pdf %})
+
 ## Study Questions 
 
 1. What issues arise when reading/writing registers that we don't worry about when reading/writing to memory?

@@ -8,6 +8,10 @@ title: Linux Device Drivers, Chapter 1
 
 All of Chapter 1
 
+## Slides
+
+* [Slides]({% link media/ldd/ldd3-ch1.pdf %})
+
 ## Study Questions
 
 1. What is the role of the device driver in the Linux kernel?

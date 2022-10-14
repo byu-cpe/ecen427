@@ -8,6 +8,9 @@ title: Linux Device Drivers, Chapter 10
 
 Intro, Installing an Interrupt Handler (skip Autodetecting the IRQ Number) (258-264, 268-269), Implementing a Handler (stop at 'Top/Bottom Halves') (269-275)
 
+## Slides
+* [Slides]({% link media/ldd/ldd3-ch6,9,10.pdf %})
+
 ## Study Questions 
 
 1. What happens if an interrupt arrives on an interrupt line, but you haven't registered an interrupt service routine (interrupt handler) with Linux for this interrupt line?

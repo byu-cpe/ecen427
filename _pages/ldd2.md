@@ -7,6 +7,9 @@ title: Linux Device Drivers, Chapter 2
 ## Reading
 All of Chapter 2
 
+## Slides
+* [Slides]({% link media/ldd/ldd3-ch2.pdf %})
+
 ## Study Questions
 
 1. Understand what module_init and module_exit are, and what they do. Also, is the actual name of the function significant?

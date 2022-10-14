@@ -8,6 +8,9 @@ title: Linux Device Drivers, Chapter 3
 
 All of Chapter 3
 
+## Slides
+* [Slides]({% link media/ldd/ldd3-ch3.pdf %})
+
 ## Study Questions
 
 1. Understand the difference between *driver* and *device*.  Does each device have it's own driver?
