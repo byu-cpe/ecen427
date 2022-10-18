@@ -17,20 +17,21 @@ This will be your first opportunity to add new hardware capability to your syste
 Your PIT IP must include the following:
 
   - A 32-bit timer-counter that decrements at the system clock rate and that is controlled by elements described below.
-  - A single interrupt output. The interrupt output is active when it is a '1'.
-  - A 32-bit programmable control register that must be readable and writeable from the CPU. You will control the behavior of the PIT by programming specific bits in the control register, as follows:
-    * bit 0: enables the counter to decrement if set to '1', holds the counter at its current value if set to a '0'.
-    * bit 1: enables interrupts if set to a '1', disables interrupts if set to a '0'.
-    * You may use the remaining bits in the programmable control register as you see fit.
-  - A 32-bit delay-value register that must be readable and writeable from the CPU. This value is loaded into the timer-counter as described above.
-  - When the timer-counter is running, and it reaches 0, it should be reloaded based on the contents of the delay-value register, and continue decrementing.
-  - If you disable the counter, and then re-enable it, it should just continue as if it had not been disabled.  Interrupts should not occur when disabled (i.e., if you happen to disable it exactly when the counter == 0).
+  - **Interrupt**: A single interrupt output (*irq*). The interrupt output is active high, and is asserted for a single cycle when the counter reaches 0.
+  - **Registers**:
+    - **Offset 0x00**: A 32-bit programmable control register, that must be readable and writeable from the CPU. You will control the behavior of the PIT by programming specific bits in the control register, as follows:
+      * bit 0: enables the counter to decrement if set to '1', holds the counter at its current value if set to a '0'.
+      * bit 1: enables interrupts if set to a '1', disables interrupts if set to a '0'.
+      * You may use the remaining bits in the programmable control register as you see fit.
+    - **Ofset 0x04**: A 32-bit delay-value register that must be readable and writeable from the CPU. This value controls the period of the interrupt output.  
+  - **Reset**: Your PIT must reset along with the rest of the system.  Make sure to reset your PIT using the AXI resetn signal.
 
-### Basic Operation
-  * When the PIT generates an interrupt, the interrupt must be asserted for a single system clock cycle. The interrupt must occur for a single cycle on the same cycle that the counter reaches 0.
-  * Your PIT must reset along with the rest of the system (just use the system reset). After a system reset, the counter should contain the value 0 and not decrement, the delay-value register must contain 0, and interrupts must not be generated.
-  * During normal operation, you program the delay-value register to contain a value that indicates how often an interrupt occurs.  If you set the delay-value register to N, then an interrupt should occur every (N+1) cycles.  For example, when the delay-value register contains a '1', the interrupt output is a square wave with a 50% duty cycle. When the register is set to '2', an interrupt occurs every third cycle.  You don't have to worry about what happens when the register is set to '0'; that behavior is undefined.
-  * If the delay-value register is changed, the counter should be updated to match.
+### Behavior
+  - The timer-counter should auto-reload (i.e., when the timer-counter reaches 0, it should be reloaded based on the delay-value register, and continue decrementing).
+  - If you disable the counter, and then re-enable it, it should just continue as if it had not been disabled.  
+  - Interrupts should not occur when disabled (i.e., if you happen to disable it exactly when the counter == 0).
+  - During normal operation, you program the delay-value register to contain a value that indicates how often an interrupt occurs.  If you set the delay-value register to N, then an interrupt should occur every N cycles.  For example, when the delay-value register contains a '2', the interrupt output is a square wave with a 50% duty cycle. When the register is set to '3', an interrupt occurs every third cycle.  You don't have to worry about what happens when the register is set to '0' or '1'; that behavior is undefined.
+  - You will need to initialize your timer-counter at an appropriate time.  This is best done when the delay-value register is changed.
 
 
 ## How to Get Started 
