@@ -63,7 +63,7 @@ After it is integrated:
 
 
 ## How to Get Started 
-* Review the available documentation on [using the Vivado software]({% link _documentation/vivado.md %}), [creating IP in Vivado]({% link _documentation/vivado_ip.md %}), and [simulating AXI IP]({% link _documentation/vivado_axi_simulation.md %}).
+* Review the available documentation on [using the Vivado software]({% link _documentation/vivado.md %}) and [simulating AXI IP]({% link _documentation/vivado_axi_simulation.md %}).
 * Write the PIT module, implemented in [pit.sv](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ip_repo/pit/pit.sv)
 * Write your test bench to simulate your PIT module to make sure it works correctly.
 * Complete the rest of the requirements described above.
