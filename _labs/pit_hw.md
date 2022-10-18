@@ -30,7 +30,6 @@ Your PIT IP must include the following:
   * When the PIT generates an interrupt, the interrupt must be asserted for a single system clock cycle. The interrupt must occur for a single cycle on the same cycle that the counter reaches 0.
   * Your PIT must reset along with the rest of the system (just use the system reset). After a system reset, the counter should contain the value 0 and not decrement, the delay-value register must contain 0, and interrupts must not be generated.
   * During normal operation, you program the delay-value register to contain a value that indicates how often an interrupt occurs.  If you set the delay-value register to N, then an interrupt should occur every (N+1) cycles.  For example, when the delay-value register contains a '1', the interrupt output is a square wave with a 50% duty cycle. When the register is set to '2', an interrupt occurs every third cycle.  You don't have to worry about what happens when the register is set to '0'; that behavior is undefined.
-  * When the counter is enabled, the counter is first loaded with the appropriate value based on the contents of the delay-value register, and then begins to decrement.
   * If the delay-value register is changed, the counter should be updated to match.
 
 
