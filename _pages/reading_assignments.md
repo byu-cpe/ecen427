@@ -18,8 +18,8 @@ order: 3
 | Oct 10 | [Linux Device Drivers Chapter 6: IOCTL]({% link _pages/ldd6.md %})| 3 days after class |
 | Oct 10 | [Linux Device Drivers Chapter 9: Communicating with Hardware]({% link _pages/ldd9.md %})| 3 days after class |
 | Oct 10 | [Linux Device Drivers Chapter 10: Interrupt Handling]({% link _pages/ldd10.md %})| 3 days after class |
-| | [Reading Assignment 1: Introduction to the AXI Bus]({% link _pages/axi1.md %})| 3 days after class |
-| | [Reading Assignment 2: The AXI Bus, Cont'd]({% link _pages/axi2.md %})| 3 days after class |
+| Oct 24 | [Reading Assignment 1: Introduction to the AXI Bus]({% link _pages/axi1.md %})| 3 days after class |
+| Oct 31 | [Reading Assignment 2: The AXI Bus, Cont'd]({% link _pages/axi2.md %})| 3 days after class |
 
 ### Other Readings
 * [Reading Assignment 3: Fourteen Ways to Fool Your Synchronizer]({% link _pages/synchronizer.md %})

@@ -6,25 +6,27 @@ indent: 1
 number: 25
 ---
 
-To make sure that your AXI IP works correctly, you <del>may want to</del> must simulate it.  As you probably saw when modifying the Verilog files, the AXI bus is complicated, with many different signals and specific protocols.
-Writing a testbench to correctly set these signals would be a lot of work, so Xilinx provides an IP that contains a set of testbench functions to simulate transactions on the AXI bus.  This IP is called the AXI Verification  IP (VIP) <https://www.xilinx.com/support/documentation/ip_documentation/axi_vip/v1_1/pg267-axi-vip.pdf>
+To make sure that your AXI module works correctly, you must simulate it.  As you know, the AXI bus is complicated, with many different signals and specific protocols.
+Writing a test bench to correctly set these signals would be a lot of work, so Xilinx provides an IP that contains a set of test bench functions to simulate transactions on the AXI bus.  This IP is called the AXI Verification  IP (VIP) <https://www.xilinx.com/support/documentation/ip_documentation/axi_vip/v1_1/pg267-axi-vip.pdf>
 
 
 ## Creating a VIP Project 
 You will need to create a new Vivado project with just the VIP module and your PIT IP:
   * The VIP should be configured with *INTERFACE MODE = MASTER* and *PROTOCOL = AXI4LITE*.
-  * Remember to set the address of your PIT in the *Address Editor*.
+  * Remember to set the address of your PIT in the *Address Editor* (the actual address doesn't matter).
 
 <img src="{% link media/vip_system.png %}">
 
-## Create a Testbench 
-Add a new testbench to your project:
-  * Right-click in *Sources*, *Add Sources...*, *Add or create design sources*, *Create file*.  Select *SystemVerilog* and choose a filename.   
-  * Make this test-bench the top-level simulation source.  Go to *Sources*, *Hierarchy*, *Simulation Sources* and right-click on your testbench file and choose *Set as Top*.
+## Create a Test Bench 
+Create a new SystemVerilog file to use as a test bench.  You can start with the HDL provided below.  You may want to save this file in your [pit](https://github.com/byu-cpe/ecen427_student/tree/master/hw/ip_repo/pit) directory.
 
-The testbench has to be written in SystemVerilog.  I've provided my testbench below. It was created based on a simple tutorial here: <http://www.wiki.xilinx.com/Using+the+AXI4+VIP+as+a+master+to+read+and+write+to+an+AXI4-Lite+slave+interface>.  
+Add this test bench to your project:
+  * Right-click in the *Sources* pane and select *Add Sources...*.  In the popup, select *Add or create simulation sources*, *Add file*, then browse to your newly created SystemVerilog test bench file.
+  * Make this test-bench the top-level simulation source.  Go to *Sources*, *Hierarchy*, *Simulation Sources* and right-click on your test bench file and choose *Set as Top*.
 
-It should work for you with a few minor modifications.  The testbench performs two writes to registers in the PIT IP.  You will likely want to perform more reads or writes to the PIT to make sure it is designed to specification correctly.  A few notes:
+A simple starting test bench is included below. It was created based on a tutorial here: <http://www.wiki.xilinx.com/Using+the+AXI4+VIP+as+a+master+to+read+and+write+to+an+AXI4-Lite+slave+interface>.  
+
+It should work for you with a few minor modifications.  The test bench performs two writes to registers in the PIT IP.  You will need to perform more reads and writes to the PIT to make sure it is designed to specification correctly, and meet the simulation requirements for Lab 5.  Some notes
   * The `import design_1_axi_vip_0_0_pkg::*;` assumes your VIP simulation package is named `design_1_axi_vip_0_0`.  Depending on how you chose to name things, yours could have a different name.  You can expand and check *Sources*, *IP Sources*, *Simulation* for the name of the VIP simulation package in your project.  Note that Vivado will underline these lines in red (indicating an error) even if they are written correctly.
   * The datatype of `master_agent` will be *\<package_name\>_mst_t*. 
   * The instantiation of the block design might be a bit different depending on how you named your block design file and the external ports.
@@ -88,3 +90,12 @@ endmodule
   * If the simulation runs without error you will be presented with a waveform of the results.
   * You can drag internal signals from your PIT module to the waveform, and save the waveform.  Next time you re-run the simulation, you will see simulation data for these signals.
 
+
+## AXI Messages
+
+The VIP will warn you if your AXI module behaves incorrectly, so make sure to look at the log messages when you run the simulation.  As an example, if you forgot to provide a write response, you may see a message like this:
+```
+Warning: XILINX_RECS_WLCMD_TO_BVALID_MAX_WAIT: BVALID should be asserted within MAXWAITS cycles when there are outstanding AW Commands and WLast's finished.
+```
+
+If your module produces AXI protocol warnings during simulation, the TAs will deduct points from your lab.
