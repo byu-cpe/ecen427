@@ -69,6 +69,21 @@ Each time you open a new terminal, you will need to run this script so that the 
 In Lab 5 you will need to create a project to simulate and verify your PIT module.
 You should have learned how to create Vivado projects in ECEN 220.  If you want a refresher, you can go back and watch the video on the [Creating a New Vivado Project](http://ecen220wiki.groups.et.byu.net/tutorials/lab_03/00_vivado_project_setup/) page.
 
+In ECEN 220 we had you escalate several Vivado warnings to errors, to help you catch common mistakes in your design.  It would be a good idea to adjust these settings on your Vivado project by running these commands once on each new project:
+```tcl
+set_msg_config -new_severity "ERROR" -id "Synth 8-87"
+set_msg_config -new_severity "ERROR" -id "Synth 8-327"
+set_msg_config -new_severity "ERROR" -id "Synth 8-3352"
+set_msg_config -new_severity "ERROR" -id "Synth 8-5559"
+set_msg_config -new_severity "ERROR" -id "Synth 8-6090"
+set_msg_config -new_severity "ERROR" -id "Synth 8-6858"
+set_msg_config -new_severity "ERROR" -id "Synth 8-6859"
+set_msg_config -new_severity "ERROR" -id "Timing 38-282"
+set_msg_config -new_severity "ERROR" -id "VRFC 10-3091"
+set_msg_config -new_severity "WARNING" -id "Timing 38-313"
+set_msg_config -suppress -id "Constraints 18-5210"
+```
+
 ### Block Design
 For Lab 5, you will need to create a block diagram based simulation project.  The block diagram feature of Vivado allows you to visually instantiate and connect different IP and hardware modules.  Some things to note:
   * To create a block design, click *Create Block Design* in the left-side menu of Vivado. The block design should now show up in the *Sources* window.
