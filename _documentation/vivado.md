@@ -105,7 +105,7 @@ The hardware that you have been using for the labs up to this point is provided 
 
 
 ### Creating the ECEN 427 Project in Vivado
-The project can be created using the [ecen427.tcl](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ecen427.tcl) script. However, the project depends on at least one file that is too large to commit to Github, so it must first be unzipped.  Unzipping the file, and running the *ecen427.tcl* script can be done in one step using a provided [Makefile target](https://github.com/byu-cpe/ecen427_student/blob/5f382465bc456de3346033bc06921c4b6176e2bc/hw/Makefile#L4):
+The project can be created using the [ecen427.tcl](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ecen427.tcl) script. However, the project depends on at least one file that is too large to commit to Github, so it must first be unzipped.  Unzipping the file, and running the *ecen427.tcl* script can be done in one step using a provided [Makefile target](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L4):
 ```
 cd hw
 make

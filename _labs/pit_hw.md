@@ -35,7 +35,7 @@ Your PIT module must include the following:
 
 ### Simulation Project
 
-To grade your lab, the TAs will run [make sim_pit](https://github.com/byu-cpe/ecen427_student/blob/5f382465bc456de3346033bc06921c4b6176e2bc/hw/Makefile#L25).  This make target runs Vivado and does two things:
+To grade your lab, the TAs will run [make sim_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L25).  This make target runs Vivado and does two things:
   1. It sources `sim_proj.tcl`.  
       * To create this file, you will need to make your own Vivado simulation project that contains the AXI VIP and your module, connected appropriately.  The Tcl script can then be exported using the *Write Tcl* menu option, as as described on the [vivado]({% link _documentation/vivado.md %}) page.  
       * When this script is run, it should create a Vivado project with a block diagram that uses the AXI VIP to test your module. 
