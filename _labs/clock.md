@@ -38,18 +38,18 @@ The drivers you write in this lab will run in user space; however, from user spa
 ### Part 1: Drivers 
 
   1. Implement a driver for the buttons.  
-    * [buttons.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/buttons/buttons.h) is provided to you.  
-    * The [drivers](https://github.com/byu-cpe/ecen427_student/tree/master/userspace/drivers) folder contains [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/CMakeLists.txt) that you can uncomment line by line when you are ready to compile your drivers.  
-    * A [buttons_test](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/buttons_test/main.c) application is provided to you.  This program will work once you implement `buttons_init()` and `buttons_read()`.  It doesn't rely on the interrupt functionality of the buttons driver.  You will need to uncomment the appropriate line from the *app* folder's [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/CMakeLists.txt) to compile it.
+     * [buttons.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/buttons/buttons.h) is provided to you.  
+     * The [drivers](https://github.com/byu-cpe/ecen427_student/tree/master/userspace/drivers) folder contains [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/CMakeLists.txt) that you can uncomment line by line when you are ready to compile your drivers.  
+     * A [buttons_test](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/buttons_test/main.c) application is provided to you.  This program will work once you implement `buttons_init()` and `buttons_read()`.  It doesn't rely on the interrupt functionality of the buttons driver.  You will need to uncomment the appropriate line from the *app* folder's [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/CMakeLists.txt) to compile it.
     
 
   1. Implement a driver for the switches.
-    * Since the switches use the same GPIO module as the buttons, this driver will be nearly identical to you buttons driver.
-    * You are given [switches.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/switches/switches.h) and a [switches_test](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/switches_test/main.c) application.
+     * Since the switches use the same GPIO module as the buttons, this driver will be nearly identical to you buttons driver.
+     * You are given [switches.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/switches/switches.h) and a [switches_test](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/switches_test/main.c) application.
 
   1. Implement a driver for the AXI Interrupt Controller.
-    * [intc.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/intc/intc.h) is provided to you.
-    * A [interrupt_test](https://github.com/byu-cpe/ecen427_student/tree/master/userspace/apps/interrupt_test) application is provided to you.  You can use this to test the basic functionality of your interrupt controller driver, and the interrupt API for your buttons and switches drivers.  This test application is provided to you for convenience; just because it works it does not guarantee your drivers are bug free.  You may want to further enhance the provided test applications.
+     * [intc.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/intc/intc.h) is provided to you.
+     * A [interrupt_test](https://github.com/byu-cpe/ecen427_student/tree/master/userspace/apps/interrupt_test) application is provided to you.  You can use this to test the basic functionality of your interrupt controller driver, and the interrupt API for your buttons and switches drivers.  This test application is provided to you for convenience; just because it works it does not guarantee your drivers are bug free.  You may want to further enhance the provided test applications.
 
 ### Part 2: Real-Time Clock 
 
@@ -58,10 +58,10 @@ Complete the real-time clock application.  Some starting code is provided to you
   1. The time display in the terminal emulator is stationary; it does not scroll, etc. Scrounge the internet to see how to clear the terminal window between each print of the time in order to make the display stationary.
   1. The time display will be updated each second. 
   1. Use a combination of a slide-switch with the push-buttons to set the time as follows:
-    * BTN0, BTN1, BTN2 are the second, minute, and hour buttons, respectively.
-    * SW0 is the increment/decrement switch.
-    * To increment the minutes, slide SW0 upward and press the minute button. The displayed minutes should increment once for each press. Analogously, to decrement the minutes, slide SW0 down and press the minutes button. The hour and second buttons work similarly. Note that each press of the button should only increment/decrement its respective value by 1.
-    * You may choose to use SW1 as an enable, so that when SW1 is down, the clock does not run.  This may help you debug setting the time.
+     * BTN0, BTN1, BTN2 are the second, minute, and hour buttons, respectively.
+     * SW0 is the increment/decrement switch.
+     * To increment the minutes, slide SW0 upward and press the minute button. The displayed minutes should increment once for each press. Analogously, to decrement the minutes, slide SW0 down and press the minutes button. The hour and second buttons work similarly. Note that each press of the button should only increment/decrement its respective value by 1.
+     * You may choose to use SW1 as an enable, so that when SW1 is down, the clock does not run.  This may help you debug setting the time.
   1. Your clock application must debounce the button inputs.  Some discussion on this is provided later on this page.
 
 
