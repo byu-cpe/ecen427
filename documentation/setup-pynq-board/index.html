@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Setting up the PYNQ board • ECEn 427
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen427/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<!-- <link rel="icon" type="image/png" sizes="96x96" href=/ecen427/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen427/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen427/icon/favicon-16x16.png> -->
+
+<script src="https://kit.fontawesome.com/d794f0229e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <div class="border-right sidebar-color" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen427/">
+                ECEn 427</a>
+
+        </div>
+
+        <div class="search-bar">
+            <form method="get" action="https://www.google.com/search" target="_blank">
+                <input class="search-box" type="hidden" name="sitesearch" value="https://byu-cpe.github.io/ecen427" />
+                <input class="search-box" type="text" name="q" maxlength="255" placeholder="Search" />
+            </form>
+        </div>
+
+        <div class="list-group list-group-flush sidebar-color">
+
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/syllabus/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-chalkboard-teacher"></i>
+                
+                Syllabus
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/schedule/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fa fa-calendar"></i>
+                
+                Lab Schedule
+            </a>
+            
+            
+            
+            <a href="/ecen427/reading-assignments/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-book-open"></i>
+                
+                Reading Assignments and Schedule
+            </a>
+            
+            
+            <!-- <a href="https://slack.com/app_redirect?team=T01J887F8MU&channel=C01JF1N6TH8"
+                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
+                    class="fa fa-question-circle"></i>
+                Slack</a> -->
+
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/labs/hello-world/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Hello World
+
+            </a>
+            
+            <a href="/ecen427/labs/clock/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Clock
+
+            </a>
+            
+            <a href="/ecen427/labs/space-invaders/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                Space Invaders
+
+            </a>
+            
+            <a href="/ecen427/labs/audio-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Audio Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-hw/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                PIT Hardware
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                PIT Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/hls-accelerator/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                HLS Accelerator
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Documentation</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/documentation/setup/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Setup
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-home-computer/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Home Computer
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-pynq-board/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup PYNQ
+
+            </a>
+            
+            <a href="/ecen427/documentation/serial/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;&emsp;
+
+                PYNQ Serial
+
+            </a>
+            
+            <a href="/ecen427/documentation/network-communications/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ Network
+
+            </a>
+            
+            <a href="/ecen427/documentation/tutorials/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Tutorials
+
+            </a>
+            
+            <a href="/ecen427/documentation/config-pynq-and-github/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ & Github
+
+            </a>
+            
+            <a href="/ecen427/documentation/vscode/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup VSCode
+
+            </a>
+            
+            <a href="/ecen427/documentation/compiling-running-code/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Compiling Programs
+
+            </a>
+            
+            <a href="/ecen427/documentation/software-stack/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Software Stack
+
+            </a>
+            
+            <a href="/ecen427/documentation/uio/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                UIO
+
+            </a>
+            
+            <a href="/ecen427/documentation/platform-device-tree/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Device Tree
+
+            </a>
+            
+            <a href="/ecen427/documentation/linux-drivers/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Linux Drivers
+
+            </a>
+            
+            <a href="/ecen427/documentation/hardware/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/hdmi/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                HDMI
+
+            </a>
+            
+            <a href="/ecen427/documentation/audio-hw/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Audio Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Vivado
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado-axi-simulation/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Simulating AXI IP
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Other</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/other/submission/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Lab Submission
+
+            </a>
+            
+            <a href="/ecen427/other/coding-standard/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Coding Standard
+
+            </a>
+            
+            <a href="/ecen427/other/ta-calendar/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                TA Calendar
+
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+        <button class="btn btn-brand" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/byu-cpe/ecen427/issues/new?labels=website&title=Updates to Setting up the PYNQ board page"><i
+                class="fab fa-github"></i> Suggest
+              Edits</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <article class="page">
+  <h1 class="page-title" id="page-title">
+    
+    Setting up the PYNQ board
+  </h1>
+
+  <div class="page-content">
+    
+
+    <h2 id="obtaining-the-pynq-board">Obtaining the PYNQ Board</h2>
+
+<p>The lab contains PYNQ-Z2 boards at each workstation.  <strong>You do not need to buy your own board.</strong></p>
+
+<!-- <span style="color:red">**You can skip this step if you only plan to work in the lab and not work remotely**.
+</span> -->
+
+<p>If you want to purchase your own Pynq-Z2 board, you can do so online at several distributors:</p>
+<ul>
+  <li>Board only (you will need to obtain micro SD card, micro USB cable separately): <a href="https://www.newark.com/tul-corporation/1m1-m000127dev/tul-pynq-z2/dp/13AJ3027?st=tul-corporation">https://www.newark.com/tul-corporation/1m1-m000127dev/tul-pynq-z2/dp/13AJ3027?st=tul-corporation</a></li>
+  <li>Kit: <a href="https://www.newark.com/tul-corporation/1m1-m000127dvb/tul-pynq-z2-basic-kit-rohs-compliant/dp/69AC1754?st=tul-corporation">https://www.newark.com/tul-corporation/1m1-m000127dvb/tul-pynq-z2-basic-kit-rohs-compliant/dp/69AC1754?st=tul-corporation</a></li>
+</ul>
+
+<!-- 
+Each student will need to obtain their own PYNQ board. If you are on campus you can pickup one in person from the EE shop. If you are not in Provo this semester, you can have a PYNQ board shipped to you by following the procedure below. Students who obtain their board at the shop window will need to provide a refundable deposit of $125.00 via Cougar Cash. If BYU is shipping the board to you, you will need to add $8.00 for shipping. The $125 deposit will be returned to you once you have returned a working board to the shop. Note that the shop is supposed to supply you with a micro-USB cable. Please ask for the cable if they forget to provide one. -->
+
+<!-- 
+==== Arranging Shipping for a PYNQ Board ====
+
+  - Make sure there is at least $133.00 Cougar Cash on your account.
+  - Send an email to the department secretaries (ecen_secretaries@byu.edu) with your net-id and your shipping address. Your net-id authorizes the secretaries to charge $133.00 to your account ($125 is refundable).
+  - Students are responsible for return shipping.
+  - $125 will be returned once the board has been received in good working condition. -->
+
+<h2 id="imaging-the-sd-card">Imaging the SD card</h2>
+<p>The PYNQ runs Linux off of an external micro SD card that you must provide.  The SD card must have a valid system image in order for Linux to run.  We have provided a working system image <a href="https://byu.box.com/s/5o669wg1lh4dlh0asb07ucl32ppesdvp">here</a> (unzip it after you download it), but you must image this to your own SD card.  The micro SD card must be at least 16GB and class 10 or better. The official PYNQ documentation has a guide to <a href="https://pynq.readthedocs.io/en/latest/appendix/sdcard.html">writing the SD card image</a> that you should follow.</p>
+
+<p><em>Note:</em> If you run into issues using <em>Win32DiskImager</em>, another alternative is to use <a href="http://etcher.io">http://etcher.io</a>.</p>
+
+<h2 id="connecting-the-pynq-board-to-a-tv-or-monitor">Connecting the PYNQ Board to a TV or Monitor</h2>
+
+<p>The PYNQ video signal comes from the HDMI port labeled <em>HDMI Out</em> located on the topside of the board. This should already be connected to a dedicated monitor in the lab.  If you work remotely, you will need to find an HDMI-compatible display to use.</p>
+
+<!-- As we are not using a lab room this year, you must provide your own display and HDMI cable (nothing fancy). We have tested the PYNQ board and found that it works correctly with just about any computer monitor and most TVs (though not all).  -->
+
+<p>You can verify that your PYNQ board is imaged correctly, and connected to the display correctly by powering it on, and after it has booted (about 1 min), you should see something like this on your display:</p>
+
+<p><img src="/ecen427/media/setup/pynqdisplaytestimage.jpg" width="400" /></p>
+
+<h2 id="connect-the-pynq-to-your-network">Connect the PYNQ to Your Network</h2>
+
+<p><span style="color:red"><strong>You can skip the rest of this page if only plan to work in the lab and not work remotely</strong>.
+</span></p>
+
+<p>You will need to connect your PYNQ to a network with internet access.  The PYNQ board does not have WiFi, so you will need a physical Ethernet connection.  This can be done three ways:</p>
+<ul>
+  <li>Connect the PYNQ directly to your home router or switch (this is how it is setup in the lab).</li>
+  <li>Connect the PYNQ directly to the Ethernet port on your computer.  This can be done if you aren’t using the Ethernet port for your computer’s internet connection, ie. you are using WiFi or have an extra ethernet port.</li>
+  <li>If you don’t have an extra Ethernet port on your computer, you can buy a USB-to-Ethernet adapter such as the one <a href="https://www.amazon.com/Cable-Matters-Ethernet-Adapter-Supporting/dp/B00BBD7NFU/ref=sr_1_5?crid=2VLSDOH1QTN7Q&amp;dchild=1&amp;keywords=usb+to+ethernet+adapter&amp;qid=1594321211&amp;sprefix=usb+to+eth%2Caps%2C188&amp;sr=8-5">here</a>.  Make sure to buy one that is compatible with your computer.</li>
+</ul>
+
+<h3 id="internet-sharing">Internet Sharing</h3>
+
+<p>If you used Option #1 above and connected the PYNQ directly to your home network, you can skip this section.  Otherwise, if you connected the PYNQ to your computer, follow the steps in this section to share your internet connection with the PYNQ board.</p>
+
+<h4 id="windows">Windows</h4>
+
+<ul>
+  <li>Right-click network icon in System Tray and select <em>Open Network &amp; Internet settings</em></li>
+  <li>Click <em>Ethernet</em> or <em>Wi-Fi</em> in the left-hand menu (it doesn’t matter which you select).</li>
+  <li>Click <em>Change adapter options</em> in the right-hand menu.</li>
+  <li>The pop-up window lists all of your network adapters:
+    <ul>
+      <li>If you have a USB-to-Ethernet adapter, identify which adapter it is.  You can unplug it and plug it back in to verify.</li>
+      <li>Next, find the adapter that your computer uses to connect to the internet.  This may be the <em>WiFi</em> adapter if you use WiFi, or the <em>Ethernet</em> adapter if you use a physical Ethernet connection. Right-click on this adapter and open the <em>Properties</em>.</li>
+    </ul>
+  </li>
+  <li>In the adapter pop-up window, click the <em>Sharing</em> tab.  Check the box for <em>Allow other network users to connect through this computer’s Internet connection</em>.</li>
+  <li>Use the <em>Home Networking connection</em> drop-box box to select the USB-to-Ethernet adapter that you identified in the earlier step. Click <em>OK</em> and close the Windows.</li>
+</ul>
+
+<h4 id="mac">Mac</h4>
+
+<p><a href="https://support.apple.com/en-ca/guide/mac-help/mchlp1540/mac">https://support.apple.com/en-ca/guide/mac-help/mchlp1540/mac</a></p>
+
+<h4 id="ubuntu-linux">Ubuntu Linux</h4>
+<ul>
+  <li>For those with the Unity launcher, <a href="https://askubuntu.com/a/194526">https://askubuntu.com/a/194526</a> should work</li>
+  <li>For those with the Gnome desktop, <a href="https://major.io/2015/03/29/share-a-wireless-connection-via-ethernet-in-gnome-3-14/">https://major.io/2015/03/29/share-a-wireless-connection-via-ethernet-in-gnome-3-14/</a> should work</li>
+</ul>
+
+<h3 id="find-the-pynq-ip-address">Find the PYNQ IP Address</h3>
+
+<p>Next you will need to determine what IP address your PYNQ board was given.  Make sure you insert the imaged SD card into your PYNQ board and power it on before proceeding.</p>
+
+<p>If you use option 1 or 2 below, keep in mind that as you look for the PYNQ IP address, <strong>the PYNQ boards tend to have MAC addresses that start with 00:05:6b:</strong>.</p>
+
+<p><strong>Option 1: Retrieve from router.</strong> <em>You can only use this technique if you used option #1 above, and your PYNQ is connected directly to your home router or switch</em></p>
+
+<p>Your PYNQ should be given an IP address on your home network.  This is likely something like 192.168.x.x and you may be able to find it using the DHCP list on your router’s configuration webpage, or if you have a newer router, such as a Netgear Orbi or Google Nest, you can use the appropriate mobile app to view devices on your home network and get the IP address.</p>
+
+<p><strong>Option 2: Use ARP.</strong></p>
+
+<p>ARP (Address Resolution Protocol) allows you to view IP addresses and MAC addresses of computers on your network.</p>
+
+<p>In Windows, Linux, or Mac, you should be able to run <code class="language-plaintext highlighter-rouge">arp -a</code> in the terminal to view a list of IP/MAC pairs.  They are usually grouped by network device, so if you have the PYNQ connected to your computer via USB-to-Ethernet adapter, the PYNQ should be in it’s own category.</p>
+
+<p><strong>Option 3: Connect to the PYNQ board using UART</strong></p>
+
+<p>The <a href="/ecen427/documentation/serial/">PYNQ Serial</a> page describes how to get a command prompt on the PYNQ board using the USB connection.  From there you can run <code class="language-plaintext highlighter-rouge">ifconfig</code> to view the network adapters on the PYNQ board and their IP addresses.  The Ethernet adapter on the PYNQ is named <code class="language-plaintext highlighter-rouge">eth0</code> (ignore the <code class="language-plaintext highlighter-rouge">eth0:1</code> entry).</p>
+
+
+  </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src=/ecen427/js/jquery.visible.min.js></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+</body>
+
+</html>

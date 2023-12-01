@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Lab 2: Real-Time Clock with Fixed Interval Timer (FIT) • ECEn 427
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen427/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<!-- <link rel="icon" type="image/png" sizes="96x96" href=/ecen427/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen427/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen427/icon/favicon-16x16.png> -->
+
+<script src="https://kit.fontawesome.com/d794f0229e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <div class="border-right sidebar-color" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen427/">
+                ECEn 427</a>
+
+        </div>
+
+        <div class="search-bar">
+            <form method="get" action="https://www.google.com/search" target="_blank">
+                <input class="search-box" type="hidden" name="sitesearch" value="https://byu-cpe.github.io/ecen427" />
+                <input class="search-box" type="text" name="q" maxlength="255" placeholder="Search" />
+            </form>
+        </div>
+
+        <div class="list-group list-group-flush sidebar-color">
+
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/syllabus/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-chalkboard-teacher"></i>
+                
+                Syllabus
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/schedule/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fa fa-calendar"></i>
+                
+                Lab Schedule
+            </a>
+            
+            
+            
+            <a href="/ecen427/reading-assignments/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-book-open"></i>
+                
+                Reading Assignments and Schedule
+            </a>
+            
+            
+            <!-- <a href="https://slack.com/app_redirect?team=T01J887F8MU&channel=C01JF1N6TH8"
+                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
+                    class="fa fa-question-circle"></i>
+                Slack</a> -->
+
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/labs/hello-world/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Hello World
+
+            </a>
+            
+            <a href="/ecen427/labs/clock/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Clock
+
+            </a>
+            
+            <a href="/ecen427/labs/space-invaders/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                Space Invaders
+
+            </a>
+            
+            <a href="/ecen427/labs/audio-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Audio Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-hw/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                PIT Hardware
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                PIT Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/hls-accelerator/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                HLS Accelerator
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Documentation</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/documentation/setup/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Setup
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-home-computer/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Home Computer
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-pynq-board/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup PYNQ
+
+            </a>
+            
+            <a href="/ecen427/documentation/serial/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;&emsp;
+
+                PYNQ Serial
+
+            </a>
+            
+            <a href="/ecen427/documentation/network-communications/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ Network
+
+            </a>
+            
+            <a href="/ecen427/documentation/tutorials/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Tutorials
+
+            </a>
+            
+            <a href="/ecen427/documentation/config-pynq-and-github/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ & Github
+
+            </a>
+            
+            <a href="/ecen427/documentation/vscode/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup VSCode
+
+            </a>
+            
+            <a href="/ecen427/documentation/compiling-running-code/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Compiling Programs
+
+            </a>
+            
+            <a href="/ecen427/documentation/software-stack/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Software Stack
+
+            </a>
+            
+            <a href="/ecen427/documentation/uio/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                UIO
+
+            </a>
+            
+            <a href="/ecen427/documentation/platform-device-tree/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Device Tree
+
+            </a>
+            
+            <a href="/ecen427/documentation/linux-drivers/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Linux Drivers
+
+            </a>
+            
+            <a href="/ecen427/documentation/hardware/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/hdmi/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                HDMI
+
+            </a>
+            
+            <a href="/ecen427/documentation/audio-hw/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Audio Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Vivado
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado-axi-simulation/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Simulating AXI IP
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Other</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/other/submission/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Lab Submission
+
+            </a>
+            
+            <a href="/ecen427/other/coding-standard/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Coding Standard
+
+            </a>
+            
+            <a href="/ecen427/other/ta-calendar/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                TA Calendar
+
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+        <button class="btn btn-brand" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/byu-cpe/ecen427/issues/new?labels=website&title=Updates to Lab 2: Real-Time Clock with Fixed Interval Timer (FIT) page"><i
+                class="fab fa-github"></i> Suggest
+              Edits</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        Lab 2: Real-Time Clock with Fixed Interval Timer (FIT)
+        
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5 bg-light">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#objectives">Objectives</a></li>
+  <li><a href="#preliminary">Preliminary</a>
+    <ul>
+      <li><a href="#software-stack">Software Stack</a></li>
+      <li><a href="#the-hardware-system">The Hardware System</a></li>
+      <li><a href="#axi-gpio-module">AXI GPIO Module</a></li>
+      <li><a href="#axi-interrupt-controller">AXI Interrupt Controller</a></li>
+      <li><a href="#uio">UIO</a></li>
+    </ul>
+  </li>
+  <li><a href="#implementation">Implementation</a>
+    <ul>
+      <li><a href="#part-1-drivers">Part 1: Drivers</a></li>
+      <li><a href="#part-2-real-time-clock">Part 2: Real-Time Clock</a></li>
+    </ul>
+  </li>
+  <li><a href="#other-requirements">Other Requirements</a></li>
+  <li><a href="#submission">Submission</a></li>
+  <li><a href="#suggested-approaches">Suggested Approaches</a></li>
+  <li><a href="#additional-discussion-required-debouncing-strategy">Additional Discussion: Required Debouncing Strategy</a></li>
+</ul>
+
+        </div>
+        
+
+        <h2 id="objectives">Objectives</h2>
+<p>For this lab you will implement multiple user space drivers, including drivers for the Xilinx GPIO and interrupt controller IP cores.  You will use these drivers to then implement a simple real-time clock application, that will print the current time, using <strong>printf()</strong>, in a terminal window that is connected to the PYNQ system.</p>
+
+<h2 id="preliminary">Preliminary</h2>
+
+<h3 id="software-stack">Software Stack</h3>
+
+<p>Review the <a href="/ecen427/documentation/software-stack/">Software Stack</a> that illustrates how the different software modules you will create in this class will work together.  This will be discussed more in class.</p>
+
+<p>Make note of the provided <a href="https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/system.h">system.h</a> file.</p>
+
+<h3 id="the-hardware-system">The Hardware System</h3>
+<p>For this lab, the complete hardware system will be provided; you shouldn’t make any changes to the hardware.  You should review the <a href="/ecen427/documentation/hardware/">hardware system</a> before you start coding the lab.  Particularly look for the GPIO modules that interface with the buttons and switches, and look at how the interrupt lines are connected to the Interrupt Controller.</p>
+
+<h3 id="axi-gpio-module">AXI GPIO Module</h3>
+
+<p>You will need to write drivers for the buttons and switches.  Both of these are connected to the hardware using an <em>AXI GPIO</em> module. Read the <em>AXI GPIO</em> documentation (link on the <a href="/ecen427/documentation/hardware/">hardware system</a> page).</p>
+
+<p><em>Note:</em> The <em>GPIO_TRI</em> register was not generated for the buttons and switches GPIO blocks. If you try to read the <em>GPIO_TRI</em> register, you will get nonsense. Also, it makes no sense to write this register as it does not exist.</p>
+
+<h3 id="axi-interrupt-controller">AXI Interrupt Controller</h3>
+
+<p>You will need to write a driver for the <em>AXI Interrupt Controller</em>. Read the documentation (link on the <a href="/ecen427/documentation/hardware/">hardware system</a> page).</p>
+
+<h3 id="uio">UIO</h3>
+<p>The drivers you write in this lab will run in user space; however, from user space, you are not permitted to interact directly with hardware devices.  As shown on the <a href="/ecen427/documentation/software-stack/">Software Stack</a> page, there is a lightweight  kernel driver for the GPIO modules and Interrupt Controller, called the <em>Userspace I/O (UIO) driver</em>.  This provides a bridge that allows you to access these devices from user space.  You will need to read about the <a href="/ecen427/documentation/uio/">UIO</a>.</p>
+
+<h2 id="implementation">Implementation</h2>
+
+<h3 id="part-1-drivers">Part 1: Drivers</h3>
+
+<ol>
+  <li>Implement a driver for the buttons.
+    <ul>
+      <li><a href="https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/buttons/buttons.h">buttons.h</a> is provided to you.</li>
+      <li>The <a href="https://github.com/byu-cpe/ecen427_student/tree/master/userspace/drivers">drivers</a> folder contains <a href="https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/CMakeLists.txt">CMakeLists.txt</a> that you can uncomment line by line when you are ready to compile your drivers.</li>
+      <li>A <a href="https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/buttons_test/main.c">buttons_test</a> application is provided to you.  This program will work once you implement <code class="language-plaintext highlighter-rouge">buttons_init()</code> and <code class="language-plaintext highlighter-rouge">buttons_read()</code>.  It doesn’t rely on the interrupt functionality of the buttons driver.  You will need to uncomment the appropriate line from the <em>app</em> folder’s <a href="https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/CMakeLists.txt">CMakeLists.txt</a> to compile it.</li>
+    </ul>
+  </li>
+  <li>Implement a driver for the switches.
+    <ul>
+      <li>Since the switches use the same GPIO module as the buttons, this driver will be nearly identical to you buttons driver.</li>
+      <li>You are given <a href="https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/switches/switches.h">switches.h</a> and a <a href="https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/switches_test/main.c">switches_test</a> application.</li>
+    </ul>
+  </li>
+  <li>Implement a driver for the AXI Interrupt Controller.
+    <ul>
+      <li><a href="https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/intc/intc.h">intc.h</a> is provided to you.</li>
+      <li>A <a href="https://github.com/byu-cpe/ecen427_student/tree/master/userspace/apps/interrupt_test">interrupt_test</a> application is provided to you.  You can use this to test the basic functionality of your interrupt controller driver, and the interrupt API for your buttons and switches drivers.  This test application is provided to you for convenience; just because it works it does not guarantee your drivers are bug free.  You may want to further enhance the provided test applications.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="part-2-real-time-clock">Part 2: Real-Time Clock</h3>
+
+<p>Complete the real-time clock application.  Some starting code is provided to you: <a href="https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/clock/clock.c">clock.c</a></p>
+<ol>
+  <li>Time is printed to the terminal using ‘‘printf’’, in the following 24-hour format (includes leading zero): <strong>HH:MM:SS</strong></li>
+  <li>The time display in the terminal emulator is stationary; it does not scroll, etc. Scrounge the internet to see how to clear the terminal window between each print of the time in order to make the display stationary.</li>
+  <li>The time display will be updated each second.</li>
+  <li>Use a combination of a slide-switch with the push-buttons to set the time as follows:
+    <ul>
+      <li>BTN0, BTN1, BTN2 are the second, minute, and hour buttons, respectively.</li>
+      <li>SW0 is the increment/decrement switch.</li>
+      <li>To increment the minutes, slide SW0 upward and press the minute button. The displayed minutes should increment once for each press. Analogously, to decrement the minutes, slide SW0 down and press the minutes button. The hour and second buttons work similarly. Note that each press of the button should only increment/decrement its respective value by 1.</li>
+      <li>You may choose to use SW1 as an enable, so that when SW1 is down, the clock does not run.  This may help you debug setting the time.</li>
+    </ul>
+  </li>
+  <li>Your clock application must debounce the button inputs.  Some discussion on this is provided later on this page.</li>
+</ol>
+
+<p>Once the above is working, complete the final requirement:</p>
+<ul>
+  <li>Provide an auto-incrementing/decrementing mode for setting time. For example, if SW0 is in the up position and the user pushes the Hour push-button for 1/2 second or more, the hour should increment automatically at a rate of 10 increments per second until they release the hour button. Hours should decrement at a rate of 10 decrements per second if SW0 is in the down position. The same must be true for the seconds and minute modes of setting.  You don’t need to be counting time while a button is held down.</li>
+</ul>
+
+<p>Notes:</p>
+<ul>
+  <li>You should be able to change the position of SW0 while holding the hour, minute, or second button and have the clock do the right thing, i.e., switch from increment to decrement and vice versa.</li>
+  <li>If more than one of the hour, minute, or second button are simultaneously pressed, you can choose whatever behavior you like.</li>
+</ul>
+
+<h2 id="other-requirements">Other Requirements</h2>
+<ol>
+  <li>You must use the interrupt output of the fixed-interval timer (FIT) to keep time and to keep track of debounce delays, etc.</li>
+  <li>You must use interrupts to receive data from the push-buttons. More specifically, the buttons can only be read when its associated GPIO module generates an interrupt. You are not allowed to read them in any other manner; ie., <strong>you cannot poll the buttons</strong>, or variables that may contain button values - no polling at all. For example, you cannot use the timer-interrupt to poll the button values.</li>
+  <li>You must de-bounce the push buttons. You won’t get full credit if you have bouncy switches. The TA will be testing for this.</li>
+  <li>The push buttons must be very responsive. The TAs will test your implementation by tapping the switches rapidly to check for responsiveness. Your implementation must be able to respond to pushbuttons that are pushed several times a second.</li>
+  <li>Your implementation must tolerate the user pushing any combination of buttons. It shouldn’t do anything strange (like display an illegal time, for example), and it must not die, no matter what combination of buttons are pushed.</li>
+  <li>Depending how you choose to structure your code, you probably won’t need to use the interrupt from the switches, since you should never be stopped waiting for a switch to change value.  It’s fine to just read the current switch value directly from the driver using ‘‘switches_read()’’ when you need the value.</li>
+</ol>
+
+<h2 id="submission">Submission</h2>
+
+<p>Follow the instructions on the <a href="/ecen427/other/submission/">Submission</a> page.</p>
+
+<h2 id="suggested-approaches">Suggested Approaches</h2>
+<p>Interrupts can be extremely tricky and frustrating to deal with so I strongly suggest that you read the relevant documentation carefully and take an incremental approach. In particular, it is quite useful to write simple programs that indicate that the interrupts are working in the first place. Getting the interrupts to do anything at all is more than half the battle. I did the lab in the following order:</p>
+
+<ol>
+  <li>Read all of the documentation (there is a lot of it).</li>
+  <li>Read it again.</li>
+  <li>For each peripheral, determined how it needed to be programmed by reading the PDF data sheet.</li>
+  <li>Carefully studied the <a href="/ecen427/documentation/hardware/">Hardware System Block Diagram</a> to see which interrupts are tied to which inputs on the interrupt controller.</li>
+  <li>Used the provided test applications to verify that I could read the buttons and switches.</li>
+  <li>Created a simple program that printed a ”.” to the screen once each second, using the FIT. This is mostly about verifying that you can get the FIT interrupt to work.</li>
+  <li>Created a simple program that printed a ”#” each time I pressed and released any push-button (did something similar for the switches). This is mostly about verifying that you can get the button interrupts to work.</li>
+  <li>I combined the two programs into one program so that, while the ”.” was getting printed each second, ”#“s would appear interspersed between the ”.” each time I pressed and released a push-button.</li>
+  <li>Added code to the interrupt handler for the push-buttons that read the values of the buttons each time the interrupt occurred and stored those values in a variable.</li>
+  <li>Added the software for de-bouncing the buttons</li>
+  <li>Added the code that updated the time, second by second, as controlled by the FIT interrupt.</li>
+  <li>Added the code that allows one to set the time using the buttons.</li>
+</ol>
+
+<h2 id="additional-discussion-required-debouncing-strategy">Additional Discussion: Required Debouncing Strategy</h2>
+<p>One of the goals of this lab is to learn to work with different interrupt sources. For this lab, there are three: buttons, switches, and the interrupt controller. I want you to use interrupts from at least the buttons and the interrupt controller. For debouncing, you must use the following approach:</p>
+
+<ol>
+  <li>The FIT ISR will increment a variable that implements a debounce timer. When this timer expires (when it arrives at its maximum value), it will copy the now debounced value of the buttons from a variable previously written to by the buttons ISR, and then perform the required action (increment/decrement hours, etc.).</li>
+  <li>The buttons generate an interrupt each time a change in their value is detected. This change could occur because the user pressed or released a button. In either case, you reset the debouncing timer..</li>
+  <li>Other than various initializations and set up, your ‘‘main()’’ must contain only a while(1) loop that waits for interrupts to occur. If the loop has anything else then you are probably doing the forbidden, a.k.a. polling. See the figure below.</li>
+  <li>The only place you should read the buttons is in the interrupt handler for the buttons (and possibly in your initialization code that runs once). After reading the buttons you can store their value in a variable/memory and use it in the FIT interrupt handler, but the FIT interrupt handler should NEVER read the buttons directly i.e., read the GPIO data register for the buttons.</li>
+</ol>
+
+<p><img src="/ecen427/media/labs/lab2_polling.jpg" /></p>
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src=/ecen427/js/jquery.visible.min.js></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+</body>
+
+</html>

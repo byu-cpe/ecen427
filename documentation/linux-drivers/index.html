@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Linux Device Drivers • ECEn 427
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen427/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<!-- <link rel="icon" type="image/png" sizes="96x96" href=/ecen427/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen427/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen427/icon/favicon-16x16.png> -->
+
+<script src="https://kit.fontawesome.com/d794f0229e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <div class="border-right sidebar-color" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen427/">
+                ECEn 427</a>
+
+        </div>
+
+        <div class="search-bar">
+            <form method="get" action="https://www.google.com/search" target="_blank">
+                <input class="search-box" type="hidden" name="sitesearch" value="https://byu-cpe.github.io/ecen427" />
+                <input class="search-box" type="text" name="q" maxlength="255" placeholder="Search" />
+            </form>
+        </div>
+
+        <div class="list-group list-group-flush sidebar-color">
+
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/syllabus/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-chalkboard-teacher"></i>
+                
+                Syllabus
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/schedule/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fa fa-calendar"></i>
+                
+                Lab Schedule
+            </a>
+            
+            
+            
+            <a href="/ecen427/reading-assignments/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-book-open"></i>
+                
+                Reading Assignments and Schedule
+            </a>
+            
+            
+            <!-- <a href="https://slack.com/app_redirect?team=T01J887F8MU&channel=C01JF1N6TH8"
+                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
+                    class="fa fa-question-circle"></i>
+                Slack</a> -->
+
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/labs/hello-world/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Hello World
+
+            </a>
+            
+            <a href="/ecen427/labs/clock/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Clock
+
+            </a>
+            
+            <a href="/ecen427/labs/space-invaders/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                Space Invaders
+
+            </a>
+            
+            <a href="/ecen427/labs/audio-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Audio Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-hw/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                PIT Hardware
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                PIT Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/hls-accelerator/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                HLS Accelerator
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Documentation</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/documentation/setup/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Setup
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-home-computer/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Home Computer
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-pynq-board/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup PYNQ
+
+            </a>
+            
+            <a href="/ecen427/documentation/serial/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;&emsp;
+
+                PYNQ Serial
+
+            </a>
+            
+            <a href="/ecen427/documentation/network-communications/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ Network
+
+            </a>
+            
+            <a href="/ecen427/documentation/tutorials/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Tutorials
+
+            </a>
+            
+            <a href="/ecen427/documentation/config-pynq-and-github/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ & Github
+
+            </a>
+            
+            <a href="/ecen427/documentation/vscode/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup VSCode
+
+            </a>
+            
+            <a href="/ecen427/documentation/compiling-running-code/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Compiling Programs
+
+            </a>
+            
+            <a href="/ecen427/documentation/software-stack/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Software Stack
+
+            </a>
+            
+            <a href="/ecen427/documentation/uio/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                UIO
+
+            </a>
+            
+            <a href="/ecen427/documentation/platform-device-tree/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Device Tree
+
+            </a>
+            
+            <a href="/ecen427/documentation/linux-drivers/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Linux Drivers
+
+            </a>
+            
+            <a href="/ecen427/documentation/hardware/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/hdmi/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                HDMI
+
+            </a>
+            
+            <a href="/ecen427/documentation/audio-hw/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Audio Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Vivado
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado-axi-simulation/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Simulating AXI IP
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Other</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/other/submission/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Lab Submission
+
+            </a>
+            
+            <a href="/ecen427/other/coding-standard/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Coding Standard
+
+            </a>
+            
+            <a href="/ecen427/other/ta-calendar/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                TA Calendar
+
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+        <button class="btn btn-brand" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/byu-cpe/ecen427/issues/new?labels=website&title=Updates to Linux Device Drivers page"><i
+                class="fab fa-github"></i> Suggest
+              Edits</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <article class="page">
+  <h1 class="page-title" id="page-title">
+    
+    Linux Device Drivers
+  </h1>
+
+  <div class="page-content">
+    
+
+    <p>After a device has been added to the device tree, Linux knows that it exists.  However, it does not know how to talk to it.  Device drivers inform Linux how to talk to each device it has.</p>
+
+<h2 id="contexts">Contexts</h2>
+<p>In a Linux system, all code executing on the processor is run in one of two contexts: the <strong>kernel space</strong> or <strong>user-space</strong>.</p>
+
+<p>From <a href="https://blog.codinghorror.com/understanding-user-and-kernel-mode/">https://blog.codinghorror.com/understanding-user-and-kernel-mode/</a>:</p>
+
+<blockquote>
+  <p><strong>Kernel Mode:</strong> In Kernel mode, the executing code has complete and unrestricted access to the underlying hardware. It can execute any CPU instruction and reference any memory address. Kernel mode is generally reserved for the lowest-level, most trusted functions of the operating system. Crashes in kernel mode are catastrophic; they will halt the entire PC.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>User Mode:</strong> In User mode, the executing code has no ability to directly access hardware or reference memory. Code running in user mode must delegate to system APIs to access hardware or memory. Due to the protection afforded by this sort of isolation, crashes in user mode are always recoverable. Most of the code running on your computer will execute in user mode.</p>
+</blockquote>
+
+<p>Since user programs often need to access hardware devices, modify the filesystem, etc, Linux contains a number of interfaces that regulate requests from user space to the kernel.  In this class you will first gain experience writing device drivers that execute in user space and send requests to the kernel.  Later, you will write device drivers that execute directly in kernel space.</p>
+
+<h2 id="kernel-vs-userspace-drivers">Kernel vs Userspace Drivers</h2>
+<p><em>Why would you want to write a kernel driver versus a userspace driver?</em></p>
+
+<p>This <a href="https://stackoverflow.com/a/27709901">stackoverflow answer</a> covers a lot of pros and cons, and more can be find by searching Google yourself.</p>
+
+<h2 id="developing-a-kernel-driver">Developing a Kernel Driver</h2>
+
+<h3 id="resources">Resources</h3>
+<p>The Linux system we use in this class is based on the 5.4.0 version of the Kernel:</p>
+<ul>
+  <li>Source code is available at <a href="https://elixir.bootlin.com/linux/v5.4/source">https://elixir.bootlin.com/linux/v5.4/source</a></li>
+  <li>Documentation is available at <a href="https://www.kernel.org/doc/html/v5.4">https://www.kernel.org/doc/html/v5.4</a></li>
+</ul>
+
+<h3 id="compiling-the-driver">Compiling the Driver</h3>
+<p>Write your kernel driver in a single .c file, and place it in a directory with the following Makefile.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TARGET_MODULE=audio
+
+ccflags-y := -std=gnu99 -Wno-declaration-after-statement
+
+# If KERNELRELEASE is defined, we have been invoked from the kernel build system
+# and can use its language.
+# This runs on the second run of make.
+ifneq ($(KERNELRELEASE),)
+	obj-m := $(TARGET_MODULE).o	
+# Otherwise, we were invoked from the command line - invoke the kernel build system.
+# This runs on the first run of make.
+else	
+	BUILDSYSTEM_DIR:=/lib/modules/$(shell uname -r)/build
+	PWD:=$(shell pwd)
+
+all : 
+	# run kernel build system to make module
+	$(MAKE) -C $(BUILDSYSTEM_DIR) M=$(PWD) modules
+	
+clean:
+	# run kernel build system to cleanup in current directory
+	$(MAKE) -C $(BUILDSYSTEM_DIR) M=$(PWD) clean
+
+install:
+	$(MAKE) -C $(BUILDSYSTEM_DIR) M=$(PWD) modules_install
+    depmod -A
+
+endif
+</code></pre></div></div>
+
+<p>In the above Makefile, you should replace the ‘‘TARGET_MODULE=audio’’ with the name of your .c file.</p>
+
+<p>Simply run <code class="language-plaintext highlighter-rouge">make</code> to compile your driver.  A kernel module/object (‘‘.ko’’) file will be produced.</p>
+
+<h3 id="adding-the-driver-to-linux">Adding the Driver to Linux</h3>
+<p>There are generally three ways to add your driver to the Linux system:</p>
+<ul>
+  <li>Compile it into the kernel when you originally compile the kernel.</li>
+  <li>Run it as a <a href="https://wiki.archlinux.org/index.php/Kernel_module">Kernel Module</a> that is loaded at boot.</li>
+  <li>Run it as a Kernel Module that is loaded manually.</li>
+</ul>
+
+<p>Since we aren’t going to recompile the kernel, #1 is not possible.  While you are developing your kernel you should use method #3:</p>
+<ul>
+  <li>Insert your module: <code class="language-plaintext highlighter-rouge">sudo insmod mymod.ko</code></li>
+  <li>List modules: <code class="language-plaintext highlighter-rouge">lsmod</code></li>
+  <li>Remove your module: <code class="language-plaintext highlighter-rouge">sudo rmmod mymod</code></li>
+</ul>
+
+<p>Once you are confident your driver works, you can use option #2 and install it into the kernel, so that it can be loaded at boot:</p>
+<ul>
+  <li>First build it: <code class="language-plaintext highlighter-rouge">make</code></li>
+  <li>Then install it into the kernel filesystem: <code class="language-plaintext highlighter-rouge">sudo make install</code></li>
+  <li>Then configure it to load on boot by adding it to <em>/etc/modules</em></li>
+</ul>
+
+<h2 id="debugging">Debugging</h2>
+<p>One of the trickiest things to do when writing a Linux kernel driver is to debug it.  Because the kernel runs continuously, debugging methods that involve halting a process will not work.</p>
+
+<h3 id="incremental-building">Incremental Building</h3>
+<p>When creating a program, there is always the temptation to rush the coding part by writing as much as possible, then testing everything at the same time.  This is a particularly unwise strategy when it comes to debugging the Linux kernel.  There is a certain amount of boiler plate necessary to even get the driver to compile, but once that has been set up, changes should be made incrementally.</p>
+
+<h3 id="kernel-logs">Kernel Logs</h3>
+<p>Many people rely on using the <code class="language-plaintext highlighter-rouge">printf()</code> function to help them debug programs.  When writing a Linux driver, this function is not available because it is part of the C standard library.  There is an analogous function called <code class="language-plaintext highlighter-rouge">printk()</code> (“k” for “kernel”).  However, it is recommended you use the nice <a href="https://elixir.bootlin.com/linux/v5.4/source/include/linux/printk.h#L291">wrapper functions</a> instead:</p>
+<ul>
+  <li>Use <code class="language-plaintext highlighter-rouge">pr_info</code>, <code class="language-plaintext highlighter-rouge">pr_warn</code>, <code class="language-plaintext highlighter-rouge">pr_err</code>, or <code class="language-plaintext highlighter-rouge">dev_info</code>, <code class="language-plaintext highlighter-rouge">dev_warn</code>, <code class="language-plaintext highlighter-rouge">dev_err</code> to print to the kernel logs.</li>
+  <li>When you have a device pointer available (such as within your <em>probe</em> function, use the <code class="language-plaintext highlighter-rouge">dev_*</code> <a href="https://elixir.bootlin.com/linux/v5.4/source/include/linux/device.h#L1729">wrapper functions</a> instead.</li>
+</ul>
+
+<p>To display the most recent entries from the kernel log run <code class="language-plaintext highlighter-rouge">dmesg</code> from the shell.</p>
+
+<h3 id="serial-console">Serial Console</h3>
+<p>Sometimes your system will hang and the terminal will not respond.  <em>Probably</em> some important message was written to the kernel log, but you can’t run <code class="language-plaintext highlighter-rouge">dmesg</code> to see what it was.  In this instance, using the serial console could help.</p>
+
+<p><a href="/ecen427/documentation/serial/">PYNQ Serial</a> explains how to connect to the Pynq via the serial port.  This serial port has the advantage that it prints all kernel messages that would normally show up in <code class="language-plaintext highlighter-rouge">dmesg</code> as they are written.  So even if the system hangs, this console will often print out information.</p>
+
+<h2 id="resources-1">Resources</h2>
+<ul>
+  <li>There is a book published all about Linux device drivers.  It can be found for free at <a href="https://lwn.net/Kernel/LDD3/">https://lwn.net/Kernel/LDD3/</a>. Please note that while this is a wonderful resource for understanding how the Linux Kernel is built, it is based on an older version of the kernel. As such you should not rely on the syntax or function names shown in the book.</li>
+</ul>
+
+  </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src=/ecen427/js/jquery.visible.min.js></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+</body>
+
+</html>

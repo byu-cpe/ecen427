@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Lab 5: Programmable Interval Timer (PIT) • ECEn 427
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen427/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<!-- <link rel="icon" type="image/png" sizes="96x96" href=/ecen427/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen427/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen427/icon/favicon-16x16.png> -->
+
+<script src="https://kit.fontawesome.com/d794f0229e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <div class="border-right sidebar-color" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen427/">
+                ECEn 427</a>
+
+        </div>
+
+        <div class="search-bar">
+            <form method="get" action="https://www.google.com/search" target="_blank">
+                <input class="search-box" type="hidden" name="sitesearch" value="https://byu-cpe.github.io/ecen427" />
+                <input class="search-box" type="text" name="q" maxlength="255" placeholder="Search" />
+            </form>
+        </div>
+
+        <div class="list-group list-group-flush sidebar-color">
+
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/syllabus/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-chalkboard-teacher"></i>
+                
+                Syllabus
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/schedule/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fa fa-calendar"></i>
+                
+                Lab Schedule
+            </a>
+            
+            
+            
+            <a href="/ecen427/reading-assignments/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-book-open"></i>
+                
+                Reading Assignments and Schedule
+            </a>
+            
+            
+            <!-- <a href="https://slack.com/app_redirect?team=T01J887F8MU&channel=C01JF1N6TH8"
+                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
+                    class="fa fa-question-circle"></i>
+                Slack</a> -->
+
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/labs/hello-world/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Hello World
+
+            </a>
+            
+            <a href="/ecen427/labs/clock/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Clock
+
+            </a>
+            
+            <a href="/ecen427/labs/space-invaders/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                Space Invaders
+
+            </a>
+            
+            <a href="/ecen427/labs/audio-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Audio Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-hw/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                PIT Hardware
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                PIT Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/hls-accelerator/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                HLS Accelerator
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Documentation</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/documentation/setup/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Setup
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-home-computer/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Home Computer
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-pynq-board/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup PYNQ
+
+            </a>
+            
+            <a href="/ecen427/documentation/serial/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;&emsp;
+
+                PYNQ Serial
+
+            </a>
+            
+            <a href="/ecen427/documentation/network-communications/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ Network
+
+            </a>
+            
+            <a href="/ecen427/documentation/tutorials/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Tutorials
+
+            </a>
+            
+            <a href="/ecen427/documentation/config-pynq-and-github/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ & Github
+
+            </a>
+            
+            <a href="/ecen427/documentation/vscode/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup VSCode
+
+            </a>
+            
+            <a href="/ecen427/documentation/compiling-running-code/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Compiling Programs
+
+            </a>
+            
+            <a href="/ecen427/documentation/software-stack/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Software Stack
+
+            </a>
+            
+            <a href="/ecen427/documentation/uio/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                UIO
+
+            </a>
+            
+            <a href="/ecen427/documentation/platform-device-tree/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Device Tree
+
+            </a>
+            
+            <a href="/ecen427/documentation/linux-drivers/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Linux Drivers
+
+            </a>
+            
+            <a href="/ecen427/documentation/hardware/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/hdmi/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                HDMI
+
+            </a>
+            
+            <a href="/ecen427/documentation/audio-hw/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Audio Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Vivado
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado-axi-simulation/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Simulating AXI IP
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Other</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/other/submission/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Lab Submission
+
+            </a>
+            
+            <a href="/ecen427/other/coding-standard/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Coding Standard
+
+            </a>
+            
+            <a href="/ecen427/other/ta-calendar/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                TA Calendar
+
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+        <button class="btn btn-brand" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/byu-cpe/ecen427/issues/new?labels=website&title=Updates to Lab 5: Programmable Interval Timer (PIT) page"><i
+                class="fab fa-github"></i> Suggest
+              Edits</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        Lab 5: Programmable Interval Timer (PIT)
+        
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5 bg-light">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#implementation">Implementation</a>
+    <ul>
+      <li><a href="#pit-hardware-design">PIT Hardware Design</a></li>
+      <li><a href="#pit-behavior">PIT Behavior</a></li>
+      <li><a href="#simulation-project">Simulation Project</a></li>
+      <li><a href="#integration">Integration</a></li>
+    </ul>
+  </li>
+  <li><a href="#how-to-get-started">How to Get Started</a></li>
+  <li><a href="#submission">Submission</a></li>
+</ul>
+
+        </div>
+        
+
+        <p>In the real-time clock lab, you used a fixed-interval timer (FIT) from the IP catalog. As you may recall, the FIT generates interrupts at a fixed rate, based upon a single build parameter that cannot be changed once you have built the FPGA hardware. This makes the FIT very easy to use once your system is built, but the FIT is very inflexible. For this lab you are going to build a Programmable Interval Timer (PIT) in SystemVerilog and add it to the hardware system.</p>
+
+<p>This will be your first opportunity to add new hardware capability to your system. As such, we will start out with a programmable timer, one of the simpler things that you can design and implement.</p>
+
+<h2 id="implementation">Implementation</h2>
+
+<h3 id="pit-hardware-design">PIT Hardware Design</h3>
+<p>Your PIT module must include the following:</p>
+
+<ul>
+  <li>A 32-bit timer-counter that decrements at the system clock rate and that is controlled by elements described below.</li>
+  <li><strong>Interrupt</strong>: A single interrupt output (<em>irq</em>). The interrupt output is active high, and is asserted for a single cycle when the counter reaches 0.</li>
+  <li><strong>Registers</strong>:
+    <ul>
+      <li><strong>Offset 0x00</strong>: A 32-bit programmable control register, that must be readable and writeable from the CPU. You will control the behavior of the PIT by programming specific bits in the control register, as follows:
+        <ul>
+          <li><em>bit 0 - enable</em>: enables the counter to decrement if set to ‘1’, holds the counter at its current value if set to a ‘0’.</li>
+          <li><em>bit 1 - interrupt enable</em>: enables interrupts if set to a ‘1’, disables interrupts if set to a ‘0’.</li>
+          <li>You may use the remaining bits in the programmable control register as you see fit.</li>
+        </ul>
+      </li>
+      <li><strong>Ofset 0x04</strong>: A 32-bit delay-value register that must be readable and writeable from the CPU. This value controls the period of the interrupt output.</li>
+    </ul>
+  </li>
+  <li><strong>Reset</strong>: Your PIT must reset along with the rest of the system.  Make sure to reset your PIT using the AXI resetn signal.</li>
+</ul>
+
+<h3 id="pit-behavior">PIT Behavior</h3>
+<ul>
+  <li>The timer-counter should auto-reload (i.e., when the timer-counter reaches 0, it should be reloaded based on the delay-value register, and continue decrementing).</li>
+  <li>If you disable the counter, and then re-enable it, it should just continue as if it had not been disabled.</li>
+  <li>Interrupts should not occur when disabled (i.e., if you happen to disable it exactly when the counter == 0).</li>
+  <li>During normal operation, you program the delay-value register to contain a value that indicates how often an interrupt occurs.  If you set the delay-value register to N, then an interrupt should occur every N cycles.  For example, when the delay-value register contains a ‘2’, the interrupt output is a square wave with a 50% duty cycle. When the register is set to ‘3’, an interrupt occurs every third cycle.  You don’t have to worry about what happens when the register is set to ‘0’ or ‘1’; that behavior is undefined.</li>
+  <li>You will need to initialize your timer-counter at an appropriate time.  This is best done when the delay-value register is changed.</li>
+</ul>
+
+<h3 id="simulation-project">Simulation Project</h3>
+
+<p>To grade your lab, the TAs will run <a href="https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L25">make sim_pit</a>.  This make target runs Vivado and does two things:</p>
+<ol>
+  <li>It sources <code class="language-plaintext highlighter-rouge">sim_proj.tcl</code>.
+    <ul>
+      <li>To create this file, you will need to make your own Vivado simulation project that contains the AXI VIP and your module, connected appropriately.  The Tcl script can then be exported using the <em>Write Tcl</em> menu option, as as described on the <a href="/ecen427/documentation/vivado/">vivado</a> page.</li>
+      <li>When this script is run, it should create a Vivado project with a block diagram that uses the AXI VIP to test your module.</li>
+    </ul>
+  </li>
+  <li>It sources <a href="https://github.com/byu-cpe/ecen427_student/blob/master/hw/run_sim.tcl">run_time.tcl</a>, which simply runs functional simulation in Vivado.  This means that the Vivado project must be set up with a SystemVerilog test bench that runs the VIP-driven simulation.
+    <ul>
+      <li>The test bench must:
+        <ul>
+          <li>Demonstrate writing and reading back the control registers.  When you read back the control register, print it out using <code class="language-plaintext highlighter-rouge">$display</code>.</li>
+          <li>Demonstrate writing and reading back the delay-value register.  When you read back the delay-value register, print it out using <code class="language-plaintext highlighter-rouge">$display</code>.</li>
+          <li>Demonstrate your PIT running with a delay-value of 4, with the PIT enabled and generating interrupts.  Make sure it runs long enough to generate several interrupts.</li>
+          <li>Demonstrate that the <em>enable</em> and <em>interrupt enable</em> bits of the control register work properly.</li>
+        </ul>
+      </li>
+      <li>You should have a pre-configured waveform file (.wcfg) set up that has appropriate signals added and organized in a way that the TAs can verify correct operation.  Here is an example:    <br />
+ <img src="/ecen427/media/labs/pit_sim.png" width="1000" /></li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="integration">Integration</h3>
+<p>Once you are confident that your PIT is working correctly, integrate it into the ECEN 427 Vivado project.</p>
+<ul>
+  <li>Make sure you connect up all of the ports</li>
+  <li>Make sure you assign your PIT an address</li>
+  <li>You don’t need to remove the FIT from your system. Just don’t enable its interrupt.</li>
+  <li>You will not need to add any external ports for your IP. The only extra port that you are adding is the interrupt line and it will be an internal connection. Remember that external ports are ports that connect to a pin on the FPGA.</li>
+  <li>Make sure that the AXI connection is hooked up to the AXI interconnect. This will involve adding a new master connection to the interconnect.</li>
+  <li>The interrupt line from the PIT should be connected to the userspace AXI Interrupt Controller.</li>
+</ul>
+
+<p>After it is integrated:</p>
+<ul>
+  <li>Verify that all of the connections are hooked up properly by running ‘Validate Design’</li>
+  <li>Make sure you compile a new bitstream.  See <a href="/ecen427/documentation/vivado/#compiling-a-new-bitstream">Compiling a New Bitstream</a>.</li>
+</ul>
+
+<h2 id="how-to-get-started">How to Get Started</h2>
+<ul>
+  <li>Review the available documentation on <a href="/ecen427/documentation/vivado/">using the Vivado software</a> and <a href="/ecen427/documentation/vivado-axi-simulation/">simulating AXI IP</a>.</li>
+  <li>Write the PIT module, implemented in <a href="https://github.com/byu-cpe/ecen427_student/blob/master/hw/ip_repo/pit/pit.sv">pit.sv</a></li>
+  <li>Write your test bench to simulate your PIT module to make sure it works correctly.</li>
+  <li>Complete the rest of the requirements described above.</li>
+</ul>
+
+<h2 id="submission">Submission</h2>
+
+<p>Follow the <a href="/ecen427/other/submission/">submission instructions</a>.  Make sure that you have pushed up all your new hardware to Github, including at least:</p>
+<ul>
+  <li>The <em>sim_proj.tcl</em> file that will be used to create your simulation project.</li>
+  <li>The changes to the <a href="https://github.com/byu-cpe/ecen427_student/blob/master/hw/ecen427.tcl">ecen427.tcl</a> file.</li>
+  <li>Your <a href="https://github.com/byu-cpe/ecen427_student/blob/master/hw/ip_repo/pit/pit.sv">pit.sv</a> changes.</li>
+  <li>Your new <a href="https://github.com/byu-cpe/ecen427_student/blob/master/hw/ecen427.bit">ecen427.bit</a> bitstream.</li>
+  <li>Your bitstream packaged into the <a href="https://github.com/byu-cpe/ecen427_student/blob/master/device_tree/ecen427.bit.bin">ecen427.bit.bin</a> format.</li>
+</ul>
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src=/ecen427/js/jquery.visible.min.js></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+</body>
+
+</html>

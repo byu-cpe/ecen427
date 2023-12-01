@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Lab 3: Space Invaders (No Sound) • ECEn 427
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen427/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<!-- <link rel="icon" type="image/png" sizes="96x96" href=/ecen427/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen427/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen427/icon/favicon-16x16.png> -->
+
+<script src="https://kit.fontawesome.com/d794f0229e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <div class="border-right sidebar-color" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen427/">
+                ECEn 427</a>
+
+        </div>
+
+        <div class="search-bar">
+            <form method="get" action="https://www.google.com/search" target="_blank">
+                <input class="search-box" type="hidden" name="sitesearch" value="https://byu-cpe.github.io/ecen427" />
+                <input class="search-box" type="text" name="q" maxlength="255" placeholder="Search" />
+            </form>
+        </div>
+
+        <div class="list-group list-group-flush sidebar-color">
+
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/syllabus/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-chalkboard-teacher"></i>
+                
+                Syllabus
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/schedule/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fa fa-calendar"></i>
+                
+                Lab Schedule
+            </a>
+            
+            
+            
+            <a href="/ecen427/reading-assignments/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-book-open"></i>
+                
+                Reading Assignments and Schedule
+            </a>
+            
+            
+            <!-- <a href="https://slack.com/app_redirect?team=T01J887F8MU&channel=C01JF1N6TH8"
+                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
+                    class="fa fa-question-circle"></i>
+                Slack</a> -->
+
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/labs/hello-world/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Hello World
+
+            </a>
+            
+            <a href="/ecen427/labs/clock/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Clock
+
+            </a>
+            
+            <a href="/ecen427/labs/space-invaders/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                Space Invaders
+
+            </a>
+            
+            <a href="/ecen427/labs/audio-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Audio Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-hw/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                PIT Hardware
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                PIT Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/hls-accelerator/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                HLS Accelerator
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Documentation</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/documentation/setup/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Setup
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-home-computer/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Home Computer
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-pynq-board/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup PYNQ
+
+            </a>
+            
+            <a href="/ecen427/documentation/serial/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;&emsp;
+
+                PYNQ Serial
+
+            </a>
+            
+            <a href="/ecen427/documentation/network-communications/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ Network
+
+            </a>
+            
+            <a href="/ecen427/documentation/tutorials/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Tutorials
+
+            </a>
+            
+            <a href="/ecen427/documentation/config-pynq-and-github/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ & Github
+
+            </a>
+            
+            <a href="/ecen427/documentation/vscode/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup VSCode
+
+            </a>
+            
+            <a href="/ecen427/documentation/compiling-running-code/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Compiling Programs
+
+            </a>
+            
+            <a href="/ecen427/documentation/software-stack/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Software Stack
+
+            </a>
+            
+            <a href="/ecen427/documentation/uio/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                UIO
+
+            </a>
+            
+            <a href="/ecen427/documentation/platform-device-tree/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Device Tree
+
+            </a>
+            
+            <a href="/ecen427/documentation/linux-drivers/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Linux Drivers
+
+            </a>
+            
+            <a href="/ecen427/documentation/hardware/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/hdmi/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                HDMI
+
+            </a>
+            
+            <a href="/ecen427/documentation/audio-hw/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Audio Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Vivado
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado-axi-simulation/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Simulating AXI IP
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Other</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/other/submission/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Lab Submission
+
+            </a>
+            
+            <a href="/ecen427/other/coding-standard/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Coding Standard
+
+            </a>
+            
+            <a href="/ecen427/other/ta-calendar/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                TA Calendar
+
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+        <button class="btn btn-brand" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/byu-cpe/ecen427/issues/new?labels=website&title=Updates to Lab 3: Space Invaders (No Sound) page"><i
+                class="fab fa-github"></i> Suggest
+              Edits</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        Lab 3: Space Invaders (No Sound)
+        
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5 bg-light">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#objective">Objective</a></li>
+  <li><a href="#team-git-repository">Team Git Repository</a></li>
+  <li><a href="#implementation">Implementation</a>
+    <ul>
+      <li><a href="#milestone-1">Milestone 1</a></li>
+      <li><a href="#milestone-2">Milestone 2</a></li>
+      <li><a href="#milestone-3">Milestone 3</a></li>
+    </ul>
+  </li>
+  <li><a href="#requirements">Requirements</a></li>
+  <li><a href="#submission">Submission</a></li>
+  <li><a href="#resources">Resources</a>
+    <ul>
+      <li><a href="#an-example-approach-for-alien-bit-map-data">An Example Approach for Alien Bit-Map Data</a></li>
+      <li><a href="#alien-shapes-defined-in-c-code">Alien Shapes Defined in C Code</a></li>
+      <li><a href="#bunker-erosion-patterns">Bunker Erosion Patterns</a></li>
+    </ul>
+  </li>
+</ul>
+
+        </div>
+        
+
+        <h2 id="objective">Objective</h2>
+<p>Write the software that implements all video functionality for Space Invaders. Your game should closely mirror the game shown in the video below.</p>
+
+<h2 id="team-git-repository">Team Git Repository</h2>
+
+<p>This is the only lab where you will be permitted to work in a team.  Your team can be up to three students.  You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.</p>
+
+<p>Follow this link to create a new shared Github repository for lab 3: <a href="https://classroom.github.com/a/07y5GqVV">https://classroom.github.com/a/07y5GqVV</a></p>
+<ul>
+  <li>The first team member to sign up should create a new team name.</li>
+  <li>The second team member can join the team created by the first team member.</li>
+</ul>
+
+<p>Once your empty lab 3 repository is created, use the <strong>Import Code</strong> button to import the code from one your your repositories.  You can choose which member of team’s code to use, but <strong>both team members must have submitted lab2 before you share your code</strong>.</p>
+
+<h2 id="implementation">Implementation</h2>
+
+<h3 id="milestone-1">Milestone 1</h3>
+
+<iframe width="500" height="350" src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200">
+</iframe>
+
+<p>Complete the end scenario for space invaders. See the video above for details on how it should function (fast forward the video to 3:20). Note that the video says the high score screen can be in any pattern or configuration, meaning you can have as many rows or columns of scores as you like and the button API can be however you would like to implement it, as long as it matches the video’s functionality. However, it is required that the high scores are presented in sorted order from highest score to lowest and that at least two text sizes are used. Refer to the <a href="/ecen427/documentation/hdmi/">HDMI</a> page for documentation on how to interact with the hdmi driver.</p>
+
+<p><em>Note:</em> To make it easier for the TAs to grade this, you should commit an existing high scores file into your repository.  Make sure not to use absolute file paths when opening the high-scores file, as the paths will likely be different on the TA’s grading system.  You should also not rely on your space invaders executable being run from any particular directory.  Instead, access your high scores file  using a path relative to the space-invaders executable. <a href="https://stackoverflow.com/a/933996/609215">Stack overflow</a> has a good explanation of how to do this with the <code class="language-plaintext highlighter-rouge">readlink</code> function.</p>
+
+<h3 id="milestone-2">Milestone 2</h3>
+
+<iframe width="500" height="350" src="https://www.youtube.com/embed/kGd4K0jBjis">
+</iframe>
+
+<p>Implement all of the game video except for bullets and collisions.  Tanks should move, aliens should march, etc.  Use the video above as a reference. Keep in mind that when an entire column of aliens is gone from the edge the remaining aliens keep marching to the edge of the screen, past where the would have stopped if the edge aliens were alive. This feature doesn’t need to be functional for this milestone, but keep it in mind for the next milestone.</p>
+
+<h3 id="milestone-3">Milestone 3</h3>
+<iframe width="500" height="350" src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200">
+</iframe>
+<p>Implement all of the game video, including bullets and all game interactions.  When you have finished this milestone, you will have the entire game implemented minus sound.  Use the above video as a reference.<br />
+It is difficult to see, but the number of points added to the score for each saucer destroyed is a number between 50 and 300, in multiples of 50. Also, the points for the block aliens are 10, 20 and 40, starting from the type on the bottom row and going up to the type on the top row.</p>
+
+<h2 id="requirements">Requirements</h2>
+<p>Unlike previous courses, in this course you are given quite a bit of freedom regarding your implementation strategy.  However, you must work within these requirements:</p>
+<ul>
+  <li>You must adhere to the coding standard.
+    <ul>
+      <li>Since header files are usually provided to you, students often forget about the coding standard rules regarding header files.  Be sure to review Rule 2.1.</li>
+      <li>You will find it easier to follow this rule if you only put items in your header files that <em>need to be used by other .c files</em>.  If a #define, struct, etc. is only used in one .c file, it should be placed at the top of that .c file, and NOT in a header file.  This is good C coding practice and you should make a habit of following it when designing your own software structure.</li>
+    </ul>
+  </li>
+  <li>You must use state machines as you learned in ECEn 330 and ECEn 390. Your game loop will consist only of calls to the tick functions for each of your state machines. All game interactions are performed directly by state machines (either as Moore or Mealy actions). As with the coding standard, the TAs will inspect your code to ensure that you adhere to this requirement.</li>
+</ul>
+
+<h2 id="submission">Submission</h2>
+<p>Follow the submission instructions for each milestone on the <a href="/ecen427/other/submission/">Submission</a> page.</p>
+
+<h2 id="resources">Resources</h2>
+
+<h3 id="an-example-approach-for-alien-bit-map-data">An Example Approach for Alien Bit-Map Data</h3>
+
+<p>There are several ways to implement the bit-maps for your aliens. In the past, students have used editors to create bit-maps. Another approach is to create the bit-maps using a text editor. The code below will not compile but should give you a good idea of how to do this. There is more code further down that contains all of the bitmaps you will need for this lab in text form, as will be explained.</p>
+
+<p>If you squint your eyes a bit, you should be able to see the shape of one of the aliens in the text below (the 1s are the bright pixels that form the alien). Carefully study what packWord32 does. Also, note that the 1’s and 0’s that form the alien are part of a ‘C’ array initialization. After thinking about this for a bit, you should be able to figure out how use this data structure to write the bit-map to the display.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const uint32_t sprite_alien_bottom_in_12x8[] =
+{
+	packWord12(0,0,0,0,1,1,1,1,0,0,0,0),
+	packWord12(0,1,1,1,1,1,1,1,1,1,1,0),
+	packWord12(1,1,1,1,1,1,1,1,1,1,1,1),
+	packWord12(1,1,1,0,0,1,1,0,0,1,1,1),
+	packWord12(1,1,1,1,1,1,1,1,1,1,1,1),
+	packWord12(0,0,1,1,1,0,0,1,1,1,0,0),
+	packWord12(0,1,1,0,0,1,1,0,0,1,1,0),
+	packWord12(0,0,1,1,0,0,0,0,1,1,0,0)
+};
+</code></pre></div></div>
+
+<p>One of the requirements is for the sprites to be scaled to be the same size as in the video.  Using this suggested implementation, it is easy to dynamically scale the sprites when they are being displayed.</p>
+
+<h3 id="alien-shapes-defined-in-c-code">Alien Shapes Defined in C Code</h3>
+
+<p>To save some time, we will give you the definitions of the aliens in their two guises, the spaceship, etc. These definitions are useful if you use the approach that was discussed above.</p>
+
+<ul>
+  <li><a href="https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/space_invaders/resources/sprites.c">sprites.c</a></li>
+  <li><a href="https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/space_invaders/resources/sprites.h">sprites.h</a></li>
+</ul>
+
+<h3 id="bunker-erosion-patterns">Bunker Erosion Patterns</h3>
+
+<p>The patterns for the bunker erosions are depicted in this pdf file. By studying this file and watching some of the provided game videos, you should be able to figure out how to code the bunker erosions. If you watch the game carefully, you will see that the bunkers are composed of blocks that go through predictable patterns as they are hit with bullets.  Take a look at the <a href="https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/space_invaders/resources/sprites.c">sprites.c</a> file for erosion patterns.</p>
+
+<p>The corners of the bunkers should erode such that no pixels get set that weren’t set before they started to erode.  So, although the erosion patterns are square in shape, the corners of the bunkers should erode within their original pixel constraints.</p>
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src=/ecen427/js/jquery.visible.min.js></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Creating AXI Peripheral IP in Vivado • ECEn 427
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen427/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<!-- <link rel="icon" type="image/png" sizes="96x96" href=/ecen427/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen427/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen427/icon/favicon-16x16.png> -->
+
+<script src="https://kit.fontawesome.com/d794f0229e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <div class="border-right sidebar-color" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen427/">
+                ECEn 427</a>
+
+        </div>
+
+        <div class="search-bar">
+            <form method="get" action="https://www.google.com/search" target="_blank">
+                <input class="search-box" type="hidden" name="sitesearch" value="https://byu-cpe.github.io/ecen427" />
+                <input class="search-box" type="text" name="q" maxlength="255" placeholder="Search" />
+            </form>
+        </div>
+
+        <div class="list-group list-group-flush sidebar-color">
+
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/syllabus/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-chalkboard-teacher"></i>
+                
+                Syllabus
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/schedule/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fa fa-calendar"></i>
+                
+                Lab Schedule
+            </a>
+            
+            
+            
+            <a href="/ecen427/reading-assignments/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-book-open"></i>
+                
+                Reading Assignments and Schedule
+            </a>
+            
+            
+            <!-- <a href="https://slack.com/app_redirect?team=T01J887F8MU&channel=C01JF1N6TH8"
+                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
+                    class="fa fa-question-circle"></i>
+                Slack</a> -->
+
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/labs/hello-world/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Hello World
+
+            </a>
+            
+            <a href="/ecen427/labs/clock/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Clock
+
+            </a>
+            
+            <a href="/ecen427/labs/space-invaders/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                Space Invaders
+
+            </a>
+            
+            <a href="/ecen427/labs/audio-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Audio Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-hw/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                PIT Hardware
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                PIT Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/hls-accelerator/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                HLS Accelerator
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Documentation</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/documentation/setup/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Setup
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-home-computer/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Home Computer
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-pynq-board/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup PYNQ
+
+            </a>
+            
+            <a href="/ecen427/documentation/serial/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;&emsp;
+
+                PYNQ Serial
+
+            </a>
+            
+            <a href="/ecen427/documentation/network-communications/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ Network
+
+            </a>
+            
+            <a href="/ecen427/documentation/tutorials/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Tutorials
+
+            </a>
+            
+            <a href="/ecen427/documentation/config-pynq-and-github/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ & Github
+
+            </a>
+            
+            <a href="/ecen427/documentation/vscode/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup VSCode
+
+            </a>
+            
+            <a href="/ecen427/documentation/compiling-running-code/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Compiling Programs
+
+            </a>
+            
+            <a href="/ecen427/documentation/software-stack/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Software Stack
+
+            </a>
+            
+            <a href="/ecen427/documentation/uio/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                UIO
+
+            </a>
+            
+            <a href="/ecen427/documentation/platform-device-tree/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Device Tree
+
+            </a>
+            
+            <a href="/ecen427/documentation/linux-drivers/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Linux Drivers
+
+            </a>
+            
+            <a href="/ecen427/documentation/hardware/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/hdmi/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                HDMI
+
+            </a>
+            
+            <a href="/ecen427/documentation/audio-hw/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Audio Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Vivado
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado-axi-simulation/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Simulating AXI IP
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Other</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/other/submission/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Lab Submission
+
+            </a>
+            
+            <a href="/ecen427/other/coding-standard/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Coding Standard
+
+            </a>
+            
+            <a href="/ecen427/other/ta-calendar/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                TA Calendar
+
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+        <button class="btn btn-brand" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/byu-cpe/ecen427/issues/new?labels=website&title=Updates to Creating AXI Peripheral IP in Vivado page"><i
+                class="fab fa-github"></i> Suggest
+              Edits</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <article class="page">
+  <h1 class="page-title" id="page-title">
+    
+    Creating AXI Peripheral IP in Vivado
+  </h1>
+
+  <div class="page-content">
+    
+
+    <h2 id="creating-the-ip">Creating the IP</h2>
+
+<h3 id="initializing-the-ip">Initializing the IP</h3>
+<p>In Vivado you can create your own IP modules by packaging up your Verilog/VHDL.  There are some Xilinx tutorials on using the IP packaging wizard here: <a href="https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1119-vivado-creating-packaging-ip-tutorial.pdf">https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1119-vivado-creating-packaging-ip-tutorial.pdf</a>.  For reference, the part number of the chip on the PYNQ is ‘‘xc7z020clg400-1’’.</p>
+
+<p>In this class you will be creating an AXI peripheral IP, that is, an IP that can be connected to the bus, such that the CPU can read and write registers in your module from a software program.  The IP creator wizard has a specific options for this type of IP that will automatically create all of the bus interaction logic for us; unfortunately this option is not explored in the tutorial document linked above.  So, I will provide a brief set of steps here:</p>
+<ol>
+  <li>Before you can run the wizard, you need a project open in Vivado (doesn’t matter which one)</li>
+  <li>Run the wizard by selecting <em>Tools</em>-&gt;<em>Create and Package new IP…</em>. Click <em>Next</em>.</li>
+  <li>Choose <em>Create a new AXI4 peripheral</em></li>
+  <li>Fill out the fields and click <em>Next</em>. Some description of these field can be found in the tutorial document.</li>
+  <li>Configure the interfaces for your IP.
+    <ul>
+      <li>By default there should one interface already added, <em>S00_AXI</em>, an AXI slave connection.  This slave connection allows us to connect our IP to the CPU bus.  The <em>slave</em> designation means that our IP will only <em>respond</em> to read/write requests by a <em>master</em> device on the bus (ie, the CPU), it won’t be initiating its own requests.</li>
+      <li>For the slave interface, choose the number of registers you want and the data width.  You will need to read over the lab specifiction to determine how many registers you will need.  However, it’s fine to add extra.</li>
+      <li>You don’t need to add any more interfaces.</li>
+      <li>There is a check box for <em>Enable interrupt support</em>.  Although in Lab 5 you will create a PIT with an interrupt output, you should still leave this box unchecked, as checking it will add a complex, full-featured, interrupt system to your IP, which is far more than you need for this class.</li>
+    </ul>
+  </li>
+  <li>The final page will tell you where the IP will be generated (you chose this in one of the earlier steps).</li>
+  <li>Before clicking <em>Finish</em>, choose <em>Edit IP</em>.</li>
+</ol>
+
+<h3 id="editing-the-ip">Editing the IP</h3>
+<p>At this point you will have a new project open, which is used to modify and package your IP.  Vivado will be in a special mode called <em>IP Packager</em>.</p>
+<ul>
+  <li>Look in the <em>Sources</em> pane, under the <em>Design Sources</em> directory.  Open the top-level Verilog file <em>myip_v1_0.v</em> (file name depends on IP name and version you chose).
+    <ul>
+      <li>You can modify this file to add new ports, logic, etc.</li>
+    </ul>
+  </li>
+  <li>If you expand the top-level Verilog file, you should see another file, <em>myip_v1_0_S00_AXI</em> (again, name is dependent on how you configured your IP) for the module containing the logic for the slave interface with the CPU-accessible registers.
+    <ul>
+      <li>You can modify this file to add new ports, logic, etc.  (Most of your PIT code would be placed in this file)</li>
+      <li>If you add new ports to this file (such as in interrupt output) make sure you remember connect it up in the parent file (<em>myip_v1_0.v</em>).</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Once you are done making changes to the Verilog files, click <em>Run Synthesis</em> on the left-hand pane to make sure your Verilog can synthesize. Make sure to hit cancel in the dialog box that appears once synthesize completes (do not run implementation, which is the default).</p>
+
+<h3 id="packaging-the-ip">Packaging the IP</h3>
+<p>When you are done making changes to the source HDL files for your IP, you can package up your IP and close the project:</p>
+<ul>
+  <li>Click <em>Package IP</em> from the left-hand menu. This will open the packaging wizard.</li>
+  <li>The <em>File Groups</em> item contains the list of source files for your IP.  If you changed files you may see a prompt to <em>Merge changes from File Groups Wizard</em>.  Click that link. See the screenshot to see what the prompt looks like.</li>
+  <li>Do the same for <em>Customization Parameters</em>.</li>
+  <li>In <em>Ports and Interfaces</em> you will instruct Vivado what the purpose of each of the ports in your design are.  (This doesn’t change the functionality of the port; rather, it is used by Vivado in the <em>IP Integrator</em> to make sure the when the user wires modules together only compatible ports are connected)
+    <ul>
+      <li>The existing ports should already be set up correctly.</li>
+      <li>If you added new ports, you may need to click <em>Merge changes from Ports and Interfaces Wizard</em>.</li>
+      <li>For Lab 5 you will only need to add an interrupt port.  Make sure this port belongs to an interrupt bus. (You can right click, and select <em>Add Bus Interace</em>.  For the <em>Interface Definition</em> you should choose <em>signal</em>-&gt;<em>interrupt_rtl</em>, and for <em>Mode</em> chose <em>master</em>.)</li>
+    </ul>
+  </li>
+  <li>Once you have green check marks for all of the <em>Packaging Steps</em>, choose <em>Review and Package</em> and then click the button to <em>Re-Package IP</em>.  This should save your IP and close the project.
+<img src="/ecen427/media/vivado_ip.jpg" width="600" /></li>
+</ul>
+
+<!-- NOTE: I had better luck if I quit and restarted Vivado after repacking my IP but before adding the new IP to my design. In my case, I created the new IP using the initially provided 427 project. If I did not restart Vivado, my newly added irq pin did not show up when I inserted the IP. YMMV. (11/13/20 - BLH). -->
+
+<h2 id="adding-the-ip-to-your-vivado-project">Adding the IP to your Vivado project</h2>
+<p>NOTE: I found that the repo was already added and skipped this step (11/13/20 - BLH).</p>
+
+<p>To add your IP to an existing project:</p>
+<ul>
+  <li>Open the IP Catalog</li>
+  <li>Right click within the catalog, select ‘‘Add Repository’’, and choose the directory where your new IP is located.</li>
+  <li>Your IP should now show up in the IP repository</li>
+  <li>Open the block design for your project.  Right click-&gt;Add IP to add your IP to the design.</li>
+</ul>
+
+<h3 id="updating-the-ip-after-it-has-been-added-to-your-project">Updating the IP after it has been added to your project</h3>
+<ul>
+  <li>To make changes to your IP, you can re-open the IP packager project by locating your IP in the <em>IP Respository</em>, right clicking on it, and selecting <em>Edit in IP Packager</em>.</li>
+  <li>Follow the same steps as above to make and changes and re-package the IP.</li>
+</ul>
+
+<p>Changes you make to your IP <strong>will not</strong> automatically be effective in your project that uses the IP.  You will need to do the following:</p>
+<ul>
+  <li>Go to <em>Tools-&gt;Report-&gt;Report IP Status</em> (There may be a yellow banner with a link that appears in your project).</li>
+  <li>In the <em>IP Status</em> pane at the bottom, make sure your IP is checked, and then click <em>Upgrade Selected</em>.</li>
+  <li>A pop-up window will prompt you to regenerate the output products for your design.  Click <em>Generate</em>.</li>
+</ul>
+
+<p><strong>Note:</strong> If you are making changes to the Verilog source files of your IP, but not adding new ports, you may be tempted to save time by editing the source files directly without opening the IP in the IP packager.  This is okay to do, but keep in mind that Vivado keeps a cached copy of the IP in your project folder, and it may not be updated with your changes.  To make sure Vivado sees your changes, you need to complete the above steps to upgrade the IP, then perform the additional step of right-clicking on the block design file (<em>system.bd</em>) in <em>Sources-&gt;Design Sources</em> and select <em>Reset Output Products</em>.</p>
+
+
+  </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src=/ecen427/js/jquery.visible.min.js></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+</body>
+
+</html>

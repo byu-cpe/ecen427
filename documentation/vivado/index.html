@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Building Hardware in Vivado • ECEn 427
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen427/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<!-- <link rel="icon" type="image/png" sizes="96x96" href=/ecen427/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen427/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen427/icon/favicon-16x16.png> -->
+
+<script src="https://kit.fontawesome.com/d794f0229e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <div class="border-right sidebar-color" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen427/">
+                ECEn 427</a>
+
+        </div>
+
+        <div class="search-bar">
+            <form method="get" action="https://www.google.com/search" target="_blank">
+                <input class="search-box" type="hidden" name="sitesearch" value="https://byu-cpe.github.io/ecen427" />
+                <input class="search-box" type="text" name="q" maxlength="255" placeholder="Search" />
+            </form>
+        </div>
+
+        <div class="list-group list-group-flush sidebar-color">
+
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/syllabus/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-chalkboard-teacher"></i>
+                
+                Syllabus
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/schedule/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fa fa-calendar"></i>
+                
+                Lab Schedule
+            </a>
+            
+            
+            
+            <a href="/ecen427/reading-assignments/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-book-open"></i>
+                
+                Reading Assignments and Schedule
+            </a>
+            
+            
+            <!-- <a href="https://slack.com/app_redirect?team=T01J887F8MU&channel=C01JF1N6TH8"
+                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
+                    class="fa fa-question-circle"></i>
+                Slack</a> -->
+
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/labs/hello-world/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Hello World
+
+            </a>
+            
+            <a href="/ecen427/labs/clock/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Clock
+
+            </a>
+            
+            <a href="/ecen427/labs/space-invaders/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                Space Invaders
+
+            </a>
+            
+            <a href="/ecen427/labs/audio-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Audio Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-hw/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                PIT Hardware
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                PIT Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/hls-accelerator/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                HLS Accelerator
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Documentation</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/documentation/setup/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Setup
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-home-computer/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Home Computer
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-pynq-board/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup PYNQ
+
+            </a>
+            
+            <a href="/ecen427/documentation/serial/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;&emsp;
+
+                PYNQ Serial
+
+            </a>
+            
+            <a href="/ecen427/documentation/network-communications/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ Network
+
+            </a>
+            
+            <a href="/ecen427/documentation/tutorials/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Tutorials
+
+            </a>
+            
+            <a href="/ecen427/documentation/config-pynq-and-github/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ & Github
+
+            </a>
+            
+            <a href="/ecen427/documentation/vscode/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup VSCode
+
+            </a>
+            
+            <a href="/ecen427/documentation/compiling-running-code/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Compiling Programs
+
+            </a>
+            
+            <a href="/ecen427/documentation/software-stack/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Software Stack
+
+            </a>
+            
+            <a href="/ecen427/documentation/uio/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                UIO
+
+            </a>
+            
+            <a href="/ecen427/documentation/platform-device-tree/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Device Tree
+
+            </a>
+            
+            <a href="/ecen427/documentation/linux-drivers/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Linux Drivers
+
+            </a>
+            
+            <a href="/ecen427/documentation/hardware/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/hdmi/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                HDMI
+
+            </a>
+            
+            <a href="/ecen427/documentation/audio-hw/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Audio Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Vivado
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado-axi-simulation/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Simulating AXI IP
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Other</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/other/submission/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Lab Submission
+
+            </a>
+            
+            <a href="/ecen427/other/coding-standard/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Coding Standard
+
+            </a>
+            
+            <a href="/ecen427/other/ta-calendar/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                TA Calendar
+
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+        <button class="btn btn-brand" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/byu-cpe/ecen427/issues/new?labels=website&title=Updates to Building Hardware in Vivado page"><i
+                class="fab fa-github"></i> Suggest
+              Edits</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <article class="page">
+  <h1 class="page-title" id="page-title">
+    
+    Building Hardware in Vivado
+  </h1>
+
+  <div class="page-content">
+    
+
+    <p>The Xilinx Vivado software allows you to create digital hardware circuits that can be programmed onto the FPGA.  Some basics of Vivado:</p>
+<ul>
+  <li>The circuits are designed using hardware description languages (HDLs), such as Verilog or VHDL (as you may have done in ECEN 220).</li>
+  <li>Vivado contains an <em>IP Repository</em>, which is a collection of HDL modules that Xilinx provides to you.  You are free to use these modules in your design.</li>
+  <li>Vivado provides a block diagram designer, called <em>IP Integrator</em>, which allows you to graphically connect the different modules in your design to make a complete system  (The <a href="/ecen427/documentation/hardware/">hardware system</a> page shows the block diagram for the Vivado project we use in this class).</li>
+</ul>
+
+<h2 id="accessing-vivado">Accessing Vivado</h2>
+
+<p>Vivado is installed in the lab machines.  Alternatively, you can download the Vivado tool on to your personal computer or VM.</p>
+
+<p>Before you can run Xilinx tools, you must add them to your PATH (this must be done each time you open a new terminal):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source /tools/Xilinx/Vivado/2020.2/settings64.sh
+</code></pre></div></div>
+
+<p>Then you can run Vivado:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vivado
+</code></pre></div></div>
+<!-- 
+==== Remote Access ====
+
+There are several lab machines on campus that have the Vivado tool installed.  You can connect to these machines, and run the tool remotely:
+  * The machines are named embed-01.ee.byu.edu to embed-26.ee.byu.edu, and you will login using your CAEDM account.
+  * You will need to be connected to the [[https://caedm.et.byu.edu/wiki/index.php/VPN|CAEDM VPN]] to access them.
+  * You will need to have an X server running on your computer.  If you aren't familiar with this, see [[http://ecen330-lin.groups.et.byu.net/wiki/doku.php?id=xwindows]]
+  * To forward graphics to your computer, you need to provide the ''-X'' option when SSH'ing:
+<code>
+ssh -X <caedm_username>@embed-14.ee.byu.edu
+</code>
+
+**Note:** The first time you connect to these machines, it may take a couple minutes before you are asked for your password.  It is setting up your CAEDM account on the machine.
+
+==== Virtual Machine ====
+
+If you are running on a Mac and want to run Xilinx Vivado software locally, you will need to use a Virtual Machine (VM). Note that you will need about 25-30 GB of free disk space to run the Xilinx software.
+
+You can download and install VMware from [[https://caedm.et.byu.edu/wiki/index.php/Free_Software|BYU]]. Once you download VMWare, install a recent version of Ubuntu and boot the VM. Here are some instructions to follow once you have booted Ubuntu in the VM.
+  - sudo apt-get install open-vm-tools-desktop
+  - sudo apt-get install build-essential
+  - Install CMake from the [[https://apt.kitware.com|Kitware repository]].
+  - Follow [[https://askubuntu.com/questions/580319/enabling-shared-folders-with-open-vm-tools|instructions]] to enable folder sharing. I used the highest voted answer.
+  - Install Xilinx Vivado version 2017.4. You can find the software [[https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive.html|here]]. Follow the 330 instructions for the installation.
+
+
+
+==== Local Install ==== 
+
+If you are running Linux, you can choose to install the Vivado tools locally.  There are some instructions at the bottom of [[http://ecen330-lin.groups.et.byu.net/wiki/doku.php?id=setup_local|this ECEN 330 page]].  Make sure you install version 2017.4. -->
+
+<!-- 
+===== Running Vivado =====
+
+Each time you open a new terminal, you will need to run this script so that the Vivado tools are accessible on your PATH:
+<code>source /opt/Xilinx/Vivado/2017.4/settings64.sh</code> -->
+
+<h2 id="vivado-projects">Vivado Projects</h2>
+
+<h3 id="creating-projects">Creating Projects</h3>
+<p>In Lab 5 you will need to create a project to simulate and verify your PIT module.
+You should have learned how to create Vivado projects in ECEN 220.  If you want a refresher, you can go back and watch the video on the <a href="http://ecen220wiki.groups.et.byu.net/tutorials/lab_03/00_vivado_project_setup/">Creating a New Vivado Project</a> page.</p>
+
+<p>In ECEN 220 we had you escalate several Vivado warnings to errors, to help you catch common mistakes in your design.  It would be a good idea to adjust these settings on your Vivado project by running these commands once on each new project:</p>
+<div class="language-tcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set_msg_config -new_severity <span class="s2">"ERROR"</span> -id <span class="s2">"Synth 8-87"</span>
+set_msg_config -new_severity <span class="s2">"ERROR"</span> -id <span class="s2">"Synth 8-327"</span>
+set_msg_config -new_severity <span class="s2">"ERROR"</span> -id <span class="s2">"Synth 8-3352"</span>
+set_msg_config -new_severity <span class="s2">"ERROR"</span> -id <span class="s2">"Synth 8-5559"</span>
+set_msg_config -new_severity <span class="s2">"ERROR"</span> -id <span class="s2">"Synth 8-6090"</span>
+set_msg_config -new_severity <span class="s2">"ERROR"</span> -id <span class="s2">"Synth 8-6858"</span>
+set_msg_config -new_severity <span class="s2">"ERROR"</span> -id <span class="s2">"Synth 8-6859"</span>
+set_msg_config -new_severity <span class="s2">"ERROR"</span> -id <span class="s2">"Timing 38-282"</span>
+set_msg_config -new_severity <span class="s2">"ERROR"</span> -id <span class="s2">"VRFC 10-3091"</span>
+set_msg_config -new_severity <span class="s2">"WARNING"</span> -id <span class="s2">"Timing 38-313"</span>
+set_msg_config -suppress -id <span class="s2">"Constraints 18-5210"</span>
+</code></pre></div></div>
+
+<h3 id="block-design">Block Design</h3>
+<p>For Lab 5, you will need to create a block diagram based simulation project.  The block diagram feature of Vivado allows you to visually instantiate and connect different IP and hardware modules.  Some things to note:</p>
+<ul>
+  <li>To create a block design, click <em>Create Block Design</em> in the left-side menu of Vivado. The block design should now show up in the <em>Sources</em> window.</li>
+  <li>To open an existing block design, click <em>Open Block Design</em>, or double click the <em>.bd</em> file in the <em>Sources</em> window.</li>
+  <li>A block design can be instantiated in HDL modules just like you would instantiate other HDL modules.  An example is shown in the test bench provided on the <a href="/ecen427/documentation/vivado-axi-simulation/">Simulating AXI IP</a> page.  A block doesn’t can’t function as the top-level module for a Vivado project, so it is always instantiated in a a top-level wrapper module, or test bench module.</li>
+  <li>With a block design open, you can right click on empty space and click <em>Add IP…</em> to add Xilinx IP, click <em>Add Module…</em> to add a Verilog module you created (the Verilog file must already be added to the project sources), or <em>Create Port…</em> to create input/output ports.</li>
+</ul>
+
+<h3 id="committing-your-vivado-project-to-git">Committing your Vivado Project to Git</h3>
+
+<p>You will want to commit your Vivado projects to Git.  You shouldn’t attempt to commit the actual project files, as there are sometimes hundreds of files.  Instead, you should follow these steps to generate a Tcl file that can be used to recreate your project:</p>
+<ol>
+  <li><em>File</em>-&gt;<em>Project</em>-&gt;<em>Write Tcl</em></li>
+  <li>Make sure to check the box <em>Recreate Block Designs using Tcl</em>.</li>
+  <li>Specify a path to save your Tcl file.</li>
+  <li>Commit the new Tcl file to Git.</li>
+  <li>In the future, you can recreate your project by running <code class="language-plaintext highlighter-rouge">vivado -source your_project.tcl</code></li>
+</ol>
+
+<h2 id="updating-the-ecen-427-hardware">Updating the ECEN 427 Hardware</h2>
+<p>The hardware that you have been using for the labs up to this point is provided in a Vivado project included in the class repository.  All of the necessary files are located in the <a href="https://github.com/byu-cpe/ecen427_student/tree/master/hw">hw</a> directory.</p>
+
+<h3 id="creating-the-ecen-427-project-in-vivado">Creating the ECEN 427 Project in Vivado</h3>
+<p>The project can be created using the <a href="https://github.com/byu-cpe/ecen427_student/blob/master/hw/ecen427.tcl">ecen427.tcl</a> script. However, the project depends on at least one file that is too large to commit to Github, so it must first be unzipped.  Unzipping the file, and running the <em>ecen427.tcl</em> script can be done in one step using a provided <a href="https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L4">Makefile target</a>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd hw
+make
+</code></pre></div></div>
+
+<p>If you run this it should create the Vivado project and open the newly created project in the Vivado GUI.</p>
+
+<h3 id="opening-your-existing-project">Opening Your Existing Project</h3>
+<p>Creating the project only needs to be done once.  In the future you can just do the following:</p>
+<ol>
+  <li>Launch Vivado (<code class="language-plaintext highlighter-rouge">vivado</code>)</li>
+  <li>Open your Vivado project, which should be listed under recent projects.  If it isn’t listed there, you can always go to <em>File-&gt;Open Project</em> and browse to your Vivado project file (<em>hw/ecen427/ecen427.xpr</em>).</li>
+  <li>Alternatively, you can run <code class="language-plaintext highlighter-rouge">vivado hw/ecen427/ecen427.xpr</code></li>
+</ol>
+
+<h3 id="compiling-a-new-bitstream">Compiling a new Bitstream</h3>
+
+<ol>
+  <li>The main function of the Vivado software is to compile your design to a <em>bitstream</em>.  A bitstream (‘‘.bit’’ file) can be used to reconfigure the FPGA to implement your circuit. In Vivado, click <em>Generate Bitstream</em>.  It will take several minutes to compile.</li>
+  <li>The created bitstream, <em>system_wrapper.bit</em>, will be located in your Vivado project folder <em>hw/ecen427/</em>, in the subdirectory <em>ecen427.runs/impl_1/</em>.  (It’s often a good idea to check the timestamp on the file to make sure it was indeed updated recently.)</li>
+  <li>We provided you with a bitstream for the original hardware system, which is located at <em>hw/ecen427.bit</em>.  After you change the hardware and generate a new bitstream, you <strong>need</strong> to replace this bitstream with your new one, before proceeding to the next step:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd hw
+cp ecen427/ecen427.runs/impl_1/system_wrapper.bit ecen427.bit
+</code></pre></div>    </div>
+    <p>or, more simply:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd hw
+make ecen427.bit
+</code></pre></div>    </div>
+  </li>
+  <li>The PYNQ board requires the bitstream in <em>.bin</em> format.  Go to the <em>device_tree</em> folder in the top-level of your repo, and run <code class="language-plaintext highlighter-rouge">make build</code> to create a new <em>ecen427.bit.bin</em> file.</li>
+  <li>Push the new <em>ecen427.bit</em> and <em>ecen427.bit.bin</em> file up to Github.</li>
+</ol>
+
+<h3 id="loading-the-new-bitstream-on-your-pynq-board">Loading the new Bitstream on your PYNQ board</h3>
+<p>On your PYNQ board:</p>
+<ol>
+  <li>Run <code class="language-plaintext highlighter-rouge">git pull</code> to get your new hardware files that you just pushed up to the repo.</li>
+  <li>Go to the <em>device_tree</em> folder.</li>
+  <li>Run <code class="language-plaintext highlighter-rouge">sudo make install</code> to copy the new <em>ecen427.bit.bin</em> file into the system directory that is used to configure the FPGA (<em>/lib/firmware</em>).  This command will instantly load the new hardware, as well as overwrite the old bitstream, such that this new bitstream will be used anytime you reboot the board.</li>
+</ol>
+
+
+  </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src=/ecen427/js/jquery.visible.min.js></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+</body>
+
+</html>

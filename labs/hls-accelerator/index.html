@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Lab 7: Creating a Hardware Accelerator with HLS • ECEn 427
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen427/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<!-- <link rel="icon" type="image/png" sizes="96x96" href=/ecen427/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen427/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen427/icon/favicon-16x16.png> -->
+
+<script src="https://kit.fontawesome.com/d794f0229e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <div class="border-right sidebar-color" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen427/">
+                ECEn 427</a>
+
+        </div>
+
+        <div class="search-bar">
+            <form method="get" action="https://www.google.com/search" target="_blank">
+                <input class="search-box" type="hidden" name="sitesearch" value="https://byu-cpe.github.io/ecen427" />
+                <input class="search-box" type="text" name="q" maxlength="255" placeholder="Search" />
+            </form>
+        </div>
+
+        <div class="list-group list-group-flush sidebar-color">
+
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/syllabus/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-chalkboard-teacher"></i>
+                
+                Syllabus
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/schedule/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fa fa-calendar"></i>
+                
+                Lab Schedule
+            </a>
+            
+            
+            
+            <a href="/ecen427/reading-assignments/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-book-open"></i>
+                
+                Reading Assignments and Schedule
+            </a>
+            
+            
+            <!-- <a href="https://slack.com/app_redirect?team=T01J887F8MU&channel=C01JF1N6TH8"
+                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
+                    class="fa fa-question-circle"></i>
+                Slack</a> -->
+
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/labs/hello-world/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Hello World
+
+            </a>
+            
+            <a href="/ecen427/labs/clock/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Clock
+
+            </a>
+            
+            <a href="/ecen427/labs/space-invaders/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                Space Invaders
+
+            </a>
+            
+            <a href="/ecen427/labs/audio-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Audio Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-hw/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                PIT Hardware
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                PIT Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/hls-accelerator/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                HLS Accelerator
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Documentation</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/documentation/setup/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Setup
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-home-computer/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Home Computer
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-pynq-board/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup PYNQ
+
+            </a>
+            
+            <a href="/ecen427/documentation/serial/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;&emsp;
+
+                PYNQ Serial
+
+            </a>
+            
+            <a href="/ecen427/documentation/network-communications/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ Network
+
+            </a>
+            
+            <a href="/ecen427/documentation/tutorials/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Tutorials
+
+            </a>
+            
+            <a href="/ecen427/documentation/config-pynq-and-github/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ & Github
+
+            </a>
+            
+            <a href="/ecen427/documentation/vscode/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup VSCode
+
+            </a>
+            
+            <a href="/ecen427/documentation/compiling-running-code/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Compiling Programs
+
+            </a>
+            
+            <a href="/ecen427/documentation/software-stack/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Software Stack
+
+            </a>
+            
+            <a href="/ecen427/documentation/uio/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                UIO
+
+            </a>
+            
+            <a href="/ecen427/documentation/platform-device-tree/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Device Tree
+
+            </a>
+            
+            <a href="/ecen427/documentation/linux-drivers/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Linux Drivers
+
+            </a>
+            
+            <a href="/ecen427/documentation/hardware/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/hdmi/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                HDMI
+
+            </a>
+            
+            <a href="/ecen427/documentation/audio-hw/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Audio Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Vivado
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado-axi-simulation/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Simulating AXI IP
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Other</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/other/submission/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Lab Submission
+
+            </a>
+            
+            <a href="/ecen427/other/coding-standard/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Coding Standard
+
+            </a>
+            
+            <a href="/ecen427/other/ta-calendar/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                TA Calendar
+
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+        <button class="btn btn-brand" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/byu-cpe/ecen427/issues/new?labels=website&title=Updates to Lab 7: Creating a Hardware Accelerator with HLS page"><i
+                class="fab fa-github"></i> Suggest
+              Edits</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        Lab 7: Creating a Hardware Accelerator with HLS
+        
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5 bg-light">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#describing-functionality-in-c-code">Describing Functionality in C Code</a></li>
+  <li><a href="#vitis-hls">Vitis HLS</a>
+    <ul>
+      <li><a href="#creating-a-project">Creating a Project</a></li>
+      <li><a href="#c-simulation">C Simulation</a></li>
+      <li><a href="#c-synthesis">C Synthesis</a></li>
+    </ul>
+  </li>
+  <li><a href="#interfaces">Interfaces</a>
+    <ul>
+      <li><a href="#control-interface">Control Interface</a></li>
+      <li><a href="#data-input-arguments">Data Input Arguments</a></li>
+      <li><a href="#frame-buffer-axi-master">Frame Buffer AXI Master</a></li>
+    </ul>
+  </li>
+  <li><a href="#updating-your-hardware-in-vivado">Updating your Hardware in Vivado</a>
+    <ul>
+      <li><a href="#ip-export">IP Export</a></li>
+      <li><a href="#connecting-your-ip-in-your-vivado-project">Connecting your IP in your Vivado Project</a></li>
+      <li><a href="#compiling-and-committing-the-hardware">Compiling and Committing the Hardware</a></li>
+    </ul>
+  </li>
+  <li><a href="#running-your-accelerator-from-software">Running Your Accelerator from Software</a>
+    <ul>
+      <li><a href="#testing-your-accelerator">Testing Your Accelerator</a></li>
+      <li><a href="#space-invaders-integration">Space Invaders Integration</a></li>
+    </ul>
+  </li>
+  <li><a href="#submission">Submission</a></li>
+</ul>
+
+        </div>
+        
+
+        <h2 id="overview">Overview</h2>
+<p>In this final lab, you will create another piece of custom digital hardware, which will be capable of modifying the graphics on the screen in an accelerated manner.  Rather than relying on the processor to draw each pixel of the graphics, you will be able to issue a command to your hardware accelerator to do this for you.</p>
+
+<p>Your hardware accelerator will need the ability to change memory values in the pixel buffer.  This means that it will act as a <em>master</em> on the system bus, with the ability to initiate read and write operations.  This is also means that this hardware will be much more complex than your PIT device, which was a <em>slave</em> device, and could only wait and respond to requests initiated by a master device (the processor).</p>
+
+<p>Fortunately, we are going to make use of a modern digital design technology, <em>High-Level Synthesis (HLS)</em>, which will automatically create our Verilog digital circuit from a far simpler C-code description.</p>
+
+<p style="text-align:center;">
+<img src="/ecen427/media/labs/hls_bus.png" class="center" /></p>
+
+<h2 id="describing-functionality-in-c-code">Describing Functionality in C Code</h2>
+<p>HLS tools allow you to design hardware using C/C++ code (with some limitations; for example, code that uses dynamic memory allocation or recursion isn’t supported).  To use HLS, you must write your hardware behavior as a C/C++ function, and then run the HLS tools to convert this into a Verilog module.  The function arguments will become top-level interfaces to your hardware block.</p>
+
+<p>For this lab, you will implement the the <code class="language-plaintext highlighter-rouge">fill_bitmap_region</code> function, defined in <a href="https://github.com/byu-cpe/ecen427_student/blob/master/hw/hls/bitmap_accelerator/bitmap_accelerator.h">bitmap_accelerator.h</a>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Draw a rectangular region of pixels at (dest_x, dest_y), of size (width, height).
+// Two modes are supported:
+//    1. If fill_from_const is True, then the region is filled with a single
+//        color, where RGB = (const_R, const_G, const_B)
+//    2. If fill_from_const is False, then the pixels are copied from another
+//        location in the frame buffer, at (src_x, src_y).  This allows you to 
+//        quickly draw the same sprite several times.
+void fill_bitmap_region(uint8_t *frame_buffer, uint16_t src_x, uint16_t src_y,
+                        uint16_t dest_x, uint16_t dest_y, uint16_t width,
+                        uint16_t height, bool fill_from_const, uint8_t const_R,
+                        uint8_t const_G, uint8_t const_B);
+</code></pre></div></div>
+
+<p>Create a <em>bitmap_accelerator.c</em> file where you implement this function.  You can write this function now, or leave it empty and move onto the next step, but you need to make sure and create the file and function body before proceeding.</p>
+
+<p>Some test code is provided to you in <em>bitmap_accelerator_test.c</em> to ensure that you implement it correctly.  This will be used in the next step.</p>
+
+<p><strong>Note:</strong> You may want to review the <a href="/ecen427/documentation/hdmi/">HDMI Driver</a> page to review the layout of the pixel buffer.  Although you are interfacing directly with the pixel buffer in memory, the memory layout provided by the HDMI driver is nearly identical.  The only exception is the byte ordering of colors; <strong>in hardware the color ordering is (green, blue, red)</strong> (when you used the HDMI driver you supplied it in (red, green, blue) and the driver re-ordered before writing to memory).</p>
+
+<h2 id="vitis-hls">Vitis HLS</h2>
+
+<h3 id="creating-a-project">Creating a Project</h3>
+<p>Xilinx’s high-level synthesis software is called <em>Vitis HLS</em>.  You can run this from the command-line using <code class="language-plaintext highlighter-rouge">vitis_hls</code> (after you have sourced the script to add the Xilinx tools to your PATH).  If you run it this way, you will be presented with a new project wizard, where you will provide your files, select a part, etc. (similar to how you have created projects in Vivado).</p>
+
+<p>Instead, we will create a new project using the provided <a href="https://github.com/byu-cpe/ecen427_student/blob/master/hw/hls/bitmap_accelerator/proj.tcl">proj.tcl</a> script.  Look through this script.  It starts by creating a project named <em>vitis_hls_proj</em>. You will see that it adds your <em>bitmap_accelerator.c</em> file to the project (<em>add_files</em>), specifies which function will be synthesized to hardware (<em>set_top</em>), and adds the <em>bitmap_accelerator_test.c</em> file as a test bench code (<em>add_files -tb</em>).  It also selects an FPGA part, and a target clock frequency.</p>
+
+<p>To create your project run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd hw/hls/bitmap_accelerator
+vitis_hls proj.tcl
+</code></pre></div></div>
+
+<p>Now open your project using:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vitis_hls -p vitis_hls_proj
+</code></pre></div></div>
+
+<p>In the <em>Explorer</em> pane (top-left) expand the <em>Source</em> and <em>Test Bench</em> groups, and make sure you can see your <em>bitmap_accelerator.c</em> and <em>bitmap_accelerator_test.c</em> files.</p>
+
+<h3 id="c-simulation">C Simulation</h3>
+<p>The next step will be to make sure your <em>fill_bitmap_region</em> function works correctly.  If you haven’t already done so, write this function now.  Then, in Vitis HLS, run <em>C Simulation</em> to verify that your function works correctly.  This tool simply uses GCC to compile your test bench software, and runs the executable on your machine.  No hardware is created yet.</p>
+
+<p>The provided test bench, which you can inspect, runs your function four times, twice filling a region with a constant RGB value, and twice copying from one location in the frame buffer to another.  For each operation the test bench has a <em>golden</em> frame buffer (ie a copy of exactly what the frame buffer should contain after the operation).  If you implement the function <em>incorrectly</em>, it will print every byte that is mismatched with the golden copy.</p>
+
+<h3 id="c-synthesis">C Synthesis</h3>
+<p>The next step is to synthesize your C code into a Verilog module.  Run <em>C Synthesis</em>.  This should take less than a minute, and then produce a report of the result.  Look over the <em>Performance &amp; Resource Estimates</em> section, and observe that the tool makes a prediction on how many FPGA resources will be used (LUT, FF, BRAM, DSP).  The tool will also report a <em>Latency</em> value; however, this is worst-case prediction, as the latency of your code depends on what values you pass in for <em>width</em> and <em>height</em>.  (You will probably see a very large latency value because <em>width</em> and <em>height</em> are 16-bit values which would mean you could theoretically ask the function to copy 2^16*2^16=~4 billion pixels.  Of course we will never actually copy that many pixels.)</p>
+
+<p><em>Note:</em> If you want to automatically run C Synthesis when creating your project, add the line <code class="language-plaintext highlighter-rouge">csynth_design</code> to the end of your <em>proj.tcl</em> file.</p>
+
+<h2 id="interfaces">Interfaces</h2>
+
+<p>Open and inspect the Verilog module that Vitis HLS produces.  It is located in <em>solution1/impl/verilog/fill_bitmap_region.v</em>.</p>
+
+<p>You don’t need to understand all the Verilog that is produced, but look over the module inputs and outputs.  You should see:</p>
+<ul>
+  <li>clock (<em>ap_clk</em>) and reset (<em>ap_rst</em>) inputs</li>
+  <li>Control inputs/outputs that allow us to start the module and know when it’s done processing (<em>ap_start</em>, <em>ap_done</em>, <em>ap_idle</em>, <em>ap_ready</em>).</li>
+  <li>Data inputs for all of our function arguments.</li>
+</ul>
+
+<p>These simple inputs and outputs are useful if we want to connect this module to other hardware modules (like you have done in ECEn 220); however, this isn’t what we want for our hardware system. Rather, we want to be able to control this module from software.  This requires an AXI bus interface, with control and data signals accessed through hardware registers on the bus.</p>
+
+<p>Fortunately, Vitis HLS can automatically create Verilog with various interfaces, including both AXI4-Lite slave and AXI4 master interfaces.  Interfaces are one of many types of design directives that Vitis supports to guide how the Verilog is created.  To add interface directives, open your <em>bitmap_accelerator.c</em> file, and then open the <em>Directive</em> pane (top-right).  You should see different elements of your C code (functions, arguments, loops, etc) that you can apply directives to.</p>
+
+<p>We need to create three main interfaces:</p>
+<ol>
+  <li>An AXI4-Lite slave interface to control (ie. start) the module.</li>
+  <li>An AXI4-Lite slave interface to provide function arguments. (This will actually be the same bus interface as #1).</li>
+  <li>An AXI4 master interface, that allows access to the frame buffer in system memory.</li>
+</ol>
+
+<h3 id="control-interface">Control Interface</h3>
+<p>To add this interface:</p>
+<ul>
+  <li>Select the top-level function (<em>fill_bitmap_region</em>) in the <em>Directives</em> pane, right-click and choose <em>Insert Directive</em>.</li>
+  <li>Choose the <em>INTERFACE</em> directive type.</li>
+  <li>Change <em>mode</em> to <em>s_axilite</em> (slave, AXI4-Lite), and click <em>OK</em> to finish adding the directive.</li>
+</ul>
+
+<p><em>Note:</em> Directives can also automatically be applied through Tcl.  You could add the following line to your <em>proj.tcl</em> (before <code class="language-plaintext highlighter-rouge">csynth_design</code>):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set_directive_interface -mode s_axilite fill_bitmap_region
+</code></pre></div></div>
+
+<h3 id="data-input-arguments">Data Input Arguments</h3>
+<p>For each input (excluding <em>frame_buffer</em>), select the input from the <em>Directives</em> pane and repeat the above steps to add it to the AXI4-Lite interface.  Or through Tcl (for the <em>src_x</em> port):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set_directive_interface -mode s_axilite fill_bitmap_region src_x 
+</code></pre></div></div>
+
+<h3 id="frame-buffer-axi-master">Frame Buffer AXI Master</h3>
+<p>The <em>frame_buffer</em> input is unique.  Think about how your software code uses this argument.  It is an input in the sense that the caller of your function provides a pointer address to the frame buffer.  However, it is also used in your software through dereferencing to go out and read/write values in memory.  This requires a more complicated interface.</p>
+
+<p>To add this interface:</p>
+<ul>
+  <li>Again, select the <em>frame_buffer</em> input in the <em>Directives</em> pane, and add an <em>INTERFACE</em> directive.</li>
+  <li>For the <em>mode</em>, select <em>m_axi</em> (master, AXI4).  This will create a master interface which will allow the hardware to initiate read/write operations on the bus.</li>
+  <li>However, the hardware still needs to know the address of the frame buffer in memory.  This will be provided like the other inputs, as an AXI4-Lite slave register.  To indicate this, choose <em>slave</em> for the <em>offset</em> option (you may need to make the pop-up <em>Directive Editor</em> window larger to see this option).</li>
+  <li>Click <em>OK</em> to finish adding this directive.</li>
+</ul>
+
+<p>Or though Tcl:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set_directive_interface -mode m_axi -offset slave fill_bitmap_region frame_buffer
+</code></pre></div></div>
+
+<p><strong>Now, re-run C Synthesis</strong>.  Take a look again at the produced Verilog file.  If you added the interfaces correctly, the only top-level ports you should see are the clock, the reset, the AXI4-Lite slave bus (comprised of several signals), the AXI4 master bus (comprised of several signals), and an interrupt output (we won’t be using this).</p>
+
+<h2 id="updating-your-hardware-in-vivado">Updating your Hardware in Vivado</h2>
+
+<h3 id="ip-export">IP Export</h3>
+
+<p>As you did in Lab 5, the next step is to package your Verilog into an IP module that you can include in your Vivado project.  Fortunately, you don’t have to do this manually; Vitis HLS will automatically package your IP.  You can select <em>Export RTL</em> from the run menu, and output your IP to the <em>hw/ip_repo</em> folder.  Or add this to the end of your proj.tcl:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export_design -format ip_catalog -output ../../ip_repo/fill_bitmap_region.zip
+</code></pre></div></div>
+
+<p>After running this you should unzip the files:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd hw/ip_repo
+unzip fill_bitmap_region.zip -d fill_bitmap_region
+</code></pre></div></div>
+
+<p>Then commit these IP files to your repo.</p>
+
+<h3 id="connecting-your-ip-in-your-vivado-project">Connecting your IP in your Vivado Project</h3>
+
+<p>Add your new IP to your Vivado project like you did in Lab 5.  Wiring up this IP will be slightly different, and more complicated, than your PIT.  Follow these steps:</p>
+<ol>
+  <li>Connect the clock input.  This should come from the 100MHz clock output of the ZYNQ7 Processing System (<em>FCLK_CLK0</em>).</li>
+  <li>Connect the reset input.  This should come from the <em>peripheral_aresetn</em> output of the <em>rst_ps7_0_fclk0</em> block.</li>
+  <li>Attach the AXI4-Lite slave interface to the appropriate bus (same as Lab 5). In our system, the <em>axi_interconnect_0</em> block implements the bus for memory-mapped 100MHz devices.  Double click to reconfigure this bus and add another master port.
+    <ul>
+      <li>Connect the new master interface (<em>MXX_AXI</em>) to the slave port on your IP (<em>S00_AXI</em>).</li>
+      <li>Connect the clock and reset inputs on the bus to the same clock and reset used above.</li>
+      <li>Open the <em>Address Editor</em> and assign an address to your block (<em>/fill_bitmap_region_0/s_axi_control</em>)</li>
+    </ul>
+  </li>
+  <li>Next, we need to connect the AXI4 master interface to the system memory.  The DDR memory controller is actually internally part of the <em>ZYNQ7 Processing System</em>, so you won’t see it on the diagram, but you can enable slave connections to the processing system to allow master devices access to the system memory.  You will see that one such input, <em>S_AXI_HP0</em> already exists, which is connected to the <em>axi_mem_intercon_1</em> bus and used by the Video system.  This bus won’t work for us, since the Video system is running at a different clock rate (142 MHz, <em>FCLK_CLK1</em>).  Instead, you will need to do the following:
+    <ul>
+      <li>Double click to reconfigure the <em>ZYNQ7 Processing System</em>, go to <em>PS-PL Configuration</em> , expand <em>HP Slave AXI Interface</em>, and enable the <em>S AXI HP1</em> interface.</li>
+      <li>Add a new <em>AXI Interconnect</em> IP to your design, with one master and one slave port.</li>
+    </ul>
+    <ul>
+      <li>Connect the master port of your HLS IP (<em>m_axi_gmem</em>) to the <em>S00_AXI</em> input.</li>
+      <li>Connect the <em>M00_AXI</em> output to the newly added <em>S_AXI_HP1</em> port on the processing system.</li>
+      <li>Connect all clock inputs on the bus to <em>FCLK_CLK0</em>.</li>
+      <li>Connect the <em>ARESETN</em> bus reset to the <em>interconnect_aresetn</em> output of the <em>rst_ps7_0_fclk0</em> block.</li>
+      <li>Connect the <em>S00_ARESETN</em> and <em>M00_ARESETN</em> resets to the <em>peripheral_aresetn</em> output of the <em>rst_ps7_0_fclk0</em> block.</li>
+      <li>Open the <em>Address Editor</em> and assign an address to the <em>/ps7_0/S_AXI_HP1</em> entry.  This should automatically be set to address 0, as shown below:</li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="/ecen427/media/labs/maxi_address.png" /></p>
+
+<p>If done correctly, it should look something like this:</p>
+
+<p><img src="/ecen427/media/labs/maxi_wiring.png" /></p>
+
+<p><strong>Click the <em>Validate Design</em> button (looks like a check mark) to ensure that your design is valid.</strong></p>
+
+<h3 id="compiling-and-committing-the-hardware">Compiling and Committing the Hardware</h3>
+
+<p>As with lab5:</p>
+<ol>
+  <li>Save your hardware project changes by generating a new <em>ecen427.tcl</em> file (and commit to Git).</li>
+  <li>Generate a new bitstream, copy it to <em>hw/ecen427.bit</em> and commit it to git.</li>
+  <li>Add a new entry to the device tree, with a <em>compatible</em> field set to <em>generic-uio</em>, and a <em>reg</em> field that is the AXI slave address of your new IP.</li>
+  <li>Go to the <em>device_tree</em> folder, run <code class="language-plaintext highlighter-rouge">make build</code> to generate new <em>ecen427.bit.bin</em> and <em>ecen427.dtbo</em> files, and commit them to git.</li>
+  <li>Pull these changes down on your PYNQ board, and run <code class="language-plaintext highlighter-rouge">make install</code> in the <em>device_tree</em> folder to update the hardware bitstream and device tree on your board.</li>
+</ol>
+
+<p>You are now ready to write software that uses your hardware accelerator.</p>
+
+<h2 id="running-your-accelerator-from-software">Running Your Accelerator from Software</h2>
+
+<h3 id="testing-your-accelerator">Testing Your Accelerator</h3>
+
+<p>Take a look at the <em>ip_repo/copy_bitmap_region/drivers/fill_bitmap_region_v1_0/src/xfill_bitmap_region_hw.h</em> file.  This header file, which is automatically created by Vitis HLS, provides the full register map of the AXI slave interface.  For example, you should see that bit 0 of register 0x00 (Control signals) is used to start your accelerator.</p>
+
+<p>With this information you could write your own user space driver that accesses these registers via UIO (like you did in Lab 2).  However, there is no need to do so, since Vitis HLS automatically creates such a driver for you.  This driver is located in the various <em>xfill_bitmap_region*</em> files.</p>
+
+<p>Copy these files to the <a href="https://github.com/byu-cpe/ecen427_student/tree/master/userspace/drivers/fill_bitmap_region">fill_bitmap_region</a> driver folder.  This folder serves as a simple wrapper around the Xilinx-created driver.  You should create a <em>fill_bitmap_region.c</em> file, and implement the three functions listed in the <a href="https://github.com/byu-cpe/ecen427_student/blob/master/hw/hls/bitmap_accelerator/bitmap_accelerator.h">fill_bitmap_region.h</a> file.</p>
+
+<p>These functions are quite simple, and just need to call the appropriate functions that are listed in <em>xfill_bitmap_region.h</em>:</p>
+<ul>
+  <li>To initialize the driver you will need to call <em>XCopy_bitmap_region_Initialize</em>.  The first argument is a pointer to a <em>XFill_bitmap_region</em> struct that will be initialized by this function. The second argument to this function is <em>InstanceName</em>, which is the name you chose for your accelerator in the Linux Device Tree.  Unlike the drivers you created in Lab 2 which used hard-coded <em>/dev/</em> filenames, the Xilinx driver uses the device tree name to lookup the appropriate */dev/ file to use.</li>
+  <li>
+    <p>To call subsequent functions that read/write the device registers, such as:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void XFill_bitmap_region_Set_frame_buffer(XFill_bitmap_region *InstancePtr, u64 Data);
+</code></pre></div>    </div>
+
+    <p>you will provide a pointer to the <em>XFill_bitmap_region</em> struct you initialized earlier, as well as the data to set.</p>
+  </li>
+</ul>
+
+<p>Once you implement these functions correctly, we have provided a <a href="https://github.com/byu-cpe/ecen427_student/tree/master/userspace/apps/frame_buffer_test">frame_buffer_test</a> application to test that it’s working.  This application draws a red, green and blue square in the top-left of the screen, then copies these three squares to the middle fo the screen.  It looks like this:
+<img src="/ecen427/media/labs/frame_buffer_test.jpg" width="600" /></p>
+
+<p>This application is worth looking through as an example on how to use your accelerator.  One important thing to note: to use your accelerator, you need a pointer to the frame buffer.  As shown in this application, you can retrieve this by making an IOCTL call to the HDMI driver.</p>
+
+<h3 id="space-invaders-integration">Space Invaders Integration</h3>
+
+<p>Now that you have a working driver, you should make use of it in your Space Invaders game.  While you are free to use it extensively, for pass-off, you only need to do two things:</p>
+<ol>
+  <li>When the game starts, use your accelerator to clear the screen.  Add a <em>printf</em> message that states how long it took to fill the screen.</li>
+  <li>When you draw the five rows of aliens, use your accelerator to draw them quickly.  Again, add a single <em>printf</em> message that states how long it took to draw them.</li>
+</ol>
+
+<p>Your accelerator can be used to copy one alien to many different locations quickly.  However, you may be wondering the best way to do this; since aliens can be destroyed, and can move around, you can’t always rely on one being at a specific location to copy from.  To make this easier, we have added 40 extra rows of pixels below the screen that you can use to temporarily store your sprites.  If you draw aliens to this “off-screen” region using the original software method, you can then reliably copy from these locations using your accelerator throughout gameplay.</p>
+
+<p><strong>Note:</strong> You are free to work with your lab3 partner(s) to perform this stage of the lab.  However, make sure you commit the changes to your <em>individual</em> Github repository.</p>
+
+<h2 id="submission">Submission</h2>
+
+<p>Use the usual <a href="/ecen427/other/submission/">submission instructions</a>.  The TAs will look over your files, and run your space invaders game and look for the two <em>printf</em> messages.  Make sure all your hardware files (.bit.bin and .dtbo) and software files are committed, otherwise the TAs won’t be able to run your code properly.</p>
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src=/ecen427/js/jquery.visible.min.js></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+</body>
+
+</html>

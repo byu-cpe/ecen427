@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Lab 4: Kernel Driver for Playing Audio • ECEn 427
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen427/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<!-- <link rel="icon" type="image/png" sizes="96x96" href=/ecen427/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen427/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen427/icon/favicon-16x16.png> -->
+
+<script src="https://kit.fontawesome.com/d794f0229e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <div class="border-right sidebar-color" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen427/">
+                ECEn 427</a>
+
+        </div>
+
+        <div class="search-bar">
+            <form method="get" action="https://www.google.com/search" target="_blank">
+                <input class="search-box" type="hidden" name="sitesearch" value="https://byu-cpe.github.io/ecen427" />
+                <input class="search-box" type="text" name="q" maxlength="255" placeholder="Search" />
+            </form>
+        </div>
+
+        <div class="list-group list-group-flush sidebar-color">
+
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/syllabus/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-chalkboard-teacher"></i>
+                
+                Syllabus
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/schedule/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fa fa-calendar"></i>
+                
+                Lab Schedule
+            </a>
+            
+            
+            
+            <a href="/ecen427/reading-assignments/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-book-open"></i>
+                
+                Reading Assignments and Schedule
+            </a>
+            
+            
+            <!-- <a href="https://slack.com/app_redirect?team=T01J887F8MU&channel=C01JF1N6TH8"
+                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
+                    class="fa fa-question-circle"></i>
+                Slack</a> -->
+
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/labs/hello-world/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Hello World
+
+            </a>
+            
+            <a href="/ecen427/labs/clock/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Clock
+
+            </a>
+            
+            <a href="/ecen427/labs/space-invaders/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                Space Invaders
+
+            </a>
+            
+            <a href="/ecen427/labs/audio-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Audio Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-hw/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                PIT Hardware
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                PIT Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/hls-accelerator/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                HLS Accelerator
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Documentation</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/documentation/setup/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Setup
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-home-computer/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Home Computer
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-pynq-board/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup PYNQ
+
+            </a>
+            
+            <a href="/ecen427/documentation/serial/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;&emsp;
+
+                PYNQ Serial
+
+            </a>
+            
+            <a href="/ecen427/documentation/network-communications/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ Network
+
+            </a>
+            
+            <a href="/ecen427/documentation/tutorials/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Tutorials
+
+            </a>
+            
+            <a href="/ecen427/documentation/config-pynq-and-github/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ & Github
+
+            </a>
+            
+            <a href="/ecen427/documentation/vscode/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup VSCode
+
+            </a>
+            
+            <a href="/ecen427/documentation/compiling-running-code/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Compiling Programs
+
+            </a>
+            
+            <a href="/ecen427/documentation/software-stack/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Software Stack
+
+            </a>
+            
+            <a href="/ecen427/documentation/uio/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                UIO
+
+            </a>
+            
+            <a href="/ecen427/documentation/platform-device-tree/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Device Tree
+
+            </a>
+            
+            <a href="/ecen427/documentation/linux-drivers/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Linux Drivers
+
+            </a>
+            
+            <a href="/ecen427/documentation/hardware/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/hdmi/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                HDMI
+
+            </a>
+            
+            <a href="/ecen427/documentation/audio-hw/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Audio Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Vivado
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado-axi-simulation/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Simulating AXI IP
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Other</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/other/submission/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Lab Submission
+
+            </a>
+            
+            <a href="/ecen427/other/coding-standard/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Coding Standard
+
+            </a>
+            
+            <a href="/ecen427/other/ta-calendar/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                TA Calendar
+
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+        <button class="btn btn-brand" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/byu-cpe/ecen427/issues/new?labels=website&title=Updates to Lab 4: Kernel Driver for Playing Audio page"><i
+                class="fab fa-github"></i> Suggest
+              Edits</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        Lab 4: Kernel Driver for Playing Audio
+        
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5 bg-light">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#preliminary">Preliminary</a></li>
+  <li><a href="#github-repository">Github Repository</a></li>
+  <li><a href="#overview">Overview</a>
+    <ul>
+      <li><a href="#registering-with-linux">Registering with Linux</a></li>
+      <li><a href="#communicating-with-the-hardware">Communicating with the Hardware</a></li>
+      <li><a href="#creating-a-character-device">Creating a Character Device</a></li>
+      <li><a href="#handling-interrupts">Handling Interrupts</a></li>
+    </ul>
+  </li>
+  <li><a href="#driver-vs-device">Driver vs. Device</a></li>
+  <li><a href="#milestone-1">Milestone 1</a>
+    <ul>
+      <li><a href="#implementation">Implementation</a></li>
+      <li><a href="#pass-off">Pass Off</a></li>
+    </ul>
+  </li>
+  <li><a href="#milestone-2">Milestone 2</a>
+    <ul>
+      <li><a href="#specifications">Specifications</a></li>
+      <li><a href="#passing-off">Passing Off</a></li>
+    </ul>
+  </li>
+  <li><a href="#milestone-3">Milestone 3</a>
+    <ul>
+      <li><a href="#specifications-1">Specifications</a></li>
+      <li><a href="#passing-off-1">Passing Off</a></li>
+    </ul>
+  </li>
+  <li><a href="#code-submission">Code Submission</a></li>
+  <li><a href="#resources-tips-and-hints">Resources, Tips, and Hints</a>
+    <ul>
+      <li><a href="#milestone-1-1">Milestone 1</a></li>
+      <li><a href="#milestone-2-1">Milestone 2</a></li>
+      <li><a href="#milestone-3-1">Milestone 3</a></li>
+      <li><a href="#other">Other</a></li>
+    </ul>
+  </li>
+</ul>
+
+        </div>
+        
+
+        <p>In this lab, you will add a new dimension to Space Invaders: sound! The PYNQ board contains a codec chip that can play sounds under software control. With this chip, and a little effort, you will be able to hear those aliens marching back and forth; hear the strange sounds of the alien space ship as it appears and tries to get away, and hear the explosion when those evil aliens blast your tank.</p>
+
+<p>This lab will provide your first experience writing kernel code.  You will write a kernel device driver for the audio module that transmits data to the codec chip.</p>
+
+<h2 id="preliminary">Preliminary</h2>
+
+<ul>
+  <li>Make sure you have completed the assigned reading from the LDD3 textbook.</li>
+  <li>Read the documentation on <a href="/ecen427/documentation/platform-device-tree/">Linux Platform Devices and the Device Tree</a>. <em>Note that, for this lab, this is informational only. The Device Tree is already setup for this lab. Still, it is important to know how the device tree works, so study this.</em></li>
+  <li>Read the documentation on <a href="/ecen427/documentation/linux-drivers/">Linux Device Drivers</a>.</li>
+  <li>Read the documentation on the <a href="/ecen427/documentation/audio-hw/">Audio Hardware</a>.</li>
+</ul>
+
+<h2 id="github-repository">Github Repository</h2>
+
+<p>You will go back to working individually for this lab and the remaining labs.  Both lab 3 team members should copy their lab3 game code to their individual repositories.  <strong>Do not commit your lab 4, 5, or 6 code to your shared repository</strong>.</p>
+
+<h2 id="overview">Overview</h2>
+<p>You will be creating a <a href="https://en.wikipedia.org/wiki/Loadable_kernel_module">loadable kernel module</a>, which allows you to write code that runs in kernel space.  This kernel module will be a driver for the audio codec.</p>
+
+<p>Your driver code will need to do several things.  Some of the major tasks:</p>
+
+<h3 id="registering-with-linux">Registering with Linux</h3>
+<p>You need to register your driver with Linux, so that it calls the functions in your driver at appropriate times:</p>
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">module_init()</code> and <code class="language-plaintext highlighter-rouge">module_exit()</code> macros will register your kernel module with Linux so that your init and exit functions are called when Linux loads and unloads your module (Milestone 1).</li>
+  <li>You need to inform Linux that your module is a hardware driver that supports platform devices found in the device tree (<code class="language-plaintext highlighter-rouge">platform_driver_register()</code>, Milestone 1).</li>
+  <li>You will need to request major/minor numbers from Linux to use for your devices (<code class="language-plaintext highlighter-rouge">alloc_chrdev_region()</code>, Milestone 1).</li>
+</ul>
+
+<h3 id="communicating-with-the-hardware">Communicating with the Hardware</h3>
+<p>You driver will need to communicate with the audio hardware using register reads/writes.  Before you can do that, you will need to:</p>
+<ul>
+  <li>Retrieve the base address from the device tree (<code class="language-plaintext highlighter-rouge">platform_get_resource()</code>, Milestone 1).</li>
+  <li>Reserve this address space with Linux (<code class="language-plaintext highlighter-rouge">request_mem_region()</code>, Milestone 1).</li>
+  <li>Map this physical address space to a virtual address pointer (<code class="language-plaintext highlighter-rouge">ioremap()</code>, Milestone 1).</li>
+</ul>
+
+<h3 id="creating-a-character-device">Creating a Character Device</h3>
+<p>Your driver can’t be used from user space applications until you create some sort of interface that is accessible to user programs.  To do this, you will create a <em>character device</em>, accessible to user space as a <em>device file</em> in <em>/dev</em>.  This requires you to do the following:</p>
+<ul>
+  <li>Before you can create a character device, you to first create a <em>device class</em>.  You can create this class once when your driver loads (<code class="language-plaintext highlighter-rouge">class_create()</code>, Milestone 1).</li>
+  <li>Create a new character device (<code class="language-plaintext highlighter-rouge">cdev_init()</code>, then <code class="language-plaintext highlighter-rouge">cdev_add()</code>, Milestone 1).
+    <ul>
+      <li>When you create your character device, you will need to point Linux to functions in your module that can be called when user code performs a <code class="language-plaintext highlighter-rouge">read()</code> or <code class="language-plaintext highlighter-rouge">write()</code> on your device.</li>
+      <li>In Milestone 1, the <code class="language-plaintext highlighter-rouge">read()</code> and <code class="language-plaintext highlighter-rouge">write()</code> functions will only print log messages.</li>
+      <li>In Milestone 2, the <code class="language-plaintext highlighter-rouge">read()</code> and <code class="language-plaintext highlighter-rouge">write()</code> functions will interact with the audio device.</li>
+      <li>In Milestone 3, you will add another file operation, <code class="language-plaintext highlighter-rouge">ioctl</code>.</li>
+    </ul>
+  </li>
+  <li>Create a device file in <em>/dev</em> (<code class="language-plaintext highlighter-rouge">device_create()</code>, Milestone 1).</li>
+</ul>
+
+<h3 id="handling-interrupts">Handling Interrupts</h3>
+<p>The audio hardware will send an interrupt when it needs more audio data.  Unlike previous labs, this interrupt line is <em>not</em> connected to an interrupt controller that you manage from user space.  Instead, it is connected directly to the <em>Global Interrupt Controller (GIC)</em> that is part of the ARM processor.  The GIC is managed by Linux.  As such, you will be interacting directly with the Linux interrupt system.</p>
+
+<p>To handle and respond to interrupts generated by the audio hardware, you will do the following:</p>
+<ul>
+  <li>Query the device tree and get the virtual IRQ number.  Note, the device tree lists the physical interrupt line; however, Linux will provide you with a virtual number to use instead  (<code class="language-plaintext highlighter-rouge">platform_get_resource()</code>, Milestone 1).</li>
+  <li>Register your interrupt service routine with Linux (<code class="language-plaintext highlighter-rouge">request_irq()</code>, Milestone 1)</li>
+</ul>
+
+<h2 id="driver-vs-device">Driver vs. Device</h2>
+
+<p>Make sure you recognize the distinction between the driver (kernel module) and the device.  Typically, one Linux driver would support multiple devices of the same type.  To be clear:</p>
+<ul>
+  <li>The <em>driver/module</em> is loaded and unloaded once, regardless of the number of devices that it manages.  Module (driver) loading and unloading is done using functions provided to <code class="language-plaintext highlighter-rouge">module_init()</code> and <code class="language-plaintext highlighter-rouge">module_exit()</code>.</li>
+  <li>Each time Linux finds a device managed by your driver, it will call the functions you provided in the <code class="language-plaintext highlighter-rouge">.probe</code> and <code class="language-plaintext highlighter-rouge">.remove</code> entries of the struct you provided when registering your module as a platform device driver (<code class="language-plaintext highlighter-rouge">platform_driver_register()</code>).</li>
+</ul>
+
+<p>Based on the above, it is important to recognize which of the driver features should be done once when the module is loaded, and which should be done for each device.</p>
+
+<p>That said, the driver you make in this lab is only going to <strong>support one device</strong>.  However, as good coders, we still want to organize our code in such a way that it could more easily be extended in the future.</p>
+
+<h2 id="milestone-1">Milestone 1</h2>
+
+<h3 id="implementation">Implementation</h3>
+<p>In this milestone you will create the skeleton of a kernel driver for sending audio data to the codec.</p>
+
+<p>Your kernel driver should:</p>
+<ul>
+  <li>Contain code in <code class="language-plaintext highlighter-rouge">audio_init()</code> and <code class="language-plaintext highlighter-rouge">audio_exit()</code> to init and unload the <strong>driver</strong>, and register itself as a platform driver, with <code class="language-plaintext highlighter-rouge">audio_probe()</code> and <code class="language-plaintext highlighter-rouge">audio_remove()</code> functions to init and unload a <strong>device</strong>.</li>
+  <li>Upon device probe, the driver should:
+    <ul>
+      <li>Create a character device as described above.  The character device should implement <code class="language-plaintext highlighter-rouge">read()</code> and <code class="language-plaintext highlighter-rouge">write()</code> functions; however, for this milestone, these functions should simply print a message to the kernel log.</li>
+      <li>Setup a virtual address pointer as described above.</li>
+      <li>Setup an interrupt handler as described above.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Make sure that you also:</p>
+<ul>
+  <li>Create helper functions to read and write registers in the audio device.</li>
+  <li>When the driver is unloaded, undo all appropriate actions that were perform when the driver was loaded.</li>
+  <li>When a device is removed, undo all appropriate actions that were done when the device was added.</li>
+</ul>
+
+<p>Set up your code so that the TAs can test it in the following way:</p>
+<ul>
+  <li>Loading and unload your driver (<code class="language-plaintext highlighter-rouge">insmod</code> and <code class="language-plaintext highlighter-rouge">rmmod</code>) <strong>TWICE</strong> should work without error and have appropriate logging messages.  For example, you should at minimum print the major number, physical and virtual address and IRQ number.  It must also print a message to the log when <code class="language-plaintext highlighter-rouge">read()</code> and <code class="language-plaintext highlighter-rouge">write()</code> are called. You may choose to add more messages to help you debug your driver.  A simple <a href="https://github.com/byu-cpe/ecen427_student/blob/master/kernel/lab4_audio_codec/test_insmod.sh">script</a> is provided that loads and unloads the module twice and prints recent entries in the log.</li>
+  <li>Add code at the end of your probe function that enables the interrupt output of the audio core.  Since there is no data in the FIFOs, this should immediately trigger your ISR.  In your ISR print a message to the kernel log and then disable the interrupt output of the audio core (or you will be stuck in an endless loop).  This ISR message must show up in the log when the TA loads your module.</li>
+</ul>
+
+<h3 id="pass-off">Pass Off</h3>
+<p>To ensure the TAs can run and grade your driver, you should:</p>
+<ul>
+  <li>Create a new user space program in ‘‘userspace/apps/lab4_m1’’, with appropriate CMake file to create an executable named ‘‘lab4_m1’’.  Thus, when the TAs build your user space code, it should produce an executable ‘‘userspace/build/apps/lab4_m1/lab4_m1’’ (the TAs grade using scripts so be sure to get this name correct).</li>
+  <li>This program should open your device file, perform a <code class="language-plaintext highlighter-rouge">read()</code> and <code class="language-plaintext highlighter-rouge">write()</code>, and then close it.  The TAs will run this program and inspect the kernel logs to see that the <code class="language-plaintext highlighter-rouge">read()</code> and <code class="language-plaintext highlighter-rouge">write()</code> functions in your driver were executed.</li>
+</ul>
+
+<h2 id="milestone-2">Milestone 2</h2>
+<p>In this milestone you will write code to read and parse WAVE files, and update your kernel driver to play sound data.</p>
+
+<h3 id="specifications">Specifications</h3>
+<ul>
+  <li>Initialize the audio codec chip via I2C from userspace using the provided functions.  See <a href="/ecen427/documentation/audio-hw/">Audio Hardware</a>.</li>
+  <li>Update your kernel driver such that:
+    <ul>
+      <li>Your device struct contains a statically-sized buffer (ie, an array) to store audio samples the user will <code class="language-plaintext highlighter-rouge">write()</code> to your driver (512KB should be large enough).</li>
+      <li>In your <code class="language-plaintext highlighter-rouge">write()</code> function, you accept a buffer containing an audio clip.  When this occurs your driver will stop playing any existing audio clip, and immediately begin playing the newly provided audio clip.  In the <code class="language-plaintext highlighter-rouge">write()</code> function you will need to:
+        <ul>
+          <li>Immediately disable interrupts from the audio core.</li>
+          <li>Copy the audio data from user space to your buffer (including safety checks on the user space pointer) - LDD page 64.</li>
+          <li>Make sure the audio core has interrupts enabled.</li>
+        </ul>
+      </li>
+      <li>Your ISR will be responsible for actually playing the audio clip.  In your ISR:
+        <ul>
+          <li>Determine how much free space is in the audio FIFOs and fill them up with the next audio samples to be played.</li>
+          <li>Once the end of the audio clip is reached, disable interrupts on the audio core.</li>
+        </ul>
+      </li>
+      <li>In your <code class="language-plaintext highlighter-rouge">read()</code> function, return one byte of data, with value 0 or 1, indicating whether an audio sample is currently being played.</li>
+    </ul>
+  </li>
+  <li>Write a user space program that parses WAVE files and sends the PCM data to the audio driver.
+    <ul>
+      <li>The audio data you read from the WAVE files (in user space) will be an array of 16-bit samples.</li>
+      <li>The audio data you write to the hardware FIFOs (in kernel space) needs to be 24-bit samples (there’s no 24-bit data type in C, so use a 32-bit type)</li>
+      <li>This means you will need to convert each sample.  For example, for a 16-bit PCM sample (<code class="language-plaintext highlighter-rouge">int16_t</code>), you will want to left-shift the data by 8 bits and then store it in a 32-bit data type (<code class="language-plaintext highlighter-rouge">int32_t</code>).  This should be done in user space as you read the file into memory.
+You can do this conversion in user space or kernel space.</li>
+      <li>This means that your kernel <code class="language-plaintext highlighter-rouge">write()</code> function will take an array of 32-bit samples.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="passing-off">Passing Off</h3>
+<ul>
+  <li>Create a user space executable that takes a WAVE file path as a command-line argument, and plays the audio clip, twice in a row, on the speakers using your audio driver. The TAs will run this executable when doing your pass-off.</li>
+  <li>This new user space program should be located in <em>userspace/apps/lab4_m2</em>, with an appropriate CMake file to create an executable named <em>lab4_m2</em>.  Thus, when the TAs build your userspace code, it should produce an executable <em>userspace/build/apps/lab4_m2/lab4_m2</em>, which takes a single command-line argument.</li>
+</ul>
+
+<h2 id="milestone-3">Milestone 3</h2>
+<p>In this milestone you will add an <em>ioctl</em> interface to your driver to allow userspace to send special commands to your audio driver.  You will also update your Space Invaders code to play sound effects.  This is demonstrated in <a href="https://youtu.be/meRCic3iLW4">this video</a>.</p>
+
+<h3 id="specifications-1">Specifications</h3>
+<ul>
+  <li>Extend your kernel driver to add <em>ioctl</em> to the list of file operations supported by your character device.  You should support two ioctl commands:
+    <ul>
+      <li>Turn on looping for the current audio clip.</li>
+      <li>Turn off looping for the current audio clip.</li>
+    </ul>
+  </li>
+  <li>Integrate sound into Space Invaders by generating the following sounds during game operation:
+    <ul>
+      <li>WAVE files are provided <a href="https://github.com/byu-cpe/ecen427_student/tree/master/resources/wavFiles">here</a>.</li>
+      <li>the “marching” sound the aliens make as they move back and forth across the screen is comprised of four separate walk1, walk2, walk3, and walk4 sounds.  You start with walk1 the first time an alien moves and then play the next sound in the sequence on each successive move, cycling back to wave1.</li>
+      <li>the sound that the red flying saucer makes as it flies across the screen (use your looping functionality for this)</li>
+      <li>the explosion noise that occurs when your tank is hit by an alien bullet,</li>
+      <li>the explosion noise that occurs when an alien is hit by a tank bullet,</li>
+      <li>the “ping” sound that the tank makes when you fire a bullet, and</li>
+      <li>the sound the flying saucer makes if you hit it with a bullet.</li>
+    </ul>
+  </li>
+  <li>Implement volume control in the following manner:
+    <ul>
+      <li>To increase volume, slide sw0 up, press btn3.  Each press increases the volume a preset amount, such as 10%.</li>
+      <li>To decrease volume, slide sw0 down, press btn3.  Each press decreases the volume a preset amount, such as 10%.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="passing-off-1">Passing Off</h3>
+<p>Your Space Invaders game should be operating with all of the sound effects.  As a reminder, the coding standard requires that your code compile without warnings.  The TAs will verify this at pass off (both kernel and user code).</p>
+
+<p><strong>Important:</strong> All necessary WAVE files should be committed as part of your repository.  Your game should not rely on these files being located at a specific absolute path, as the TAs will likely clone your repo to a different path.  You can use <a href="https://stackoverflow.com/questions/933850/how-do-i-find-the-location-of-the-executable-in-c">read_link</a> to get the path to your <code class="language-plaintext highlighter-rouge">space_invaders</code> executable, and then use a relative path from that location to access the WAVE files in your repository.</p>
+
+<h2 id="code-submission">Code Submission</h2>
+<p>Follow the <a href="/ecen427/other/submission/">Submission Instructions</a>.</p>
+
+<h2 id="resources-tips-and-hints">Resources, Tips, and Hints</h2>
+
+<h3 id="milestone-1-1">Milestone 1</h3>
+
+<p><a href="https://github.com/byu-cpe/ecen427_student/blob/master/kernel/lab4_audio_codec/audio_codec.c">audio_codec.c</a> provides a starting framework for your driver software.  Read over it carefully before coding anything.</p>
+
+<p>A few notes about the provided code:</p>
+<ul>
+  <li>Your driver only needs to support a single audio device, so we have allocated a single <code class="language-plaintext highlighter-rouge">struct audio_device</code> as a global variable at compile time.
+    <ul>
+      <li>You might want to add a check in your probe function to make sure it isn’t being called more than once and overwriting the data in your struct.</li>
+      <li>If you need to add new variables related to the <em>device</em> they should be placed within this struct.  Variables related to the <em>driver</em> should be placed as static global variables.</li>
+    </ul>
+  </li>
+  <li>In our driver we are going to assume that the character device is only ever opened by one user program at a time.  Otherwise, we would need to handle parallel accesses and deal with race conditions.  LDD3, Ch 6, <em>Single-Open Devices</em> discusses how you can enforce this property.  You can implement this enforcement if you like.</li>
+</ul>
+
+<p>Things to remember:</p>
+<ul>
+  <li><strong>MAKE SURE</strong> you pay close attention to the return values of every function you call, and handle any errors.  Not all functions return a negative number on error.  Functions that return pointers often <a href="https://www.kernel.org/doc/htmldocs/kernel-hacking/convention-returns.html">encode errors differently</a>.  (See LDD3, Ch 10 <em>Pointers and Error Values</em>)</li>
+  <li>Add lots of kernel logging messages to help with debugging</li>
+</ul>
+
+<p>Error handling:</p>
+<ul>
+  <li>In <code class="language-plaintext highlighter-rouge">init</code> and <code class="language-plaintext highlighter-rouge">probe</code>, if you encounter an error, you will need to roll back any changes you have made.  A common technique to do this is using labels and <em>gotos</em> as shown in the pseudocode below:</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  int err;
+  
+  err = doTask1();
+  if (err)
+    goto errTask1;
+  
+  err = doTask2();
+  if (err)
+    goto errTask2;
+    
+  err = doTask3();
+  if (err)
+    goto errTask3;
+    
+  errTask3:
+    undoTask2();
+  errTask2:
+    undoTask1();
+  errTask1:
+    return err;
+</code></pre></div></div>
+
+<p>Some resources to help you with the kernel function calls:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">alloc_chrdev_region</code>:
+    <ul>
+      <li>see LDD3, Ch3, <em>Major and Minor Numbers</em> and <em>Allocating and Freeing Device Numbers</em>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">class_create</code>:
+    <ul>
+      <li>All devices need to belong to a class, so you will need to create a device class for your audio code.  This class pointer will be used when you create the device file.</li>
+      <li>You can store the <code class="language-plaintext highlighter-rouge">struct class*</code> as a static global variable.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">platform_driver_register</code>
+    <ul>
+      <li>There is quite a bit of background you need to read before understanding the significance of this call.  Read the course documentation on <a href="/ecen427/documentation/platform-device-tree/">linux platform devices</a>.</li>
+      <li>You will need to pass in a pointer to a <code class="language-plaintext highlighter-rouge">struct platform_driver</code>.  You can create a static global variable for this struct.</li>
+      <li><a href="http://xillybus.com/tutorials/device-tree-zynq-3">xillybus.com</a> provides a good example of how your struct should be initialized.  Remember that the <code class="language-plaintext highlighter-rouge">.compatible</code> field needs to exactly match the string in our device tree.</li>
+      <li>Read about and study device-tree source files for this project <a href="/ecen427/documentation/platform-device-tree/">here</a>. Search for a compatible string that looks like it is related to an audio codec.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">cdev_init</code> and <code class="language-plaintext highlighter-rouge">cdev_add</code>
+    <ul>
+      <li>LDD3, Ch3 discusses these functions in the section <em>Char Device Registration</em>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">device_create</code>
+    <ul>
+      <li>This function will create a device file in <em>/dev</em>.</li>
+      <li>See the Linux documentation <a href="https://www.kernel.org/doc/html/v4.9/driver-api/infrastructure.html">https://www.kernel.org/doc/html/v4.9/driver-api/infrastructure.html</a></li>
+      <li>Be careful to check the return value of ‘‘device_create’’ properly.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">platform_get_resource</code>
+    <ul>
+      <li>This function is used to retrieve values from the device tree.</li>
+      <li>Using type <code class="language-plaintext highlighter-rouge">IORESOURCE_MEM</code> will return the physical memory address and length (<code class="language-plaintext highlighter-rouge">&lt;reg&gt;</code> from the device tree).</li>
+      <li>Using type <code class="language-plaintext highlighter-rouge">IORESOURCE_IRQ</code> will return the IRQ number.  (<em>Note:</em> It will be a virtual IRQ number, and will not be the same as the physical IRQ number listed in the device tree).</li>
+      <li>Linux documentation <a href="https://www.kernel.org/doc/html/v4.9/driver-api/infrastructure.html">https://www.kernel.org/doc/html/v4.9/driver-api/infrastructure.html</a></li>
+      <li><a href="https://stackoverflow.com/questions/22961714/what-is-platform-get-resource-in-linux-driver">https://stackoverflow.com/questions/22961714/what-is-platform-get-resource-in-linux-driver</a></li>
+      <li><a href="https://lwn.net/Articles/448499/">https://lwn.net/Articles/448499/</a>. Look at section <strong>Platform devices</strong> especially for where data is stored in the struct.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">request_mem_region</code> and <code class="language-plaintext highlighter-rouge">ioremap</code>
+    <ul>
+      <li>See LDD3, Ch 9, <em>I/O Memory Allocation and Mapping</em>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">request_irq</code>
+    <ul>
+      <li>See LDD3, Ch 10, <em>Installing an Interrupt Handler</em>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">iowrite32</code>
+    <ul>
+      <li>See LDD3, CH 9, <em>Accessing I/O Memory</em>.</li>
+      <li>Don’t forget the rules of <a href="https://www.cs.swarthmore.edu/~richardw/classes/cs31/s18/offsite/pointer.html">Pointer Arithmetic</a>.</li>
+      <li>Basically, the register offsets are byte-aligned, but if you’re not careful, the program will calculate addresses as if they were word-aligned.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="milestone-2-1">Milestone 2</h3>
+<ul>
+  <li>Consult the documentation on the <a href="/ecen427/documentation/audio-hw/">Audio Hardware</a>.</li>
+  <li>Consult the LDD3 textbook.</li>
+</ul>
+
+<h3 id="milestone-3-1">Milestone 3</h3>
+<ul>
+  <li>Read LDD3 chapter 6, the first section on <em>ioctl</em>.</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">.unlocked_ioctl</code> in the <code class="language-plaintext highlighter-rouge">struct file_operations</code> (<code class="language-plaintext highlighter-rouge">.ioctl</code> as the text suggests is out of date). Even with this update, you still use the <code class="language-plaintext highlighter-rouge">ioctl()</code> system call in your user-space code for space invaders.</li>
+  <li>The <em>ioctl</em> interface must be implemented as described in LDD3.  Make sure the <em>ioctl</em> command values are created using the <code class="language-plaintext highlighter-rouge">_IO*</code> macros.  An example of these are given on pages 138-139 of LDD3.</li>
+  <li>You probably want to read all of the WAVE files and store them in arrays at the startup of you game.  Then each time you want to play a sound effect you can pass the appropriate array buffer to the driver.  This avoids repeatedly reading the WAVE files each time you play a sound.</li>
+  <li>No sound mixing is required for this lab, simply play one sound at a time.</li>
+</ul>
+
+<h3 id="other">Other</h3>
+
+<ul>
+  <li><a href="/ecen427/media/labs/kernel_driver.pdf">Class slides</a></li>
+</ul>
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src=/ecen427/js/jquery.visible.min.js></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>
+    
+    Lab 6: Kernel Driver for PIT with sysfs • ECEn 427
+    
+</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href=/ecen427/css/main.css>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://use.typekit.net/jcn6ybb.css">
+
+<!-- <link rel="icon" type="image/png" sizes="96x96" href=/ecen427/icon/favicon-96x96.png>
+<link rel="icon" type="image/png" sizes="32x32" href=/ecen427/icon/favicon-32x32.png>
+<link rel="icon" type="image/png" sizes="16x16" href=/ecen427/icon/favicon-16x16.png> -->
+
+<script src="https://kit.fontawesome.com/d794f0229e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <div class="border-right sidebar-color" id="sidebar-wrapper">
+    <div class="sidebar-sticky">
+        <div class="sidebar-heading-big">
+            <a href="/ecen427/">
+                ECEn 427</a>
+
+        </div>
+
+        <div class="search-bar">
+            <form method="get" action="https://www.google.com/search" target="_blank">
+                <input class="search-box" type="hidden" name="sitesearch" value="https://byu-cpe.github.io/ecen427" />
+                <input class="search-box" type="text" name="q" maxlength="255" placeholder="Search" />
+            </form>
+        </div>
+
+        <div class="list-group list-group-flush sidebar-color">
+
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/syllabus/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-chalkboard-teacher"></i>
+                
+                Syllabus
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            <a href="/ecen427/schedule/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fa fa-calendar"></i>
+                
+                Lab Schedule
+            </a>
+            
+            
+            
+            <a href="/ecen427/reading-assignments/"
+                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+                
+                <i class="fas fa-book-open"></i>
+                
+                Reading Assignments and Schedule
+            </a>
+            
+            
+            <!-- <a href="https://slack.com/app_redirect?team=T01J887F8MU&channel=C01JF1N6TH8"
+                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
+                    class="fa fa-question-circle"></i>
+                Slack</a> -->
+
+        </div>
+
+        <div class="sidebar-heading">Labs</div>
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/labs/hello-world/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">1</span>
+                Hello World
+
+            </a>
+            
+            <a href="/ecen427/labs/clock/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">2</span>
+                Clock
+
+            </a>
+            
+            <a href="/ecen427/labs/space-invaders/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">3</span>
+                Space Invaders
+
+            </a>
+            
+            <a href="/ecen427/labs/audio-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">4</span>
+                Audio Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-hw/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">5</span>
+                PIT Hardware
+
+            </a>
+            
+            <a href="/ecen427/labs/pit-driver/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">6</span>
+                PIT Driver
+
+            </a>
+            
+            <a href="/ecen427/labs/hls-accelerator/"
+                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
+                <span class="badge badge-pill badge-dark-grey">7</span>
+                HLS Accelerator
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Documentation</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/documentation/setup/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Setup
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-home-computer/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Home Computer
+
+            </a>
+            
+            <a href="/ecen427/documentation/setup-pynq-board/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup PYNQ
+
+            </a>
+            
+            <a href="/ecen427/documentation/serial/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;&emsp;
+
+                PYNQ Serial
+
+            </a>
+            
+            <a href="/ecen427/documentation/network-communications/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ Network
+
+            </a>
+            
+            <a href="/ecen427/documentation/tutorials/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Tutorials
+
+            </a>
+            
+            <a href="/ecen427/documentation/config-pynq-and-github/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                PYNQ & Github
+
+            </a>
+            
+            <a href="/ecen427/documentation/vscode/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Setup VSCode
+
+            </a>
+            
+            <a href="/ecen427/documentation/compiling-running-code/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Compiling Programs
+
+            </a>
+            
+            <a href="/ecen427/documentation/software-stack/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Software Stack
+
+            </a>
+            
+            <a href="/ecen427/documentation/uio/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                UIO
+
+            </a>
+            
+            <a href="/ecen427/documentation/platform-device-tree/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Device Tree
+
+            </a>
+            
+            <a href="/ecen427/documentation/linux-drivers/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Linux Drivers
+
+            </a>
+            
+            <a href="/ecen427/documentation/hardware/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/hdmi/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                HDMI
+
+            </a>
+            
+            <a href="/ecen427/documentation/audio-hw/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Audio Hardware
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Vivado
+
+            </a>
+            
+            <a href="/ecen427/documentation/vivado-axi-simulation/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                &emsp;
+
+                Simulating AXI IP
+
+            </a>
+            
+        </div>
+
+        <div class="sidebar-heading">Other</div>
+
+        <div class="list-group list-group-flush">
+            
+            <a href="/ecen427/other/submission/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Lab Submission
+
+            </a>
+            
+            <a href="/ecen427/other/coding-standard/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                Coding Standard
+
+            </a>
+            
+            <a href="/ecen427/other/ta-calendar/"
+                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                
+
+                TA Calendar
+
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
+        <button class="btn btn-brand" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/byu-cpe/ecen427/issues/new?labels=website&title=Updates to Lab 6: Kernel Driver for PIT with sysfs page"><i
+                class="fab fa-github"></i> Suggest
+              Edits</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <article class="page lab">
+    <h1 class="page-title" id="page-title">
+        Lab 6: Kernel Driver for PIT with sysfs
+        
+    </h1>
+
+    <div class="page-content">
+        
+        <div class="lab-toc col-md-6 col-lg-5 bg-light">
+            <h4>Table of Contents</h4>
+            <ul>
+  <li><a href="#specification">Specification</a></li>
+  <li><a href="#getting-started">Getting Started</a>
+    <ul>
+      <li><a href="#update-the-linux-device-tree">Update the Linux Device Tree</a></li>
+      <li><a href="#create-your-basic-driver">Create your Basic Driver</a></li>
+      <li><a href="#add-sysfs-interfaces">Add sysfs interfaces</a></li>
+      <li><a href="#space-invaders">Space Invaders</a></li>
+    </ul>
+  </li>
+  <li><a href="#pass-offsubmission">Pass-Off/Submission</a></li>
+  <li><a href="#documentation">Documentation</a>
+    <ul>
+      <li><a href="#sysfs-documentation">sysfs Documentation</a></li>
+      <li><a href="#sysfs-tutorial">sysfs Tutorial</a></li>
+      <li><a href="#sysfs-permissions">sysfs permissions</a></li>
+    </ul>
+  </li>
+</ul>
+
+        </div>
+        
+
+        <p>In this lab you will create a Linux kernel driver for your programmable interval timer (PIT) hardware.  This lab will give you experience with:</p>
+<ul>
+  <li>Modifying the linux device tree</li>
+  <li>Writing another kernel driver</li>
+  <li>Adding a sysfs interface to a kernel driver</li>
+</ul>
+
+<p>Like device files that you used for your audio driver, sysfs is another method for allowing userspace to communicate with your device driver.  Sysfs is a virtual filesystem, located at <em>/sys</em>.  Your driver will create a set of attributes, that are represented as files in this virtual filesystem.  Userspace can read and write ASCII text to these files to read/write attributes in your driver.   This interface to your device is nice for users, as they can interact with your device by simply using <code class="language-plaintext highlighter-rouge">cat</code> and <code class="language-plaintext highlighter-rouge">echo</code> through the terminal, without needing to write and compile a program.</p>
+
+<h2 id="specification">Specification</h2>
+
+<p>The interface to your driver should be located at <em>/sys/class/pit_427/pit_427/</em></p>
+<ul>
+  <li>This means your class name and device name should both be <em>pit_427</em></li>
+</ul>
+
+<p>Your driver must expose the following functionality through the sysfs interface:</p>
+<ul>
+  <li>Get/set timer period
+    <ul>
+      <li>This should be a single integer, representing the period in <strong>microseconds</strong>.  Thus, if you write <code class="language-plaintext highlighter-rouge">10000</code> to this attribute, the PIT should produce interrupts at the same rate as the FIT you used when originally coding space invaders.</li>
+      <li>The attribute name must be <code class="language-plaintext highlighter-rouge">period</code>.</li>
+    </ul>
+  </li>
+  <li>Start/stop timer
+    <ul>
+      <li>This should be a single character, <code class="language-plaintext highlighter-rouge">0</code> or <code class="language-plaintext highlighter-rouge">1</code> indicating if the timer is running.</li>
+      <li>The attribute name must be <code class="language-plaintext highlighter-rouge">run</code>.</li>
+    </ul>
+  </li>
+  <li>Turn timer interrupts on/off
+    <ul>
+      <li>This should be a single character, <code class="language-plaintext highlighter-rouge">0</code> or <code class="language-plaintext highlighter-rouge">1</code> indicating if interrupts are enabled.</li>
+      <li>The attribute name must be <code class="language-plaintext highlighter-rouge">int_en</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<h3 id="update-the-linux-device-tree">Update the Linux Device Tree</h3>
+
+<ul>
+  <li>Add your PIT to the linux device tree.  Make sure the base address matches the address in your Vivado hardware design.</li>
+  <li>Compile the new device tree and replace the existing device tree on the PYNQ SD card. See <a href="/ecen427/documentation/platform-device-tree/">Linux Device Tree</a> for more information.</li>
+</ul>
+
+<h3 id="create-your-basic-driver">Create your Basic Driver</h3>
+<ul>
+  <li>Create a basic kernel driver for your PIT, using your audio driver code for reference.</li>
+  <li>You don’t need to create <code class="language-plaintext highlighter-rouge">read()</code>/<code class="language-plaintext highlighter-rouge">write()</code> functions for the driver, as userspace will interact using sysfs.</li>
+  <li>Load your kernel module and make sure it probes correctly for your PIT.</li>
+</ul>
+
+<h3 id="add-sysfs-interfaces">Add sysfs interfaces</h3>
+
+<ul>
+  <li>Extend your driver to support the sysfs interfaces described above.</li>
+</ul>
+
+<h3 id="space-invaders">Space Invaders</h3>
+<ul>
+  <li>Modify your space invaders game code to use the interrupt from the PIT.</li>
+</ul>
+
+<h2 id="pass-offsubmission">Pass-Off/Submission</h2>
+<p>The TAs will check that your PIT works correctly by running your space invaders game, and while the game is executing, doing something like the following to see that your game speed changes on the fly.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo bash -c "echo 20000 &gt; /sys/class/pit_427/pit_427/period"
+</code></pre></div></div>
+
+<p>The above command should cause your game to run at half speed.</p>
+
+<p>Follow the <a href="/ecen427/other/submission/">usual submission instructions</a>.</p>
+
+<h2 id="documentation">Documentation</h2>
+
+<h3 id="sysfs-documentation">sysfs Documentation</h3>
+<ul>
+  <li><a href="https://www.kernel.org/doc/Documentation/filesystems/sysfs.txt">https://www.kernel.org/doc/Documentation/filesystems/sysfs.txt</a>:  This is the official sysfs documentation, and should have everything you need.</li>
+  <li><a href="https://mirrors.edge.kernel.org/pub/linux/kernel/people/mochel/doc/papers/ols-2005/mochel.pdf">https://mirrors.edge.kernel.org/pub/linux/kernel/people/mochel/doc/papers/ols-2005/mochel.pdf</a>  This has a bit more detail/explanation.</li>
+</ul>
+
+<h3 id="sysfs-tutorial">sysfs Tutorial</h3>
+<p>You may find the following tutorial helpful: <a href="https://www.cs.swarthmore.edu/~newhall/sysfstutorial.pdf">https://www.cs.swarthmore.edu/~newhall/sysfstutorial.pdf</a>. However, you should read through it completely and make sure you understand which parts are applicable to this lab before you start your implementation.  Some notes on this tutorial:</p>
+<ul>
+  <li>You shouldn’t need to call <code class="language-plaintext highlighter-rouge">root_device_register</code> because you should already have a handle to a <code class="language-plaintext highlighter-rouge">struct device *</code> from when you called <code class="language-plaintext highlighter-rouge">device_create</code>.</li>
+  <li>You don’t need to create subdirectories, as you should place all attributes in the main directory for your PIT.</li>
+  <li>On the slide titled <strong>Adding 1 File</strong> there is a function mentioned, <code class="language-plaintext highlighter-rouge">sysfs_add_file</code>.  This is a typo.  It should be <code class="language-plaintext highlighter-rouge">sysfs_create_file</code>.</li>
+  <li>I recommend using <code class="language-plaintext highlighter-rouge">sysfs_create_group</code> instead of adding attributes one by one.  While it may seem like more work, it will actually save you time as your error handling/removal code is much simpler. <code class="language-plaintext highlighter-rouge">sysfs_remove_group</code> will only remove those attributes that were successfully added (instead of you having to keep track of of this).</li>
+</ul>
+
+<h3 id="sysfs-permissions">sysfs permissions</h3>
+
+<p>The Linux kernel prevents you from setting certain permission bits on <em>sysfs</em> files.  You are not allowed to set the <em>write</em> or <em>execute</em> bits for all users.  Thus, the example command requires <em>sudo</em> to write to the <em>sysfs</em> file.</p>
+
+    </div>
+</article>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src=/ecen427/js/jquery.visible.min.js></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    var prevVisible = $('#page-title').visible();
+
+    $(window).scroll(function () {
+        currentVisible = $('#page-title').visible()
+        if (prevVisible && !currentVisible) {
+            console.log("Do something!");
+            $("#page-title-bar").html($('#page-title').text());
+        }
+
+        if (!prevVisible && currentVisible) {
+            $("#page-title-bar").html("")
+        }
+
+        prevVisible = currentVisible;
+    });
+
+</script>
+
+</body>
+
+</html>
