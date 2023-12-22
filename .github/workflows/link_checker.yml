@@ -13,8 +13,9 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6 
+          ruby-version: '3.0' 
           bundler-cache: true 
+
       - name: Build
         run: make build
           
@@ -24,8 +25,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6 
+          ruby-version: '3.0'
           bundler-cache: true 
       - name: Check links
-        run: make check_links || make check_links || make check_links
-        
+        run: make check_links
