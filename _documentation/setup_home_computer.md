@@ -6,7 +6,7 @@ short_title: Home Computer
 indent: 1
 number: 2
 ---
-<span style="color:red">**You can skip this setup page if you only plan to work in the lab and not work remotely**.
+<span style="color:red">**You can skip this setup page if you only plan to work in the lab using the lab computers, and not work from your personal computer**.
 </span>
 
 
