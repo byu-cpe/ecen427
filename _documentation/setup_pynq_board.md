@@ -38,8 +38,19 @@ The PYNQ runs Linux off of an external micro SD card that you must provide.  The
 
 *Note:* If you run into issues using *Win32DiskImager*, another alternative is to use <http://etcher.io>.
 
-## Connecting the PYNQ Board to a TV or Monitor 
+## Powering Up the PYNQ Board
+To power the PYNQ board, you will need to connect the micro USB cable, insert the micro USB cable, and turn on the power switch.  
 
+### Powering Down the PYNQ Board
+**Important:** Once you have powered up your board, it should begin to boot Linux.  Keep in mind that once you have it powered, treat it like a regular computer running Linux, and <ins>don't unplug it or turn off the power switch until you have shut it down properly</ins>.  If you unplug it or turn off the power switch while it is running, you risk corrupting the SD card and you may have to re-image it.
+
+Once you have connected to the board using the methods described below, you can shut down the board by typing 
+
+    sudo poweroff
+
+in the terminal.  Wait 10 seconds before shutting of the power switch.
+
+### Verifying BOOT using HDMI
 The PYNQ video signal comes from the HDMI port labeled *HDMI Out* located on the topside of the board. This should already be connected to a dedicated monitor in the lab.  If you work remotely, you will need to find an HDMI-compatible display to use.  
 
 <!-- As we are not using a lab room this year, you must provide your own display and HDMI cable (nothing fancy). We have tested the PYNQ board and found that it works correctly with just about any computer monitor and most TVs (though not all).  -->
@@ -64,14 +75,9 @@ If you used Option #1 above and connected the PYNQ directly to your home network
 
 #### Windows
 
-  * Right-click network icon in System Tray and select *Open Network & Internet settings*
-  * Click *Ethernet* or *Wi-Fi* in the left-hand menu (it doesn't matter which you select).
-  * Click *Change adapter options* in the right-hand menu.
-  * The pop-up window lists all of your network adapters:
-      * If you have a USB-to-Ethernet adapter, identify which adapter it is.  You can unplug it and plug it back in to verify.
-      * Next, find the adapter that your computer uses to connect to the internet.  This may be the *WiFi* adapter if you use WiFi, or the *Ethernet* adapter if you use a physical Ethernet connection. Right-click on this adapter and open the *Properties*.
+  * Open Windows Settings (Windows Key + I) and go to *Network & Internet*.
+  * Expand the connection you want to share (Ethernet or WiFi), locate the *More adapter options* item and click *Edit*.
   * In the adapter pop-up window, click the *Sharing* tab.  Check the box for *Allow other network users to connect through this computer's Internet connection*.
-  * Use the *Home Networking connection* drop-box box to select the USB-to-Ethernet adapter that you identified in the earlier step. Click *OK* and close the Windows.  
 
 #### Mac
 
@@ -89,7 +95,7 @@ If you use option 1 or 2 below, keep in mind that as you look for the PYNQ IP ad
 
 **Option 1: Retrieve from router.** *You can only use this technique if you used option #1 above, and your PYNQ is connected directly to your home router or switch*
 
-Your PYNQ should be given an IP address on your home network.  This is likely something like 192.168.x.x and you may be able to find it using the DHCP list on your router's configuration webpage, or if you have a newer router, such as a Netgear Orbi or Google Nest, you can use the appropriate mobile app to view devices on your home network and get the IP address.
+Your PYNQ should be given an IP address on your home network.  This is likely something like 192.168.x.x and you may be able to find it using the DHCP list on your router's configuration webpage or app.
 
 
 **Option 2: Use ARP.** 
@@ -98,11 +104,9 @@ ARP (Address Resolution Protocol) allows you to view IP addresses and MAC addres
 
 In Windows, Linux, or Mac, you should be able to run `arp -a` in the terminal to view a list of IP/MAC pairs.  They are usually grouped by network device, so if you have the PYNQ connected to your computer via USB-to-Ethernet adapter, the PYNQ should be in it's own category. 
 
-
-
 **Option 3: Connect to the PYNQ board using UART**
 
-The [PYNQ Serial]({% link _documentation/serial.md %}) page describes how to get a command prompt on the PYNQ board using the USB connection.  From there you can run `ifconfig` to view the network adapters on the PYNQ board and their IP addresses.  The Ethernet adapter on the PYNQ is named `eth0` (ignore the `eth0:1` entry).
+The [PYNQ Serial]({% link _documentation/serial.md %}) page describes how to get a command prompt on the PYNQ board using the USB connection.  From there you can run `ifconfig` to view the network adapters on the PYNQ board and their IP addresses.  The Ethernet adapter on the PYNQ is named `eth0`.
 
 
 
