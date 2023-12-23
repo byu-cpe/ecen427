@@ -106,8 +106,44 @@ In Windows, Linux, or Mac, you should be able to run `arp -a` in the terminal to
 
 **Option 3: Connect to the PYNQ board using UART**
 
-The [PYNQ Serial]({% link _documentation/serial.md %}) page describes how to get a command prompt on the PYNQ board using the USB connection.  From there you can run `ifconfig` to view the network adapters on the PYNQ board and their IP addresses.  The Ethernet adapter on the PYNQ is named `eth0`.
+The [PYNQ Serial]({% link _documentation/serial.md %}) page describes how to get a command prompt on the PYNQ board using the USB connection.  From there you can run `ip a` to view the network adapters on the PYNQ board and their IP addresses.  The Ethernet adapter on the PYNQ is named `eth0`.
 
 
 
 
+
+## SSH Communication 
+Once you have the PYNQ set up you can connect to it using SSH. 
+
+If you are working in the lab, you can access the PYNQ board in the lab using:
+
+    ssh byu@pynq03.ee.byu.edu
+        
+where the "03" is replaced with the number of the PYNQ board you are using.  **The default password is `byu`.**  
+
+If working remotely, you will need to replace *pynq03.ee.byu.edu* with your PYNQ's IP address.
+
+
+
+
+
+## SSH Keys
+
+> 📝 *Run this on your computer. If you are still SSh'd into the PYNQ board, type `exit` to get back to your computer.*
+
+Instead of having to authenticate with a password each time connecting to the PYNQ, you can set up an SSH key to do automatic authentication.  [This tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1804) explains how to set this up in a variety of ways.
+
+A few of notes __before__ following the tutorial:
+  * If your computer doesn't have `ssh-copy-id` installed, you will need to follow the instructions below that (the lab computers have it installed). 
+  * Although it is less secure, it is nicer if you do not specify a passphrase for the key; this will give you secure, passwordless access to the PYNQ.  Presumably the host computer is protected by password, which makes not having a passphrase less of an issue
+  * You probably don't want to follow Step 4 of the tutorial
+
+**Before proceeding, make sure you can ssh into your PYNQ board without being prompted for a password.**
+
+## Change Passwords 
+
+> 📝 Run this on the PYNQ board
+
+You should change the password for the *byu* account in your PYNQ Linux system.  This is not just to prevent people from looking at your work, it also prevents another student from accidentally SSH'ing in your PYNQ board and modifying your files.
+
+To change the *byu* user password, SSH into your PYNQ board and run the `passwd` command.

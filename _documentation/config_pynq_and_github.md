@@ -1,29 +1,15 @@
 ---
 layout: page
 toc: false
-title: Configuring PYNQ and Creating your Github Repo
-short_title: PYNQ & Github
+title: Git Setup
 indent: 1
 number: 7
 ---
 
 
-## Change Passwords 
+In the labs for this class, you will be completing some tasks on your computer, and some tasks on the PYNQ board.  In this setup step, you will set up your Git repository and SSH keys on both your computer and the PYNQ board.  
 
-If you are only working from home, you can skip to the next step, otherwise, if you are working in the lab, you should change your password.  This is not just to prevent people from looking at your work, it also prevents another student from accidentally SSH'ing in your PYNQ board and modifying your files.
-
-Change the *byu* user password by running the `passwd` command.
-
-<!-- There are a couple passwords that need to be changed:
-  - Change the ''byu'' user password
-    - SSH into the PYNQ
-    - Run `passwd` (default ''byu'' password is ''byu'') -->
-  <!-- - Change the root password
-    - SSH into the PYNQ
-    - Change to root: `su`  (default root password is xilinx)
-    - Run ''passwd'' -->
-
-## Extend your Partition 
+<!-- ## Extend your Partition 
 
 You should extend the PYNQ filesystem to fill your entire SD card (by default the filesystem only provides a small amount of free space, and doesn't fill your SD card)
 
@@ -32,7 +18,7 @@ Run these commands.  Please copy and paste them one at a time, and be careful in
 ```
 sudo growpart /dev/mmcblk0 2
 sudo resize2fs /dev/mmcblk0p2
-```
+``` -->
 
 <!-- ## Set PYNQ time 
 
@@ -46,8 +32,8 @@ Run the following to update the time on your PYNQ
     
 This will fix the current time of the PYNQ, but if you have your PYNQ off for some extended period, and then turn it back on, you will may notice the time is wrong.   -->
 
-## Create your Git Repo
- 1. Sign up for your Github classroom repo using this link: <https://classroom.github.com/a/G4EftSD6> This will create an empty private repository on Github for you to use throughout the entire semester. **You must create your repository using this link, or the TAs will not be able to grade your code.**
+## Github Repository Creation
+ 1. Sign up for your Github classroom repo using this link: <https://classroom.github.com/a/h6lm94mB> This will create an empty private repository on Github for you to use throughout the entire semester. **You must create your repository using this link, or the TAs will not be able to grade your code.**
 
 2. You should now see the message below.  Click the link to navigate to your repository.
 <img src = "{% link media/setup/git_classroom1.png %}" width="800" >
@@ -57,34 +43,35 @@ This will fix the current time of the PYNQ, but if you have your PYNQ off for so
 
 4. Your repo is now set up and ready to go.  You can make note of the URL.  If you forgot, you can always return to  <https://github.com> and it should show your repositories on the left-hand side.
   
-## Create SSH Key on the PYNQ 
+## Computer Setup
+> 📝 Run this on your computer.
 
-  - Connect to your PYNQ board via SSH
-  - Create an SSH key on the PYNQ using `ssh-keygen`.  **This is different than the key you created on your workstation**.  You can go back to the section on [SSH Keys]({% link _documentation/network_communications.md %}#ssh-keys) if you need to to review how to do this, but it's as simple as calling `ssh-keygen` and hitting *Enter* a bunch of times.
-  - Go to <https://github.com/settings/keys>, and add your public key to your Github account using the *New SSH key* button.  Remember you can view your newly created key using `cat ~/.ssh/id_rsa.pub`, then simply copy and paste into Github.
-  - This will allow you to commit to your Github repo without needing to enter a password each time.
+### Register your SSH Key with Github
 
-## Clone your Repo on the PYNQ
+
+  - Run  `cat ~/.ssh/id_rsa.pub` to display your public key.  Copy the entire outputted text, including the `ssh-rsa` at the beginning and computer address at the end.
+  - Go to <https://github.com/settings/keys>, click *New SSH key* button, and paste your key in the *Key* box.  Give your key a name (like *caedm*) and click *Add SSH key* to save the key.
+  - Check that you can now authenticate with Github by running
+  
+        ssh -T git@github.com  
+        
+    You should see a message like this:
+  
+        Hi <your_github_username>! You've successfully authenticated, but GitHub does not provide shell access.
+
+### Clone your Repo
 
   - Go to your newly created repo.  
   - Click the **Code** button, and then the **Use SSH** link, as shown here: 
     <img src = "{% link media/setup/git_classroom3.png %}" width="800" >
-
   - Copy the URL that is shown.  It should be something like: *git@github.com:byu-cpe-classroom/427-labs-\<your_id\>.git*
-  - SSH to your PYNQ, clone the repository into the ''ecen427'' directory:  
+  - Clone the repository into a directory you want to use, for example:  
 
-        ssh pynq
-        git clone git@github.com:byu-cpe-classroom/427-labs-<your_id>.git ~/ecen427
+        git clone <github_ssh_address> ~/ecen427
+
+  - Open this in VS Code by running `code ~/ecen427`
 
 
-
-## Configure Git 
-
-Since this is the first time using Git on the PYNQ system, you need to configure it.  Run these commands (**making sure to enter your name and email**):
-```
-git config --global user.name "Your Name"
-git config --global user.email your_email@example.com
-```
 
 ### Add Starter Code Remote 
 
@@ -98,4 +85,34 @@ git config --global user.email your_email@example.com
 Then, if you ever need to pull down changes I make, you can do the following to fetch the latest changes from the starter code and merge them into your code:
   
     git fetch startercode
-    git merge startercode/master
+    git merge startercode/main
+
+## PYNQ Setup
+
+> 📝 Run this on the PYNQ board
+
+### Create SSH Key
+Create an SSH key on the PYNQ by running `ssh-keygen` (you can just hit *Enter* a bunch of times to skip the prompts).
+This will create two files in your `~/.ssh` directory: `id_rsa` and `id_rsa.pub`.  The `id_rsa` file is your private key, and the `id_rsa.pub` file is your public key.  **Do not share your private key with anyone.**
+
+### Register with Github
+
+Follow the same steps as above to register your PYNQ public key with Github.  Check that you can now authenticate with Github by running 
+
+    ssh -T git@github.com
+  
+### Clone your Repo on the PYNQ
+
+Follow the same steps as above to clone your repo on the PYNQ.  
+
+### Configure Git 
+
+Since this is the first time using Git on the PYNQ system, you need to configure it.  Run these commands (**making sure to enter your name and email**):
+```
+git config --global user.name "Your Name"
+git config --global user.email your_email@example.com
+```
+
+### Add Starter Code Remote 
+
+Repeat the steps above to add the *startercode* remote.

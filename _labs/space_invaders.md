@@ -13,7 +13,7 @@ Write the software that implements all video functionality for Space Invaders. Y
 
 This is the only lab where you will be permitted to work in a team.  Your team can be up to three students.  You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.
 
-Follow this link to create a new shared Github repository for lab 3: <https://classroom.github.com/a/07y5GqVV>
+Follow this link to create a new shared Github repository for lab 3: <https://classroom.github.com/a/cRunbQEp>
   * The first team member to sign up should create a new team name.
   * The second team member can join the team created by the first team member.
 

@@ -26,7 +26,6 @@ If you run into issues, post on Slack.  <ins>**Do not skip any setup steps**</in
 
   * [Setup your home computer]({% link _documentation/setup_home_computer.md %}).  You can use a Windows, Linux or Mac computer.
   * [Setup the PYNQ board]({% link _documentation/setup_pynq_board.md %})  
-  - [Setup Network Communications]({% link _documentation/network_communications.md %})  
   - [Complete the Tutorials]({% link _documentation/tutorials.md %})  
   - [Configure your PYNQ system]({% link _documentation/config_pynq_and_github.md %})  
   - [Setup VSCode]({% link _documentation/vscode.md %})  
