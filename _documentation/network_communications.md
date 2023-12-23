@@ -24,12 +24,12 @@ If working remotely, you will need to replace *pynq03.ee.byu.edu* with your PYNQ
 
 
 ## SSH Keys
-Instead of having to authenticate with a password each time connecting to the PYNQ, you can set up an SSH key to do automatic authentication.  [This tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1804) explains how to set this up in a variety of ways.
+Instead of having to authenticate with a password each time connecting to the PYNQ, you should set up an SSH key.  
 
-A few of notes __before__ following the tutorial:
-  * If your computer doesn't have `ssh-copy-id` installed, you will need to follow the instructions below that (the lab computers have it installed). 
-  * Although it is less secure, it is nicer if you do not specify a passphrase for the key; this will give you secure, passwordless access to the PYNQ.  Presumably the host computer is protected by password, which makes not having a passphrase less of an issue
-  * You probably don't want to follow Step 4 of the tutorial
+### Generate a Public/Private Key Pair
+If you don't already have public/private keys created (they are usually located at `~/.ssh/id_rsa.pub` and `~/.ssh/id_rsa`), you can generate one by running `ssh-keygen` on your computer.  
+
+Then run `ssh-copy-id <PYNQ IP/hostname>` to enable passwordless connections to the PYNQ.
 
 **Before proceeding, make sure you can ssh into your PYNQ board without being prompted for a password.**
 
