@@ -22,7 +22,7 @@ The last setup step involves compiling and running a *Hello, World!* application
 
 This page describes how to set up your computer and PYNQ board for the labs in this class.  This takes some time, but it is essential that you get all of these things working before moving on the later labs.  
 
-If you run into issues, post on Slack.  <ins>**Do not skip any setup steps**</ins>.  For convenience, these setup steps are also shown in the sidebar.
+If you run into issues, post on Teams.  <ins>**Do not skip any setup steps**</ins>.  For convenience, these setup steps are also shown in the sidebar.
 
   * [Setup your home computer]({% link _documentation/setup_home_computer.md %}).  You can use a Windows, Linux or Mac computer.
   * [Setup the PYNQ board]({% link _documentation/setup_pynq_board.md %})  
@@ -35,7 +35,7 @@ If you run into issues, post on Slack.  <ins>**Do not skip any setup steps**</in
 After you have completed these steps, do the following:
 
   - Modify the *Hello, World* application so that it prints `Hello, World from <your name>!`
-  - Complete the Lab 1 Learning Suite quiz, titled *Linux/Git Tutorial*.
+  - Complete the Lab 1 Learning Suite quiz. 
   - Submit your code.
 
  
@@ -49,7 +49,7 @@ Follow the instructions on the [Submission]({% link _other/submission.md %}) pag
 ## Resources
   * [Official PYNQ documentation](http://pynq.readthedocs.io/en/latest/getting_started.html)
 
-
+<!-- 
 ## Study Questions
 These study questions are provided as a guide but are not a complete test of your knowledge. You are responsible for completely learning the tutorial on your own. If there is something in the tutorial that you do not initially understand, search out the internet to try and understand it. Only ask the TAs as a last resort.
 
@@ -77,4 +77,4 @@ These study questions are provided as a guide but are not a complete test of you
   - Understand the three basic streams associated with each process and understand how to pipe the output from one stream to another.
   - Know how to list and kill currently running processes.
   - Also be familiar with basic Git commands.
-  
+   -->
