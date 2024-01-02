@@ -32,19 +32,9 @@ Run the following to update the time on your PYNQ
     
 This will fix the current time of the PYNQ, but if you have your PYNQ off for some extended period, and then turn it back on, you will may notice the time is wrong.   -->
 
-## Github Repository Creation
- 1. Sign up for your Github classroom repo using this link: <https://classroom.github.com/a/h6lm94mB> This will create an empty private repository on Github for you to use throughout the entire semester. **You must create your repository using this link, or the TAs will not be able to grade your code.**
-
-2. You should now see the message below.  Click the link to navigate to your repository.
-<img src = "{% link media/setup/git_classroom1.png %}" width="800" >
-  
-3. You repository will begin empty, and you should see a message like below.  Click the button shown below to import the starter code into your repository.  When it asks for a URL, use `https://github.com/byu-cpe/ecen427_student`
-  <img src = "{% link media/setup/git_classroom2.png %}" width="1000" >
-
-4. Your repo is now set up and ready to go.  You can make note of the URL.  If you forgot, you can always return to  <https://github.com> and it should show your repositories on the left-hand side.
-  
 ## Computer Setup
 > 📝 Run this on your computer.
+
 
 ### Register your SSH Key with Github
 
@@ -58,6 +48,22 @@ This will fix the current time of the PYNQ, but if you have your PYNQ off for so
     You should see a message like this:
   
         Hi <your_github_username>! You've successfully authenticated, but GitHub does not provide shell access.
+
+
+### Github Repository Creation
+1. Sign up for your Github classroom repo using this link: <https://classroom.github.com/a/h6lm94mB> This will create an empty private repository on Github for you to use throughout the entire semester. **You must create your repository using this link, or the TAs will not be able to grade your code.**
+
+1. You should now see the message below.  Click the link to navigate to your repository.
+<img src = "{% link media/setup/git_classroom1.png %}" width="800" >
+  
+1. Your repository will begin empty, but you will need to import the starter code.  To do this we will do a bare clone of the starter code repository, and push it to your repository.  Then you can delete this clone.  Make sure to replace the URL in the third step with the URL of your repository, that you can find by clicking the *SSH* button on your repository page.  You can run these commands in any directory you want. 
+
+        git clone --bare git@github.com:byu-cpe/ecen427_student.git
+        cd ecen427_student.git/
+        git push --mirror git@github.com:byu-ecen427-classroom/427-labs-jgoeders.git
+        cd ..
+        rm -rf ecen427_student.git
+
 
 ### Clone your Repo
 
