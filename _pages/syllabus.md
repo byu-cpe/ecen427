@@ -2,16 +2,16 @@
 layout: page
 toc: true
 title: Syllabus
-sidebar: true
+sidebar: false
 icon: fas fa-chalkboard-teacher
 ---
 
 
 
 # General Guidelines
-This course has a very strong lab focus. All the interesting stuff happens in the lab. As such, lectures will typically only take place once or twice per week, as announced.
+This course has a very strong lab focus. Most of the interesting stuff happens in the lab. As such, lectures lectures material will heavily support the labs, and some weeks we may not have lecture on all M/W/F days.
 <!-- Monday is the only day where attendance is mandatory. Other lectures will be announced as necessary during the semester.  -->
-Class lecture will be used to cover difficult concepts, introduce labs, and to answer questions.
+<!-- Class lecture will be used to cover difficult concepts, introduce labs, and to answer questions. -->
 
 ## Lectures and Attendance 
 
@@ -24,7 +24,7 @@ Sharing your source code  is prohibited and is a violation of the Honor Code.  *
 
 
 ### Coding Standard 
-This class follows a [Coding Standard]({% link _other/coding_standard.md %}).  It is currently identical to the ECEn 330 standard.
+This class follows a [Coding Standard]({% link _pages/coding_standard.md %}).  It is currently identical to the ECEn 330 standard.
 
 
 ## Prerequisites
