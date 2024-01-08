@@ -4,6 +4,8 @@ toc: true
 title: "Lab 5: Programmable Interval Timer (PIT)"
 short_title: PIT Hardware
 number: 5
+under_construction: true
+
 ---
 
 In the real-time clock lab, you used a fixed-interval timer (FIT) from the IP catalog. As you may recall, the FIT generates interrupts at a fixed rate, based upon a single build parameter that cannot be changed once you have built the FPGA hardware. This makes the FIT very easy to use once your system is built, but the FIT is very inflexible. For this lab you are going to build a Programmable Interval Timer (PIT) in SystemVerilog and add it to the hardware system. 

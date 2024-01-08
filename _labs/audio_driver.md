@@ -4,6 +4,8 @@ toc: true
 title: "Lab 4: Kernel Driver for Playing Audio"
 short_title: Audio Driver
 number: 4
+under_construction: true
+
 ---
 
 In this lab, you will add a new dimension to Space Invaders: sound! The PYNQ board contains a codec chip that can play sounds under software control. With this chip, and a little effort, you will be able to hear those aliens marching back and forth; hear the strange sounds of the alien space ship as it appears and tries to get away, and hear the explosion when those evil aliens blast your tank.

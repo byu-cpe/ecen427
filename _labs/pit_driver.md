@@ -4,6 +4,8 @@ toc: true
 title: "Lab 6: Kernel Driver for PIT with sysfs"
 short_title: PIT Driver
 number: 6
+under_construction: true
+
 ---
 
 In this lab you will create a Linux kernel driver for your programmable interval timer (PIT) hardware.  This lab will give you experience with:
