@@ -4,6 +4,7 @@ toc: true
 title: "Lab 2: Real-Time Clock with Fixed Interval Timer (FIT)"
 short_title: Clock
 number: 2
+under_construction: true
 ---
 
 ## Objectives 

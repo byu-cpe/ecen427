@@ -2,7 +2,7 @@
 layout: page
 toc: false
 title: Lab Schedule
-sidebar: true
+sidebar: false
 icon: fa fa-calendar
 order: 2
 ---

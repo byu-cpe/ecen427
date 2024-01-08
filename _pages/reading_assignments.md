@@ -2,7 +2,7 @@
 layout: page
 toc: false
 title: Reading Assignments and Schedule
-sidebar: true
+sidebar: false
 icon: fas fa-book-open
 indent: 0
 order: 3

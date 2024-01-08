@@ -4,6 +4,8 @@ toc: true
 title: "Lab 3: Space Invaders (No Sound)"
 short_title: Space Invaders
 number: 3
+under_construction: true
+
 ---
 
 ## Objective
