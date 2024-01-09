@@ -6,7 +6,10 @@ short_title: Home Computer
 indent: 1
 number: 2
 ---
-<span style="color:red">**You can skip this setup page if you only plan to work in the lab using the lab computers, and not work from your personal computer**.
+
+> 📝 The lab computers dual-boot Windows and Linux.  You will want to use Linux for this class.  If the computer is booted into Windows, log out, then reboot (button is in bottom-right).  You should see a menu after reboot that allows you to select Ubuntu Linux.  If the menu doesn't show up, try pressing F9 repeatedly while the computer is booting.
+
+<span style="color:red">**You can skip this setup page if you only plan to work in the lab using the lab computers, and not work from your personal computer.**.
 </span>
 
 

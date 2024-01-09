@@ -34,9 +34,10 @@ Each student will need to obtain their own PYNQ board. If you are on campus you 
   - $125 will be returned once the board has been received in good working condition. -->
 
 ## Imaging the SD card 
-The PYNQ runs Linux off of an external micro SD card that you must provide.  The SD card must have a valid system image in order for Linux to run.  We have provided a working system image [here](https://byu.box.com/s/5o669wg1lh4dlh0asb07ucl32ppesdvp) (unzip it after you download it), but you must image this to your own SD card.  The micro SD card must be at least 16GB and class 10 or better. The official PYNQ documentation has a guide to [writing the SD card image](https://pynq.readthedocs.io/en/latest/appendix/sdcard.html) that you should follow. 
-
-*Note:* If you run into issues using *Win32DiskImager*, another alternative is to use <http://etcher.io>.
+The PYNQ runs Linux off of an external micro SD card that you must provide.  The SD card must have a valid system image in order for Linux to run.  We have provided a working system image [here](https://byu.box.com/s/5o669wg1lh4dlh0asb07ucl32ppesdvp) (unzip it after you download it), but you must image this to your own SD card.  The micro SD card must be at least 16GB and class 10 or better. The official PYNQ documentation has a guide to [writing the SD card image](https://pynq.readthedocs.io/en/latest/appendix/sdcard.html) that you should follow. Some notes:
+* In the lab you do not need to use *sudo* to run the *dd* command, so remove this from the command when you image the SD card.
+* You probably won't have space to unzip the .img file onto your home directory, so instead extract it to the `/tmp` folder on the computers.  This is a local folder that is cleared when you log out, so you don't have to worry about filling up the hard drive.
+* If you are using your own Windows computer and run into issues using *Win32DiskImager*, another alternative is to use <http://etcher.io>.
 
 ## Powering Up the PYNQ Board
 To power the PYNQ board, you will need to connect the micro USB cable, insert the micro USB cable, and turn on the power switch.  

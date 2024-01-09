@@ -22,7 +22,7 @@ There are two ways for us to work on our PYNQ filesystem remotely:
 
 1. Run the sshfs command to mount the remote filesystem:
 
-        sshfs -o idmap=user byu@PYNQ_IP:~/repo ~/pynq_remote
+        sshfs -o idmap=user byu@PYNQ_IP:/home/byu/repo_path ~/pynq_remote
         
     Replacing `PYNQ_IP` with the IP address or network name of your PYNQ board, `~/repo` with the path of your repository on the PYNQ board.
 
