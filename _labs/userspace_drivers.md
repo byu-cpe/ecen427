@@ -50,8 +50,7 @@ The drivers you write in this lab will run in user space; however, from user spa
      * [intc.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/intc/intc.h) is provided to you.
      * A [interrupt_test](https://github.com/byu-cpe/ecen427_student/tree/master/userspace/apps/interrupt_test) application is provided to you.  You can use this to test the basic functionality of your interrupt controller driver, and the interrupt API for your buttons and switches drivers.  This test application is provided to you for convenience; just because it works it does not guarantee your drivers are bug free.  You may want to further enhance the provided test applications.
 
-  1. Implement a FIT test application:
-
+When you are graded we will run each of the test applications and verify that they work as expected.  So while you may change the test applications somewhat to help you debug your drivers, please do not commit any modifications to these test applications that change their behavior, or would cause them to not work when we run them.
 
 ## Submission 
 
