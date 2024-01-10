@@ -35,14 +35,11 @@ If you run into issues, post on Teams.  <ins>**Do not skip any setup steps**</in
 After you have completed these steps, do the following:
 
   - Modify the *Hello, World* application so that it prints `Hello, World from <your name>!`
-  - Complete the Lab 1 Learning Suite quiz. 
+  - We need to know your Github repository URL.  Complete the Learning Suite "quiz" titled "Github URL".  **Don't forget to do this!**
   - Submit your code.
 
- 
 
 ##  Submission
-
-We need to know your Github repository URL.  Complete the Learning Suite "quiz" titled "Github URL".  **Don't forget to do this!**
 
 Follow the instructions on the [Submission]({% link _other/submission.md %}) page.
 
