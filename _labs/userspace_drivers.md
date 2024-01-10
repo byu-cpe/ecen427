@@ -1,0 +1,59 @@
+---
+layout: lab
+toc: true
+title: "Lab 2: Userspace Drivers"
+short_title: Userspace Drivers
+number: 2
+under_construction: false
+---
+
+## Objectives 
+For this lab you will implement multiple user space drivers, including drivers for the Xilinx GPIO and interrupt controller IP cores.  You will then test these drivers using a few simple test applications that have been provided to you.
+ 
+## Preliminary 
+
+### Software Stack 
+
+Review the [Software Stack]({% link _documentation/software_stack.md %}) that illustrates how the different software modules you will create in this class will work together.  This will be discussed more in class.  
+
+Make note of the provided [system.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/system.h) file.
+
+### The Hardware System 
+For this lab, the complete hardware system will be provided; you shouldn't make any changes to the hardware.  You should review the [hardware system]({% link _documentation/hardware.md %}) before you start coding the lab.  Particularly look for the GPIO modules that interface with the buttons and switches, and look at how the interrupt lines are connected to the Interrupt Controller.
+
+### AXI GPIO Module 
+
+You will need to write drivers for the buttons and switches.  Both of these are connected to the hardware using an *AXI GPIO* module. Read the *AXI GPIO* documentation (link on the [hardware system]({% link _documentation/hardware.md %}) page).
+
+*Note:* The *GPIO_TRI* register was not generated for the buttons and switches GPIO blocks. If you try to read the *GPIO_TRI* register, you will get nonsense. Also, it makes no sense to write this register as it does not exist.
+
+### AXI Interrupt Controller 
+
+You will need to write a driver for the *AXI Interrupt Controller*. Read the documentation (link on the [hardware system]({% link _documentation/hardware.md %}) page).
+
+### UIO 
+The drivers you write in this lab will run in user space; however, from user space, you are not permitted to interact directly with hardware devices.  As shown on the [Software Stack]({% link _documentation/software_stack.md %}) page, there is a lightweight  kernel driver for the GPIO modules and Interrupt Controller, called the *Userspace I/O (UIO) driver*.  This provides a bridge that allows you to access these devices from user space.  You will need to read about the [UIO]({% link _documentation/uio.md %}).
+
+## Implementation 
+
+  1. Implement a driver for the buttons.  
+     * [buttons.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/buttons/buttons.h) is provided to you.  
+     * The [drivers](https://github.com/byu-cpe/ecen427_student/tree/master/userspace/drivers) folder contains [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/CMakeLists.txt) that you can uncomment line by line when you are ready to compile your drivers.  
+     * A [buttons_test](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/buttons_test/main.c) application is provided to you.  This program will work once you implement `buttons_init()` and `buttons_read()`.  It doesn't rely on the interrupt functionality of the buttons driver.  You will need to uncomment the appropriate line from the *app* folder's [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/CMakeLists.txt) to compile it.
+    
+
+  1. Implement a driver for the switches.
+     * Since the switches use the same GPIO module as the buttons, this driver will be nearly identical to you buttons driver.
+     * You are given [switches.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/switches/switches.h) and a [switches_test](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/switches_test/main.c) application.
+
+  1. Implement a driver for the AXI Interrupt Controller.
+     * [intc.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/intc/intc.h) is provided to you.
+     * A [interrupt_test](https://github.com/byu-cpe/ecen427_student/tree/master/userspace/apps/interrupt_test) application is provided to you.  You can use this to test the basic functionality of your interrupt controller driver, and the interrupt API for your buttons and switches drivers.  This test application is provided to you for convenience; just because it works it does not guarantee your drivers are bug free.  You may want to further enhance the provided test applications.
+
+When you are graded we will run each of the test applications and verify that they work as expected.  So while you may change the test applications somewhat to help you debug your drivers, please do not commit any modifications to these test applications that change their behavior, or would cause them to not work when we run them.
+
+## Submission 
+
+Follow the instructions on the [Submission]({% link _other/submission.md %}) page.
+
+

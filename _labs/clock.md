@@ -3,7 +3,7 @@ layout: lab
 toc: true
 title: "Lab 2: Real-Time Clock with Fixed Interval Timer (FIT)"
 short_title: Clock
-number: 2
+number: 3
 under_construction: true
 ---
 
