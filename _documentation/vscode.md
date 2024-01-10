@@ -45,6 +45,8 @@ I like to set up my VS code like this:
 
 <img src="{% link media/setup/sshfs_vscode.png %}" width="1000">
 
+### Cross-Compiling
+
 ## Method 2: Remote VS Code
 
 ### Install
