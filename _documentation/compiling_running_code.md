@@ -12,6 +12,14 @@ Look through the files provided to you in the Git repo.  There are some helpful 
 
 ## Build System
 
+### Install Compiler
+Before proceeding you should install the G++ ARM compiler on your computer.  You can do this by running the following command:
+
+    cd <your_repo>
+    make g++-arm-8.2
+
+This will take a few minutes and you will need about 1.5GB of free space on your computer.  If you don't want to install these, you can compile on the PYNQ board, but it will be much slower.
+
 ### CMake 
 
 To build your user space programs, you are required to use CMake.  CMake is a tool that will automatically create Makefiles for you, based on a configuration file called `CMakelists.txt`.  CMake is already set up in the provided repo. 
@@ -58,16 +66,15 @@ which is found at the beginning of most CMake files and indicates the minimum ve
 
 instructs CMake to compile your code with compiler optimizations (so it runs faster).  If you want to enable debug information, which can be helpful when using tools like *valgrind*, change this to *Debug*. 
 
-The next set of lines allow you to compile your code on your computer, even though it has very different architecture from the ARM CPU on the PYNQ board.  This is called *cross-compiling*.  You may need to install the `g++-arm-linux-gnueabihf` and `gcc-arm-linux-gnueabihf` packages on your computer to enable cross-compiling.  If you are using a BYU lab computer, these packages should already be installed.
-
+The next set of lines allow you to compile your code on your computer, even though it has very different architecture from the ARM CPU on the PYNQ board.  This is called *cross-compiling*.  
 
     if (NOT ${CMAKE_HOST_SYSTEM_PROCESSOR} STREQUAL "armv7l")
         message(WARNING "Building on non-PYNQ board.  Cross-compiling will be performed.")
 
         SET(CMAKE_SYSTEM_PROCESSOR armv7)
         SET(CMAKE_CROSSCOMPILING 1)
-        set(CMAKE_C_COMPILER "arm-linux-gnueabihf-gcc")
-        set(CMAKE_CXX_COMPILER "arm-linux-gnueabihf-g++")
+        set(CMAKE_C_COMPILER "$ENV{HOME}/g++-arm-8.2-ecen427/bin/arm-linux-gnueabihf-gcc")
+        set(CMAKE_CXX_COMPILER "$ENV{HOME}/g++-arm-8.2-ecen427/bin/arm-linux-gnueabihf-g++")
         add_compile_options("-march=armv7-a")
         add_compile_options("-mfpu=vfpv3")
         add_compile_options("-mfloat-abi=hard")
