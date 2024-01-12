@@ -1,14 +1,26 @@
 ---
 layout: page
 toc: false
-title: Reading Assignments and Schedule
-sidebar: false
+title: Lecture/Reading
+sidebar: true
 icon: fas fa-book-open
 indent: 0
 order: 3
 ---
 
-| Date of Class | Link to Material | Date of Quiz |
+## Textbook Links
+LDD3: <https://lwn.net/Kernel/LDD3/>
+
+OSTEP: <https://pages.cs.wisc.edu/~remzi/OSTEP/>
+
+## Lecture Slides and Readings
+
+| Date      | Slides                                                        | Reading                               |
+|-----------|---------------------------------------------------------------|---------------------------------------|
+| Jan 10    | [OS Intro]({% link media/slides/01-OS-intro.pdf %})           | [OSTEP Chapter 2: Introduction](https://pages.cs.wisc.edu/~remzi/OSTEP/intro.pdf) |
+| Jan 12    | [Devices]({% link media/slides/02-devices.pdf %}) | [UIO]({% link _documentation/uio.md %}) & [OSTEP Chapter 4: Processes](https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf)
+
+<!-- | Date of Class | Link to Material | Date of Quiz |
 |---------------|------------------|--------------|
 | Sep 12        | [Linux Device Drivers Chapter 1: An Introduction to Device Drivers]({% link _pages/ldd1.md %}) | 3 days after class |
 | Sep 19        | [Linux Device Drivers Chapter 2: Building and Running Modules]({% link _pages/ldd2.md %}) | 3 days after class |
@@ -23,12 +35,10 @@ order: 3
 
 ### Other Readings
 * [Reading Assignment 3: Fourteen Ways to Fool Your Synchronizer]({% link _pages/synchronizer.md %})
-* [Reading Assignment 4: I2C and SPI]({% link _pages/iic_spi.md %})
+* [Reading Assignment 4: I2C and SPI]({% link _pages/iic_spi.md %}) -->
 
 ----
 
-## Device Driver Text 
-<https://lwn.net/Kernel/LDD3/>
 
 
 
