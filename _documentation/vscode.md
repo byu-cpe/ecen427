@@ -8,9 +8,9 @@ number: 8
 
 There are two ways for us to work on our PYNQ filesystem remotely:
 
-1. Mounting the remote PYNQ filesystem on our local computer.  This will make it appear as if the PYNQ filesystem is a folder on your computer. This allows us to use our computer's processor to analyze and compile code, so it is much faster than working directly on the PYNQ board.  This is what I would advise to use most of the time.
+1. Mounting the remote PYNQ filesystem on our local computer.  This will make it appear as if the PYNQ filesystem is a folder on your computer. This allows us to use our computer's processor to analyze and compile code, so it is much faster than working directly on the PYNQ board.  This is what I would advise to use most of the time.  
 
-1. Connecting to the PYNQ board via VS Code Remote Extension, and editing and compiling on the PYNQ board.  This will run much slower, but is mandatory for the labs where you are doing kernel development.
+1. Connecting to the PYNQ board via VS Code Remote Extension, and editing and compiling on the PYNQ board.  This will run much slower.
 
 ## Method 1: Mounting the PYNQ Filesystem
 
