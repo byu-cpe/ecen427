@@ -20,8 +20,19 @@ A few things to note about the hardware system that we have provided to you:
 [system.pdf]({% link media/system.pdf %})
 <embed src="{% link media/system.pdf %}" width="1000" height="600" type="application/pdf">
 
-## Interrupt System
+## Interrupt System & UIO
 
-Here is simplified system diagram that only contains interrupt-relevant stuff.
+Here is simplified system diagram that only contains interrupt-relevant stuff.  
 <img src="{% link media/pynqinterruptstructure.jpg %}" width="800">
+
+### UIO
+
+In the diagram above, the hardware in the pink bubble will be primarily controlled by userspace drivers (Lab 2). 
+The UIO provides a way for userspace drivers to access the hardware.  
+
+**Important:** The interrupt lines running from the FIT and GPIO modules to the interrupt controller run between two devices that are controlled by userspace drivers.  As such, the system is not configured to inform Linux that these interrupt lines even exist.  Your userspace drivers will be responsible for detecting and handling these interrupts.  Thus, for the buttons and switches GPIO, the UIO is only used to allow userspace to access the hardware registers.
+
+For the *user_intc*, the setup is different.  The interrupt line from the intc is connected to the CPU, which is controlled by the kernel.  In this case we rely on the interrupt functionality of the UIO driver to detect in the kernel when an interrupt occurs.  The UIO driver will then notify userspace that an interrupt has occurred.  The userspace driver will then read the *user_intc* registers to determine which interrupt(s) occurred and then handle the interrupt(s) appropriately.
+
+
 

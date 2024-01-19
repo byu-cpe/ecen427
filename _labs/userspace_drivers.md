@@ -34,6 +34,8 @@ You will need to write a driver for the *AXI Interrupt Controller*. Read the doc
 ### UIO 
 The drivers you write in this lab will run in user space; however, from user space, you are not permitted to interact directly with hardware devices.  As shown on the [Software Stack]({% link _documentation/software_stack.md %}) page, there is a lightweight  kernel driver for the GPIO modules and Interrupt Controller, called the *Userspace I/O (UIO) driver*.  This provides a bridge that allows you to access these devices from user space.  You will need to read about the [UIO]({% link _documentation/uio.md %}).
 
+Make sure you read the entire [hardware system]({% link _documentation/hardware.md %}) page, including the text at the bottom that discussed how the UIO driver is used for the different pieces of hardware in this lab.
+
 ## Implementation 
 
   1. Implement a driver for the buttons.  
