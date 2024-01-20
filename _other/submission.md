@@ -25,15 +25,16 @@ If, after you create this tag, you want to change it (ie, re-submit your code), 
 For later labs, update the tag name appropriately:
   * lab1_submission
   * lab2_submission
-  * lab3_m1_submission
-  * lab3_m2_submission
-  * lab3_m3_submission
+  * lab3_submission
   * lab4_m1_submission
   * lab4_m2_submission
   * lab4_m3_submission
-  * lab5_submission
+  * lab5_m1_submission
+  * lab5_m2_submission
+  * lab5_m3_submission
   * lab6_submission
   * lab7_submission
+  * lab8_submission
 
 <span style="color:red">**If you don't type the tag name correctly, it won't count as submitted.**.
 </span>

@@ -3,7 +3,7 @@ layout: lab
 toc: true
 title: "Lab 4: Kernel Driver for Playing Audio"
 short_title: Audio Driver
-number: 4
+number: 5
 under_construction: true
 
 ---
