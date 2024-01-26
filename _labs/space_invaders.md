@@ -4,7 +4,7 @@ toc: true
 title: "Lab 3: Space Invaders (No Sound)"
 short_title: Space Invaders
 number: 4
-under_construction: true
+under_construction: false
 
 ---
 
@@ -13,13 +13,23 @@ Write the software that implements all video functionality for Space Invaders. Y
 
 ## Team Git Repository 
 
-This is the only lab where you will be permitted to work in a team.  Your team can be up to three students.  You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.
+This is the only lab where you will be permitted to work in a team.  Your team will be three students.  The teams are pre-set and are listed on Learning Suite.  If two teams mutually agree, you may swap team members.  Do this before proceeding with the next step.
 
-Follow this link to create a new shared Github repository for lab 3: <https://classroom.github.com/a/cRunbQEp>
+
+You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.  Once you have your team arranged, follow this link to create a new shared Github repository for lab 3: <https://classroom.github.com/a/cRunbQEp>
   * The first team member to sign up should create a new team name.
-  * The second team member can join the team created by the first team member.
+  * The other team members can join the team created by the first team member.
 
-Once your empty lab 3 repository is created, use the **Import Code** button to import the code from one your your repositories.  You can choose which member of team's code to use, but **both team members must have submitted lab2 before you share your code**.
+Once your empty lab 3 repository is created, you will need to import one of your team member's individual repository, into your shared repository. You can choose which member of team's code to use, but **all team members must have submitted lab3 before you share your code**.
+
+You can do this in a similar manner to how you obtained the starter code:
+
+        git clone --bare git@github.com:<team member's repo>.git
+        cd <team member's repo>.git/
+        git push --mirror git@github.com:byu-ecen427-classroom/<your team repo>.git
+        cd ..
+        rm -rf <team member's repo>.git
+
 
 ## Implementation
 
