@@ -36,6 +36,7 @@ Notes:
   - You should be able to change the position of SW0 while holding the hour, minute, or second button and have the clock do the right thing, i.e., switch from increment to decrement and vice versa. 
   - If more than one of the hour, minute, or second button are simultaneously pressed, you can choose whatever behavior you like.
   - You don't need to be counting time while a button is held down.
+  - When you are incrementing/decrementing using the buttons, you can choose whether rollover cascades or not.  For example, if you are incrementing the minutes from 59 to 00, you can choose whether the hours value increments by one or not.
 
 ## Interrupt Requirements
   1. You must use the interrupt output of the fixed-interval timer (FIT) to keep track of time (eg incrementing the clock each second, auto-incrementing when holding down the button, etc.). You are not allowed to use sleep functions (or similar) to keep track of time.
