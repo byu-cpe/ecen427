@@ -1,7 +1,7 @@
 ---
 layout: lab
 toc: true
-title: "Lab 3: Space Invaders (No Sound)"
+title: "Lab 4: Space Invaders (No Sound)"
 short_title: Space Invaders
 number: 4
 under_construction: false
