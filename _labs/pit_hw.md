@@ -1,7 +1,7 @@
 ---
 layout: lab
 toc: true
-title: "Lab 5: Programmable Interval Timer (PIT)"
+title: "Lab 6: Programmable Interval Timer (PIT)"
 short_title: PIT Hardware
 number: 6
 under_construction: true

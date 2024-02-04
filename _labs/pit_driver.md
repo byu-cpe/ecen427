@@ -1,7 +1,7 @@
 ---
 layout: lab
 toc: true
-title: "Lab 6: Kernel Driver for PIT with sysfs"
+title: "Lab 7: Kernel Driver for PIT with sysfs"
 short_title: PIT Driver
 number: 7
 under_construction: true
