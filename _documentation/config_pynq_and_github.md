@@ -9,7 +9,7 @@ number: 7
 
 In the labs for this class, you will be completing some tasks on your computer, and some tasks on the PYNQ board.  In this setup step, you will set up your Git repository and SSH keys on both your computer and the PYNQ board.  
 
-<!-- ## Extend your Partition 
+## Extend your Partition 
 
 You should extend the PYNQ filesystem to fill your entire SD card (by default the filesystem only provides a small amount of free space, and doesn't fill your SD card)
 
@@ -18,9 +18,9 @@ Run these commands.  Please copy and paste them one at a time, and be careful in
 ```
 sudo growpart /dev/mmcblk0 2
 sudo resize2fs /dev/mmcblk0p2
-``` -->
+``` 
 
-<!-- ## Set PYNQ time 
+## Set PYNQ time 
 
 Run the following to update the time on your PYNQ
 
@@ -30,7 +30,7 @@ Run the following to update the time on your PYNQ
     sudo timedatectl set-timezone America/Boise
     
     
-This will fix the current time of the PYNQ, but if you have your PYNQ off for some extended period, and then turn it back on, you will may notice the time is wrong.   -->
+This will fix the current time of the PYNQ, but if you have your PYNQ off for some extended period, and then turn it back on, you will may notice the time is wrong.
 
 ## Computer Setup
 > 📝 Run this on your computer.
