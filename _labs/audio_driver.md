@@ -99,7 +99,7 @@ To grade your submission we will:
 1. Load and unload your driver (`insmod` and `rmmod`) **TWICE**.  Make sure it works without error and has appropriate logging messages as described above.  A simple [script](https://github.com/byu-cpe/ecen427_student/blob/master/kernel/lab4_audio_codec/test_insmod.sh) is provided that loads and unloads the module twice, prints recent kernel log entries, and prints details of your device file.
 1. Compile and run your *lab4_m1* program.  Make sure your cmake files are set up to correctly build the executable.  We will run it after loading your driver and inspect the kernel logs to see that the `read()` and `write()` functions in your driver were executed.
 
-## Milestone 12
+## Milestone 2
 
 ### Implementation
 In this milestone you will complete the skeleton of your kernel driver to provide access to device registers and hardware interrupts.  
