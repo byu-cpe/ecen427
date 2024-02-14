@@ -16,13 +16,13 @@ This lab will provide your first experience writing kernel code.  You will write
 ## Preliminary 
 
   * Make sure you have completed the assigned reading from the LDD3 textbook.
-  * Read the documentation on [Linux Platform Devices and the Device Tree]({% link _documentation/platform_device_tree.md %}). *Note that, for this lab, this is informational only. The Device Tree is already setup for this lab. Still, it is important to know how the device tree works, so study this.*
+  * Read the documentation on [Linux Platform Devices and the Device Tree]({% link _documentation/platform_device_tree.md %}). *Note that for this lab you don't need to modify the device tree, but you will be querying information from the device tree, so it's good to be familiar with it.*
   * Read the documentation on [Linux Device Drivers]({% link _documentation/linux_drivers.md %}).
   * Read the documentation on the [Audio Hardware]({% link _documentation/audio_hw.md %}).  
 
 ## Github Repository 
 
-You will go back to working individually for this lab and the remaining labs.  Both lab 3 team members should copy their lab3 game code to their individual repositories.  **Do not commit your lab 4, 5, or 6 code to your shared repository**.
+You will go back to working individually for this lab and the remaining labs.  You should copy your space invaders game code from your group repository to your individual repository.  **Do not commit your code for labs 5+ to your shared repository**.
 
 ## Overview 
 You will be creating a [loadable kernel module](https://en.wikipedia.org/wiki/Loadable_kernel_module), which allows you to write code that runs in kernel space.  This kernel module will be a driver for the audio codec.
@@ -33,33 +33,33 @@ Your driver code will need to do several things.  Some of the major tasks:
 You need to register your driver with Linux, so that it calls the functions in your driver at appropriate times:
   * The `module_init()` and `module_exit()` macros will register your kernel module with Linux so that your init and exit functions are called when Linux loads and unloads your module (Milestone 1).
   * You need to inform Linux that your module is a hardware driver that supports platform devices found in the device tree (`platform_driver_register()`, Milestone 1).
-  * You will need to request major/minor numbers from Linux to use for your devices (`alloc_chrdev_region()`, Milestone 1).
-
-### Communicating with the Hardware
-You driver will need to communicate with the audio hardware using register reads/writes.  Before you can do that, you will need to:
-  * Retrieve the base address from the device tree (`platform_get_resource()`, Milestone 1).
-  * Reserve this address space with Linux (`request_mem_region()`, Milestone 1).
-  * Map this physical address space to a virtual address pointer (`ioremap()`, Milestone 1).
 
 ### Creating a Character Device 
-Your driver can't be used from user space applications until you create some sort of interface that is accessible to user programs.  To do this, you will create a *character device*, accessible to user space as a *device file* in */dev*.  This requires you to do the following:
+Your driver can't be used from user space applications until you create some sort of interface that is accessible to user programs.  To do this, you will create a *character device*, accessible to user space as a *device file* in */dev*, linked to a major/minor number.  This requires you to do the following:
+  * You will need to request major/minor numbers from Linux to use for your devices (`alloc_chrdev_region()`, Milestone 1).
   * Before you can create a character device, you to first create a *device class*.  You can create this class once when your driver loads (`class_create()`, Milestone 1).
   * Create a new character device (`cdev_init()`, then `cdev_add()`, Milestone 1).
     * When you create your character device, you will need to point Linux to functions in your module that can be called when user code performs a `read()` or `write()` on your device.  
     * In Milestone 1, the `read()` and `write()` functions will only print log messages. 
-    * In Milestone 2, the `read()` and `write()` functions will interact with the audio device.
-    * In Milestone 3, you will add another file operation, `ioctl`.
+    * In Milestone 3, the `read()` and `write()` functions will interact with the audio device.
+    * In Milestone 4, you will add another file operation, `ioctl`.
   * Create a device file in */dev* (`device_create()`, Milestone 1).
+
+
+### Communicating with the Hardware
+You driver will need to communicate with the audio hardware using register reads/writes.  Before you can do that, you will need to:
+  * Retrieve the base address from the device tree (`platform_get_resource()`, Milestone 2).
+  * Reserve this address space with Linux (`request_mem_region()`, Milestone 2).
+  * Map this physical address space to a virtual address pointer (`ioremap()`, Milestone 2).
 
 ### Handling Interrupts 
 The audio hardware will send an interrupt when it needs more audio data.  Unlike previous labs, this interrupt line is *not* connected to an interrupt controller that you manage from user space.  Instead, it is connected directly to the *Global Interrupt Controller (GIC)* that is part of the ARM processor.  The GIC is managed by Linux.  As such, you will be interacting directly with the Linux interrupt system.
 
 To handle and respond to interrupts generated by the audio hardware, you will do the following:
-  * Query the device tree and get the virtual IRQ number.  Note, the device tree lists the physical interrupt line; however, Linux will provide you with a virtual number to use instead  (`platform_get_resource()`, Milestone 1).
-  * Register your interrupt service routine with Linux (`request_irq()`, Milestone 1)
+  * Query the device tree and get the virtual IRQ number.  Note, the device tree lists the physical interrupt line; however, Linux will provide you with a virtual number to use instead  (`platform_get_resource()`, Milestone 2).
+  * Register your interrupt service routine with Linux (`request_irq()`, Milestone 2)
 
 ## Driver vs. Device 
-
 Make sure you recognize the distinction between the driver (kernel module) and the device.  Typically, one Linux driver would support multiple devices of the same type.  To be clear:
   * The *driver/module* is loaded and unloaded once, regardless of the number of devices that it manages.  Module (driver) loading and unloading is done using functions provided to `module_init()` and `module_exit()`.
   * Each time Linux finds a device managed by your driver, it will call the functions you provided in the `.probe` and `.remove` entries of the struct you provided when registering your module as a platform device driver (`platform_driver_register()`).
@@ -74,30 +74,50 @@ That said, the driver you make in this lab is only going to **support one device
 ## Milestone 1 
 
 ### Implementation
-In this milestone you will create the skeleton of a kernel driver for sending audio data to the codec.  
+In this milestone you will create the basic skeleton of your kernel driver, including creating your character device.  You will also create a simple user space program to test your driver.  
 
 Your kernel driver should:
   * Contain code in `audio_init()` and `audio_exit()` to init and unload the **driver**, and register itself as a platform driver, with `audio_probe()` and `audio_remove()` functions to init and unload a **device**.
-  * Upon device probe, the driver should:
-    * Create a character device as described above.  The character device should implement `read()` and `write()` functions; however, for this milestone, these functions should simply print a message to the kernel log.
-    * Setup a virtual address pointer as described above.
-    * Setup an interrupt handler as described above.
+  * Upon device probe, the driver should create a character device as described above.  
+    * The character device should implement `read()` and `write()` functions; however, for this milestone, these functions should simply print a message to the kernel log.
+    * A device file should be created at */dev/audio_codec*.
+  * Make sure that:
+    * When the driver is unloaded, undo all appropriate actions that were perform when the driver was loaded.
+    * When a device is removed, undo all appropriate actions that were done when the device was added.
+  * Add messages to print:
+    * When your driver is loaded and unloaded.
+    * When your device is added and removed.
+    * The major number of the driver.
+    * The minor number of the device.
+    * When `read()` and `write()` are called.
 
-Make sure that you also:
-  * Create helper functions to read and write registers in the audio device.
-  * When the driver is unloaded, undo all appropriate actions that were perform when the driver was loaded.
-  * When a device is removed, undo all appropriate actions that were done when the device was added.
-
-Set up your code so that the TAs can test it in the following way:
-  * Loading and unload your driver (`insmod` and `rmmod`) **TWICE** should work without error and have appropriate logging messages.  For example, you should at minimum print the major number, physical and virtual address and IRQ number.  It must also print a message to the log when `read()` and `write()` are called. You may choose to add more messages to help you debug your driver.  A simple [script](https://github.com/byu-cpe/ecen427_student/blob/master/kernel/lab4_audio_codec/test_insmod.sh) is provided that loads and unloads the module twice and prints recent entries in the log.
-  * Add code at the end of your probe function that enables the interrupt output of the audio core.  Since there is no data in the FIFOs, this should immediately trigger your ISR.  In your ISR print a message to the kernel log and then disable the interrupt output of the audio core (or you will be stuck in an endless loop).  This ISR message must show up in the log when the TA loads your module.
+Create a new user space program in *userspace/apps/lab4_m1*, with appropriate CMake file to create an executable named *lab4_m1* (we use automated scripts when grading to make sure your executable is created at `userspace/build/apps/lab4_m1/lab4_m1`).
+  * This program should open your device file, perform a `read()` and `write()`, and then close it.  
 
 ### Pass Off 
-To ensure the TAs can run and grade your driver, you should:
-  * Create a new user space program in ''userspace/apps/lab4_m1'', with appropriate CMake file to create an executable named ''lab4_m1''.  Thus, when the TAs build your user space code, it should produce an executable ''userspace/build/apps/lab4_m1/lab4_m1'' (the TAs grade using scripts so be sure to get this name correct).
-  * This program should open your device file, perform a `read()` and `write()`, and then close it.  The TAs will run this program and inspect the kernel logs to see that the `read()` and `write()` functions in your driver were executed.
+To grade your submission we will:
+1. Load and unload your driver (`insmod` and `rmmod`) **TWICE**.  Make sure it works without error and has appropriate logging messages as described above.  A simple [script](https://github.com/byu-cpe/ecen427_student/blob/master/kernel/lab4_audio_codec/test_insmod.sh) is provided that loads and unloads the module twice, prints recent kernel log entries, and prints details of your device file.
+1. Compile and run your *lab4_m1* program.  Make sure your cmake files are set up to correctly build the executable.  We will run it after loading your driver and inspect the kernel logs to see that the `read()` and `write()` functions in your driver were executed.
 
-## Milestone 2 
+## Milestone 12
+
+### Implementation
+In this milestone you will complete the skeleton of your kernel driver to provide access to device registers and hardware interrupts.  
+
+Expand your kernel driver:
+  * Upon device probe, the driver should:
+    * Setup a virtual address pointer as described above, and print the physical and virtual address to the kernel log.
+    * Setup an interrupt handler as described above, and print the IRQ number to the kernel log.
+  * Create helper functions to read and write registers in the audio device.
+  * Add code at the end of your probe function that enables the interrupt output of the audio core.  Since there is no data in the FIFOs, this should immediately trigger your ISR.  In your ISR print a message to the kernel log and then disable the interrupt output of the audio core (or you will be stuck in an endless loop).  
+  * Make sure that the driver and device continue to be properly cleaned up when the driver is unloaded and the device is removed.
+
+### Pass Off 
+To grade your submission we will:
+1. Load and unload your driver (`insmod` and `rmmod`) **TWICE**, like in Milestone 1.  Make sure it works without error and has appropriate logging messages as described above.
+
+
+## Milestone 3
 In this milestone you will write code to read and parse WAVE files, and update your kernel driver to play sound data.
 
 ### Specifications 
@@ -121,9 +141,9 @@ In this milestone you will write code to read and parse WAVE files, and update y
 
 ### Passing Off 
   * Create a user space executable that takes a WAVE file path as a command-line argument, and plays the audio clip, twice in a row, on the speakers using your audio driver. The TAs will run this executable when doing your pass-off.
-  * This new user space program should be located in *userspace/apps/lab4_m2*, with an appropriate CMake file to create an executable named *lab4_m2*.  Thus, when the TAs build your userspace code, it should produce an executable *userspace/build/apps/lab4_m2/lab4_m2*, which takes a single command-line argument.
+  * This new user space program should be located in *userspace/apps/lab4_m3*, with an appropriate CMake file to create an executable named *lab4_m3*.  Thus, when the TAs build your userspace code, it should produce an executable *userspace/build/apps/lab4_m3/lab4_m3*, which takes a single command-line argument.
 
-## Milestone 3 
+## Milestone 4
 In this milestone you will add an *ioctl* interface to your driver to allow userspace to send special commands to your audio driver.  You will also update your Space Invaders code to play sound effects.  This is demonstrated in [this video](https://youtu.be/meRCic3iLW4).
 
 ### Specifications 
@@ -152,7 +172,7 @@ Follow the [Submission Instructions]({% link _other/submission.md %}).
 
 ## Resources, Tips, and Hints 
 
-### Milestone 1
+### Milestone 1/2
 
 [audio_codec.c](https://github.com/byu-cpe/ecen427_student/blob/master/kernel/lab4_audio_codec/audio_codec.c) provides a starting framework for your driver software.  Read over it carefully before coding anything.
 
@@ -227,11 +247,11 @@ Some resources to help you with the kernel function calls:
     * Basically, the register offsets are byte-aligned, but if you're not careful, the program will calculate addresses as if they were word-aligned.
 
 
-### Milestone 2 
+### Milestone 3
   * Consult the documentation on the [Audio Hardware]({% link _documentation/audio_hw.md %}).
   * Consult the LDD3 textbook.
 
-### Milestone 3 
+### Milestone 4
   * Read LDD3 chapter 6, the first section on *ioctl*.
   * Use `.unlocked_ioctl` in the `struct file_operations` (`.ioctl` as the text suggests is out of date). Even with this update, you still use the `ioctl()` system call in your user-space code for space invaders.
   * The *ioctl* interface must be implemented as described in LDD3.  Make sure the *ioctl* command values are created using the `_IO*` macros.  An example of these are given on pages 138-139 of LDD3.
