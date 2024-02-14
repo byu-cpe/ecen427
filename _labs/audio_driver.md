@@ -4,7 +4,7 @@ toc: true
 title: "Lab 5: Kernel Driver for Playing Audio"
 short_title: Audio Driver
 number: 5
-under_construction: true
+under_construction: false
 
 ---
 
