@@ -61,12 +61,12 @@ src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200">
 Implement all of the game video, including bullets and all game interactions.  When you have finished this milestone, you will have the entire game implemented minus sound.  Use the above video as a reference.  
 It is difficult to see, but the number of points added to the score for each saucer destroyed is a number between 50 and 300, in multiples of 50. Also, the points for the block aliens are 10, 20 and 40, starting from the type on the bottom row and going up to the type on the top row.
 
-## Requirements 
-Unlike previous courses, in this course you are given quite a bit of freedom regarding your implementation strategy.  However, you must work within these requirements:
+## Suggestions 
+<!-- Unlike previous courses, in this course you are given quite a bit of freedom regarding your implementation strategy.  However, you must work within these requirements:
   - You must adhere to the coding standard.  
     * Since header files are usually provided to you, students often forget about the coding standard rules regarding header files.  Be sure to review Rule 2.1.  
-    * You will find it easier to follow this rule if you only put items in your header files that *need to be used by other .c files*.  If a #define, struct, etc. is only used in one .c file, it should be placed at the top of that .c file, and NOT in a header file.  This is good C coding practice and you should make a habit of following it when designing your own software structure.
-  - You must use state machines as you learned in ECEn 330 and ECEn 390. Your game loop will consist only of calls to the tick functions for each of your state machines. All game interactions are performed directly by state machines (either as Moore or Mealy actions). As with the coding standard, the TAs will inspect your code to ensure that you adhere to this requirement.
+    * You will find it easier to follow this rule if you only put items in your header files that *need to be used by other .c files*.  If a #define, struct, etc. is only used in one .c file, it should be placed at the top of that .c file, and NOT in a header file.  This is good C coding practice and you should make a habit of following it when designing your own software structure. -->
+  - You may find it helpful to use state machines as you learned in ECEn 330 and ECEn 390. Your game loop could consist primarily of calls to tick functions for your state machines. 
 
 ## Submission 
 Follow the submission instructions for each milestone on the [Submission]({% link _other/submission.md %}) page.
