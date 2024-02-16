@@ -22,6 +22,7 @@ OSTEP: <https://pages.cs.wisc.edu/~remzi/OSTEP/>
 | Jan 24/26 | [LDD Ch 1]({% link media/ldd/ldd3-ch1.pdf %})| [LDD3 Ch 1](https://lwn.net/images/pdf/LDD3/ch01.pdf)
 | Feb 7 | [LDD Ch 2]({% link media/ldd/ldd3-ch2.pdf %})| [LDD3 Ch 2](https://lwn.net/images/pdf/LDD3/ch02.pdf)
 | Feb 12 | [LDD Ch 3]({% link media/ldd/ldd3-ch3.pdf %})| [LDD3 Ch 3](https://lwn.net/images/pdf/LDD3/ch03.pdf)
+| Feb 14 | [LDD Ch 4,11]({% link media/ldd/ldd3-ch4,11.pdf %})| [LDD3 Ch 4](https://lwn.net/images/pdf/LDD3/ch04.pdf) & [LDD3 Ch 11](https://lwn.net/images/pdf/LDD3/ch11.pdf)
 
 <!-- | Date of Class | Link to Material | Date of Quiz |
 |---------------|------------------|--------------|

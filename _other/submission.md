@@ -32,6 +32,7 @@ For later labs, update the tag name appropriately:
   * lab5_m1_submission
   * lab5_m2_submission
   * lab5_m3_submission
+  * lab5_m4_submission
   * lab6_submission
   * lab7_submission
   * lab8_submission
