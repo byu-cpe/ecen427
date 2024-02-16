@@ -19,6 +19,7 @@ This is the only lab where you will be permitted to work in a team.  Your team w
 You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.  Once you have your team arranged, follow this link to create a new shared Github repository for lab 3: <https://classroom.github.com/a/cRunbQEp>
   * The first team member to sign up should create a new team name.
   * The other team members can join the team created by the first team member.
+  * Once you have a team repository created, each member of the team needs to complete the Learning Suite quiz to indicate their team repository URL.
 
 Once your empty lab 3 repository is created, you will need to import one of your team member's individual repository, into your shared repository. You can choose which member of team's code to use, but **all team members must have submitted lab3 before you share your code**.
 
