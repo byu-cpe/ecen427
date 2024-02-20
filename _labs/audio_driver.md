@@ -76,7 +76,7 @@ That said, the driver you make in this lab is only going to **support one device
 ### Implementation
 In this milestone you will create the basic skeleton of your kernel driver, including creating your character device.  You will also create a simple user space program to test your driver.  
 
-Your kernel driver should:
+Your kernel driver needs to:
   * Contain code in `audio_init()` and `audio_exit()` to init and unload the **driver**, and register itself as a platform driver, with `audio_probe()` and `audio_remove()` functions to init and unload a **device**.
   * Upon device probe, the driver should create a character device as described above.  
     * The character device should implement `read()` and `write()` functions; however, for this milestone, these functions should simply print a message to the kernel log.
@@ -87,17 +87,17 @@ Your kernel driver should:
   * Add messages to print:
     * When your driver is loaded and unloaded.
     * When your device is added and removed.
-    * The major number of the driver.
-    * The minor number of the device.
+    * The allocated major number of the driver and minor number of the device.
+    * When you create your device using `device_create()`.
     * When `read()` and `write()` are called.
 
-Create a new user space program in *userspace/apps/lab4_m1*, with appropriate CMake file to create an executable named *lab4_m1* (we use automated scripts when grading to make sure your executable is created at `userspace/build/apps/lab4_m1/lab4_m1`).
+Create a new user space program in *userspace/apps/lab5_m1*, with appropriate CMake file to create an executable named *lab5_m1* (we use automated scripts when grading to make sure your executable is created at `userspace/build/apps/lab5_m1/lab5_m1`).
   * This program should open your device file, perform a `read()` and `write()`, and then close it.  
 
 ### Pass Off 
 To grade your submission we will:
-1. Load and unload your driver (`insmod` and `rmmod`) **TWICE**.  Make sure it works without error and has appropriate logging messages as described above.  A simple [script](https://github.com/byu-cpe/ecen427_student/blob/master/kernel/lab4_audio_codec/test_insmod.sh) is provided that loads and unloads the module twice, prints recent kernel log entries, and prints details of your device file.
-1. Compile and run your *lab4_m1* program.  Make sure your cmake files are set up to correctly build the executable.  We will run it after loading your driver and inspect the kernel logs to see that the `read()` and `write()` functions in your driver were executed.
+1. Load and unload your driver (`insmod` and `rmmod`) **TWICE**.  Make sure it works without error and has appropriate logging messages as described above.  A simple [script](https://github.com/byu-cpe/ecen427_student/blob/master/kernel/audio_codec/test_insmod.sh) is provided that loads and unloads the module twice, prints recent kernel log entries, and prints details of your device file.
+1. Compile and run your *lab5_m1* program.  Make sure your cmake files are set up to correctly build the executable.  We will run it after loading your driver and inspect the kernel logs to see that the `read()` and `write()` functions in your driver were executed.
 
 ## Milestone 2
 
@@ -141,7 +141,7 @@ In this milestone you will write code to read and parse WAVE files, and update y
 
 ### Passing Off 
   * Create a user space executable that takes a WAVE file path as a command-line argument, and plays the audio clip, twice in a row, on the speakers using your audio driver. The TAs will run this executable when doing your pass-off.
-  * This new user space program should be located in *userspace/apps/lab4_m3*, with an appropriate CMake file to create an executable named *lab4_m3*.  Thus, when the TAs build your userspace code, it should produce an executable *userspace/build/apps/lab4_m3/lab4_m3*, which takes a single command-line argument.
+  * This new user space program should be located in *userspace/apps/lab5_m3*, with an appropriate CMake file to create an executable named *lab5_m3*.  Thus, when the TAs build your userspace code, it should produce an executable *userspace/build/apps/lab5_m3/lab5_m3*, which takes a single command-line argument.
 
 ## Milestone 4
 In this milestone you will add an *ioctl* interface to your driver to allow userspace to send special commands to your audio driver.  You will also update your Space Invaders code to play sound effects.  This is demonstrated in [this video](https://youtu.be/meRCic3iLW4).
@@ -174,7 +174,7 @@ Follow the [Submission Instructions]({% link _other/submission.md %}).
 
 ### Milestone 1/2
 
-[audio_codec.c](https://github.com/byu-cpe/ecen427_student/blob/master/kernel/lab4_audio_codec/audio_codec.c) provides a starting framework for your driver software.  Read over it carefully before coding anything.
+[audio_codec.c](https://github.com/byu-cpe/ecen427_student/blob/master/kernel/audio_codec/audio_codec.c) provides a starting framework for your driver software.  Read over it carefully before coding anything.
 
 A few notes about the provided code:
   * Your driver only needs to support a single audio device, so we have allocated a single `struct audio_device` as a global variable at compile time.  
