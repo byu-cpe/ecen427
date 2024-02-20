@@ -39,7 +39,7 @@ ecen427_leds {
   * It is possible to specify custom data fields in a device tree entry that can be read by the kernel driver.  The exercise is left to the interested student to go look at the device tree entry and driver for the HDMI hardware as an example of this.
 
 ### Compiling the device tree 
-If you modify the hardware on the board and add new devices (as you will do in Lab 5), you will need to modify the device tree.  Read through the [README](https://github.com/byu-cpe/ecen427_student/tree/master/device_tree/readme.md) for instructions on recompiling the device tree and installing the new overlay and hardware. 
+If you modify the hardware on the board and add new devices (as you will do in Lab 6), you will need to modify the device tree.  Read through the [README](https://github.com/byu-cpe/ecen427_student/tree/master/device_tree/readme.md) for instructions on recompiling the device tree and installing the new overlay and hardware. 
 
 ## Resources 
 
