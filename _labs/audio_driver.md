@@ -260,4 +260,4 @@ Some resources to help you with the kernel function calls:
 
 ### Other
 
-* [Class slides]({% link media/labs/kernel_driver.pdf %})
+* [Class slides]({% link media/labs/lab5_kernel_driver.pdf %})
