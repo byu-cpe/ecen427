@@ -96,7 +96,7 @@ Create a new user space program in *userspace/apps/lab5_m1*, with appropriate CM
 
 ### Pass Off 
 To grade your submission we will:
-1. Load and unload your driver (`insmod` and `rmmod`) **TWICE**.  Make sure it works without error and has appropriate logging messages as described above.  A simple [script](https://github.com/byu-cpe/ecen427_student/blob/master/kernel/audio_codec/test_insmod.sh) is provided that loads and unloads the module twice, prints recent kernel log entries, and prints details of your device file.
+1. Load and unload your driver (`insmod` and `rmmod`) **TWICE**.  Make sure it works without error and has appropriate logging messages as described above.  A simple [script](https://github.com/byu-cpe/ecen427_student/blob/master/kernel/audio_codec/test_insmod.sh) is provided that loads and unloads the module twice, prints recent kernel log entries, and prints details of your device file.  **Recent changes have been made to this script, so make sure you have the latest version.  Go back to [this page]({% link _documentation/config_pynq_and_github.md %}) for instructions on merging in the latest changes to the starter code repository.**
 1. Compile and run your *lab5_m1* program.  Make sure your cmake files are set up to correctly build the executable.  We will run it after loading your driver and inspect the kernel logs to see that the `read()` and `write()` functions in your driver were executed.
 
 ## Milestone 2
