@@ -136,7 +136,6 @@ In this milestone you will write code to read and parse WAVE files, and update y
     * The audio data you read from the WAVE files (in user space) will be an array of 16-bit samples.
     * The audio data you write to the hardware FIFOs (in kernel space) needs to be 24-bit samples (there's no 24-bit data type in C, so use a 32-bit type)
     * This means you will need to convert each sample.  For example, for a 16-bit PCM sample (`int16_t`), you will want to left-shift the data by 8 bits and then store it in a 32-bit data type (`int32_t`).  This should be done in user space as you read the file into memory.
-    You can do this conversion in user space or kernel space.
     * This means that your kernel `write()` function will take an array of 32-bit samples. 
 
 ### Passing Off 
