@@ -42,3 +42,7 @@ What is a “beat”?
 1. (T or F) The master can terminate a burst if an error occurs.
 1. (T or F) All bus transactions are bursts.
 1. How does the slave indicate the success or failure of a read or write transaction?
+
+## In-Class Exercise
+
+[axi_example.sv]({% link assets/axi_example.sv %})
