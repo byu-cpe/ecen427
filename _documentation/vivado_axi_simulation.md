@@ -11,14 +11,27 @@ Writing a test bench to correctly set these signals would be a lot of work, so X
 
 
 ## Creating a VIP Project 
-You will need to create a new Vivado project with just the VIP module and your PIT IP:
-  * The VIP should be configured with *INTERFACE MODE = MASTER* and *PROTOCOL = AXI4LITE*.
-  * Remember to set the address of your PIT in the *Address Editor* (the actual address doesn't matter).
+You will need to create a new Vivado project.
+  * Create the project as a subdirectory of your *hw* directory.
+  * Add your IP RTL files to the project (*pit.v* and *pit.sv*). Make sure you DO NOT select the box *Copy sources into project*.
+  * You don't need any constraint files for a simulation project.
+  * Use FPGA part #: xc7z020clg400-1
+  
+## Create Block design
+  * Click *Create Block Design* in the left-hand pane, and choose a name for your block design.
+  * This block design should have your VIP module and your PIT IP.
+  * Add the AXI Verification IP (VIP) by right-clicking in the block design and selecting *Add IP...*. 
+    * Double-click to configure the VIP
+    * The VIP should be configured with *INTERFACE MODE = MASTER* and *PROTOCOL = AXI4LITE*. You may need to first select *INTERFACE MODE = MASTER*, then click *OK* to close the configuration window, then re-open the configuration window to set *PROTOCOL = AXI4LITE*.
+  * Add your IP to the block design by right-clicking in the block design and selecting *Add Module...*.  You can then select your IP from the list of available modules.
+  * Create external ports for your input and output signals.
+  * Remember to set the address of your PIT in the *Address Editor* (the actual address doesn't matter, you can just right-click and select *Assign*).
+  * Use the small checkbox icon at the top of the block design to *Validate Design*.  You should not have any errors or warnings.
 
 <img src="{% link media/vip_system.png %}">
 
 ## Create a Test Bench 
-Create a new SystemVerilog file to use as a test bench.  You can start with the HDL provided below.  You may want to save this file in your [pit](https://github.com/byu-cpe/ecen427_student/tree/master/hw/ip_repo/pit) directory.
+Create a new SystemVerilog file to use as a test bench.  Create this file somewhere in your repository (such as your [pit](https://github.com/byu-cpe/ecen427_student/tree/master/hw/ip_repo/pit) directory), but **do not create it inside your Vivado project**.  You should treat your Vivado project as *temporary files* that will *NEVER* be committed to your repository.  You can start with the HDL provided below.  
 
 Add this test bench to your project:
   * Right-click in the *Sources* pane and select *Add Sources...*.  In the popup, select *Add or create simulation sources*, *Add file*, then browse to your newly created SystemVerilog test bench file.
