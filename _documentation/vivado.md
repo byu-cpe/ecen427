@@ -18,7 +18,7 @@ Vivado is installed in the lab machines.  Alternatively, you can download the Vi
 
 Before you can run Xilinx tools, you must add them to your PATH (this must be done each time you open a new terminal):
 ```
-source /tools/Xilinx/Vivado/2020.2/settings64.sh
+source /tools/Xilinx/Vivado/2022.2/settings64.sh
 ```
 
 Then you can run Vivado:
