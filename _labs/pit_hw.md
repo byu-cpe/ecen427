@@ -51,6 +51,9 @@ To grade your lab, the TAs will run [make sim_pit](https://github.com/byu-cpe/ec
       <img src="{% link media/labs/pit_sim.png %}" width="1000">
 
 ### Milestone 2: Integration
+
+#### **More details to come.**
+
 Once you are confident that your PIT is working correctly, integrate it into the ECEN 427 Vivado project.
   * Make sure you connect up all of the ports
   * Make sure you assign your PIT an address
