@@ -4,7 +4,6 @@ toc: true
 title: "Lab 6: Programmable Interval Timer (PIT)"
 short_title: PIT Hardware
 number: 6
-under_construction: true
 
 ---
 
@@ -13,7 +12,7 @@ In the real-time clock lab, you used a fixed-interval timer (FIT) from the IP ca
 This will be your first opportunity to add new hardware capability to your system. As such, we will start out with a programmable timer, one of the simpler things that you can design and implement.
 
 
-## Implementation 
+## Specifications 
 
 ### PIT Hardware Design 
 Your PIT module must include the following:
@@ -35,7 +34,8 @@ Your PIT module must include the following:
   - During normal operation, you program the delay-value register to contain a value that indicates how often an interrupt occurs.  If you set the delay-value register to N, then an interrupt should occur every N cycles.  For example, when the delay-value register contains a '2', the interrupt output is a square wave with a 50% duty cycle. When the register is set to '3', an interrupt occurs every third cycle.  You don't have to worry about what happens when the register is set to '0' or '1'; that behavior is undefined.
   - You will need to initialize your timer-counter at an appropriate time.  This is best done when the delay-value register is changed.
 
-### Simulation Project
+## Implementation
+### Milestone 1: Simulation Project
 
 To grade your lab, the TAs will run [make sim_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L25).  This make target runs Vivado and does two things:
   1. It sources `sim_proj.tcl`.  
@@ -50,7 +50,7 @@ To grade your lab, the TAs will run [make sim_pit](https://github.com/byu-cpe/ec
       * You should have a pre-configured waveform file (.wcfg) set up that has appropriate signals added and organized in a way that the TAs can verify correct operation.  Here is an example:      
       <img src="{% link media/labs/pit_sim.png %}" width="1000">
 
-### Integration
+### Milestone 2: Integration
 Once you are confident that your PIT is working correctly, integrate it into the ECEN 427 Vivado project.
   * Make sure you connect up all of the ports
   * Make sure you assign your PIT an address
@@ -73,8 +73,9 @@ After it is integrated:
 ## Submission 
 
 Follow the [submission instructions]({% link _other/submission.md %}).  Make sure that you have pushed up all your new hardware to Github, including at least:
-  * The *sim_proj.tcl* file that will be used to create your simulation project.
-  * The changes to the [ecen427.tcl](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ecen427.tcl) file.
-  * Your [pit.sv](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ip_repo/pit/pit.sv) changes.
-  * Your new [ecen427.bit](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ecen427.bit) bitstream.
-  * Your bitstream packaged into the [ecen427.bit.bin](https://github.com/byu-cpe/ecen427_student/blob/master/device_tree/ecen427.bit.bin) format.
+  * *(Milestone 1)* The *sim_proj.tcl* file that will be used to create your simulation project.
+  * *(Milestone 1)* The waveform configuration file.
+  * *(Milestone 1)* Your [pit.sv](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ip_repo/pit/pit.sv) changes.
+  * *(Milestone 2)* The changes to the [ecen427.tcl](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ecen427.tcl) file.
+  * *(Milestone 2)* Your new [ecen427.bit](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ecen427.bit) bitstream.
+  * *(Milestone 2)* Your bitstream packaged into the [ecen427.bit.bin](https://github.com/byu-cpe/ecen427_student/blob/master/device_tree/ecen427.bit.bin) format.

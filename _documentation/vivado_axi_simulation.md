@@ -40,7 +40,7 @@ Add this test bench to your project:
 A simple starting test bench is included below. It was created based on a tutorial here: <http://www.wiki.xilinx.com/Using+the+AXI4+VIP+as+a+master+to+read+and+write+to+an+AXI4-Lite+slave+interface>.  
 
 It should work for you with a few minor modifications.  The test bench performs two writes to registers in the PIT IP.  You will need to perform more reads and writes to the PIT to make sure it is designed to specification correctly, and meet the simulation requirements for Lab 5.  Some notes
-  * The `import design_1_axi_vip_0_0_pkg::*;` assumes your VIP simulation package is named `design_1_axi_vip_0_0`.  Depending on how you chose to name things, yours could have a different name.  You can expand and check *Sources*, *IP Sources*, *Simulation* for the name of the VIP simulation package in your project.  Note that Vivado will underline these lines in red (indicating an error) even if they are written correctly.
+  * The `import design_1_axi_vip_0_0_pkg::*;` assumes your VIP simulation package is named `design_1_axi_vip_0_0`.  Depending on how you chose to name things, yours could have a different name.  You can expand and check *Sources*, *IP Sources*, *Simulation* for the name of the VIP simulation package in your project.  Note that Vivado may underline these lines in red (indicating an error) even if they are written correctly.
   * The datatype of `master_agent` will be *\<package_name\>_mst_t*. 
   * The instantiation of the block design might be a bit different depending on how you named your block design file and the external ports.
   * Change the addresses (`32'h44A0_0000` and `32'h44A0_0004`) to appropriate addresses for the PIT in your design.
@@ -103,6 +103,12 @@ endmodule
   * If the simulation runs without error you will be presented with a waveform of the results.
   * You can drag internal signals from your PIT module to the waveform, and save the waveform.  Next time you re-run the simulation, you will see simulation data for these signals.
 
+## Save Your Waveform
+  * You can save your waveform by clicking *File->Simulation Waveform->Save As...*.  You can save the waveform as a *.wcfg* file.  Once again, choose a location that is part of your repo, but not part of your Vivado project.  Nothing in the Vivado project directory should be committed to your repository.  
+
+  * When you *Save As* the waveform, you will be asked if you automatically want this waveform added to your project.  Make sure to select *Yes*.  As you add more signals to your waveform, you can save the waveform again, and it will automatically be updated in your project.  When you run simulation in the future, this waveform layout will automatically be loaded. 
+
+  * Make sure an commit the waveform configuration file to your repository.  
 
 ## AXI Messages
 
@@ -112,3 +118,8 @@ Warning: XILINX_RECS_WLCMD_TO_BVALID_MAX_WAIT: BVALID should be asserted within 
 ```
 
 If your module produces AXI protocol warnings during simulation, the TAs will deduct points from your lab.
+
+## Commit Your Vivado Project to Git
+See the [Vivado documentation]({% link _documentation/vivado.md %}) for instructions on how to commit your Vivado project to Git.  You should commit all files needed to re-run your simulation (project creation Tcl file, testbench, waveform configuration, etc.), but not the actual project files.  
+
+Make sure you note that for the PIT hardware lab, you must save your project Tcl file at a specific location.  See the lab description for details.
