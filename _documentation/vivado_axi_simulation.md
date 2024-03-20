@@ -106,7 +106,7 @@ endmodule
   * You can drag internal signals from your PIT module to the waveform, and save the waveform.  Next time you re-run the simulation, you will see simulation data for these signals.
 
 ### Simulation Run Time
-By default, Vivado will only run your simulation for 1000ns (1us). While you can manually run for longer, this won't be saved to your project, and you will need to do this manually each time you run simulation.  To permanently change the simulation run time in your project:
+By default, Vivado will only run your simulation for 1000ns (1us).  This may not be long enough for your testbench to complete.  While you can manually run for longer, this won't be saved to your project, and you will need to do this manually each time you run simulation.  To permanently change the simulation run time in your project:
   * Right-Click on *Simulation* in the *Flow Navigator* on the left, and select *Simulation Settings*.
   * Click the *Simulation* tab.
   * Update the *xsim.simulate.runtime* value to something longer (eg. 10000ns).  You can make this quite large, and as long as you include a `$finish` statement in your test bench, the simulation will stop when it reaches the end of the test bench.
