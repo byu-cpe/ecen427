@@ -92,6 +92,8 @@ module tb(
     data = 32'h00000007;
     master_agent.AXI4LITE_WRITE_BURST(addrCtrl, prot, data, resp);
 
+    $finish;
+
   end
 
 endmodule
@@ -102,6 +104,12 @@ endmodule
   * In the left-hand pane, click *SIMULATION->Run Simulation->Run Behavioral Simulation*
   * If the simulation runs without error you will be presented with a waveform of the results.
   * You can drag internal signals from your PIT module to the waveform, and save the waveform.  Next time you re-run the simulation, you will see simulation data for these signals.
+
+### Simulation Run Time
+By default, Vivado will only run your simulation for 1000ns (1us). While you can manually run for longer, this won't be saved to your project, and you will need to do this manually each time you run simulation.  To permanently change the simulation run time in your project:
+  * Right-Click on *Simulation* in the *Flow Navigator* on the left, and select *Simulation Settings*.
+  * Click the *Simulation* tab.
+  * Update the *xsim.simulate.runtime* value to something longer (eg. 10000ns).  You can make this quite large, and as long as you include a `$finish` statement in your test bench, the simulation will stop when it reaches the end of the test bench.
 
 ## Save Your Waveform
   * You can save your waveform by clicking *File->Simulation Waveform->Save As...*.  You can save the waveform as a *.wcfg* file.  Once again, choose a location that is part of your repo, but not part of your Vivado project.  Nothing in the Vivado project directory should be committed to your repository.  
