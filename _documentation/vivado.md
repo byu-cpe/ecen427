@@ -25,6 +25,12 @@ Then you can run Vivado:
 ```
 vivado
 ```
+
+**Note: There seems to be an issue with the Vivado installation in the lab that is causing this to fail.  Instead, just run Vivado directly:**
+```
+/tools/Xilinx/Vivado/2022.2/bin/vivado
+```
+
 <!-- 
 ==== Remote Access ====
 
