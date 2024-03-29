@@ -52,9 +52,9 @@ To grade your lab, the TAs will run [make sim_pit](https://github.com/byu-cpe/ec
 
 ### Milestone 2: Integration
 
-#### **More details to come.**
+Once you are confident that your PIT is working correctly, integrate it into the ECEN 427 Vivado project.  See the [Vivado documentation]({% link _documentation/vivado.md %}) for information about creating a Vivado project with the existing ECEN 427 hardware system.  **Make sure you follow the instructions about escalating certain warnings to errors.  This will help you catch problems with your PIT that may have been tolerated in simulation, but will not work when compiling to an actual hardware implementation.**
 
-Once you are confident that your PIT is working correctly, integrate it into the ECEN 427 Vivado project.
+Here are some tips to help you integrate your PIT:
   * Make sure you connect up all of the ports
   * Make sure you assign your PIT an address
   * You don't need to remove the FIT from your system. Just don't enable its interrupt.
@@ -65,6 +65,10 @@ Once you are confident that your PIT is working correctly, integrate it into the
 After it is integrated:
   * Verify that all of the connections are hooked up properly by running 'Validate Design'
   * Make sure you compile a new bitstream.  See [Compiling a New Bitstream]({% link _documentation/vivado.md %}#compiling-a-new-bitstream).
+
+Make sure to commit:
+  * Your changes to the ECEN 427 project.  You will need to export the Tcl file for the project, overwriting the provided [ecen427.tcl](https://github.com/byu-cpe/ecen427_student/blob/main/hw/ecen427.tcl) file.
+  * Your new bitstream (both the .bit file and the .bin file).
 
 
 ## How to Get Started 
