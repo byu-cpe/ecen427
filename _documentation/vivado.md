@@ -144,7 +144,7 @@ or, more simply:
 cd hw
 make ecen427.bit
 ```
-1. The PYNQ board requires the bitstream in *.bin* format.  Go to the *device_tree* folder in the top-level of your repo, and run `make build` to create a new *ecen427.bit.bin* file.
+1. The PYNQ board requires the bitstream in *.bin* format.  Go to the *device_tree* folder in the top-level of your repo, and run `make build` to create a new *ecen427.bit.bin* file.  This uses the *bootgen* utility (a Xilinx program), so make sure you have the Xilinx tools sourced in your terminal.
 1. Push the new *ecen427.bit* and *ecen427.bit.bin* file up to Github.
 
 
