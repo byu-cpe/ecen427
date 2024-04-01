@@ -4,7 +4,7 @@ toc: true
 title: "Lab 7: Kernel Driver for PIT with sysfs"
 short_title: PIT Driver
 number: 7
-under_construction: true
+under_construction: false
 
 ---
 
