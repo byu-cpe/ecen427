@@ -91,7 +91,9 @@ set_msg_config -suppress -id "Constraints 18-5210"
 ```
 
 ### Block Design
-For Lab 5, you will need to create a block diagram based simulation project.  The block diagram feature of Vivado allows you to visually instantiate and connect different IP and hardware modules.  Some things to note:
+*For Lab 6 M1, you will need to create a block diagram based simulation project.  In Lab 6 M2, you will edit an existing block diagram for the hardware on the board that you have been using up to this point in the class.*
+ 
+The block diagram feature of Vivado allows you to visually instantiate and connect different IP and hardware modules.  Some things to note:
   * To create a block design, click *Create Block Design* in the left-side menu of Vivado. The block design should now show up in the *Sources* window.
   * To open an existing block design, click *Open Block Design*, or double click the *.bd* file in the *Sources* window.
   * A block design can be instantiated in HDL modules just like you would instantiate other HDL modules.  An example is shown in the test bench provided on the [Simulating AXI IP]({% link _documentation/vivado_axi_simulation.md %}) page.  A block doesn't can't function as the top-level module for a Vivado project, so it is always instantiated in a a top-level wrapper module, or test bench module.
@@ -113,6 +115,8 @@ The hardware that you have been using for the labs up to this point is provided 
 
 
 ### Creating the ECEN 427 Project in Vivado
+*You don't need to do this for Lab6 M1, only Lab6 M2.*
+
 The project can be created using the [ecen427.tcl](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ecen427.tcl) script. However, the project depends on at least one file that is too large to commit to Github, so it must first be unzipped.  Unzipping the file, and running the *ecen427.tcl* script can be done in one step using a provided [Makefile target](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L4):
 ```
 cd hw
@@ -142,7 +146,7 @@ or, more simply:
 cd hw
 make ecen427.bit
 ```
-1. The PYNQ board requires the bitstream in *.bin* format.  Go to the *device_tree* folder in the top-level of your repo, and run `make build` to create a new *ecen427.bit.bin* file.
+1. The PYNQ board requires the bitstream in *.bin* format.  Go to the *device_tree* folder in the top-level of your repo, and run `make build` to create a new *ecen427.bit.bin* file.  This uses the *bootgen* utility (a Xilinx program), so make sure you have the Xilinx tools sourced in your terminal.
 1. Push the new *ecen427.bit* and *ecen427.bit.bin* file up to Github.
 
 

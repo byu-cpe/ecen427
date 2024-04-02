@@ -4,7 +4,7 @@ toc: true
 title: "Lab 7: Kernel Driver for PIT with sysfs"
 short_title: PIT Driver
 number: 7
-under_construction: true
+under_construction: false
 
 ---
 
@@ -18,8 +18,7 @@ Like device files that you used for your audio driver, sysfs is another method f
 
 ## Specification 
 
-The interface to your driver should be located at */sys/class/pit_427/pit_427/*
-  * This means your class name and device name should both be *pit_427*
+The interface to your driver should be located at */sys/devices/soc0/amba/\<your baseaddr\>.ecen427_pit/*. This means the entry you add in the device tree should be called *ecen427_pit*.
 
 Your driver must expose the following functionality through the sysfs interface:
   * Get/set timer period
@@ -32,9 +31,6 @@ Your driver must expose the following functionality through the sysfs interface:
     * This should be a single character, `0` or `1` indicating if interrupts are enabled.
     * The attribute name must be `int_en`.
 
-
-
-
 ## Getting Started
 
 ### Update the Linux Device Tree 
@@ -45,13 +41,23 @@ Your driver must expose the following functionality through the sysfs interface:
 
 ### Create your Basic Driver 
   * Create a basic kernel driver for your PIT, using your audio driver code for reference.
-  * You don't need to create `read()`/`write()` functions for the driver, as userspace will interact using sysfs.   
+  * How will this be different from your audio_driver?
+    * Since we won't be interacting with the driver via device file in `/dev`, you:
+      * Don't need to create a character device.
+      * Don't need to create a `file_operations` struct.
+      * Don't need to allocate major or minor numbers.
+      * Don't need to create `read()`/`write()` functions for the driver.
+    * You will still need to talk to hardware, so:
+      * You need to register as a platform driver
+      * Reserve and map memory
+    * You don't need any interrupt handling as the PIT interrupt is wired to the UIO interrupt controller.
+
   * Load your kernel module and make sure it probes correctly for your PIT.
 
 
 ### Add sysfs interfaces
-
   * Extend your driver to support the sysfs interfaces described above.
+  * To add sysfs attributes, you need a `struct kobject *` type.  You can obtain this from your `probe` function.  The probe function provide a `struct platform_device *pdev` argument, and you can obtain the `struct kobject *` by doing `&pdev->dev.kobj`.
 
 ### Space Invaders 
   * Modify your space invaders game code to use the interrupt from the PIT.
