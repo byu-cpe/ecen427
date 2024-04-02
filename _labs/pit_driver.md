@@ -43,7 +43,7 @@ Your driver must expose the following functionality through the sysfs interface:
   * Create a basic kernel driver for your PIT, using your audio driver code for reference.
   * How will this be different from your audio_driver?
     * Since we won't be interacting with the driver via device file in `/dev`, you:
-      * Don't need to create a character device.
+      * Don't need to create a character device, or device class.
       * Don't need to create a `file_operations` struct.
       * Don't need to allocate major or minor numbers.
       * Don't need to create `read()`/`write()` functions for the driver.
