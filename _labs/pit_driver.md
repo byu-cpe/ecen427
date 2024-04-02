@@ -85,7 +85,7 @@ Follow the [usual submission instructions]({% link _other/submission.md %}).
 
 ###  sysfs Tutorial 
 You may find the following tutorial helpful: <https://www.cs.swarthmore.edu/~newhall/sysfstutorial.pdf>. However, you should read through it completely and make sure you understand which parts are applicable to this lab before you start your implementation.  Some notes on this tutorial:
-  * You shouldn't need to call `root_device_register` because you should already have a handle to a `struct device *` from when you called `device_create`.
+  * You shouldn't need to call `root_device_register` because you should already have a handle to a `struct device *` from the argument passed into your `probe()` function (`&pdev->dev`).
   * You don't need to create subdirectories, as you should place all attributes in the main directory for your PIT.
   * On the slide titled **Adding 1 File** there is a function mentioned, `sysfs_add_file`.  This is a typo.  It should be `sysfs_create_file`.
   * I recommend using `sysfs_create_group` instead of adding attributes one by one.  While it may seem like more work, it will actually save you time as your error handling/removal code is much simpler. `sysfs_remove_group` will only remove those attributes that were successfully added (instead of you having to keep track of of this).
