@@ -1,9 +1,9 @@
 ---
 layout: lab
 toc: true
-title: "Lab 8: Creating a Hardware Accelerator with HLS"
+title: "Lab 9: Creating a Hardware Accelerator with HLS"
 short_title: HLS Accelerator
-number: 8
+number: 9
 under_construction: true
 
 ---
