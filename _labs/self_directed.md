@@ -29,5 +29,5 @@ This lab will give you practice in this area.
 The "Summary of what you learned", should not be a summary of the technology you studied, but rather should describe what you learned about it, what stood out to you, how it connects to other things you know, what you found interesting or surprising, what you might want to learn more about in the future, etc.  Or in other words, it should be personalized to your learning experience, and not just a summary of the technology itself.
 
 ## Submission
-Add a file called *lab8.pdf* to your repository that contains your report.  Tag your submission using the usual [submission instructions]({% link _other/submission.md %}).
+Add a file called *lab8.pdf* to your repository (in the root directory) that contains your report.  Tag your submission using the usual [submission instructions]({% link _other/submission.md %}).
 
