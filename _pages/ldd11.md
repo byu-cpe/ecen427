@@ -8,8 +8,6 @@ title: Linux Device Drivers, Chapter 11
 
 All of Chapter 11, except Linked Lists.
 
-## Slides
-* [Slides]({% link media/ldd/ldd3-ch4,11.pdf %})
 
 ## Study Questions
 

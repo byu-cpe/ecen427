@@ -8,9 +8,6 @@ title: Linux Device Drivers, Chapter 6
 
 ioctl Section (pg 135 - 147)
 
-## Slides
-* [Slides]({% link media/ldd/ldd3-ch6,9,10.pdf %})
-
 ## Study Questions 
 
 1. Why is the *ioctl* interface used for?

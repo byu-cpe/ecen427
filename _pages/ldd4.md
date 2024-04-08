@@ -8,9 +8,6 @@ title: Linux Device Drivers, Chapter 4
 
 Pages Debugging by Printing (75-82), Debugging System Faults (93-98).  Also read about the *dev_\** and *pr_\** functions (<https://www.kernel.org/doc/html/latest/process/coding-style.html#printing-kernel-messages> (only Section 13) and <https://lwn.net/Articles/487437/>). 
 
-## Slides
-* [Slides]({% link media/ldd/ldd3-ch4,11.pdf %})
-
 ## Study Questions
 
 1. How do you classify messages with printk?

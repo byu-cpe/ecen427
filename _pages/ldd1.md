@@ -8,9 +8,6 @@ title: Linux Device Drivers, Chapter 1
 
 All of Chapter 1
 
-## Slides
-
-* [Slides]({% link media/ldd/ldd3-ch1.pdf %})
 
 ## Study Questions
 
