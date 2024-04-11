@@ -68,7 +68,7 @@ Your driver must expose the following functionality through the sysfs interface:
 The TAs will check that your PIT works correctly by running your space invaders game, and while the game is executing, doing something like the following to see that your game speed changes on the fly.
 
 ```
-sudo bash -c "echo 20000 > /sys/class/pit_427/pit_427/period"
+sudo bash -c "echo 20000 > /sys/devices/soc0/amba/\<your baseaddr\>.ecen427_pit/period"
 ```
 
 The above command should cause your game to run at half speed.  
