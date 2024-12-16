@@ -5,6 +5,7 @@ title: "Lab 8: Self-Directed Learning"
 short_title: Self Study
 number: 8
 under_construction: false
+hide: true
 
 ---
 

@@ -5,6 +5,7 @@ title: "Lab 9: Creating a Hardware Accelerator with HLS"
 short_title: HLS Accelerator
 number: 9
 under_construction: true
+hide: true
 
 ---
 

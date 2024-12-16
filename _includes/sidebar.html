@@ -28,10 +28,10 @@
             </a>
             {% endif %}
             {% endfor %}
-            <a href="https://learningsuite.byu.edu/.NTbO/cid-Qp3-5Z0XOL-F/calendar"
+            <a href="https://learningsuite.byu.edu/.20B7/cid-TZCfTA1MxiC6/calendar"
                 class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
                     class="fa fa-calendar"></i>
-                Schedule</a>
+                LearningSuite</a>
             <a href="https://teams.microsoft.com/l/team/19%3A-W_gdKQwoOIcKBQz4SQaqrFTYYigq_FtCvug4pAOXUE1%40thread.tacv2/conversations?groupId=5e13bee2-cc26-443b-b4e0-79e4ae6428de&tenantId="
                 class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
                     class="fa fa-question-circle"></i>
@@ -44,12 +44,14 @@
         <div class="sidebar-heading">Labs</div>
         <div class="list-group list-group-flush">
             {% for item in site.labs %}
+            {% unless item.hide %}
             <a href="{% link {{ item.path }} %}"
                 class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
                 <span class="badge badge-pill badge-dark-grey">{{ item.number }}</span>
                 {{ item.short_title | default: item.title }}
 
             </a>
+            {% endunless %}
             {% endfor %}
         </div>
 
