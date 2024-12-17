@@ -9,28 +9,6 @@ number: 7
 
 In the labs for this class, you will be completing some tasks on your computer, and some tasks on the PYNQ board.  In this setup step, you will set up your Git repository and SSH keys on both your computer and the PYNQ board.  
 
-## Extend your Partition 
-
-You should extend the PYNQ filesystem to fill your entire SD card (by default the filesystem only provides a small amount of free space, and doesn't fill your SD card)
-
-Run these commands.  Please copy and paste them one at a time, and be careful in the process.  It's easy to mess up your entire SD card image:
-
-```
-sudo growpart /dev/mmcblk0 2
-sudo resize2fs /dev/mmcblk0p2
-``` 
-
-## Set PYNQ time 
-
-Run the following to update the time on your PYNQ
-
-    sudo apt install chrony
-    sudo chronyc -a 'burst 4/4'
-    sudo chronyc -a makestep    
-    sudo timedatectl set-timezone America/Boise
-    
-    
-This will fix the current time of the PYNQ, but if you have your PYNQ off for some extended period, and then turn it back on, you will may notice the time is wrong.
 
 ## Computer Setup
 > 📝 Run this on your computer.
@@ -51,7 +29,7 @@ This will fix the current time of the PYNQ, but if you have your PYNQ off for so
 
 
 ### Github Repository Creation
-1. Sign up for your Github classroom repo using this link: <https://classroom.github.com/a/h6lm94mB> This will create an empty private repository on Github for you to use throughout the entire semester. **You must create your repository using this link, or the TAs will not be able to grade your code.**
+1. Sign up for your Github classroom repo using this link: <> This will create an empty private repository on Github for you to use throughout the entire semester. **You must create your repository using this link, or the TAs will not be able to grade your code.**
 
 1. You should now see the message below.  Click the link to navigate to your repository.
 <img src = "{% link media/setup/git_classroom1.png %}" width="800" >
@@ -118,7 +96,3 @@ Since this is the first time using Git on the PYNQ system, you need to configure
 git config --global user.name "Your Name"
 git config --global user.email your_email@example.com
 ```
-
-### Add Starter Code Remote 
-
-Repeat the steps above to add the *startercode* remote.

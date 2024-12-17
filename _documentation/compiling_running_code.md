@@ -12,21 +12,23 @@ Look through the files provided to you in the Git repo.  There are some helpful 
 
 ## Build System
 
+For most programs you create in this class, you will compile them on your workstation, and then copy them over to the PYNQ board to run them.  This is called **cross-compiling**.  This is done because the ARM CPU on the PYNQ board is very slow, and it is much faster to compile on your workstation.  Running VS Code on your workstation will also allow you to use such benefits as intellisense and github co-pilot to help you write your code.  
+
 ### Install Compiler
-Before proceeding you should install the G++ ARM compiler on your computer.  You can do this by running the following command:
+Before proceeding you should install the G++ ARM compiler on your workstation.  You can do this by running the following command:
 
     cd <your_repo>
-    make g++-arm-8.2
+    make g++-arm-11.2
 
-This will take a few minutes and you will need about 1.5GB of free space on your computer.  If you don't want to install these, you can compile on the PYNQ board, but it will be much slower.
+This will take a few minutes and you will need about 1GB of free space in your home drive. If you don't want to install these, you can compile on the PYNQ board, but it will be much slower.
 
 ### CMake 
 
 To build your user space programs, you are required to use CMake.  CMake is a tool that will automatically create Makefiles for you, based on a configuration file called `CMakelists.txt`.  CMake is already set up in the provided repo. 
 
-You can look at the top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/CMakeLists.txt) file provided to you.  *Note:* This file is located in your `userspace` folder.  For the first few labs of the class you will be writing code that runs in Linux user space, so all of your code will be placed within this folder.  Later, beginning in Lab 4, you will write kernel code that will be located in the `kernel` folder, but this will not be built using the CMake system.
+You can look at the top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/CMakeLists.txt) file provided to you.  *Note:* This file is located in your `userspace` folder.  For the first few labs of the class you will be writing code that runs in Linux user space, so all of your code will be placed within this folder.  Later, beginning in Lab 5, you will write kernel code that will be located in the `kernel` folder, but this will not be built using the CMake system.
 
-For Lab1, you are provided a *Hello, World* application, [main.c](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/lab1_helloworld/main.c).
+For Lab1, you are provided a *Hello, World* application, [main.cpp](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/lab1_helloworld/main.cpp).
 
 
 Note that the top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/CMakeLists.txt) file has a `add_subdirectory(apps)` statement, which will instruct CMake to process the apps [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/CMakeLists.txt) file.  This in turn has a `add_subdirectory(lab1_helloworld)` statement that will process the lab1 [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/lab1_helloworld/CMakeLists.txt) file.  The contents of these files are explained below.
@@ -109,3 +111,30 @@ This directs CMake to create a new executable program.  The first argument is th
 You should commit your files and push them up to Github <ins>**OFTEN!!**</ins>.  **We will not make any special accommodations for students that lose their code because they were not pushing their code up to Github frequently.**. 
 
 
+
+
+## Method 2: Remote VS Code
+
+### Install
+
+Install the *Remote - SSH* extension from *Microsoft*. 
+
+<img src="{% link media/setup/vscoderemoteextensionssh.jpg %}" width="400">
+
+### SSH Keys
+Before proceeding, make sure you set up your SSH keys (`~/.ssh/id_rsa` and `~/.ssh/id_rsa.pub`) as described on an earlier [page]({% link _documentation/setup_pynq_board.md %}#ssh-keys).  
+
+*Note:* If you are using Windows on your personal computer, VSCode will look for your SSH keys in your Windows home directory (not the WSL home directory).  You may want to copy your SSH keys there:
+
+    cp ~/.ssh/id_rsa* /mnt/c/Users/<your windows username>/.ssh/
+
+
+### Connecting 
+  - Click the blue button in the bottom left of VSCode, and select *Connect to Host..*
+  - Type in `byu@<PYNQ IP or hostname>` and press enter.
+  - A new VS Code window should pop up, and the VS Code server will be installed on your PYNQ board.  This can take a few minutes.  If an error pops up, try clicking *Retry* a few times.
+  - Once connected, the blue box in the lower left corner should display the IP/network name.
+
+### Opening a Folder
+  - You can now click *File->Open Folder* and then select your repository folder that you cloned on the PYNQ board.
+  - If you open a Terminal, it will be a remote terminal on the PYNQ board.

@@ -104,7 +104,5 @@ To display the most recent entries from the kernel log run `dmesg` from the shel
 ### Serial Console 
 Sometimes your system will hang and the terminal will not respond.  *Probably* some important message was written to the kernel log, but you can't run `dmesg` to see what it was.  In this instance, using the serial console could help.
 
-[PYNQ Serial]({% link _documentation/serial.md %}) explains how to connect to the Pynq via the serial port.  This serial port has the advantage that it prints all kernel messages that would normally show up in `dmesg` as they are written.  So even if the system hangs, this console will often print out information.  
-
 ## Resources 
   * There is a book published all about Linux device drivers.  It can be found for free at <https://lwn.net/Kernel/LDD3/>. Please note that while this is a wonderful resource for understanding how the Linux Kernel is built, it is based on an older version of the kernel. As such you should not rely on the syntax or function names shown in the book.
