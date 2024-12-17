@@ -6,7 +6,7 @@ indent: 1
 number: 2
 ---
 
-## Host Setup Choice
+## Host Computer
 > 📝 The lab computers dual-boot Windows and Linux.  You will want to use Linux for this class.  If the computer is booted into Windows, log out, then reboot (button is in bottom-right).  You should see a menu after reboot that allows you to select Ubuntu Linux.  If the menu doesn't show up, try pressing F9 repeatedly while the computer is booting.
 
 <span style="color:red">**It is recommended to use the lab computers in EB438 as these have the necessary software already set up.** </span> You can use your own computer, but you will need to install the necessary software yourself.  

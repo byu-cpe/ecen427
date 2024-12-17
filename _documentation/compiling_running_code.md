@@ -31,10 +31,19 @@ You can look at the top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen42
 For Lab1, you are provided a *Hello, World* application, [main.cpp](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/lab1_helloworld/main.cpp).
 
 
-Note that the top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/CMakeLists.txt) file has a `add_subdirectory(apps)` statement, which will instruct CMake to process the apps [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/CMakeLists.txt) file.  This in turn has a `add_subdirectory(lab1_helloworld)` statement that will process the lab1 [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/lab1_helloworld/CMakeLists.txt) file.  The contents of these files are explained below.
+Note that the top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/CMakeLists.txt) file has a `add_subdirectory(apps)` statement, which will instruct CMake to process the apps [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/CMakeLists.txt) file.  This in turn has a `add_subdirectory(helloworld)` statement that will process the lab1 [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/lab1_helloworld/CMakeLists.txt) file.  
+
+### Deploying Executables to the PYNQ Board
+
+The provided CMakeLists.txt file contains a function, [deploy_to_board()](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/CMakeLists.txt#L39), that will copy your executable to the PYNQ board after it is built.  To enable this, add the following line to your CMakeLists.txt file:
+
+    deploy_to_board(exe_name)
+
+There is an example [here](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/helloworld/CMakeLists.txt#L2).
+
+<span style="color:red">**IMPORTANT:**</span> Before this function will work, you need to update [this line](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/CMakeLists.txt#L45) and replace `pynq` with the hostname or IP address of your PYNQ board. Also update the `myrepo` directory to match the path of your code repository on your PYNQ board.
 
 ### Compiling Your Code 
-
 
 To compile the Lab1 executable, you need to navigate to the build directory, and then run CMake and point it to the top-level CMakeLists.txt file, like so:
 
@@ -48,19 +57,23 @@ This will produce a Makefile in your build directory.  Run it to compile the *He
 
 **Tip:** After running `cmake` once, you won't need to run it ever again (unless you completely delete your build directory).  Once CMake has set up the Makefile system, you can just re-run `make` for any future changes.  Even if you change the CMake files, the system is set up so that the generated Makefile will detect these updates, and automatically call CMake to update itself.
 
-<span style="color:blue">**IMPORTANT:**</span> Never run ''cmake'' from anywhere but your *build* directory.  It creates *many* temporary files that will clutter up your source files.
+<span style="color:red">**IMPORTANT:**</span> Never run ''cmake'' from anywhere but your *build* directory.  It creates *many* temporary files that will clutter up your source files.
 
-### Running Your Code 
-From within the build directory you can run the following to execute the Lab 1 *Hello, World* program:
+## Running Your Code 
+Your executables will be copied to the *cross-compiled* directory you set in the earlier step.  Connect to your PYNQ board via SSH, and navigate to the directory where your executables are located.  You can then run them like so:
 
-    ./apps/lab1_helloworld/helloworld
+    ssh <mypynq>
+    cd <myrepo>/cross-compiled
+    sudo ./helloworld
+
+While you don't need sudo to run the helloworld program, you will need it for all later programs that access hardware devices. 
 
 
-### Understanding the CMakeLists.txt files 
+## Understanding the CMakeLists.txt files 
 
 The top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/CMakeLists.txt) file contains the following line
 
-    cmake_minimum_required(VERSION 3.4)
+    cmake_minimum_required(VERSION 3.5)
 
 which is found at the beginning of most CMake files and indicates the minimum version of CMake that your makefile supports. The next line:
 
@@ -113,7 +126,9 @@ You should commit your files and push them up to Github <ins>**OFTEN!!**</ins>. 
 
 
 
-## Method 2: Remote VS Code
+## Remote Development with VS Code
+
+Instead of cross-compiling, you can connect directly to your PYNQ board and build the code there.  This is slower, but is required for labs where you are writing kernel code.  The easiest way to do this is to use the *Remote - SSH* extension in VS Code, which allows you to run a VS code window on your workstation, but have it connect to your PYNQ board.
 
 ### Install
 
