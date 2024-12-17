@@ -24,11 +24,10 @@ This page describes how to set up your computer and PYNQ board for the labs in t
 
 If you run into issues, post on Teams.  <ins>**Do not skip any setup steps**</ins>.  For convenience, these setup steps are also shown in the sidebar.
 
-  * [Setup your home computer]({% link _documentation/setup_home_computer.md %}).  You can use a Windows, Linux or Mac computer.
-  * [Setup the PYNQ board]({% link _documentation/setup_pynq_board.md %})  
+  * [Image the PYNQ SD card]({% link _documentation/pynq_imaging.md %})
+  * [Setup the PYNQ board]({% link _documentation/setup_pynq_board.md %})
   - [Complete the Tutorials]({% link _documentation/tutorials.md %})  
-  - [Configure your PYNQ system]({% link _documentation/config_pynq_and_github.md %})  
-  - [Setup VSCode]({% link _documentation/vscode.md %})  
+  - [Setup Git/Github]({% link _documentation/setup_git.md %})  
   - [Compiling and Running Programs]({% link _documentation/compiling_running_code.md %})  
 
 
@@ -43,8 +42,8 @@ After you have completed these steps, do the following:
 
 Follow the instructions on the [Submission]({% link _other/submission.md %}) page.
 
-## Resources
-  * [Official PYNQ documentation](http://pynq.readthedocs.io/en/latest/getting_started.html)
+<!-- ## Resources
+  * [Official PYNQ documentation](http://pynq.readthedocs.io/en/latest/getting_started.html) -->
 
 <!-- 
 ## Study Questions

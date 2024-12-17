@@ -8,6 +8,19 @@ under_construction: true
 
 ---
 
+## Graphics
+
+### Verifying BOOT using HDMI
+The PYNQ video signal comes from the HDMI port labeled *HDMI Out* located on the topside of the board. This should already be connected to a dedicated monitor in the lab.  If you work remotely, you will need to find an HDMI-compatible display to use.  
+
+<!-- As we are not using a lab room this year, you must provide your own display and HDMI cable (nothing fancy). We have tested the PYNQ board and found that it works correctly with just about any computer monitor and most TVs (though not all).  -->
+
+You can verify that your PYNQ board is imaged correctly, and connected to the display correctly by powering it on, and after it has booted (about 1 min), you should see something like this on your display:
+
+<img src = "{% link media/setup/pynqdisplaytestimage.jpg %}" width="400">
+
+
+
 ## Objective
 Write the software that implements all video functionality for Space Invaders. Your game should closely mirror the game shown in the video below.
 
