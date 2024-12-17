@@ -28,10 +28,10 @@ To build your user space programs, you are required to use CMake.  CMake is a to
 
 You can look at the top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/CMakeLists.txt) file provided to you.  *Note:* This file is located in your `userspace` folder.  For the first few labs of the class you will be writing code that runs in Linux user space, so all of your code will be placed within this folder.  Later, beginning in Lab 5, you will write kernel code that will be located in the `kernel` folder, but this will not be built using the CMake system.
 
-For Lab1, you are provided a *Hello, World* application, [main.cpp](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/lab1_helloworld/main.cpp).
+For Lab1, you are provided a *Hello, World* application, [main.cpp](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/helloworld/main.cpp).
 
 
-Note that the top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/CMakeLists.txt) file has a `add_subdirectory(apps)` statement, which will instruct CMake to process the apps [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/CMakeLists.txt) file.  This in turn has a `add_subdirectory(helloworld)` statement that will process the lab1 [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/lab1_helloworld/CMakeLists.txt) file.  
+Note that the top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/CMakeLists.txt) file has a `add_subdirectory(apps)` statement, which will instruct CMake to process the apps [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/CMakeLists.txt) file.  This in turn has a `add_subdirectory(helloworld)` statement that will process the lab1 [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/helloworld/CMakeLists.txt) file.  
 
 ### Deploying Executables to the PYNQ Board
 
@@ -112,7 +112,7 @@ line instructs CMake where to look for header (*.h*) files.  In Lab 2 you will c
 These lines instruct CMake to look in these directories for additional CMakeLists.txt files and process them.
 
 
-The Lab 1 [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/lab1_helloworld/CMakeLists.txt) file contains the following: 
+The Lab 1 [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/helloworld/CMakeLists.txt) file contains the following: 
 
     add_executable(helloworld main.c)
 

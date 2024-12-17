@@ -41,12 +41,12 @@ Make sure you read the entire [hardware system]({% link _documentation/hardware.
   1. Implement a driver for the buttons.  
      * [buttons.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/buttons/buttons.h) is provided to you.  
      * The [drivers](https://github.com/byu-cpe/ecen427_student/tree/master/userspace/drivers) folder contains [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/CMakeLists.txt) that you can uncomment line by line when you are ready to compile your drivers.  
-     * A [buttons_test](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/buttons_test/main.c) application is provided to you.  This program will work once you implement `buttons_init()` and `buttons_read()`.  It doesn't rely on the interrupt functionality of the buttons driver.  You will need to uncomment the appropriate line from the *app* folder's [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/CMakeLists.txt) to compile it.
+     * A [buttons_test](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/buttons_test/buttons_test.cpp) application is provided to you.  This program will work once you implement `buttons_init()` and `buttons_read()`.  It doesn't rely on the interrupt functionality of the buttons driver.  You will need to uncomment the appropriate line from the *app* folder's [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/CMakeLists.txt) to compile it.
     
 
   1. Implement a driver for the switches.
      * Since the switches use the same GPIO module as the buttons, this driver will be nearly identical to you buttons driver.
-     * You are given [switches.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/switches/switches.h) and a [switches_test](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/switches_test/main.c) application.
+     * You are given [switches.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/switches/switches.h) and a [switches_test](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/switches_test/switches_test.cpp) application.
 
   1. Implement a driver for the AXI Interrupt Controller.
      * [intc.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/intc/intc.h) is provided to you.

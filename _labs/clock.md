@@ -20,7 +20,7 @@ Make note of the provided [system.h](https://github.com/byu-cpe/ecen427_student/
 
 ## Implementation 
 
-Complete the real-time clock application.  Some starting code is provided to you: [clock.c](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/clock/clock.c)
+Complete the real-time clock application.  Some starting code is provided to you: [clock.cpp](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/clock/clock.cpp)
   1. Time is printed to the terminal using ''printf'', in the following 24-hour format (includes leading zero): **HH:MM:SS** 
   1. The time display in the terminal emulator is stationary; it does not scroll, etc. Scrounge the internet to see how to clear the terminal window between each print of the time in order to make the display stationary.
   1. The time display will be updated each second. 
