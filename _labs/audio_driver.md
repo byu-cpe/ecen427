@@ -124,7 +124,9 @@ Expand your kernel driver:
 To grade your submission we will:
 1. Load and unload your driver (`insmod` and `rmmod`) **TWICE**, like in Milestone 1.  
 
-    Make sure it works without error and has appropriate logging messages as described above.  We will use the same *audio_driver_test1* program from Milestone 1 to test your driver, so make sure your submission for this milestone continues to include this program.
+    Make sure it works without error and has appropriate logging messages as described above.  
+
+1. Compile and run your *audio_driver_test1* program.  This doesn't need to change at all from Milestone 1, but make sure it is still built and included in your lab submission.
 
 
 ## Milestone 3
