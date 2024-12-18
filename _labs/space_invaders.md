@@ -4,7 +4,7 @@ toc: true
 title: "Lab 4: Space Invaders (No Sound)"
 short_title: Space Invaders
 number: 4
-under_construction: true
+under_construction: false
 
 ---
 
@@ -46,11 +46,14 @@ Your graphics functions need to be efficient and execute quickly.  The best way 
 
 Several test functions are provided, and will be used to evaluate your graphics functions:
 1. The [graphics_test](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/graphics_test) program should be used first to verify correctness of your Graphics functions.  It should produce an image that looks like this:
+    <img src="{% link media/graphics_test.jpg %}" width="500">
+  
+    Pay attention to how your UFO (in red) and tank (in yellow) are drawn, as they test sprite drawing with no filled background color vs. filled background color, respectively.  
 1. The [graphics_syscall](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/graphics_syscalls) program.  This program draws a single large sprite.  It should be run like so to measure the number of system calls made:
-    ```
-    sudo strace --summary-only ./graphics_syscalls
-    ```
-    When this test program is run, the number of system calls should be less than 500.
+   ```
+   sudo strace --summary-only ./graphics_syscalls
+   ```
+   When this test program is run, the number of system calls should be less than 500. If you are making more than 500 system calls, you will need to better optimize your code.
 1. The [graphics_benchmarking](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/graphics_benchmarking) program.  This will measure the average runtime to perform the *drawSprite()* functions on a sprite of a set size.  The average reported runtime for the *drawSprite()* functions should be less than 3ms.
 
 ### Milestone 2 
@@ -61,19 +64,30 @@ src="https://www.youtube.com/embed/kGd4K0jBjis">
 
 Implement all of the game video except for bullets and collisions.  Tanks should move, aliens should march, etc.  Use the video above as a reference. Keep in mind that when an entire column of aliens is gone from the edge the remaining aliens keep marching to the edge of the screen, past where the would have stopped if the edge aliens were alive. This feature doesn't need to be functional for this milestone, but keep it in mind for the next milestone.
 
+The approach you take to the game timing should be tick-based, controlled by the FIT interrupt, similar to the clock lab.  You may find it helpful to use state machines as you learned in ECEn 330 and ECEn 390, although this is not required.  If you decide not to use state machines, your code must still work with the tick-based approach.
+
+You are provided with a [main.cpp](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/main.cpp) file.  This file already is set up to use the FIT timer to tick the game.  The game is designed to run at 60 ticks per second (or 60fps), although you shouldn't redraw everything every tick.  Instead, you should only redraw sprites as they move or change.  The provided code will report whether you are missing interrupts (which would cause the game to run slower than 60fps).  This occurs if the code in any given loop iteration exceeds 16.67ms.  You will see 1 missed interrupt as the code starts up, but it should not increase after that.  
+
+You can optionally comment out [this line](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/main.cpp#L60), which will cause the game to run as fast as possible, not waiting for the FIT interrupt before ticking.  The loop will report the longest time spent in a tick, which can be useful for debugging performance issues if you are having trouble meeting the 60fps requirement. 
+
 ### Milestone 3 
 <iframe width="500" height="350"
 src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200">
 </iframe>
-Implement all of the game video, including bullets and all game interactions.  When you have finished this milestone, you will have the entire game implemented minus sound.  Use the above video as a reference.  
-It is difficult to see, but the number of points added to the score for each saucer destroyed is a number between 50 and 300, in multiples of 50. Also, the points for the block aliens are 10, 20 and 40, starting from the type on the bottom row and going up to the type on the top row.
+Implement all of the game video, including bullets and all game interactions.  When you have finished this milestone, you will have the entire game implemented minus sound.  Use the above video as a reference.  It is difficult to see, but the number of points added to the score for each saucer destroyed is a number between 50 and 300, in multiples of 50. Also, the points for the block aliens are 10, 20 and 40, starting from the type on the bottom row and going up to the type on the top row.
 
-## Suggestions 
-<!-- Unlike previous courses, in this course you are given quite a bit of freedom regarding your implementation strategy.  However, you must work within these requirements:
-  - You must adhere to the coding standard.  
-    * Since header files are usually provided to you, students often forget about the coding standard rules regarding header files.  Be sure to review Rule 2.1.  
-    * You will find it easier to follow this rule if you only put items in your header files that *need to be used by other .c files*.  If a #define, struct, etc. is only used in one .c file, it should be placed at the top of that .c file, and NOT in a header file.  This is good C coding practice and you should make a habit of following it when designing your own software structure. -->
-  - You may find it helpful to use state machines as you learned in ECEn 330 and ECEn 390. Your game loop could consist primarily of calls to tick functions for your state machines. 
+**Note: You do not need to implement the high score screen.  Although this is shown in the video, it is not required for this lab this semester.**
+
+Student often ask whether they can change the game in some way.  The answer is yes, you can make changes, provided they are stylistic and do not reduce the complexity of the game.  For example, the following would be permitted:
+* Changing the colors of the aliens, bunkers, or ship.
+* Changing the shape of the aliens, bunkers, or ship.
+* Slight modifications to the speed of the game.
+
+The following would not be permitted:
+* Reducing the number of aliens, bunkers, or ships.
+* Eliminating the bunker erosion patterns.
+* Reducing the number of bullets that can be on the screen at once.
+
 
 ## Submission 
 Follow the submission instructions for each milestone on the [Submission]({% link _other/submission.md %}) page.
@@ -112,6 +126,4 @@ To save some time, we will give you the definitions of the aliens in their two g
 
 ### Bunker Erosion Patterns 
 
-The patterns for the bunker erosions are depicted in this pdf file. By studying this file and watching some of the provided game videos, you should be able to figure out how to code the bunker erosions. If you watch the game carefully, you will see that the bunkers are composed of blocks that go through predictable patterns as they are hit with bullets.  Take a look at the [sprites.c](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/space_invaders/resources/sprites.c) file for erosion patterns.
-
-The corners of the bunkers should erode such that no pixels get set that weren't set before they started to erode.  So, although the erosion patterns are square in shape, the corners of the bunkers should erode within their original pixel constraints.
+ Take a look at the [sprites.c](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/space_invaders/resources/sprites.c) file for erosion patterns. The corners of the bunkers should erode such that no pixels get set that weren't set before they started to erode.  So, although the erosion patterns are square in shape, the corners of the bunkers should erode within their original pixel constraints.
