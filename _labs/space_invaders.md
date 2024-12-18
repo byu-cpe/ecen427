@@ -8,31 +8,18 @@ under_construction: true
 
 ---
 
-## Graphics
-
-### Verifying BOOT using HDMI
-The PYNQ video signal comes from the HDMI port labeled *HDMI Out* located on the topside of the board. This should already be connected to a dedicated monitor in the lab.  If you work remotely, you will need to find an HDMI-compatible display to use.  
-
-<!-- As we are not using a lab room this year, you must provide your own display and HDMI cable (nothing fancy). We have tested the PYNQ board and found that it works correctly with just about any computer monitor and most TVs (though not all).  -->
-
-You can verify that your PYNQ board is imaged correctly, and connected to the display correctly by powering it on, and after it has booted (about 1 min), you should see something like this on your display:
-
-<img src = "{% link media/setup/pynqdisplaytestimage.jpg %}" width="400">
-
-
-
 ## Objective
-Write the software that implements all video functionality for Space Invaders. Your game should closely mirror the game shown in the video below.
+Write the software that implements all functionality (except sound) for Space Invaders. Your game should closely mirror the game shown in the video below.
 
 ## Team Git Repository 
 
 This is the only lab where you will be permitted to work in a team.  Your team will be three students.  The teams are pre-set and are listed on Learning Suite.  If two teams mutually agree, you may swap team members.  Do this before proceeding with the next step.
 
 
-You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.  Once you have your team arranged, follow this link to create a new shared Github repository for lab 3: <https://classroom.github.com/a/cRunbQEp>
+You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.  Once you have your team arranged, follow this link to create a new shared Github repository for lab 3: <>
   * The first team member to sign up should create a new team name.
   * The other team members can join the team created by the first team member.
-  * Once you have a team repository created, each member of the team needs to complete the Learning Suite quiz to indicate their team repository URL.
+  * Once you have a team repository created, **each member of the team** needs to complete the Learning Suite quiz to indicate their team repository URL.
 
 Once your empty lab 3 repository is created, you will need to import one of your team member's individual repository, into your shared repository. You can choose which member of team's code to use, but **all team members must have submitted lab3 before you share your code**.
 
@@ -47,14 +34,15 @@ You can do this in a similar manner to how you obtained the starter code:
 
 ## Implementation
 
-### Milestone 1
+### Milestone 1: Graphics
 
-<iframe width="500" height="350"
+<!-- <iframe width="500" height="350"
 src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200">
-</iframe>
+</iframe> -->
+
+In this milestone you will implement the functions in [Graphics.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/Graphics.h). Refer to the [HDMI]({% link _documentation/hdmi.md %}) page for documentation on how to interact with the HDMI driver.
 
 
-Complete the end scenario for space invaders. See the video above for details on how it should function (fast forward the video to 3:20). Note that the video says the high score screen can be in any pattern or configuration, meaning you can have as many rows or columns of scores as you like and the button API can be however you would like to implement it, as long as it matches the video's functionality. However, it is required that the high scores are presented in sorted order from highest score to lowest and that at least two text sizes are used. Refer to the [HDMI]({% link _documentation/hdmi.md %}) page for documentation on how to interact with the hdmi driver.
 
 *Note:* To make it easier for the TAs to grade this, you should commit an existing high scores file into your repository.  Make sure not to use absolute file paths when opening the high-scores file, as the paths will likely be different on the TA's grading system.  You should also not rely on your space invaders executable being run from any particular directory.  Instead, access your high scores file  using a path relative to the space-invaders executable. [Stack overflow](https://stackoverflow.com/a/933996/609215) has a good explanation of how to do this with the `readlink` function.
 
