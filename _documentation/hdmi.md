@@ -27,7 +27,7 @@ The device maintains an offset, meaning it will keep track of where in the virtu
     lseek(fd, 12, SEEK_SET);
 
 
-You cannot change the offset to be less than 0 or greater than the size of the buffer.  The screen resolution of the HDMI driver is by default configured to be **640x480**.  This measurement is in pixels, and each pixel is 3 bytes (one red byte, one green byte, one blue byte).  The frame buffer is byte packed, meaning there are no useless bytes.  Thus, the total size of the pixel buffer is 640x480x3 = 921,600 bytes. Care must be taken that all writes are pixel-aligned, which is not necessarily word-aligned.  Note that index ''0'' of the buffer is the top left of the screen:
+You cannot change the offset to be less than 0 or greater than the size of the buffer.  The screen resolution of the HDMI driver is by default configured to be **640x480**.  This measurement is in pixels, and each pixel is 3 bytes (one green byte, one blue byte, one red byte).  The frame buffer is byte packed, meaning there are no useless bytes.  Thus, the total size of the pixel buffer is 640x480x3 = 921,600 bytes. Care must be taken that all writes are pixel-aligned, which is not necessarily word-aligned.  Note that index ''0'' of the buffer is the top left of the screen:
 
 <img src="{% link media/hdmi_screen.png %}" width="400">
 
@@ -45,7 +45,7 @@ The [write()](http://man7.org/linux/man-pages/man2/write.2.html) function allows
 
 Each pixel is 3 bytes, so each call to `write()` should be in multiples of 3 bytes.  This example shows how to write the color pink to a single pixel in the frame buffer:
 ```
-char pink[3] = {0xFF, 0x69, 0xB4};
+char pink[3] = {0x69, 0xB4, 0xFF};
 write(fd, pink, 3);
 ```
 
