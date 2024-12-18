@@ -42,11 +42,16 @@ src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200">
 
 In this milestone you will implement the functions in [Graphics.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/Graphics.h). Refer to the [HDMI]({% link _documentation/hdmi.md %}) page for documentation on how to interact with the HDMI driver.
 
+Your graphics functions need to be efficient and execute quickly.  The best way to do this is to reduce the number of system calls you make to the HDMI driver.
 
-
-*Note:* To make it easier for the TAs to grade this, you should commit an existing high scores file into your repository.  Make sure not to use absolute file paths when opening the high-scores file, as the paths will likely be different on the TA's grading system.  You should also not rely on your space invaders executable being run from any particular directory.  Instead, access your high scores file  using a path relative to the space-invaders executable. [Stack overflow](https://stackoverflow.com/a/933996/609215) has a good explanation of how to do this with the `readlink` function.
-
-
+Several test functions are provided, and will be used to evaluate your graphics functions:
+1. The [graphics_test](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/graphics_test) program should be used first to verify correctness of your Graphics functions.  It should produce an image that looks like this:
+1. The [graphics_syscall](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/graphics_syscalls) program.  This program draws a single large sprite.  It should be run like so to measure the number of system calls made:
+    ```
+    sudo strace --summary-only ./graphics_syscalls
+    ```
+    When this test program is run, the number of system calls should be less than 500.
+1. The [graphics_benchmarking](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/graphics_benchmarking) program.  This will measure the average runtime to perform the *drawSprite()* functions on a sprite of a set size.  The average reported runtime for the *drawSprite()* functions should be less than 3ms.
 
 ### Milestone 2 
 
