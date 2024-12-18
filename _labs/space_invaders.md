@@ -70,6 +70,11 @@ You are provided with a [main.cpp](https://github.com/byu-cpe/ecen427_student/bl
 
 You can optionally comment out [this line](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/main.cpp#L60), which will cause the game to run as fast as possible, not waiting for the FIT interrupt before ticking.  The loop will report the longest time spent in a tick, which can be useful for debugging performance issues if you are having trouble meeting the 60fps requirement. 
 
+**Controls**: To make grading easier, you should use these controls for the game:
+* BTN2: Move the tank left. Hold down to move continuously.
+* BTN1: Shoot a bullet. Only one bullet can be on the screen at a time. You can choose whether you can hold down to shoot a subsequent bullet or if you have to release and press again.
+* BTN0: Move the tank right. Hold down to move continuously.
+
 ### Milestone 3 
 <iframe width="500" height="350"
 src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200">
