@@ -9,8 +9,9 @@ number: 6
 
 In the real-time clock lab, you used a fixed-interval timer (FIT) from the IP catalog. As you may recall, the FIT generates interrupts at a fixed rate, based upon a single build parameter that cannot be changed once you have built the FPGA hardware. This makes the FIT very easy to use once your system is built, but the FIT is very inflexible. For this lab you are going to build a Programmable Interval Timer (PIT) in SystemVerilog and add it to the hardware system. 
 
-This will be your first opportunity to add new hardware capability to your system. As such, we will start out with a programmable timer, one of the simpler things that you can design and implement.
+The PIT will be an AXI peripheral, allowing the CPU to control the PIT's behavior through memory-mapped registers.  The PIT logic itself is very simple, and you will likely have made more complex designs in a previous class.  The challenging part of this lab is getting the AXI interface correct, which has strict protocol requirements.
 
+You will work with two different Vivado projects in this lab.  The first project will only contain your PIT module and some helper IP to generate AXI traffic.  This project, which is the focus of Milestone 1, will only be used for simulation, as well as checking for synthesis errors.  Next in Milestone 2, you will integrate your PIT into the ECEN 427 Vivado project, which contains the actual hardware system you have been working with in previous labs.  This project will be used to generate a new bitstream that includes your PIT.
 
 ## Specifications 
 
@@ -37,11 +38,20 @@ Your PIT module must include the following:
 ## Implementation
 ### Milestone 1: Simulation Project
 
-To grade your lab, the TAs will run [make sim_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L25).  This make target runs Vivado and does two things:
-  1. It sources `sim_proj.tcl`.  
+To grade your lab, the TAs will run the following:
+  ```
+  cd hw
+  make sim_pit
+  make clean
+  make synth_pit
+  ```
+
+1. `make sim_pit` runs Vivado and does two things:
+    
+    1. It sources `sim_proj.tcl`.  
       * To create this file, you will need to make your own Vivado simulation project that contains the AXI VIP and your module, connected appropriately.  The Tcl script can then be exported using the *Write Tcl* menu option, as as described on the [vivado]({% link _documentation/vivado.md %}) page.  
       * When this script is run, it should create a Vivado project with a block diagram that uses the AXI VIP to test your module. 
-  2. It sources [run_time.tcl](https://github.com/byu-cpe/ecen427_student/blob/master/hw/run_sim.tcl), which simply runs functional simulation in Vivado.  This means that the Vivado project must be set up with a SystemVerilog test bench that runs the VIP-driven simulation.    
+    1. It sources [run_time.tcl](https://github.com/byu-cpe/ecen427_student/blob/master/hw/run_sim.tcl), which simply runs functional simulation in Vivado.  This means that the Vivado project must be set up with a SystemVerilog test bench that runs the VIP-driven simulation.    
       * The test bench must:
         * Demonstrate writing and reading back the control registers.  When you read back the control register, print it out using `$display`. 
         * Demonstrate writing and reading back the delay-value register.  When you read back the delay-value register, print it out using `$display`. 
@@ -49,6 +59,9 @@ To grade your lab, the TAs will run [make sim_pit](https://github.com/byu-cpe/ec
         * Demonstrate that the *enable* and *interrupt enable* bits of the control register work properly.
       * You should have a pre-configured waveform file (.wcfg) set up that has appropriate signals added and organized in a way that the TAs can verify correct operation.  Here is an example:      
       <img src="{% link media/labs/pit_sim.png %}" width="1000">
+
+
+
 
 ### Milestone 2: Integration
 
