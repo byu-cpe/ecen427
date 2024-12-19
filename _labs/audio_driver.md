@@ -161,17 +161,24 @@ In this milestone you will add an *ioctl* interface to your driver to allow user
   * Extend your kernel driver to add *ioctl* to the list of file operations supported by your character device.  You should support two ioctl commands:
     - Turn on looping for the current audio clip.
     - Turn off looping for the current audio clip.  
+  
   * Integrate sound into Space Invaders by generating the following sounds during game operation:
     * WAVE files are provided [here](https://github.com/byu-cpe/ecen427_student/tree/master/resources/wavFiles).
-    * the "marching" sound the aliens make as they move back and forth across the screen is comprised of four separate walk1, walk2, walk3, and walk4 sounds.  You start with walk1 the first time an alien moves and then play the next sound in the sequence on each successive move, cycling back to wave1.
-    * the sound that the red flying saucer makes as it flies across the screen (use your looping functionality for this)
-    * the explosion noise that occurs when your tank is hit by an alien bullet,
-    * the explosion noise that occurs when an alien is hit by a tank bullet,
-    * the "ping" sound that the tank makes when you fire a bullet, and
+    * The "marching" sound the aliens make as they move back and forth across the screen is comprised of four separate walk1, walk2, walk3, and walk4 sounds.  You start with walk1 the first time an alien moves and then play the next sound in the sequence on each successive move, cycling back to wave1.  You will need to have a pause between each sound.
+    * The sound that the red flying saucer makes as it flies across the screen (use your looping functionality for this)
+    * The sound that occurs when your tank is hit by an alien bullet.
+    * The sound that occurs when an alien is hit by a tank bullet.
+    * The sound that occurs when you fire a bullet.
     * the sound the flying saucer makes if you hit it with a bullet.
-  * Implement volume control in the following manner:
-    * To increase volume, slide sw0 up, press btn3.  Each press increases the volume a preset amount, such as 10%.
-    * To decrease volume, slide sw0 down, press btn3.  Each press decreases the volume a preset amount, such as 10%.
+  
+  <!-- * Implement volume control in the following manner: -->
+    <!-- * To increase volume, slide sw0 up, press btn3.  Each press increases the volume a preset amount, such as 10%. -->
+    <!-- * To decrease volume, slide sw0 down, press btn3.  Each press decreases the volume a preset amount, such as 10%. --> 
+
+  * Sound Priority:
+    * The UFO sound has the highest priority.  When it is present, no other sound should be played.
+    * The walking sounds have the lowest priority.  They should be played only if no other sound is currently playing.
+    * The other sounds have medium priority.  When played, they should interrupt any other sound that is currently playing, except for the UFO sound.
 
 ### Passing Off 
 Your Space Invaders game should be operating with all of the sound effects.  As a reminder, the coding standard requires that your code compile without warnings.  The TAs will verify this at pass off (both kernel and user code).
