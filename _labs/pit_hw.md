@@ -7,6 +7,14 @@ number: 6
 
 ---
 
+In this lab you will create a Programmable Interval Timer (PIT) in SystemVerilog that is accessible through the CPU's memory-mapped AXI bus.
+
+## Objectives
+* Gain experience with IP-based harware design.
+* Learn about, and implement, the AXI protocol.
+* Practice writing timing-sensitive HDL code.
+
+## Prelminary
 In the real-time clock lab, you used a fixed-interval timer (FIT) from the IP catalog. As you may recall, the FIT generates interrupts at a fixed rate, based upon a single build parameter that cannot be changed once you have built the FPGA hardware. This makes the FIT very easy to use once your system is built, but the FIT is very inflexible. For this lab you are going to build a Programmable Interval Timer (PIT) in SystemVerilog and add it to the hardware system. 
 
 The PIT will be an AXI peripheral, allowing the CPU to control the PIT's behavior through memory-mapped registers.  The PIT logic itself is very simple, and you will likely have made more complex designs in a previous class.  The challenging part of this lab is getting the AXI interface correct, which has strict protocol requirements.

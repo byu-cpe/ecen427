@@ -7,9 +7,12 @@ number: 4
 under_construction: false
 
 ---
+In this lab you will write  the software that implements all functionality (except sound) for Space Invaders.
 
 ## Objective
-Write the software that implements all functionality (except sound) for Space Invaders. Your game should closely mirror the game shown in the video below.
+* Gain experience interacting with a Linux driver (HDMI driver) from user space.
+* Practice writing C++ application code.
+* Practice with software [concurrency](https://stackoverflow.com/questions/1050222/what-is-the-difference-between-concurrency-and-parallelism).
 
 ## Team Git Repository 
 

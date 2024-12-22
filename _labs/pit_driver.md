@@ -8,12 +8,13 @@ under_construction: false
 
 ---
 
-In this lab you will create a Linux kernel driver for your programmable interval timer (PIT) hardware.  This lab will give you experience with:
-  * Modifying the linux device tree
-  * Writing another kernel driver
-  * Adding a sysfs interface to a kernel driver
+In this lab you will create a Linux kernel driver for your programmable interval timer (PIT) hardware. 
 
+## Objectives
+ * Learn about, and use, the Linux sysfs interface.
+ * Write a kernel driver for your own custom hardware.
 
+## Preliminary
 Like device files that you used for your audio driver, sysfs is another method for allowing userspace to communicate with your device driver.  Sysfs is a virtual filesystem, located at */sys*.  Your driver will create a set of attributes, that are represented as files in this virtual filesystem.  Userspace can read and write ASCII text to these files to read/write attributes in your driver.   This interface to your device is nice for users, as they can interact with your device by simply using `cat` and `echo` through the terminal, without needing to write and compile a program.
 
 ## Specification 
