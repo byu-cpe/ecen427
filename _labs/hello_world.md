@@ -7,8 +7,11 @@ number: 1
 # repo: lab_graphs
 ---
 
+In this lab you will set up your PYNQ board and run a simple program on it.  
+
 ## Objectives
-In this lab you will learn how to use Linux, how to access the PYNQ board, and how to build programs on the PYNQ board.
+* Set up your PYNQ board image
+* Learn how to build and run programs on the PYNQ board.
 
 ## Overview 
 To fully pass off this lab, you will need to perform all of the required setup activities listed below, including tutorials on Linux and Git.  Once you have done these you can complete the Lab 1 quiz in learning suite.

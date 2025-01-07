@@ -7,10 +7,19 @@ number: 6
 
 ---
 
+In this lab you will create a Programmable Interval Timer (PIT) in SystemVerilog that is accessible through the CPU's memory-mapped AXI bus.
+
+## Objectives
+* Gain experience with IP-based harware design.
+* Learn about, and implement, the AXI protocol.
+* Practice writing timing-sensitive HDL code.
+
+## Prelminary
 In the real-time clock lab, you used a fixed-interval timer (FIT) from the IP catalog. As you may recall, the FIT generates interrupts at a fixed rate, based upon a single build parameter that cannot be changed once you have built the FPGA hardware. This makes the FIT very easy to use once your system is built, but the FIT is very inflexible. For this lab you are going to build a Programmable Interval Timer (PIT) in SystemVerilog and add it to the hardware system. 
 
-This will be your first opportunity to add new hardware capability to your system. As such, we will start out with a programmable timer, one of the simpler things that you can design and implement.
+The PIT will be an AXI peripheral, allowing the CPU to control the PIT's behavior through memory-mapped registers.  The PIT logic itself is very simple, and you will likely have made more complex designs in a previous class.  The challenging part of this lab is getting the AXI interface correct, which has strict protocol requirements.
 
+You will work with two different Vivado projects in this lab.  The first project will only contain your PIT module and some helper IP to generate AXI traffic.  This project, which is the focus of Milestone 1, will only be used for simulation, as well as checking for synthesis errors.  Next in Milestone 2, you will integrate your PIT into the ECEN 427 Vivado project, which contains the actual hardware system you have been working with in previous labs.  This project will be used to generate a new bitstream that includes your PIT.
 
 ## Specifications 
 
@@ -37,11 +46,21 @@ Your PIT module must include the following:
 ## Implementation
 ### Milestone 1: Simulation Project
 
-To grade your lab, the TAs will run [make sim_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L25).  This make target runs Vivado and does two things:
-  1. It sources `sim_proj.tcl`.  
+To grade your lab, the TAs will run the following:
+  ```
+  cd hw
+  make sim_pit
+  make clean
+  make synth_pit
+  ```
+
+The [make sim_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L25-L26) target runs Vivado and does two things:
+    
+  1. It sources *sim_proj.tcl*, which builds your Vivado project (you don't commit your Vivado project to your repo, only this Tcl file).
       * To create this file, you will need to make your own Vivado simulation project that contains the AXI VIP and your module, connected appropriately.  The Tcl script can then be exported using the *Write Tcl* menu option, as as described on the [vivado]({% link _documentation/vivado.md %}) page.  
       * When this script is run, it should create a Vivado project with a block diagram that uses the AXI VIP to test your module. 
-  2. It sources [run_time.tcl](https://github.com/byu-cpe/ecen427_student/blob/master/hw/run_sim.tcl), which simply runs functional simulation in Vivado.  This means that the Vivado project must be set up with a SystemVerilog test bench that runs the VIP-driven simulation.    
+    
+  1. It sources [run_sim.tcl](https://github.com/byu-cpe/ecen427_student/blob/master/hw/run_sim.tcl), which simply runs functional simulation in Vivado.  This means that the Vivado project must be set up with a SystemVerilog test bench that runs the VIP-driven simulation.    
       * The test bench must:
         * Demonstrate writing and reading back the control registers.  When you read back the control register, print it out using `$display`. 
         * Demonstrate writing and reading back the delay-value register.  When you read back the delay-value register, print it out using `$display`. 
@@ -50,9 +69,20 @@ To grade your lab, the TAs will run [make sim_pit](https://github.com/byu-cpe/ec
       * You should have a pre-configured waveform file (.wcfg) set up that has appropriate signals added and organized in a way that the TAs can verify correct operation.  Here is an example:      
       <img src="{% link media/labs/pit_sim.png %}" width="1000">
 
+The [make clean](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L7-L8) target removes all the temporary Vivado project files.  You will need to update this command to delete your simulation project files, otherwise it will prevent you from recreating the project in the next step.
+
+The [make synth_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L28-29) target runs Vivado and does two things:
+
+  1. Like the above target, it sources *sim_proj.tcl* to create your Vivado project. 
+  1. It performs Synthesis to ensure that your PIT design can be implemented in hardware. Synthesis will check certain design rules that simulation does not check. 
+  
+You may want to go back and forth between these two targets as you work on your PIT design.  If synthesis has errors, you will need to fix them and then go back to simulation again to verify that your changes didn't break anything.  Once both of these targets run without errors, you are ready to move on to Milestone 2.
+
+<span style="color:red">**IMPORTANT:**</span> Students frequently forget to commit all necessary files for the TAs to run the above commands.  Make sure you commit your *sim_proj.tcl* file, your waveform configuration file, and any other necessary files to your repository.  It is recommended that your perform a fresh clone of your repository and run the above commands to make sure that everything is committed that needs to be.  
+
 ### Milestone 2: Integration
 
-Once you are confident that your PIT is working correctly, integrate it into the ECEN 427 Vivado project.  See the [Vivado documentation]({% link _documentation/vivado.md %}) for information about creating a Vivado project with the existing ECEN 427 hardware system.  **Make sure you follow the instructions about escalating certain warnings to errors.  This will help you catch problems with your PIT that may have been tolerated in simulation, but will not work when compiling to an actual hardware implementation.**
+Once you are confident that your PIT is working correctly, integrate it into the ECEN 427 Vivado project.  See the [Vivado documentation]({% link _documentation/vivado.md %}) for information about creating a Vivado project with the existing ECEN 427 hardware system.  
 
 Here are some tips to help you integrate your PIT:
   * Make sure you connect up all of the ports
