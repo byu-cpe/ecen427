@@ -10,8 +10,10 @@ under_construction: false
 
 In this lab, you will add a new dimension to Space Invaders: sound! The PYNQ board contains a codec chip that can play sounds under software control. With this chip, and a little effort, you will be able to hear those aliens marching back and forth; hear the strange sounds of the alien space ship as it appears and tries to get away, and hear the explosion when those evil aliens blast your tank.
 
-This lab will provide your first experience writing kernel code.  You will write a kernel device driver for the audio module that transmits data to the codec chip.
-
+## Objectives
+* Learn how to write a kernel driver for a hardware device.
+* Experience interacting with a large, complex software system (the Linux kernel).
+* Experience interacting with a FIFO-based hardware device, requiring interrupt-driven code.
 
 ## Preliminary 
 

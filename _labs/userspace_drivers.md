@@ -7,9 +7,13 @@ number: 2
 under_construction: false
 ---
 
+In this lab you will create user space drivers for the buttons, switches, and interrupt controller on the hardware system. 
+
 ## Objectives 
-For this lab you will implement multiple user space drivers, including drivers for the Xilinx GPIO and interrupt controller IP cores.  You will then test these drivers using a few simple test applications that have been provided to you.
- 
+* Implement user space drivers for an embeddeded Linux system.
+* Learn how to use the Linux UIO driver to access hardware from user space.
+* Learn how to control GPIO and Interrupt Controller IP cores with registers.
+   
 ## Preliminary 
 
 ### Software Stack 

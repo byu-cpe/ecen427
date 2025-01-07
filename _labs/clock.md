@@ -7,10 +7,12 @@ number: 3
 under_construction: false
 ---
 
+In this lab will implement a simple real-time clock application, that will print the current time, using **printf()**, in a terminal window that is connected to the PYNQ system. 
+
 ## Objectives 
-The objective of this lab is to create a user-space application that makes use of the GPIO and interrupt controller drivers you used in last lab.  
-You will implement a simple real-time clock application, that will print the current time, using **printf()**, in a terminal window that is connected to the PYNQ system. 
- 
+* Write an interrupt-driven user-space application.
+* Gain practice using your GPIO and interrupt controller drivers.
+
 ## Preliminary 
 
 ### Software Stack 
