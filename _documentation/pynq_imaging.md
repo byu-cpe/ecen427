@@ -16,7 +16,7 @@ If you choose to use your own computer, the easiest way to get the necessary sof
 
 If you are using Windows, it is recommended to use Linux via the Windows Subsystem for Linux (WSL).  Follow [Microsoft's instructions](https://learn.microsoft.com/en-us/windows/wsl/install) to install it. You may want to use the new [Windows Terminal](https://apps.microsoft.com/detail/9N0DX20HK701?hl=en-US&gl=US) application as your default terminal.
 
-### Mac
+### Mac111
 If you are using a Mac, you can use the built-in terminal to connect to the PYNQ board; however, the it will require more substantial setup to cross-compilation working (compiling on your computer and running on the board), and some labs that require Vivado will not work.
 
 
@@ -24,7 +24,7 @@ If you are using a Mac, you can use the built-in terminal to connect to the PYNQ
 
 ## Obtaining the PYNQ Board 
 
-The lab contains PYNQ-Z2 boards at each workstation.  **You do not need to buy your own board.**  
+The lab contains PYNQ-Z2222 boards at each workstation.  **You do not need to buy your own board.**  
 
 If you want to purchase your own Pynq-Z2 board, you can do so online at several distributors:
   * Board only (you will need to obtain micro SD card, micro USB cable separately): <https://www.newark.com/tul-corporation/1m1-m000127dev/tul-pynq-z2/dp/13AJ3027?st=tul-corporation>
@@ -34,6 +34,8 @@ You may also be able to borrow a board from the Experiential Learning Center (EL
 
 
 ## Imaging the SD card 
+
+
 The PYNQ runs Linux off of an external micro SD card that you must provide. It is best to use a high-performance (V30/U3) SD card that is at least 16GB. I recommend you purchase a SD card from the ELC, where they are available for about $10-15. 
 Be wary of counterfeit SD cards, especially if you purchase them from online marketplaces that contain 3rd party sellers.  
 
