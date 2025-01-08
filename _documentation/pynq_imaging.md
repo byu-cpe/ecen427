@@ -35,9 +35,12 @@ You may also be able to borrow a board from the Experiential Learning Center (EL
 
 ## Imaging the SD card 
 The PYNQ runs Linux off of an external micro SD card that you must provide. It is best to use a high-performance (V30/U3) SD card that is at least 16GB. I recommend you purchase a SD card from the ELC, where they are available for about $10-15. 
-Be wary of counterfeit SD cards, especially if you purchase them from online marketplaces that contain 3rd party sellers.  
+Be wary of counterfeit SD cards, especially if you purchase them from online marketplaces that contain 3rd party sellers.  There are SD card readers in a drawer at the back of the lab.  Please return them when you are done.
 
 The SD card must have a valid system image in order for Linux to run.  We have provided a working system image [here](https://byu.box.com/s/btgto9zrhluikq58qmrubld0b3rbh7xh) (alternate download link [here](https://drive.google.com/file/d/1-6xko67BkEfBbHU2tFpgBE976g7P54vs/view?usp=sharing)).  Unzip it after you download it.  The official PYNQ documentation has a guide to [writing the SD card image](https://pynq.readthedocs.io/en/latest/appendix/sdcard.html) that you should follow. Some notes:
 * In the lab you do not need to use *sudo* to run the *dd* command, so remove this from the command when you image the SD card.
-* You probably won't have space to unzip the .img file onto your home directory, so instead extract it to the `/tmp` folder on the computers.  This is a local folder that is cleared when you log out, so you don't have to worry about filling up the hard drive.
+* You probably won't have space to unzip the .img file onto your home directory, so instead extract it to the `/tmp` folder on the computers.  This is a local folder that is cleared when you log out, so you don't have to worry about filling up the hard drive. Example:
+
+      dd bs=4M if=/tmp/427_2025.img of=/dev/sda
+
 * If you are using your own Windows computer and run into issues using *Win32DiskImager*, another alternative is to use <http://etcher.io>.
