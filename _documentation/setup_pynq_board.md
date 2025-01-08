@@ -13,11 +13,12 @@ The first time you boot the PYNQ board, we will observe the boot process over th
 
 1. Make sure the PYNQ board is powered off. 
 1. Connect the PYNQ board to your computer using the micro USB cable.
+1. Power on the PYNQ board (if you do the next step quickly enough, you can see the boot process over the serial port).
 1. Open the serial port on the host computer:
   * Run `ls /dev/ttyUSB*` to see the serial devices connected to your computer.  Typically the UART from the PYNQ board will be named `/dev/ttyUSB1`.
   * Run `screen /dev/ttyUSB1 115200` to open the serial port.  
   * You can always close the serial port by typing `Ctrl-a, k` and then `y` to confirm.
-1. Power on the PYNQ board.  You should see the boot process in the terminal window.
+  * If the boot process is already complete, you may not see anything on the serial port after connecting, but just hit `Enter` a few times to see if you can get a terminal prompt.
 1. After the boot process is complete, you should automatically be logged in as the `byu` user.  The default password is `byu`.
 
 
