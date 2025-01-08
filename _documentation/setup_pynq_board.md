@@ -21,6 +21,8 @@ The first time you boot the PYNQ board, we will observe the boot process over th
   * If the boot process is already complete, you may not see anything on the serial port after connecting, but just hit `Enter` a few times to see if you can get a terminal prompt.
 1. After the boot process is complete, you should automatically be logged in as the `byu` user.  The default password is `byu`.
 
+If it doesn't seem like the PYNQ board is responding, try and figure out if it is booting the SD card correclty or not.  Check tha the DONE LED turns on and that the lights on the Ethernet port blink regularly.  If these things are not happening, it may be a problem with how the SD card is imaged.
+
 
 ## Powering Down the PYNQ Board
 **Important:** Once you have powered up your board, it should begin to boot Linux.  Keep in mind that once you have it powered, treat it like a regular computer running Linux, and <ins>don't unplug it or turn off the power switch until you have shut it down properly</ins>.  If you unplug it or turn off the power switch while it is running, you risk corrupting the SD card and you may have to re-image it.
