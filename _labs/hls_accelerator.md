@@ -22,7 +22,7 @@ Fortunately, we are going to make use of a modern digital design technology, *Hi
 ## Describing Functionality in C Code
 HLS tools allow you to design hardware using C/C++ code (with some limitations; for example, code that uses dynamic memory allocation or recursion isn't supported).  To use HLS, you must write your hardware behavior as a C/C++ function, and then run the HLS tools to convert this into a Verilog module.  The function arguments will become top-level interfaces to your hardware block.
 
-For this lab, you will implement the the `fill_bitmap_region` function, defined in [bitmap_accelerator.h](https://github.com/byu-cpe/ecen427_student/blob/master/hw/hls/bitmap_accelerator/bitmap_accelerator.h):
+For this lab, you will implement the the `fill_bitmap_region` function, defined in bitmap_accelerator.h:
 
 ```
 // Draw a rectangular region of pixels at (dest_x, dest_y), of size (width, height).
@@ -49,7 +49,7 @@ Some test code is provided to you in *bitmap_accelerator_test.c* to ensure that 
 ### Creating a Project
 Xilinx's high-level synthesis software is called *Vitis HLS*.  You can run this from the command-line using `vitis_hls` (after you have sourced the script to add the Xilinx tools to your PATH).  If you run it this way, you will be presented with a new project wizard, where you will provide your files, select a part, etc. (similar to how you have created projects in Vivado).
 
-Instead, we will create a new project using the provided [proj.tcl](https://github.com/byu-cpe/ecen427_student/blob/master/hw/hls/bitmap_accelerator/proj.tcl) script.  Look through this script.  It starts by creating a project named *vitis_hls_proj*. You will see that it adds your *bitmap_accelerator.c* file to the project (*add_files*), specifies which function will be synthesized to hardware (*set_top*), and adds the *bitmap_accelerator_test.c* file as a test bench code (*add_files -tb*).  It also selects an FPGA part, and a target clock frequency.
+Instead, we will create a new project using the provided proj.tcl script.  Look through this script.  It starts by creating a project named *vitis_hls_proj*. You will see that it adds your *bitmap_accelerator.c* file to the project (*add_files*), specifies which function will be synthesized to hardware (*set_top*), and adds the *bitmap_accelerator_test.c* file as a test bench code (*add_files -tb*).  It also selects an FPGA part, and a target clock frequency.
 
 To create your project run:
 

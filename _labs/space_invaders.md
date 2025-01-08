@@ -7,16 +7,19 @@ number: 4
 under_construction: false
 
 ---
+In this lab you will write  the software that implements all functionality (except sound) for Space Invaders.
 
 ## Objective
-Write the software that implements all functionality (except sound) for Space Invaders. Your game should closely mirror the game shown in the video below.
+* Gain experience interacting with a Linux driver (HDMI driver) from user space.
+* Practice writing C++ application code.
+* Practice with software [concurrency](https://stackoverflow.com/questions/1050222/what-is-the-difference-between-concurrency-and-parallelism).
 
 ## Team Git Repository 
 
 This is the only lab where you will be permitted to work in a team.  Your team will be three students.  The teams are pre-set and are listed on Learning Suite.  If two teams mutually agree, you may swap team members.  Do this before proceeding with the next step.
 
 
-You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.  Once you have your team arranged, follow this link to create a new shared Github repository for lab 3: <>
+You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.  Once you have your team arranged, follow this link to create a new shared Github repository for lab 3: <https://classroom.github.com/a/-I_LndoM>
   * The first team member to sign up should create a new team name.
   * The other team members can join the team created by the first team member.
   * Once you have a team repository created, **each member of the team** needs to complete the Learning Suite quiz to indicate their team repository URL.

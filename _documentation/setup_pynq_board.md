@@ -38,12 +38,12 @@ Use a command line editor (vim, nano, etc.) to edit the `/etc/netplan/01-netcfg.
 
     sudo nano /etc/netplan/01-netcfg.yaml
 
-The version of the PYNQ image we are using has a corrupted MAC address, so we will use netplan to override the MAC address.  Each student is assigned a unique MAC address.  <span style="color:red">**It is important that you carefully update the MAC address to the one assigned to you.  Do not skip this step, or update the value incorrectly, or you will have connectivity issues with your board, and may impact other students in the lab as well.** </span>
+The version of the PYNQ image we are using has a corrupted MAC address, so we will use netplan to override the MAC address.  Each student is assigned a unique MAC address.  Please check on the *Content* section of LearningSuite for your personal MAC address. <span style="color:red">**It is important that you carefully update the MAC address to the one assigned to you.  Do not skip this step, or update the value incorrectly, or you will have connectivity issues with your board, and may impact other students in the lab as well.** </span>
 
-1. Find the line that starts with `macaddress:` and update the value to the MAC address assigned to you.  The line should look like this:
+1. Find the line that starts with `macaddress:` and update the value to the MAC address assigned to you. Update the line that looks like this:
 
     ```yaml
-    macaddress: 42:59:55:01:23:45
+    macaddress: 42:59:55:00:00:00
     ```
 
 1. Enable dhcp by changing the `dhcp4` line to `true`:
@@ -64,7 +64,7 @@ The version of the PYNQ image we are using has a corrupted MAC address, so we wi
     sudo reboot
     ```
 
-1. After reboot, make sure you board receives the correct IP address by running:
+1. After reboot, make sure you board receives the correct IP address by running.  The IP should be listed next to the MAC address in LearningSuite.
 
     ```bash
     ip a

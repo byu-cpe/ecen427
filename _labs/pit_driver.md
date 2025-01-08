@@ -8,17 +8,18 @@ under_construction: false
 
 ---
 
-In this lab you will create a Linux kernel driver for your programmable interval timer (PIT) hardware.  This lab will give you experience with:
-  * Modifying the linux device tree
-  * Writing another kernel driver
-  * Adding a sysfs interface to a kernel driver
+In this lab you will create a Linux kernel driver for your programmable interval timer (PIT) hardware. 
 
+## Objectives
+ * Learn about, and use, the Linux sysfs interface.
+ * Write a kernel driver for your own custom hardware.
 
+## Preliminary
 Like device files that you used for your audio driver, sysfs is another method for allowing userspace to communicate with your device driver.  Sysfs is a virtual filesystem, located at */sys*.  Your driver will create a set of attributes, that are represented as files in this virtual filesystem.  Userspace can read and write ASCII text to these files to read/write attributes in your driver.   This interface to your device is nice for users, as they can interact with your device by simply using `cat` and `echo` through the terminal, without needing to write and compile a program.
 
 ## Specification 
 
-The interface to your driver should be located at */sys/devices/soc0/amba/\<your baseaddr\>.ecen427_pit/*. This means the entry you add in the device tree should be called *ecen427_pit*.
+The interface to your driver should be located at */sys/devices/soc0/axi/\<your baseaddr\>.ecen427_pit/*. This means the entry you add in the device tree should be called *ecen427_pit*.
 
 Your driver must expose the following functionality through the sysfs interface:
   * Get/set timer period
@@ -59,16 +60,25 @@ Your driver must expose the following functionality through the sysfs interface:
   * Extend your driver to support the sysfs interfaces described above.
   * To add sysfs attributes, you need a `struct kobject *` type.  You can obtain this from your `probe` function.  The probe function provide a `struct platform_device *pdev` argument, and you can obtain the `struct kobject *` by doing `&pdev->dev.kobj`.
 
+### Verifying with Int Rate
+You can verify that your PIT is working correctly by testing it with the [int_rate](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/int_rate) application.  Modify [this line](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/int_rate/int_rate.cpp#L12) in the source code to use the PIT interrupt line instead of the FIT interrupt line.  
+
+While this application is running, you can run a command like this to change the period of your PIT on the fly:
+```
+sudo bash -c "echo 10000 > /sys/devices/soc0/axi/\<your baseaddr\>.ecen427_pit/period"
+```
+
+The above command should increase the tick rate from a period of 16.67ms to 10ms.  
+
 ### Space Invaders 
-  * Modify your space invaders game code to use the interrupt from the PIT.
-
-
+Modify your space invaders game code to use the interrupt from the PIT.
+  
 
 ## Pass-Off/Submission
 The TAs will check that your PIT works correctly by running your space invaders game, and while the game is executing, doing something like the following to see that your game speed changes on the fly.
 
 ```
-sudo bash -c "echo 20000 > /sys/devices/soc0/amba/\<your baseaddr\>.ecen427_pit/period"
+sudo bash -c "echo 33334 > /sys/devices/soc0/axi/\<your baseaddr\>.ecen427_pit/period"
 ```
 
 The above command should cause your game to run at half speed.  
