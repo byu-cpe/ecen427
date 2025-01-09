@@ -7,42 +7,24 @@ indent: 1
 number: 3
 ---
 
+## Booting the PYNQ Board
+
+The first time you boot the PYNQ board, we will observe the boot process over the serial port.  This can be useful for debugging, and interacting with the system before the network is set up.
+
+1. Make sure the PYNQ board is powered off. 
+1. Connect the PYNQ board to your computer using the micro USB cable.
+1. Power on the PYNQ board (if you do the next step quickly enough, you can see the boot process over the serial port).
+1. Open the serial port on the host computer:
+  * Run `ls /dev/ttyUSB*` to see the serial devices connected to your computer.  Typically the UART from the PYNQ board will be named `/dev/ttyUSB1`.
+  * Run `screen /dev/ttyUSB1 115200` to open the serial port.  
+  * You can always close the serial port by typing `Ctrl-a, k` and then `y` to confirm.
+  * If the boot process is already complete, you may not see anything on the serial port after connecting, but just hit `Enter` a few times to see if you can get a terminal prompt.
+1. After the boot process is complete, you should automatically be logged in as the `byu` user.  The default password is `byu`.
+
+If it doesn't seem like the PYNQ board is responding, try and figure out if it is booting the SD card correclty or not.  Check tha the DONE LED turns on and that the lights on the Ethernet port blink regularly.  If these things are not happening, it may be a problem with how the SD card is imaged.
 
 
-
-## Obtaining the PYNQ Board 
-
-The lab contains PYNQ-Z2 boards at each workstation.  **You do not need to buy your own board.**  
-
-<!-- <span style="color:red">**You can skip this step if you only plan to work in the lab and not work remotely**.
-</span> -->
-
-If you want to purchase your own Pynq-Z2 board, you can do so online at several distributors:
-  * Board only (you will need to obtain micro SD card, micro USB cable separately): <https://www.newark.com/tul-corporation/1m1-m000127dev/tul-pynq-z2/dp/13AJ3027?st=tul-corporation>
-  * Kit: <https://www.newark.com/tul-corporation/1m1-m000127dvb/tul-pynq-z2-basic-kit-rohs-compliant/dp/69AC1754?st=tul-corporation>
-
-<!-- 
-Each student will need to obtain their own PYNQ board. If you are on campus you can pickup one in person from the EE shop. If you are not in Provo this semester, you can have a PYNQ board shipped to you by following the procedure below. Students who obtain their board at the shop window will need to provide a refundable deposit of $125.00 via Cougar Cash. If BYU is shipping the board to you, you will need to add $8.00 for shipping. The $125 deposit will be returned to you once you have returned a working board to the shop. Note that the shop is supposed to supply you with a micro-USB cable. Please ask for the cable if they forget to provide one. -->
-
-
-<!-- 
-==== Arranging Shipping for a PYNQ Board ====
-
-  - Make sure there is at least $133.00 Cougar Cash on your account.
-  - Send an email to the department secretaries (ecen_secretaries@byu.edu) with your net-id and your shipping address. Your net-id authorizes the secretaries to charge $133.00 to your account ($125 is refundable).
-  - Students are responsible for return shipping.
-  - $125 will be returned once the board has been received in good working condition. -->
-
-## Imaging the SD card 
-The PYNQ runs Linux off of an external micro SD card that you must provide.  The SD card must have a valid system image in order for Linux to run.  We have provided a working system image [here](https://byu.box.com/s/5o669wg1lh4dlh0asb07ucl32ppesdvp) (unzip it after you download it), but you must image this to your own SD card.  The micro SD card must be at least 16GB and class 10 or better. The official PYNQ documentation has a guide to [writing the SD card image](https://pynq.readthedocs.io/en/latest/appendix/sdcard.html) that you should follow. Some notes:
-* In the lab you do not need to use *sudo* to run the *dd* command, so remove this from the command when you image the SD card.
-* You probably won't have space to unzip the .img file onto your home directory, so instead extract it to the `/tmp` folder on the computers.  This is a local folder that is cleared when you log out, so you don't have to worry about filling up the hard drive.
-* If you are using your own Windows computer and run into issues using *Win32DiskImager*, another alternative is to use <http://etcher.io>.
-
-## Powering Up the PYNQ Board
-To power the PYNQ board, you will need to connect the micro USB cable, insert the micro USB cable, and turn on the power switch.  
-
-### Powering Down the PYNQ Board
+## Powering Down the PYNQ Board
 **Important:** Once you have powered up your board, it should begin to boot Linux.  Keep in mind that once you have it powered, treat it like a regular computer running Linux, and <ins>don't unplug it or turn off the power switch until you have shut it down properly</ins>.  If you unplug it or turn off the power switch while it is running, you risk corrupting the SD card and you may have to re-image it.
 
 Once you have connected to the board using the methods described below, you can shut down the board by typing 
@@ -51,93 +33,71 @@ Once you have connected to the board using the methods described below, you can 
 
 in the terminal.  Wait 10 seconds before shutting of the power switch.
 
-### Verifying BOOT using HDMI
-The PYNQ video signal comes from the HDMI port labeled *HDMI Out* located on the topside of the board. This should already be connected to a dedicated monitor in the lab.  If you work remotely, you will need to find an HDMI-compatible display to use.  
-
-<!-- As we are not using a lab room this year, you must provide your own display and HDMI cable (nothing fancy). We have tested the PYNQ board and found that it works correctly with just about any computer monitor and most TVs (though not all).  -->
-
-You can verify that your PYNQ board is imaged correctly, and connected to the display correctly by powering it on, and after it has booted (about 1 min), you should see something like this on your display:
-
-<img src = "{% link media/setup/pynqdisplaytestimage.jpg %}" width="400">
 
 ## Connect the PYNQ to Your Network
 
-<span style="color:red">**You can skip the rest of this page if only plan to work in the lab and not work remotely**.
-</span>
+Use a command line editor (vim, nano, etc.) to edit the `/etc/netplan/01-netcfg.yaml` file:
 
-You will need to connect your PYNQ to a network with internet access.  The PYNQ board does not have WiFi, so you will need a physical Ethernet connection.  This can be done three ways:
-  - Connect the PYNQ directly to your home router or switch (this is how it is setup in the lab).
-  - Connect the PYNQ directly to the Ethernet port on your computer.  This can be done if you aren't using the Ethernet port for your computer's internet connection, ie. you are using WiFi or have an extra ethernet port.
-  - If you don't have an extra Ethernet port on your computer, you can buy a USB-to-Ethernet adapter such as the one [here](https://www.amazon.com/Cable-Matters-Ethernet-Adapter-Supporting/dp/B00BBD7NFU/ref=sr_1_5?crid=2VLSDOH1QTN7Q&dchild=1&keywords=usb+to+ethernet+adapter&qid=1594321211&sprefix=usb+to+eth%2Caps%2C188&sr=8-5).  Make sure to buy one that is compatible with your computer.
+    sudo nano /etc/netplan/01-netcfg.yaml
 
-### Internet Sharing
+The version of the PYNQ image we are using has a corrupted MAC address, so we will use netplan to override the MAC address.  Each student is assigned a unique MAC address.  Please check on the *Content* section of LearningSuite for your personal MAC address. <span style="color:red">**It is important that you carefully update the MAC address to the one assigned to you.  Do not skip this step, or update the value incorrectly, or you will have connectivity issues with your board, and may impact other students in the lab as well.** </span>
 
-If you used Option #1 above and connected the PYNQ directly to your home network, you can skip this section.  Otherwise, if you connected the PYNQ to your computer, follow the steps in this section to share your internet connection with the PYNQ board.
+1. Find the line that starts with `macaddress:` and update the value to the MAC address assigned to you. Update the line that looks like this:
 
-#### Windows
+    ```yaml
+    macaddress: 42:59:55:00:00:00
+    ```
 
-  * Open Windows Settings (Windows Key + I) and go to *Network & Internet*.
-  * Expand the connection you want to share (Ethernet or WiFi), locate the *More adapter options* item and click *Edit*.
-  * In the adapter pop-up window, click the *Sharing* tab.  Check the box for *Allow other network users to connect through this computer's Internet connection*.
+1. Enable dhcp by changing the `dhcp4` line to `true`:
 
-#### Mac
+    ```yaml
+    dhcp4: true
+    ```
 
-<https://support.apple.com/en-ca/guide/mac-help/mchlp1540/mac>
+1. Run the following command to apply the changes:
 
-#### Ubuntu Linux
-  * For those with the Unity launcher, <https://askubuntu.com/a/194526> should work
-  * For those with the Gnome desktop, <https://major.io/2015/03/29/share-a-wireless-connection-via-ethernet-in-gnome-3-14/> should work
+    ```bash
+    sudo netplan apply
+    ```
 
-### Find the PYNQ IP Address 
+1. Reboot the PYNQ board:
 
-Next you will need to determine what IP address your PYNQ board was given.  Make sure you insert the imaged SD card into your PYNQ board and power it on before proceeding.
+    ```bash
+    sudo reboot
+    ```
 
-If you use option 1 or 2 below, keep in mind that as you look for the PYNQ IP address, **the PYNQ boards tend to have MAC addresses that start with 00:05:6b:**.   
+1. After reboot, make sure you board receives the correct IP address by running.  The IP should be listed next to the MAC address in LearningSuite.
 
-**Option 1: Retrieve from router.** *You can only use this technique if you used option #1 above, and your PYNQ is connected directly to your home router or switch*
-
-Your PYNQ should be given an IP address on your home network.  This is likely something like 192.168.x.x and you may be able to find it using the DHCP list on your router's configuration webpage or app.
-
-
-**Option 2: Use ARP.** 
-
-ARP (Address Resolution Protocol) allows you to view IP addresses and MAC addresses of computers on your network.  
-
-In Windows, Linux, or Mac, you should be able to run `arp -a` in the terminal to view a list of IP/MAC pairs.  They are usually grouped by network device, so if you have the PYNQ connected to your computer via USB-to-Ethernet adapter, the PYNQ should be in it's own category. 
-
-**Option 3: Connect to the PYNQ board using UART**
-
-The [PYNQ Serial]({% link _documentation/serial.md %}) page describes how to get a command prompt on the PYNQ board using the USB connection.  From there you can run `ip a` to view the network adapters on the PYNQ board and their IP addresses.  The Ethernet adapter on the PYNQ is named `eth0`.
-
-
-
-
+    ```bash
+    ip a
+    ```
 
 ## SSH Communication 
-Once you have the PYNQ set up you can connect to it using SSH. 
+Once you have the PYNQ set up you can connect to it using SSH, which will be much faster and more full-featured than the serial connection.
 
-If you are working in the lab, you can access the PYNQ board in the lab using:
-
-    ssh byu@pynq03.ee.byu.edu
+```bash
+ssh byu@<your pynq name>.ee.byu.edu
+```
         
-where the "03" is replaced with the number of the PYNQ board you are using.  **The default password is `byu`.**  
-
-If working remotely, you will need to replace *pynq03.ee.byu.edu* with your PYNQ's IP address.
-
-
-
-
-
 ## SSH Keys
 
 > 📝 *Run this on your computer. If you are still SSh'd into the PYNQ board, type `exit` to get back to your computer.*
 
-Instead of having to authenticate with a password each time connecting to the PYNQ, you can set up an SSH key to do automatic authentication.  [This tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1804) explains how to set this up in a variety of ways.
+Instead of having to authenticate with a password each time connecting to the PYNQ, you should set up an SSH key to do automatic authentication:
 
-A few of notes __before__ following the tutorial:
-  * If your computer doesn't have `ssh-copy-id` installed, you will need to follow the instructions below that (the lab computers have it installed). 
-  * Although it is less secure, it is nicer if you do not specify a passphrase for the key; this will give you secure, passwordless access to the PYNQ.  Presumably the host computer is protected by password, which makes not having a passphrase less of an issue
-  * You probably don't want to follow Step 4 of the tutorial
+1. Generate an SSH key on your computer:
+
+    ```bash
+    ssh-keygen
+    ```
+
+    Just press enter for the default location and no passphrase.
+
+1. Enable passwordless SSH login to the PYNQ board:
+
+    ```bash
+    ssh-copy-id byu@<your pynq name>.ee.byu.edu
+    ```
 
 **Before proceeding, make sure you can ssh into your PYNQ board without being prompted for a password.**
 
@@ -148,3 +108,15 @@ A few of notes __before__ following the tutorial:
 You should change the password for the *byu* account in your PYNQ Linux system.  This is not just to prevent people from looking at your work, it also prevents another student from accidentally SSH'ing in your PYNQ board and modifying your files.
 
 To change the *byu* user password, SSH into your PYNQ board and run the `passwd` command.
+
+
+## Extend your Partition 
+
+You should extend the PYNQ filesystem to fill your entire SD card (by default the filesystem only provides a small amount of free space, and doesn't fill your SD card)
+
+Run these commands.  Please copy and paste them one at a time, and be careful in the process.  It's easy to mess up your entire SD card image:
+
+```
+sudo growpart /dev/mmcblk0 2
+sudo resize2fs /dev/mmcblk0p2
+``` 

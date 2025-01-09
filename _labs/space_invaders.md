@@ -4,22 +4,25 @@ toc: true
 title: "Lab 4: Space Invaders (No Sound)"
 short_title: Space Invaders
 number: 4
-under_construction: true
+under_construction: false
 
 ---
+In this lab you will write  the software that implements all functionality (except sound) for Space Invaders.
 
 ## Objective
-Write the software that implements all video functionality for Space Invaders. Your game should closely mirror the game shown in the video below.
+* Gain experience interacting with a Linux driver (HDMI driver) from user space.
+* Practice writing C++ application code.
+* Practice with software [concurrency](https://stackoverflow.com/questions/1050222/what-is-the-difference-between-concurrency-and-parallelism).
 
 ## Team Git Repository 
 
 This is the only lab where you will be permitted to work in a team.  Your team will be three students.  The teams are pre-set and are listed on Learning Suite.  If two teams mutually agree, you may swap team members.  Do this before proceeding with the next step.
 
 
-You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.  Once you have your team arranged, follow this link to create a new shared Github repository for lab 3: <https://classroom.github.com/a/cRunbQEp>
+You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.  Once you have your team arranged, follow this link to create a new shared Github repository for lab 3: <https://classroom.github.com/a/-I_LndoM>
   * The first team member to sign up should create a new team name.
   * The other team members can join the team created by the first team member.
-  * Once you have a team repository created, each member of the team needs to complete the Learning Suite quiz to indicate their team repository URL.
+  * Once you have a team repository created, **each member of the team** needs to complete the Learning Suite quiz to indicate their team repository URL.
 
 Once your empty lab 3 repository is created, you will need to import one of your team member's individual repository, into your shared repository. You can choose which member of team's code to use, but **all team members must have submitted lab3 before you share your code**.
 
@@ -34,18 +37,27 @@ You can do this in a similar manner to how you obtained the starter code:
 
 ## Implementation
 
-### Milestone 1
+### Milestone 1: Graphics
 
-<iframe width="500" height="350"
+<!-- <iframe width="500" height="350"
 src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200">
-</iframe>
+</iframe> -->
 
+In this milestone you will implement the functions in [Graphics.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/Graphics.h). Refer to the [HDMI]({% link _documentation/hdmi.md %}) page for documentation on how to interact with the HDMI driver.
 
-Complete the end scenario for space invaders. See the video above for details on how it should function (fast forward the video to 3:20). Note that the video says the high score screen can be in any pattern or configuration, meaning you can have as many rows or columns of scores as you like and the button API can be however you would like to implement it, as long as it matches the video's functionality. However, it is required that the high scores are presented in sorted order from highest score to lowest and that at least two text sizes are used. Refer to the [HDMI]({% link _documentation/hdmi.md %}) page for documentation on how to interact with the hdmi driver.
+Your graphics functions need to be efficient and execute quickly.  The best way to do this is to reduce the number of system calls you make to the HDMI driver.
 
-*Note:* To make it easier for the TAs to grade this, you should commit an existing high scores file into your repository.  Make sure not to use absolute file paths when opening the high-scores file, as the paths will likely be different on the TA's grading system.  You should also not rely on your space invaders executable being run from any particular directory.  Instead, access your high scores file  using a path relative to the space-invaders executable. [Stack overflow](https://stackoverflow.com/a/933996/609215) has a good explanation of how to do this with the `readlink` function.
-
-
+Several test functions are provided, and will be used to evaluate your graphics functions:
+1. The [graphics_test](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/graphics_test) program should be used first to verify correctness of your Graphics functions.  It should produce an image that looks like this:
+    <img src="{% link media/graphics_test.jpg %}" width="500">
+  
+    Pay attention to how your UFO (in red) and tank (in yellow) are drawn, as they test sprite drawing with no filled background color vs. filled background color, respectively.  
+1. The [graphics_syscall](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/graphics_syscalls) program.  This program draws a single large sprite.  It should be run like so to measure the number of system calls made:
+   ```
+   sudo strace --summary-only ./graphics_syscalls
+   ```
+   When this test program is run, the number of system calls should be less than 500. If you are making more than 500 system calls, you will need to better optimize your code.
+1. The [graphics_benchmarking](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/graphics_benchmarking) program.  This will measure the average runtime to perform the *drawSprite()* functions on a sprite of a set size.  The average reported runtime for the *drawSprite()* functions should be less than 3ms.
 
 ### Milestone 2 
 
@@ -55,19 +67,35 @@ src="https://www.youtube.com/embed/kGd4K0jBjis">
 
 Implement all of the game video except for bullets and collisions.  Tanks should move, aliens should march, etc.  Use the video above as a reference. Keep in mind that when an entire column of aliens is gone from the edge the remaining aliens keep marching to the edge of the screen, past where the would have stopped if the edge aliens were alive. This feature doesn't need to be functional for this milestone, but keep it in mind for the next milestone.
 
+The approach you take to the game timing should be tick-based, controlled by the FIT interrupt, similar to the clock lab.  You may find it helpful to use state machines as you learned in ECEn 330 and ECEn 390, although this is not required.  If you decide not to use state machines, your code must still work with the tick-based approach.
+
+You are provided with a [main.cpp](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/main.cpp) file.  This file already is set up to use the FIT timer to tick the game.  The game is designed to run at 60 ticks per second (or 60fps), although you shouldn't redraw everything every tick.  Instead, you should only redraw sprites as they move or change.  The provided code will report whether you are missing interrupts (which would cause the game to run slower than 60fps).  This occurs if the code in any given loop iteration exceeds 16.67ms.  You will see 1 missed interrupt as the code starts up, but it should not increase after that.  
+
+You can optionally comment out [this line](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/main.cpp#L60), which will cause the game to run as fast as possible, not waiting for the FIT interrupt before ticking.  The loop will report the longest time spent in a tick, which can be useful for debugging performance issues if you are having trouble meeting the 60fps requirement. 
+
+**Controls**: To make grading easier, you should use these controls for the game:
+* BTN2: Move the tank left. Hold down to move continuously.
+* BTN1: Shoot a bullet. Only one bullet can be on the screen at a time. You can choose whether you can hold down to shoot a subsequent bullet or if you have to release and press again.
+* BTN0: Move the tank right. Hold down to move continuously.
+
 ### Milestone 3 
 <iframe width="500" height="350"
 src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200">
 </iframe>
-Implement all of the game video, including bullets and all game interactions.  When you have finished this milestone, you will have the entire game implemented minus sound.  Use the above video as a reference.  
-It is difficult to see, but the number of points added to the score for each saucer destroyed is a number between 50 and 300, in multiples of 50. Also, the points for the block aliens are 10, 20 and 40, starting from the type on the bottom row and going up to the type on the top row.
+Implement all of the game video, including bullets and all game interactions.  When you have finished this milestone, you will have the entire game implemented minus sound.  Use the above video as a reference.  It is difficult to see, but the number of points added to the score for each saucer destroyed is a number between 50 and 300, in multiples of 50. Also, the points for the block aliens are 10, 20 and 40, starting from the type on the bottom row and going up to the type on the top row.
 
-## Suggestions 
-<!-- Unlike previous courses, in this course you are given quite a bit of freedom regarding your implementation strategy.  However, you must work within these requirements:
-  - You must adhere to the coding standard.  
-    * Since header files are usually provided to you, students often forget about the coding standard rules regarding header files.  Be sure to review Rule 2.1.  
-    * You will find it easier to follow this rule if you only put items in your header files that *need to be used by other .c files*.  If a #define, struct, etc. is only used in one .c file, it should be placed at the top of that .c file, and NOT in a header file.  This is good C coding practice and you should make a habit of following it when designing your own software structure. -->
-  - You may find it helpful to use state machines as you learned in ECEn 330 and ECEn 390. Your game loop could consist primarily of calls to tick functions for your state machines. 
+**Note: You do not need to implement the high score screen.  Although this is shown in the video, it is not required for this lab this semester.**
+
+Student often ask whether they can change the game in some way.  The answer is yes, you can make changes, provided they are stylistic and do not reduce the complexity of the game.  For example, the following would be permitted:
+* Changing the colors of the aliens, bunkers, or ship.
+* Changing the shape of the aliens, bunkers, or ship.
+* Slight modifications to the speed of the game.
+
+The following would not be permitted:
+* Reducing the number of aliens, bunkers, or ships.
+* Eliminating the bunker erosion patterns.
+* Reducing the number of bullets that can be on the screen at once.
+
 
 ## Submission 
 Follow the submission instructions for each milestone on the [Submission]({% link _other/submission.md %}) page.
@@ -106,6 +134,4 @@ To save some time, we will give you the definitions of the aliens in their two g
 
 ### Bunker Erosion Patterns 
 
-The patterns for the bunker erosions are depicted in this pdf file. By studying this file and watching some of the provided game videos, you should be able to figure out how to code the bunker erosions. If you watch the game carefully, you will see that the bunkers are composed of blocks that go through predictable patterns as they are hit with bullets.  Take a look at the [sprites.c](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/space_invaders/resources/sprites.c) file for erosion patterns.
-
-The corners of the bunkers should erode such that no pixels get set that weren't set before they started to erode.  So, although the erosion patterns are square in shape, the corners of the bunkers should erode within their original pixel constraints.
+ Take a look at the [sprites.c](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/space_invaders/resources/sprites.c) file for erosion patterns. The corners of the bunkers should erode such that no pixels get set that weren't set before they started to erode.  So, although the erosion patterns are square in shape, the corners of the bunkers should erode within their original pixel constraints.

@@ -22,7 +22,7 @@ Fortunately, we are going to make use of a modern digital design technology, *Hi
 ## Describing Functionality in C Code
 HLS tools allow you to design hardware using C/C++ code (with some limitations; for example, code that uses dynamic memory allocation or recursion isn't supported).  To use HLS, you must write your hardware behavior as a C/C++ function, and then run the HLS tools to convert this into a Verilog module.  The function arguments will become top-level interfaces to your hardware block.
 
-For this lab, you will implement the the `fill_bitmap_region` function, defined in [bitmap_accelerator.h](https://github.com/byu-cpe/ecen427_student/blob/master/hw/hls/bitmap_accelerator/bitmap_accelerator.h):
+For this lab, you will implement the the `fill_bitmap_region` function, defined in bitmap_accelerator.h:
 
 ```
 // Draw a rectangular region of pixels at (dest_x, dest_y), of size (width, height).
@@ -49,7 +49,7 @@ Some test code is provided to you in *bitmap_accelerator_test.c* to ensure that 
 ### Creating a Project
 Xilinx's high-level synthesis software is called *Vitis HLS*.  You can run this from the command-line using `vitis_hls` (after you have sourced the script to add the Xilinx tools to your PATH).  If you run it this way, you will be presented with a new project wizard, where you will provide your files, select a part, etc. (similar to how you have created projects in Vivado).
 
-Instead, we will create a new project using the provided [proj.tcl](https://github.com/byu-cpe/ecen427_student/blob/master/hw/hls/bitmap_accelerator/proj.tcl) script.  Look through this script.  It starts by creating a project named *vitis_hls_proj*. You will see that it adds your *bitmap_accelerator.c* file to the project (*add_files*), specifies which function will be synthesized to hardware (*set_top*), and adds the *bitmap_accelerator_test.c* file as a test bench code (*add_files -tb*).  It also selects an FPGA part, and a target clock frequency.
+Instead, we will create a new project using the provided proj.tcl script.  Look through this script.  It starts by creating a project named *vitis_hls_proj*. You will see that it adds your *bitmap_accelerator.c* file to the project (*add_files*), specifies which function will be synthesized to hardware (*set_top*), and adds the *bitmap_accelerator_test.c* file as a test bench code (*add_files -tb*).  It also selects an FPGA part, and a target clock frequency.
 
 To create your project run:
 
@@ -184,7 +184,7 @@ Take a look at the *ip_repo/copy_bitmap_region/drivers/fill_bitmap_region_v1_0/s
 
 With this information you could write your own user space driver that accesses these registers via UIO (like you did in Lab 2).  However, there is no need to do so, since Vitis HLS automatically creates such a driver for you.  This driver is located in the various _xfill_bitmap_region*_ files.
 
-Copy these files to the [fill_bitmap_region](https://github.com/byu-cpe/ecen427_student/tree/master/userspace/drivers/fill_bitmap_region) driver folder.  This folder serves as a simple wrapper around the Xilinx-created driver.  You should create a *fill_bitmap_region.c* file, and implement the three functions listed in the [fill_bitmap_region.h](https://github.com/byu-cpe/ecen427_student/blob/master/hw/hls/bitmap_accelerator/bitmap_accelerator.h) file.
+Copy these files to the [fill_bitmap_region](https://github.com/byu-cpe/ecen427_student/tree/master/userspace/drivers/) driver folder.  This folder serves as a simple wrapper around the Xilinx-created driver.  You should create a *fill_bitmap_region.c* file, and implement the three functions listed in the [fill_bitmap_region.h](https://github.com/byu-cpe/ecen427_student/blob/master/hw/) file.
 
 These functions are quite simple, and just need to call the appropriate functions that are listed in *xfill_bitmap_region.h*:
   * To initialize the driver you will need to call *XCopy_bitmap_region_Initialize*.  The first argument is a pointer to a *XFill_bitmap_region* struct that will be initialized by this function. The second argument to this function is *InstanceName*, which is the name you chose for your accelerator in the Linux Device Tree.  Unlike the drivers you created in Lab 2 which used hard-coded */dev/* filenames, the Xilinx driver uses the device tree name to lookup the appropriate */dev/ file to use.
@@ -195,7 +195,7 @@ These functions are quite simple, and just need to call the appropriate function
     you will provide a pointer to the *XFill_bitmap_region* struct you initialized earlier, as well as the data to set.
 
 
-Once you implement these functions correctly, we have provided a [frame_buffer_test](https://github.com/byu-cpe/ecen427_student/tree/master/userspace/apps/frame_buffer_test) application to test that it's working.  This application draws a red, green and blue square in the top-left of the screen, then copies these three squares to the middle fo the screen.  It looks like this:
+Once you implement these functions correctly, we have provided a [frame_buffer_test](https://github.com/byu-cpe/ecen427_student/tree/master/userspace/apps/) application to test that it's working.  This application draws a red, green and blue square in the top-left of the screen, then copies these three squares to the middle fo the screen.  It looks like this:
 <img src="{% link media/labs/frame_buffer_test.jpg %}" width=600>
 
 This application is worth looking through as an example on how to use your accelerator.  One important thing to note: to use your accelerator, you need a pointer to the frame buffer.  As shown in this application, you can retrieve this by making an IOCTL call to the HDMI driver.  

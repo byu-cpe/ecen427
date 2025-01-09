@@ -7,8 +7,11 @@ number: 1
 # repo: lab_graphs
 ---
 
+In this lab you will set up your PYNQ board and run a simple program on it.  
+
 ## Objectives
-In this lab you will learn how to use Linux, how to access the PYNQ board, and how to build programs on the PYNQ board.
+* Set up your PYNQ board image
+* Learn how to build and run programs on the PYNQ board.
 
 ## Overview 
 To fully pass off this lab, you will need to perform all of the required setup activities listed below, including tutorials on Linux and Git.  Questions from this material will be on the first quiz.
@@ -24,11 +27,10 @@ This page describes how to set up your computer and PYNQ board for the labs in t
 
 If you run into issues, post on Teams.  <ins>**Do not skip any setup steps**</ins>.  For convenience, these setup steps are also shown in the sidebar.
 
-  * [Setup your home computer]({% link _documentation/setup_home_computer.md %}).  You can use a Windows, Linux or Mac computer.
-  * [Setup the PYNQ board]({% link _documentation/setup_pynq_board.md %})  
+  * [Image the PYNQ SD card]({% link _documentation/pynq_imaging.md %})
+  * [Setup the PYNQ board]({% link _documentation/setup_pynq_board.md %})
   - [Complete the Tutorials]({% link _documentation/tutorials.md %})  
-  - [Configure your PYNQ system]({% link _documentation/config_pynq_and_github.md %})  
-  - [Setup VSCode]({% link _documentation/vscode.md %})  
+  - [Setup Git/Github]({% link _documentation/setup_git.md %})  
   - [Compiling and Running Programs]({% link _documentation/compiling_running_code.md %})  
 
 
@@ -43,8 +45,8 @@ After you have completed these steps, do the following:
 
 Follow the instructions on the [Submission]({% link _other/submission.md %}) page.
 
-## Resources
-  * [Official PYNQ documentation](http://pynq.readthedocs.io/en/latest/getting_started.html)
+<!-- ## Resources
+  * [Official PYNQ documentation](http://pynq.readthedocs.io/en/latest/getting_started.html) -->
 
 <!-- 
 ## Study Questions
