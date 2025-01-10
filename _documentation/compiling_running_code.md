@@ -41,7 +41,7 @@ The provided CMakeLists.txt file contains a function, [deploy_to_board()](https:
 
 You don't need to do this for the first lab, as it is already done for you [here](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/helloworld/CMakeLists.txt#L2).
 
-<span style="color:red">**IMPORTANT:**</span> Before this function will work, you need to update [this line](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/CMakeLists.txt#L45) and replace `pynq` with the hostname or IP address of your PYNQ board. Also update the `myrepo` directory to match the path of your code repository on your PYNQ board.
+<span style="color:red">**IMPORTANT:**</span> Before this function will work, you need to update [this line](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/CMakeLists.txt#L46) and replace `pynq` with the hostname or IP address of your PYNQ board. Also update the `myrepo` directory to match the path of your code repository on your PYNQ board.
 
 ### Compiling Your Code 
 
