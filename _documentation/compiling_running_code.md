@@ -47,7 +47,7 @@ You don't need to do this for the first lab, as it is already done for you [here
 
 ### Compiling Your Code 
 
-To compile the Lab1 executable, you need to navigate to the build directory, and then run CMake and point it to the top-level CMakeLists.txt file, like so:
+To compile the Lab1 executable, on your lab computer, you need to navigate to the build directory, and then run CMake and point it to the top-level CMakeLists.txt file, like so:
 
     cd userspace/build
     cmake ..
