@@ -14,7 +14,7 @@ In this lab you will set up your PYNQ board and run a simple program on it.
 * Learn how to build and run programs on the PYNQ board.
 
 ## Overview 
-To fully pass off this lab, you will need to perform all of the required setup activities listed below, including tutorials on Linux and Git.  Once you have done these you can complete the Lab 1 quiz in learning suite.
+To fully pass off this lab, you will need to perform all of the required setup activities listed below, including tutorials on Linux and Git.  Questions from this material will be on the first quiz.
 
 The last setup step involves compiling and running a *Hello, World!* application on the PYNQ board.  You need modify this program as described below, and submit your code.
 

@@ -35,17 +35,19 @@ Note that the top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen427_stud
 
 ### Deploying Executables to the PYNQ Board
 
-The provided CMakeLists.txt file contains a function, [deploy_to_board()](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/CMakeLists.txt#L39), that will copy your executable to the PYNQ board after it is built.  To enable this, add the following line to your CMakeLists.txt file:
+The provided CMakeLists.txt file contains a function, [deploy_to_board()](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/CMakeLists.txt#L39), that will copy a specified executable to the PYNQ board after it is built.  To enable this for a particular executable, you would add a line like this to the CMakeLists.txt file for your executable:
 
     deploy_to_board(exe_name)
 
-There is an example [here](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/helloworld/CMakeLists.txt#L2).
+You don't need to do this for the first lab, as it is already done for you [here](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/helloworld/CMakeLists.txt#L2).
 
-<span style="color:red">**IMPORTANT:**</span> Before this function will work, you need to update [this line](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/CMakeLists.txt#L45) and replace `pynq` with the hostname or IP address of your PYNQ board. Also update the `myrepo` directory to match the path of your code repository on your PYNQ board.
+<span style="color:red">**IMPORTANT:**</span> Before this function will work, you need to update [this line](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/CMakeLists.txt#L46) and replace `pynq` with the hostname or IP address of your PYNQ board (A table is provided on Learningsuite). Also update the `myrepo` directory to match the path of your code repository on your PYNQ board. It might look something like this:
+
+    COMMAND scp $<TARGET_FILE:${target_name}> byu@pynq01.ee.byu.edu:~/ecen427/cross-compiled/
 
 ### Compiling Your Code 
 
-To compile the Lab1 executable, you need to navigate to the build directory, and then run CMake and point it to the top-level CMakeLists.txt file, like so:
+To compile the Lab1 executable, on your lab computer, you need to navigate to the build directory, and then run CMake and point it to the top-level CMakeLists.txt file, like so:
 
     cd userspace/build
     cmake ..
