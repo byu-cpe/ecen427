@@ -15,10 +15,10 @@ OSTEP: <https://pages.cs.wisc.edu/~remzi/OSTEP/>
 
 ## Lecture Slides and Readings
 
-| Date      | Slides                                                        | Reading                               | Study Questions |
+| Date      | Slides                                                        | Reading                               | Study Questions | Quiz |
 |-----------|---------------------------------------------------------------|---------------------------------------|--|
 | Jan 8     | [OS Intro]({% link media/slides/01-OS-intro.pdf %})           | [OSTEP Chapter 2: Introduction](https://pages.cs.wisc.edu/~remzi/OSTEP/intro.pdf) | |
-| Jan 10    | [Devices]({% link media/slides/02-devices.pdf %}) | [UIO]({% link _documentation/uio.md %}) & [OSTEP Chapter 4: Processes](https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf) |
+| Jan 10    | [Devices]({% link media/slides/02-devices.pdf %}) | [UIO]({% link _documentation/uio.md %}) & [OSTEP Chapter 4: Processes](https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf) | | Quiz 1 |
 | Jan 13    | [Lab 2]({% link media/slides/lab2.pdf %}) | | |
 
 <!-- | Jan 24/26 | [LDD Ch 1]({% link media/ldd/ldd3-ch1.pdf %})| [LDD3 Ch 1](https://lwn.net/images/pdf/LDD3/ch01.pdf) | [LDD Ch 1]({% link _pages/ldd1.md %})
