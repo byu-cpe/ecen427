@@ -45,9 +45,9 @@ Since the goal of the lab is to give you experience making use of interrupts, th
 
   1. You must use the interrupt output of the fixed-interval timer (FIT) to keep track of time (eg incrementing the clock each second, auto-incrementing when holding down the button, etc.). You are not allowed to use sleep functions, or other operating system functions (eg. sleep(), \<chrono\>, etc.) to keep track of time.
   1. You must use interrupts to receive data from the push-buttons. More specifically, the buttons can only be read when its associated GPIO module generates an interrupt. **You are not allowed to poll the buttons, including using the FIT interrupt to poll the buttons.**
-  1. You must de-bounce the push buttons. You won't get full credit if you have bouncy switches. The TA will be testing for this.
-  1. The push buttons must be very responsive. The TAs will test your implementation by tapping the switches rapidly to check for responsiveness. Your implementation must be able to respond to pushbuttons that are pushed more than once per second.
-  1.  Depending how you choose to structure your code, you probably won't need to use the interrupt from the switches, since you should never be stopped waiting for a switch to change value.  It's fine to just read the current switch value directly from the driver using `switches_read()` when you need the value.
+  1. You must de-bounce the push buttons. You won't get full credit if you have bouncy buttons. The TA will be testing for this.
+  1. The push buttons must be very responsive. The TAs will test your implementation by tapping the buttons rapidly to check for responsiveness. Your implementation must be able to respond to pushbuttons that are pushed more than once per second.
+  1.  Depending how you choose to structure your code, you probably won't need to use the interrupt for the switches, since you should never be stopped waiting for a switch to change value.  It's fine to just read the current switch value directly from the driver using `switches_read()` when you need the value.
 
 ## Submission 
 
