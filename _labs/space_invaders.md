@@ -43,7 +43,10 @@ You can do this in a similar manner to how you obtained the starter code:
 src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200">
 </iframe> -->
 
-In this milestone you will implement the functions in [Graphics.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/Graphics.h). Refer to the [HDMI]({% link _documentation/hdmi.md %}) page for documentation on how to interact with the HDMI driver.
+In this milestone you will implement the functions defined in [Graphics.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/Graphics.h). These should be implemented in *Graphics.cpp*.  Some resources to review:
+  * Refer to the [HDMI]({% link _documentation/hdmi.md %}) page for documentation on how to interact with the HDMI driver.
+  * The individual sprites defined in [resources/sprites.c](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/resources/sprites.c)
+  * The [Sprites.cpp](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/Sprites.cpp)/(Sprites.h)[https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/Sprites.h] class which instances all of the individual sprites, provides enums and access functions to get the sprite data.
 
 Your graphics functions need to be efficient and execute quickly.  The best way to do this is to reduce the number of system calls you make to the HDMI driver.
 
