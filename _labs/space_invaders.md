@@ -87,6 +87,8 @@ src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200">
 </iframe>
 Implement all of the game video, including bullets and all game interactions.  When you have finished this milestone, you will have the entire game implemented minus sound.  Use the above video as a reference.  It is difficult to see, but the number of points added to the score for each saucer destroyed is a number between 50 and 300, in multiples of 50. Also, the points for the block aliens are 10, 20 and 40, starting from the type on the bottom row and going up to the type on the top row.
 
+The game should end if the aliens reach the bottom (either reaching the bunkers, tank, or bottom of the screen, your choice).  This is required for this milestone, but not Milestone 2.
+
 **Note: You do not need to implement the high score screen.  Although this is shown in the video, it is not required for this lab this semester.**
 
 Student often ask whether they can change the game in some way.  The answer is yes, you can make changes, provided they are stylistic and do not reduce the complexity of the game.  For example, the following would be permitted:
