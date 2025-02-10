@@ -21,7 +21,8 @@ OSTEP: <https://pages.cs.wisc.edu/~remzi/OSTEP/>
 | Jan 10    | [Devices]({% link media/slides/02-devices.pdf %}) | [UIO]({% link _documentation/uio.md %}) & [OSTEP Chapter 4: Processes](https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf) | | Quiz 1 |
 | Jan 13    | [Lab 2]({% link media/slides/lab2.pdf %}) | | |
 | Jan 24/27 | [LDD Ch 1]({% link media/ldd/ldd3-ch1.pdf %}) | [LDD3 Ch 1](https://lwn.net/images/pdf/LDD3/ch01.pdf) | | LDD3 Ch 1 |
-| Feb 5     | [LDD Ch 2]({% link media/ldd/ldd3-ch2.pdf %}) | [LDD3 Ch 2](https://lwn.net/images/pdf/LDD3/ch02.pdf) | | LDD3 Ch 2 |
+| Feb 5/10     | [LDD Ch 2]({% link media/ldd/ldd3-ch2.pdf %}) | [LDD3 Ch 2](https://lwn.net/images/pdf/LDD3/ch02.pdf) | | LDD3 Ch 2 |
+| Feb 10/12   | [LDD Ch 3]({% link media/ldd/ldd3-ch3.pdf %}) | [LDD3 Ch 3](https://lwn.net/images/pdf/LDD3/ch03.pdf) | | LDD3 Ch 3 |
 
 <!-- | Jan 24/26 | [LDD Ch 1]({% link media/ldd/ldd3-ch1.pdf %})| [LDD3 Ch 1](https://lwn.net/images/pdf/LDD3/ch01.pdf) | [LDD Ch 1]({% link _pages/ldd1.md %})
 | Feb 7 | [LDD Ch 2]({% link media/ldd/ldd3-ch2.pdf %})| [LDD3 Ch 2](https://lwn.net/images/pdf/LDD3/ch02.pdf) | [LDD Ch 2]({% link _pages/ldd2.md %})
