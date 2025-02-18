@@ -245,7 +245,7 @@ Some resources to help you with the kernel function calls:
   * `platform_driver_register`
     * There is quite a bit of background you need to read before understanding the significance of this call.  Read the course documentation on [linux platform devices]({% link _documentation/platform_device_tree.md%}).
     * You will need to pass in a pointer to a `struct platform_driver`.  You can create a static global variable for this struct.  
-    * [xillybus.com](http://xillybus.com/tutorials/device-tree-zynq-3) provides a good example of how your struct should be initialized.  Remember that the `.compatible` field needs to exactly match the string in our device tree. 
+    * [xillybus.com](http://xillybus.com/tutorials/device-tree-zynq-3) provides a good example of how your struct should be initialized.  Remember that the `.compatible` field needs to exactly match the string in our device tree. *Note: This webpage targets an older version of the kernel: you don't need to provide the `__devinitdata` attribute on your `struct of_device_id`*.
     * Read about and study device-tree source files for this project [here]({% link _documentation/platform_device_tree.md%}). Search for a compatible string that looks like it is related to an audio codec. 
   * `cdev_init` and `cdev_add`
     * LDD3, Ch3 discusses these functions in the section *Char Device Registration*.
