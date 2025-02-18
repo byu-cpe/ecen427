@@ -109,6 +109,9 @@ To grade your submission we will:
 
     Make sure your cmake files are set up to correctly build the executable.  We will run it after loading your driver and inspect the kernel logs to see that the `read()` and `write()` functions in your driver were executed.
 
+    <span style="color:red">Make sure you have committed both your kernel driver code and your user space test program and CMake files.  There will be points deducted if these don't build correctly.</span>
+
+
 ## Milestone 2
 
 ### Implementation
