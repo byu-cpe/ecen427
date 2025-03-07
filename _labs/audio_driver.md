@@ -157,7 +157,7 @@ In this milestone you will write code to read and parse WAVE files, and update y
 
 ### Passing Off 
   * Create a user space executable that takes a WAVE file path as a command-line argument, and plays the audio clip, twice in a row, on the speakers using your audio driver. The TAs will run this executable when doing your pass-off.
-  * This new user space program should be located in *userspace/apps/audio_driver_test2*, with an appropriate CMake file to create an executable named *lab5_m3*.  Thus, when the TAs build your userspace code, it should produce an executable *userspace/build/apps/audio_driver_test2/audio_driver_test2*, which takes a single command-line argument.
+  * This new user space program should be located in *userspace/apps/audio_driver_test2*, with an appropriate CMake file to create an executable named *audio_driver_test2*.  Thus, when the TAs build your userspace code, it should produce an executable *userspace/build/apps/audio_driver_test2/audio_driver_test2*, which takes a single command-line argument.
 
 ## Milestone 4
 In this milestone you will add an *ioctl* interface to your driver to allow userspace to send special commands to your audio driver.  You will also update your Space Invaders code to play sound effects.  This is demonstrated in [this video](https://youtu.be/meRCic3iLW4).
