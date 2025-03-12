@@ -186,7 +186,8 @@ In this milestone you will add an *ioctl* interface to your driver to allow user
     * The other sounds have medium priority.  When played, they should interrupt any other sound that is currently playing, except for the UFO sound.
 
 ### Passing Off 
-Your Space Invaders game should be operating with all of the sound effects.  As a reminder, the coding standard requires that your code compile without warnings.  The TAs will verify this at pass off (both kernel and user code).
+Your Space Invaders game should be operating with all of the sound effects.  
+
 
 **Important:** All necessary WAVE files should be committed as part of your repository.  Your game should not rely on these files being located at a specific absolute path, as the TAs will likely clone your repo to a different path.  You can use [read_link](https://stackoverflow.com/questions/933850/how-do-i-find-the-location-of-the-executable-in-c) to get the path to your `space_invaders` executable, and then use a relative path from that location to access the WAVE files in your repository.
 
