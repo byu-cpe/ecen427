@@ -189,7 +189,7 @@ In this milestone you will add an *ioctl* interface to your driver to allow user
 Your Space Invaders game should be operating with all of the sound effects.  
 
 
-**Important:** All necessary WAVE files should be committed as part of your repository.  Your game should not rely on these files being located at a specific absolute path, as the TAs will likely clone your repo to a different path.  You can use [read_link](https://stackoverflow.com/questions/933850/how-do-i-find-the-location-of-the-executable-in-c) to get the path to your `space_invaders` executable, and then use a relative path from that location to access the WAVE files in your repository.
+**Important:** All necessary WAVE files should be committed as part of your repository.  Your game should not rely on these files being located at a specific absolute path, as the TAs will likely clone your repo to a different path.  You can use [read_link](https://stackoverflow.com/questions/933850/how-do-i-find-the-location-of-the-executable-in-c) to get the path to your `space_invaders` executable, and then use a relative path from that location to access the WAVE files in your repository.  <span style="color:red">You should assume the executable will be located within your build directory.  For example, during grading, *read_link* will provide a path similar to */home/ta_grader/427_repo/userspace/build/apps/space_invaders/space_invaders*, and you will need to adjust this path to locate the wave files.  Do not assume the executable is in a "cross-compiled" directory as you may have been testing with on your own. </span>
 
 ## Code Submission 
 Follow the [Submission Instructions]({% link _other/submission.md %}).
