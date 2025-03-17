@@ -63,3 +63,4 @@ exclude:
 
 plugins:
   - jekyll-sitemap
+  - jekyll-target-blank
