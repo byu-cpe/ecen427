@@ -24,7 +24,7 @@ Vivado is installed in the lab machines.  You can run it like this:
 
 ### Creating Projects
 In Lab 5 you will need to create a project to simulate and verify your PIT module.
-You should have learned how to create Vivado projects in ECEN 220.  If you want a refresher, you can go back and watch the video on the [Creating a New Vivado Project](http://ecen220wiki.groups.et.byu.net/tutorials/lab_03/00_vivado_project_setup/) page.
+You should have learned how to create Vivado projects in ECEN 220.  If you want a refresher, you can go back and watch the video on the [Creating a New Vivado Project](http://ecen220wiki.groups.et.byu.net/tutorials/lab_03/00_vivado_project_setup/) page.  Use part *xc7z020clg400-1* for the PYNQ board.
 
 
 ### Block Design

@@ -19,7 +19,9 @@ In the real-time clock lab, you used a fixed-interval timer (FIT) from the IP ca
 
 The PIT will be an AXI peripheral, allowing the CPU to control the PIT's behavior through memory-mapped registers.  The PIT logic itself is very simple, and you will likely have made more complex designs in a previous class.  The challenging part of this lab is getting the AXI interface correct, which has strict protocol requirements.
 
-You will work with two different Vivado projects in this lab.  The first project will only contain your PIT module and some helper IP to generate AXI traffic.  This project, which is the focus of Milestone 1, will only be used for simulation, as well as checking for synthesis errors.  Next in Milestone 2, you will integrate your PIT into the ECEN 427 Vivado project, which contains the actual hardware system you have been working with in previous labs.  This project will be used to generate a new bitstream that includes your PIT.
+<span style="color:red">**You will work with two different Vivado projects in this lab:**</span> 
+  * The first project will only contain your PIT module and some helper IP to generate AXI traffic.  This project, which is the focus of Milestone 1, will only be used for simulation, as well as checking for synthesis errors.  
+  * In Milestone 2, you will integrate your PIT into the ECEN 427 Vivado project, which contains the actual hardware system you have been working with in previous labs.  This project will be used to generate a new bitstream that includes your PIT.
 
 ## Specifications 
 
