@@ -16,7 +16,7 @@ The Xilinx Vivado software allows you to create digital hardware circuits that c
 
 Vivado is installed in the lab machines.  You can run it like this:
 ```
-/tools/Xilinx/Vivado/2022.2/bin/vivado
+/tools/Xilinx/Vivado/2024.1/bin/vivado
 ```
 
 
