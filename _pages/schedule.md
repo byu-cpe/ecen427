@@ -20,7 +20,7 @@ order: 3
 |5 (M2)         | 1 week    | Fri, Feb 28, 2024   | 0.5                |
 |5 (M3)         | 1 week    | Fri, Mar 6, 2024    | 1.0                |
 |5 (M4)         | 1 week    | Fri, Mar 13, 2024   | 1.0                |
-|6 (M1)         | 1 week    | Fri, Mar 20, 2024   | 1.0                |
+|6 (M1)         | 1 week    | Mon, Mar 24, 2024   | 1.0                |
 |6 (M2)         | 1 week    | Fri, Mar 27, 2024   | 0.5                |
 |7              | 1 week    | Fri, Apr 3, 2024    | 1.0                |
 |8              | 1.5 week  | Wed, Apr 15, 2024   | 1.0                |
