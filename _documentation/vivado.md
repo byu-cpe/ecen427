@@ -26,6 +26,7 @@ Vivado is installed in the lab machines.  You can run it like this:
 In Lab 5 you will need to create a project to simulate and verify your PIT module.
 You should have learned how to create Vivado projects in ECEN 220.  If you want a refresher, you can go back and watch the video on the [Creating a New Vivado Project](http://ecen220wiki.groups.et.byu.net/tutorials/lab_03/00_vivado_project_setup/) page.
 
+You will want to create your lab5 project in the *hw* directory of your repo, so it's best to start Vivado from the command line in that directory, then create the project there.  
 
 ### Block Design
 *For Lab 6 M1, you will need to create a simulation project with a block diagram.  In Lab 6 M2, you will edit an existing block diagram for the hardware on the board.*
