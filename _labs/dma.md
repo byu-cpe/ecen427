@@ -54,7 +54,7 @@ You will need to know a couple things about this memory:
         write(fd_dma_desc, dma_desc_array, ...);
 
 ### Security
-The approach we are taking in this lab is not secure.  We are providing a user space driver with access to a DMA engine that allows for reading and writing arbitrary physical memory locations.  _**This is a massive security vulnerability**_.  By reading arbitrary physical memory, a user could steal sensitive information from the system, including passwords, encryption keys, etc.  In a typical system, only the kernel would have access to the DMA engine.  However, for simplicity of development and debugging, we are doing this lab in user space.  
+The approach we are taking in this lab is not secure.  We are providing a user space driver with access to a DMA engine that allows for reading and writing arbitrary physical memory locations.  _**This is a massive security vulnerability**_.  By reading arbitrary physical memory, a user could steal sensitive information from the system, including passwords, encryption keys, etc.  In a typical system, only the kernel would have access to the DMA engine.  However, for simplicity of development and debugging, we are doing this lab in user space.  This means it is a bit clunky since we have to use the `/dev/dma_desc` device file to get access to the physical memory for the transfer descriptors, but it is still easier than coding this up in the kernel.
 
 
 ## Implementation
