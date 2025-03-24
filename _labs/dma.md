@@ -33,7 +33,7 @@ Unfortunately a sprite is not a simple contiguous block of memory, since each li
 
 In order to accomplish this, we need a couple extra things:
 1. We need to know the **physical** address of the pixel buffer.  
-1. We need some memory to store the transfer descriptors.  This memory must be contiguous, and must be accesible by the DMA.  The DMA does not work with virtual addresses, so we need to know the **physical** address of this memory as well, and need the ability to fill it.  
+1. We need some memory to store the transfer descriptors.  This must be accesible by the DMA, and since the DMA does not work with virtual addresses, we need to know the **physical** address of this memory.  
 
 ### Graphics Buffer Address
 In order to get the physical address of the pixel buffer, you can use the `ECEN427_IOC_FRAME_BUFFER_ADDR` ioctl command on the HDMI driver.  See the [ecen427_ioctl.h](https://github.com/byu-cpe/ecen427_student/blob/main/kernel/hdmi_ctrl/ecen427_ioctl.h) file.  This will provide you with a 32-bit physical address of the pixel buffer.  You can then use offsets from this address to determine the source and destination address for each transfer descriptor.
