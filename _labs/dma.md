@@ -39,8 +39,10 @@ In order to accomplish this, we need a couple extra things:
 In order to get the physical address of the pixel buffer, you can use the `ECEN427_IOC_FRAME_BUFFER_ADDR` ioctl command on the HDMI driver.  See the [ecen427_ioctl.h](https://github.com/byu-cpe/ecen427_student/blob/main/kernel/hdmi_ctrl/ecen427_ioctl.h) file.  This will provide you with a 32-bit physical address of the pixel buffer.  You can then use offsets from this address to determine the source and destination address for each transfer descriptor.
 
 ### DMA Descriptor Memory
-Another kernel driver is provided to you that will give you some access to a block of physical memory that you can use for your transer descriptor array.  You will need to know a couple things about this memory:
-1. You need to know the physical address.  You need to provide the physical address of your first and last transfer descriptor to the DMA engine.  In addition, within each transfer descriptor, you need to provide the physical address of the next transfer descriptor.  You can obtain this address via ioctl:
+Another kernel driver is provided to you that will give you some access to a block of physical memory that you can use for your transer descriptor array.  This driver is already installed and running on your system.  You can access this memory via the `/dev/dma_desc` device file.
+
+You will need to know a couple things about this memory:
+1. You need to know the physical address.  You need to provide the physical address of your first and last transfer descriptor to the DMA engine.  In addition, within each transfer descriptor, you need to provide the physical address of the next transfer descriptor.  You can obtain this address via the `DMA_DESC_IOC_BUFFER_ADDR` ioctl command:
 
         fd_dma_desc = open(SYSTEM_DMA_DESC_FILE, O_RDWR);
         ioctl(fd_dma_desc, DMA_DESC_IOC_BUFFER_ADDR, &dma_desc_array_phys_addr);
@@ -49,7 +51,7 @@ Another kernel driver is provided to you that will give you some access to a blo
 1. You need to be able to write data to this buffer.  You should populate your transfer descriptors in a temporary array, then use `write()` to copy the data to the kernel buffer:
 
         lseek(dma_desc_id, 0, SEEK_SET);
-        write(fd_dma_desc, dma_desc_array, num_descriptors * sizeof(...));
+        write(fd_dma_desc, dma_desc_array, ...);
 
 ### Security
 The approach we are taking in this lab is not secure.  We are providing a user space driver with access to a DMA engine that allows for reading and writing arbitrary physical memory locations.  _**This is a massive security vulnerability**_.  By reading arbitrary physical memory, a user could steal sensitive information from the system, including passwords, encryption keys, etc.  In a typical system, only the kernel would have access to the DMA engine.  However, for simplicity of development and debugging, we are doing this lab in user space.  
