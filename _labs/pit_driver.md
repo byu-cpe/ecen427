@@ -23,7 +23,7 @@ The interface to your driver should be located at */sys/devices/soc0/axi/\<your 
 
 Your driver must expose the following functionality through the sysfs interface:
   * Get/set timer period
-    * This should be a single integer, representing the period in **microseconds**.  Thus, if you write `10000` to this attribute, the PIT should produce interrupts at the same rate as the FIT you used when originally coding space invaders.
+    * This should be a single integer, representing the period in **microseconds**.  Thus, if you write `16667` to this attribute, the PIT should produce interrupts at the same rate as the FIT you used when originally coding space invaders.
     * The attribute name must be `period`.
   * Start/stop timer
     * This should be a single character, `0` or `1` indicating if the timer is running.
