@@ -26,6 +26,22 @@ Read about the [AMD AXI CDMA]({% link media/docs/pg034-axi-cdma.pdf %}).  Read o
 * Scatter Gather Transfer Descriptor Definition (Page 36-41)
 * Register Space.  Focus on registers applicable to the Scatter Gather mode (Page 13-31).  Pay particular attention to *Table 3-1* as well as the note on the alignment of transfer descriptors.  We won't be using interrupts in this lab, so you can ignore the interrupt output of the DMA.
 
+You can access the DMA device via UIO, similar to how you accessed the GPIO and INTC devices in Lab 2.  I accidentally forgot to add the DMA to your device tree, so you will need to add it yourself, recompile, and redeploy the device tree.  Add this entry:
+
+```
+ecen427_dma {
+  compatible = "generic-uio";
+  reg = <0x7E200000 0x10000>;
+};
+```
+
+Once that is added, the DMA device should be accessible using the following (already in your *system.h*):
+
+```
+#define SYSTEM_DMA_UIO_FILE "/dev/uio7"
+```
+
+
 ### DMA.H
 Look over the functions in [dma.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/dma/dma.h).  The goal of this lab is to implement these functions in a *dma.c* file.  This driver will be used to offload sprite drawing from the CPU to the DMA engine.
 
@@ -33,7 +49,7 @@ Unfortunately a sprite is not a simple contiguous block of memory, since each li
 
 In order to accomplish this, we need a couple extra things:
 1. We need to know the **physical** address of the pixel buffer.  
-1. We need some memory to store the transfer descriptors.  This must be accesible by the DMA, and since the DMA does not work with virtual addresses, we need to know the **physical** address of this memory.  
+1. We need some memory to store the transfer descriptors.  This must be accessible by the DMA, and since the DMA does not work with virtual addresses, we need to know the **physical** address of this memory.  
 
 ### Graphics Buffer Address
 In order to get the physical address of the pixel buffer, you can use the `ECEN427_IOC_FRAME_BUFFER_ADDR` ioctl command on the HDMI driver.  See the [ecen427_ioctl.h](https://github.com/byu-cpe/ecen427_student/blob/main/kernel/hdmi_ctrl/ecen427_ioctl.h) file.  This will provide you with a 32-bit physical address of the pixel buffer.  You can then use offsets from this address to determine the source and destination address for each transfer descriptor.
