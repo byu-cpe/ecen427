@@ -65,9 +65,13 @@ You will need to know a couple things about this memory:
 
 
 1. You need to be able to write data to this buffer.  You should populate your transfer descriptors in a temporary array, then use `write()` to copy the data to the kernel buffer:
-
-        lseek(dma_desc_id, 0, SEEK_SET);
+        
+        int fd_dma_desc = open(SYSTEM_DMA_DESC_FILE, O_RDWR);        
         write(fd_dma_desc, dma_desc_array, ...);
+        close(fd_dma_desc);
+
+    <span style="color:red">Unfortunately the DMA descriptor driver does not properly support `seek`, so make sure to `open` and `close` it each time you need to write data.  </span>
+
 
 ### Security
 The approach we are taking in this lab is not secure.  We are providing a user space driver with access to a DMA engine that allows for reading and writing arbitrary physical memory locations.  _**This is a massive security vulnerability**_.  By reading arbitrary physical memory, a user could steal sensitive information from the system, including passwords, encryption keys, etc.  In a typical system, only the kernel would have access to the DMA engine.  However, for simplicity of development and debugging, we are doing this lab in user space.  This means it is a bit clunky since we have to use the `/dev/dma_desc` device file to get access to the physical memory for the transfer descriptors, but it is still easier than coding this up in the kernel.
