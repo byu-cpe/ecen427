@@ -45,7 +45,7 @@ Once that is added, the DMA device should be accessible using the following (alr
 ### DMA.H
 Look over the functions in [dma.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/dma/dma.h).  The goal of this lab is to implement these functions in a *dma.c* file. 
 
-*dma_init()*: This should be similar to your other user space drivers, and use `mmap` to get a virtual pointer to the device registers.  <span style="color:red">If you use the DMA hardware incorrectly (i.e. give it an invalid address), it will enter an error state and stop responding to requests.  As such, it is good to always reset it in your init function.</span>  Write a 1 to the *Reset* bit of the *CDMACR* register, and then poll that bit and wait for the reset to complete before returning from the init function.  This will ensure that the DMA engine is in a good state before you start using it.
+*dma_init()*: This should be similar to your other user space drivers, and use `mmap` to get a virtual pointer to the device registers.  
 
 *dma_start_sprite_copy()* This function will be used to offload sprite drawing from the CPU to the DMA engine, and will copy a sprite from one location of the pixel buffer to another. 
 
@@ -54,6 +54,8 @@ Unfortunately a sprite is not a simple contiguous block of memory, since each li
 In order to accomplish this, we need a couple extra things:
 1. We need to know the **physical** address of the pixel buffer.  
 1. We need some memory to store the transfer descriptors.  This must be accessible by the DMA, and since the DMA does not work with virtual addresses, we need to know the **physical** address of this memory.  
+
+
 
 ### Graphics Buffer Address
 In order to get the physical address of the pixel buffer, you can use the `ECEN427_IOC_FRAME_BUFFER_ADDR` ioctl command on the HDMI driver.  See the [ecen427_ioctl.h](https://github.com/byu-cpe/ecen427_student/blob/main/kernel/hdmi_ctrl/ecen427_ioctl.h) file.  This will provide you with a 32-bit physical address of the pixel buffer.  You can then use offsets from this address to determine the source and destination address for each transfer descriptor.
@@ -85,13 +87,22 @@ The approach we are taking in this lab is not secure.  We are providing a user s
 
 <img src="{% link media/labs/dma_system_arch.png %}" width="1000" alt="DMA System Architecture" />
 
+### Important Notes about the DMA Hardware
+
+1. <span style="color:red">If you use the DMA hardware incorrectly (i.e. give it an invalid address), it will enter an error state and stop responding to requests.  As such, it is good to always reset it in your init function.</span>  Write a 1 to the *Reset* bit of the *CDMACR* register, and then poll that bit and wait for the reset to complete before returning from the init function.  This will ensure that the DMA engine is in a good state before you start using it.
+
+1.  <span style="color:red">Make note of this detail about the *SGMode* bit: </span> 
+ > This bit must be set to a 0 then back to 1 by the software
+application to force the CDMA SG engine to use a new
+value written to the CURDESC_PNTR register.
+
 ## Implementation
 
 1. Implement a user space driver for copying sprites using the AXI CDMA.  Implement the functions listed in [dma.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/dma/dma.h) in a *dma.c* file.
 
 1. Use the [dma_test](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/dma_test) application to verify that your driver is working correctly.  This application will draw a sprite in the top-left corner of the screen, and then copy it to the three other corners using the DMA engine.  
 
-1. Use the [dma_benchmarking](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/dma_benchmarking) application to test how fast the DMA is compared to using the CPU to draw sprites.  This application should report that the DMA takes about 0.7s to draw 100 sprites.  Your board may be slightly faster or slower, but it should be about the same.  The CPU runtime will depend on your implementation of the sprite drawing function, but will probably be a bit slower than the DMA.  
+1. Use the [dma_benchmarking](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/dma_benchmarking) application to test how fast the DMA is compared to using the CPU to draw sprites.  This application should report that the DMA takes about 0.07s to draw 100 sprites.  Your board may be slightly faster or slower, but it should be about the same.  The CPU runtime will depend on your implementation of the sprite drawing function, but will probably be a bit slower than the DMA.  
 
 ## Submission
 Follow the instructions on the [Submission]({% link _other/submission.md %}) page.
