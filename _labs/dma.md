@@ -45,7 +45,7 @@ Once that is added, the DMA device should be accessible using the following (alr
 ### DMA.H
 Look over the functions in [dma.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/dma/dma.h).  The goal of this lab is to implement these functions in a *dma.c* file. 
 
-*dma_init()*: This should be similar to your other user space drivers, and use `mmap` to get a virtual pointer to the device registers.  If you use the DMA hardware incorrectly (i.e. give it an invalid address), it will enter an error state and stop responding to requests.  <span style="color:red">As such, it is good to always reset it in your init function.</span>  Write a 1 to the *Reset* bit of the *CDMACR* register, and then poll that bit and wait for the reset to complete before returning from the init function.  This will ensure that the DMA engine is in a good state before you start using it.
+*dma_init()*: This should be similar to your other user space drivers, and use `mmap` to get a virtual pointer to the device registers.  <span style="color:red">If you use the DMA hardware incorrectly (i.e. give it an invalid address), it will enter an error state and stop responding to requests.  As such, it is good to always reset it in your init function.</span>  Write a 1 to the *Reset* bit of the *CDMACR* register, and then poll that bit and wait for the reset to complete before returning from the init function.  This will ensure that the DMA engine is in a good state before you start using it.
 
 *dma_start_sprite_copy()* This function will be used to offload sprite drawing from the CPU to the DMA engine, and will copy a sprite from one location of the pixel buffer to another. 
 
