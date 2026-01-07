@@ -7,38 +7,53 @@ indent: 0
 number: 1
 ---
 
-<span style="color:red; font-size: 3em;">**Do not submit Lab 1 yet.  The instructions on this page will be updated shortly**</span>
+Lab pass-offs will not be done in person.  Instead, you will run a script that will perform the official submission of your lab to the GitHub repository.  It will do the following:
+* Tag your repository with the proper lab-specific tag
+* Check to make sure that the `.commitdate` file in your tagged repository is created. (this will be used to determine if you submitted on time)
 
-Lab pass-offs will not be done in person.  Instead, you will create a *tag* in your Git repository that points to your submission for the lab.
+To submit your lab, run one of the following commands from within your lab repository:
+```bash
+make submit_lab1
+make submit_lab2
+make submit_lab3
+make submit_lab4_m1
+make submit_lab4_m2
+make submit_lab4_m3
+make submit_lab5_m1
+make submit_lab5_m2
+make submit_lab5_m3
+make submit_lab5_m4
+make submit_lab6_m1
+make submit_lab6_m2
+make submit_lab7
+make submit_lab8
+```
 
-Once you are done the lab, and want to submit, create a tag in your repo that the TAs can use to grade this lab, and then push like this:
+You may run the `make submit_*` script as many times as you like (there is no penalty for multiple submissions).
+However, every time you run `make submit_*`, the submission date of your lab will be updated.
+If your submission date is past the deadline for the lab, you will receive a late penalty as described in the syllabus.
 
-    git tag lab1_submission
-    git push origin lab1_submission
+<!-- Describe other optiosn to the submmission script -->
 
-This tag will point to your most recent commit of whichever branch you are currently located on (so make sure all of your changes are committed before running this).  If you are not confident you did this correctly, you may want to go to a new directory (not in your repo) and run `git clone --branch lab1_submission <repo_url>` to clone your tag and verify that it builds and runs correctly.
+## If the submission fails . . .
 
-If, after you create this tag, you want to change it (ie, re-submit your code), you can re-run the above commands and include the `--force` option to overwrite the tag, ie:
+If your `make submit_*` continues to print messages saying that the commit file has not been created then you may not have GitHub Actions setup properly on your GitHub repository.
+Follow these instructions to fix this problem (this is a one-type problem that occurs when you first setup your repository).
 
-    git tag --force lab1_submission
-    git push --force origin lab1_submission
+1. Visit the website of your repository
 
 
-For later labs, update the tag name appropriately:
-  * lab1_submission
-  * lab2_submission
-  * lab3_submission
-  * lab4_m1_submission
-  * lab4_m2_submission
-  * lab4_m3_submission
-  * lab5_m1_submission
-  * lab5_m2_submission
-  * lab5_m3_submission
-  * lab5_m4_submission
-  * lab6_m1_submission
-  * lab6_m2_submission
-  * lab7_submission
-  * lab8_submission
+1. Click on the "Actions" button in the tool-bar of the web page.
 
-<span style="color:red">**If you don't type the tag name correctly, it won't count as submitted.**.
-</span>
+   <img src="{% link media/git/git_web_toolbar.png %}">
+
+   You may see the following image:
+
+   <img src="{% link media/git/git_actions.png %}" >
+
+   Click "Enable Actions on this repository"
+
+1. Make a small change in your repository. (i.e., change the aboutme.txt or such).
+   Recommit the file and push it to the repository.
+
+1. Rerun the passoff script.
