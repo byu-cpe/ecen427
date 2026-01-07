@@ -29,7 +29,7 @@ In the labs for this class, you will be completing some tasks on your computer, 
 
 
 ### Github Repository Creation
-1. Sign up for your Github classroom repo using this link: <TBD> This will create an empty private repository on Github for you to use throughout the entire semester. **You must create your repository using this link, or the TAs will not be able to grade your code.**
+1. Sign up for your Github classroom repo using this link: <https://classroom.github.com/a/_DQgWuiv> This will create an empty private repository on Github for you to use throughout the entire semester. **You must create your repository using this link, or the TAs will not be able to grade your code.**
 
 1. You should now see the message below.  Click the link to navigate to your repository.
 <img src = "{% link media/setup/git_classroom1.png %}" width="800" >
