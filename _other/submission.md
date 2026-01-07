@@ -7,6 +7,8 @@ indent: 0
 number: 1
 ---
 
+<span style="color:red; font-size: 3em;">**Do not submit Lab 1 yet.  The instructions on this page will be updated shortly**</span>
+
 Lab pass-offs will not be done in person.  Instead, you will create a *tag* in your Git repository that points to your submission for the lab.
 
 Once you are done the lab, and want to submit, create a tag in your repo that the TAs can use to grade this lab, and then push like this:
