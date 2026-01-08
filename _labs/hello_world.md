@@ -43,7 +43,7 @@ After you have completed these steps, do the following:
 
 ##  Submission
 
-Follow the instructions on the [Submission]({% link _other/submission.md %}) page.
+Follow the instructions on the [Submission]({% link _pages/submission.md %}) page.
 
 <!-- ## Resources
   * [Official PYNQ documentation](http://pynq.readthedocs.io/en/latest/getting_started.html) -->

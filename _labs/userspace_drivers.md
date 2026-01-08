@@ -60,6 +60,6 @@ When you are graded we will run each of the test applications and verify that th
 
 ## Submission 
 
-Follow the instructions on the [Submission]({% link _other/submission.md %}) page.
+Follow the instructions on the [Submission]({% link _pages/submission.md %}) page.
 
 

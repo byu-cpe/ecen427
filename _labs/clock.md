@@ -51,7 +51,7 @@ Since the goal of the lab is to give you experience making use of interrupts, th
 
 ## Submission 
 
-Follow the instructions on the [Submission]({% link _other/submission.md %}) page.
+Follow the instructions on the [Submission]({% link _pages/submission.md %}) page.
 
 ## Suggestions
 

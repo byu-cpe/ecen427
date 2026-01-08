@@ -2,6 +2,7 @@
 layout: page
 toc: false
 title: Reading Assignment, AXI Bus, Part 2
+sidebar: false
 ---
 
 

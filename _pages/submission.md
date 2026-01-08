@@ -4,7 +4,9 @@ toc: false
 title: Lab Submission
 short_title: Lab Submission
 indent: 0
-number: 1
+number: 3
+icon: fa fa-cloud-arrow-up
+sidebar: true
 ---
 
 Lab pass-offs will not be done in person.  Instead, you will run a script that will perform the official submission of your lab to the GitHub repository.  It will do the following:

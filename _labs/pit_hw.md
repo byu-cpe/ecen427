@@ -111,7 +111,7 @@ Make sure to commit:
 
 ## Submission 
 
-Follow the [submission instructions]({% link _other/submission.md %}).  Make sure that you have pushed up all your new hardware to Github, including at least:
+Follow the [submission instructions]({% link _pages/submission.md %}).  Make sure that you have pushed up all your new hardware to Github, including at least:
   * *(Milestone 1)* The *sim_proj.tcl* file that will be used to create your simulation project.
   * *(Milestone 1)* The waveform configuration file.
   * *(Milestone 1)* Your [pit.sv](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ip_repo/pit/pit.sv) changes.

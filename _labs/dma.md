@@ -105,7 +105,7 @@ value written to the CURDESC_PNTR register.
 1. Use the [dma_benchmarking](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/dma_benchmarking) application to test how fast the DMA is compared to using the CPU to draw sprites.  This application should report that the DMA takes about 0.07s to draw 100 sprites.  Your board may be slightly faster or slower, but it should be about the same.  The CPU runtime will depend on your implementation of the sprite drawing function, but will probably be a bit slower than the DMA.  
 
 ## Submission
-Follow the instructions on the [Submission]({% link _other/submission.md %}) page.
+Follow the instructions on the [Submission]({% link _pages/submission.md %}) page.
 
 ## Suggestions
 

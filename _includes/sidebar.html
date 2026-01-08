@@ -13,32 +13,22 @@
             </form>
         </div>
 
-        <div class="list-group list-group-flush sidebar-color">
-
-            {% assign pages_sorted = site.pages | sort : "order" %}
-
-            {% for item in pages_sorted %}
+        <div class="list-group list-group-flush">
+            {% assign sorted_pages = site.pages | sort: "number" %}
+            {% for item in sorted_pages %}
             {% if item.sidebar %}
-            <a href="{% link {{ item.path }} %}"
-                class="sidebar-color list-item-normal list-group-item list-group-item-action sidebar-item ">
+            <!-- Look for specific front-matter tag -->
+            <a {% if item.link_external %} href="{{ item.link_external }}" {% elsif item.link_internal %}
+                href="{% link {{item.link_internal }} %}" {% else %} href="{% link {{item.path }} %}" {% endif %}
+                class="list-item-normal list-group-item list-group-item-action  sidebar-item" {% if item.new_window
+                %}target="_blank" {% endif %}>
                 {% if item.icon %}
                 <i class="{{ item.icon }}"></i>
                 {% endif %}
-                {{ item.title }}
+                {{ item.short_title | default: item.title }}
             </a>
             {% endif %}
             {% endfor %}
-            <a href="https://learningsuite.byu.edu/.20B7/cid-TZCfTA1MxiC6/calendar"
-                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
-                    class="fa fa-calendar"></i>
-                LearningSuite</a>
-            <a href="https://teams.microsoft.com/l/team/19%3Aw46IjRron_iyOsytK3SXvU14QpAAtiOlVGMtQjOqrQg1%40thread.tacv2/conversations?groupId=e85903e7-ee75-4eb0-95c0-0deba5987e5a&tenantId=c6fc6e9b-51fb-48a8-b779-9ee564b40413"
-                class="list-item-normal list-group-item list-group-item-action sidebar-item" target="_blank"><i
-                    class="fa fa-question-circle"></i>
-                Teams</a>
-
-
-
         </div>
 
         <div class="sidebar-heading">Labs</div>
@@ -69,18 +59,6 @@
             {% endfor %}
         </div>
 
-        <div class="sidebar-heading">Other</div>
 
-        <div class="list-group list-group-flush">
-            {% for item in site.other %}
-            <a href="{% link {{ item.path }} %}"
-                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
-                {% for i in (1..{{item.indent}}) %}&emsp;{% endfor %}
-
-                {{ item.short_title | default: item.title }}
-
-            </a>
-            {% endfor %}
-        </div>
     </div>
 </div>

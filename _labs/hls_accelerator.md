@@ -212,4 +212,4 @@ Your accelerator can be used to copy one alien to many different locations quick
 
 ## Submission
 
-Use the usual [submission instructions]({% link _other/submission.md %}).  The TAs will look over your files, and run your space invaders game and look for the two *printf* messages.  Make sure all your hardware files (.bit.bin and .dtbo) and software files are committed, otherwise the TAs won't be able to run your code properly.
+Use the usual [submission instructions]({% link _pages/submission.md %}).  The TAs will look over your files, and run your space invaders game and look for the two *printf* messages.  Make sure all your hardware files (.bit.bin and .dtbo) and software files are committed, otherwise the TAs won't be able to run your code properly.

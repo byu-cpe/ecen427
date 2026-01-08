@@ -103,7 +103,7 @@ The following would not be permitted:
 
 
 ## Submission 
-Follow the submission instructions for each milestone on the [Submission]({% link _other/submission.md %}) page.
+Follow the submission instructions for each milestone on the [Submission]({% link _pages/submission.md %}) page.
 
 
 ## Resources 

@@ -2,6 +2,7 @@
 layout: page
 toc: false
 title: Reading Assignment, AXI Bus
+sidebar: false
 ---
 
 Please read the following sections from the [AMBA AXI and ACE Protocol Specification](http://www.gstitt.ece.ufl.edu/courses/fall15/eel4720_5721/labs/refs/AXI4_specification.pdf) - [alternate link](https://byu.box.com/s/m1mzdxot97ciie8cktk63ut5j6k36dpz):

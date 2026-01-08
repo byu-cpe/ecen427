@@ -1,0 +1,12 @@
+{
+    "window.title": "ECEN 427 Website",
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#456061",
+        "activityBar.foreground": "#ffffff",
+        "activityBar.inactiveForeground": "#ffffff99",
+        "titleBar.activeBackground": "#456061",
+        "titleBar.activeForeground": "#ffffff",
+        "titleBar.inactiveBackground": "#456061",
+        "titleBar.inactiveForeground": "#ffffff"
+    }
+}
