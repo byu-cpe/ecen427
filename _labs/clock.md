@@ -44,9 +44,9 @@ Complete the real-time clock application.  Some starting code is provided to you
 Since the goal of the lab is to give you experience making use of interrupts, there are some requirements you must follow:
 
   1. You must use the interrupt output of the fixed-interval timer (FIT) to keep track of time (eg incrementing the clock each second, auto-incrementing when holding down the button, etc.). You are not allowed to use sleep functions, or other operating system functions (eg. sleep(), \<chrono\>, etc.) to keep track of time.
-  1. You must use interrupts to receive data from the push-buttons. More specifically, the buttons can only be read when its associated GPIO module generates an interrupt. **You are not allowed to poll the buttons, including using the FIT interrupt to poll the buttons.**
-  1. You must de-bounce the push buttons. You won't get full credit if you have bouncy buttons. The TA will be testing for this.
-  1. The push buttons must be very responsive. The TAs will test your implementation by tapping the buttons rapidly to check for responsiveness. Your implementation must be able to respond to pushbuttons that are pushed more than once per second.
+  1. You must use interrupts to receive data from the buttons. More specifically, the buttons can only be read when its associated GPIO module generates an interrupt. **You are not allowed to poll the buttons, including using the FIT interrupt to poll the buttons.**
+  1. You must de-bounce the buttons. You won't get full credit if you have bouncy buttons. The TA will be testing for this.
+  1. The buttons must be very responsive. The TAs will test your implementation by tapping the buttons rapidly to check for responsiveness. Your implementation must be able to respond to buttons that are pushed more than once per second.
   1.  Depending how you choose to structure your code, you probably won't need to use the interrupt for the switches, since you should never be stopped waiting for a switch to change value.  It's fine to just read the current switch value directly from the driver using `switches_read()` when you need the value.
 
 ## Submission 
@@ -57,11 +57,11 @@ Follow the instructions on the [Submission]({% link _pages/submission.md %}) pag
 
   1. Looks at the *interrupt_test* application, which can help you structure your overall code.
   1. Consider creating a simple program that prints a ”.” to the screen once each second, using the FIT. This is mostly about verifying that you can get the FIT interrupt to work.
-  1. Consider creating a simple program that prints a ”#” each time you press and release any push-button. This is mostly about verifying that you can get the button interrupts to work.
+  1. Consider creating a simple program that prints a ”#” each time you press and release any button. This is mostly about verifying that you can get the button interrupts to work.
   1. Debouncing can be trickly.  I suggest this approach:    
-      a. Have a variable that keeps track of how long it has been since the button value changed.
-      b. When the button generates an interrupt, reset this count to 0, and store the button value in a temporary location.      
-      c. When the FIT ISR generates an interrupt, increase this count.  If the count reaches a certain threshold (your debounce time), then copy the temporary button value to a variable (this is your *debounced button value*).  Only use this debounced button value elsewhere in your code, and not the raw button value.  
+     * Have a variable that keeps track of how long it has been since the button value changed.
+     * When the button generates an interrupt, reset this count to 0, and store the button value in a temporary location.      
+     * When the FIT ISR generates an interrupt, increase this count.  If the count reaches a certain threshold (your debounce time), then copy the temporary button value to a variable (this is your *debounced button value*).  Only use this debounced button value elsewhere in your code, and not the raw button value.  
   1. Other than various initializations and set up, your `main()` must contain only a while(1) loop that waits for interrupts to occur. If the loop has anything else then you are probably doing the forbidden, a.k.a. polling.
   
   <!-- <img src = "{% link media/labs/lab2_polling.jpg %}"> -->
