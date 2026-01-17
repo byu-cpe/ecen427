@@ -43,7 +43,7 @@ Help another student in the class by:
 
 ## Submission
 
-For each lab, create a text file with one or two sentences describing what you learning, or service you provided. The file should be placed in your repository at:
+For each lab, create a text file with one or two sentences describing what you learned, or service you provided. The file should be placed in your repository at:
 
 ```
 learning_and_service/<lab_name>.txt
