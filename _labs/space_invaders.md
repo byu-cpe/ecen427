@@ -101,6 +101,13 @@ The following would not be permitted:
 * Eliminating the bunker erosion patterns.
 * Reducing the number of bullets that can be on the screen at once.
 
+### Valgrind Check
+
+On submission, your code will be checked with valgrind to ensure there are no reported issues.  Valgrind will be run with:
+```
+valgrind --leak-check=full  ./space_invaders
+```
+10% of your grade for this lab will be based on having no reported issues from valgrind.
 
 ## Submission 
 Follow the submission instructions for each milestone on the [Submission]({% link _pages/submission.md %}) page.
