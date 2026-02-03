@@ -81,6 +81,10 @@ You can optionally comment out [this line](https://github.com/byu-cpe/ecen427_st
 * BTN1: Shoot a bullet. Only one bullet can be on the screen at a time. You can choose whether you can hold down to shoot a subsequent bullet or if you have to release and press again.
 * BTN0: Move the tank right. Hold down to move continuously.
 
+#### Compiler Warnings
+
+10% of your grade for this milestone will be based on having no compiler warnings.  Do not change the compiler options provided to you to suppress warnings.  Instead, fix your code to eliminate all warnings.
+
 ### Milestone 3 
 <iframe width="500" height="350"
 src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200">
@@ -101,13 +105,13 @@ The following would not be permitted:
 * Eliminating the bunker erosion patterns.
 * Reducing the number of bullets that can be on the screen at once.
 
-### Valgrind Check
+#### Valgrind Check
 
 On submission, your code will be checked with valgrind to ensure there are no reported issues.  Valgrind will be run with:
 ```
 valgrind --leak-check=full  ./space_invaders
 ```
-10% of your grade for this lab will be based on having no reported issues from valgrind.
+10% of your grade for this milestone will be based on having no reported issues from valgrind.
 
 ## Submission 
 Follow the submission instructions for each milestone on the [Submission]({% link _pages/submission.md %}) page.
