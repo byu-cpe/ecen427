@@ -32,7 +32,7 @@ Complete the real-time clock application.  Some starting code is provided to you
      * BTN0, BTN1, BTN2 are the second, minute, and hour buttons, respectively.
      * SW0 is the increment/decrement switch. Increment when SW0 is up, decrement when SW0 is down. You should be able to change the position of SW0 while holding the hour, minute, or second button and have the clock do the right thing, i.e., switch from increment to decrement and vice versa. 
      * If more than one of the hour, minute, or second button are simultaneously pressed, you can choose whatever behavior you like.
-     * When you are incrementing/decrementing using the buttons, you can choose whether rollover cascades or not.  For example, if you are incrementing the minutes from 59 to 00, you can choose whether the hours value increments by one or not.
+     * When you are incrementing/decrementing using the buttons, it should wrap around during incrementing and decrementing.  When wrapping around, you can choose whether rollover cascades or not.  For example, if you are incrementing the minutes from 59 to 00, you can choose whether the hours value increments by one or not.
      * Your implementation must tolerate the user pushing any combination of buttons. It shouldn't do anything strange (like display an illegal time, for example), and it must not die, no matter what combination of buttons are pushed. 
   1. **Button Debouncing:**
      * Each press of the button should only increment/decrement its respective value by 1 (unless held down, see next requirement).  This will require debouncing the button inputs. Some discussion on this is provided later on this page.
