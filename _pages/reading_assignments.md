@@ -24,6 +24,7 @@ OSTEP: <https://pages.cs.wisc.edu/~remzi/OSTEP/>
 | Jan 26 | [C++ Refresher]({% link media/slides/c++.pdf %}) | 
 | Jan 30     | [LDD Ch 2]({% link media/ldd/ldd3-ch2.pdf %}) | [LDD3 Ch 2](https://lwn.net/images/pdf/LDD3/ch02.pdf) | | LDD3 Ch 2 |
 | Feb 2   | [LDD Ch 3]({% link media/ldd/ldd3-ch3.pdf %}) | [LDD3 Ch 3](https://lwn.net/images/pdf/LDD3/ch03.pdf) | | LDD3 Ch 3 |
+| Feb 11 | [Lab 5 Kernel Driver]({% link media/labs/lab5_kernel_driver.pdf %})
 {% comment %}
 | Feb 14    | [LDD Ch 4,11]({% link media/ldd/ldd3-ch4,11.pdf %}) | [LDD3 Ch 4](https://lwn.net/images/pdf/LDD3/ch04.pdf) & [LDD3 Ch 11](https://lwn.net/images/pdf/LDD3/ch11.pdf) | | LDD3 Ch 4 & 11 |
 | Feb 18    | [Lab 5]({% link media/labs/lab5_kernel_driver.pdf %}) | | |
