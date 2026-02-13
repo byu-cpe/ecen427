@@ -25,10 +25,10 @@ OSTEP: <https://pages.cs.wisc.edu/~remzi/OSTEP/>
 | Jan 30     | [LDD Ch 2]({% link media/ldd/ldd3-ch2.pdf %}) | [LDD3 Ch 2](https://lwn.net/images/pdf/LDD3/ch02.pdf) | | LDD3 Ch 2 |
 | Feb 2   | [LDD Ch 3]({% link media/ldd/ldd3-ch3.pdf %}) | [LDD3 Ch 3](https://lwn.net/images/pdf/LDD3/ch03.pdf) | | LDD3 Ch 3 |
 | Feb 11 | [Lab 5 Kernel Driver]({% link media/labs/lab5_kernel_driver.pdf %})
-{% comment %}
 | Feb 14    | [LDD Ch 4,11]({% link media/ldd/ldd3-ch4,11.pdf %}) | [LDD3 Ch 4](https://lwn.net/images/pdf/LDD3/ch04.pdf) & [LDD3 Ch 11](https://lwn.net/images/pdf/LDD3/ch11.pdf) | | LDD3 Ch 4 & 11 |
 | Feb 18    | [Lab 5]({% link media/labs/lab5_kernel_driver.pdf %}) | | |
 | Feb 19    | [LDD Ch 6,9,10]({% link media/ldd/ldd3-ch6,9,10.pdf %}) | [LDD3 Ch 6](https://lwn.net/images/pdf/LDD3/ch06.pdf) & [LDD3 Ch 9](https://lwn.net/images/pdf/LDD3/ch09.pdf) & [LDD3 Ch 10](https://lwn.net/images/pdf/LDD3/ch10.pdf) | | LDD3 Ch 6, 9, 10 |
+{% comment %}
 | Mar 5 | [AXI Part 1 & 2]({% link media/slides/axi.pdf %})| [AXI Bus Spec](http://www.gstitt.ece.ufl.edu/courses/fall15/eel4720_5721/labs/refs/AXI4_specification.pdf) | [AXI Bus I]({% link _pages/axi1.md %}) & [AXI Bus II]({% link _pages/axi2.md %})
 {% endcomment %}
 
