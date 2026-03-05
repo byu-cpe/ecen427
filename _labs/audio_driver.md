@@ -140,7 +140,7 @@ In this milestone you will write code to read and parse WAVE files, and update y
 ### Specifications 
   * Initialize the audio codec chip via I2C from userspace using the provided functions.  See [Audio Hardware]({% link _documentation/audio_hw.md%}).
   * Update your kernel driver such that:
-    * Your device struct contains a statically-sized buffer (ie, an array) to store audio samples the user will `write()` to your driver (512KB should be large enough).
+    * Your device struct contains a statically-sized buffer (ie, an array) to store audio samples the user will `write()` to your driver (512*1024 entry array should be large enough).
     * In your `write()` function, you accept a buffer containing an audio clip.  When this occurs your driver will stop playing any existing audio clip, and immediately begin playing the newly provided audio clip.  In the `write()` function you will need to:
       * Immediately disable interrupts from the audio core.
       * Copy the audio data from user space to your buffer (including safety checks on the user space pointer) - LDD page 64.
