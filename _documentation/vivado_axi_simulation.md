@@ -31,7 +31,7 @@ You will need to create a new Vivado project.
 <img src="{% link media/vip_system.png %}">
 
 ## Create a Test Bench 
-Create a new SystemVerilog file to use as a test bench.  Create this file somewhere in your repository (such as your [pit](https://github.com/byu-cpe/ecen427_student/tree/master/hw/ip_repo/pit) directory), but **do not create it inside your Vivado project**.  You should treat your Vivado project as *temporary files* that will *NEVER* be committed to your repository.  You can start with the HDL provided below.  
+Create a new SystemVerilog file to use as a test bench.  Create this file somewhere in your repository (such as your [pit](https://github.com/byu-cpe/ecen427_student/tree/master/hw/ip_repo/pit) directory), but <span style="color:red">**do not create it inside your Vivado project**</span>.  You should treat your Vivado project as *temporary files* that will *NEVER* be committed to your repository.  You can start with the HDL provided below.  
 
 Add this test bench to your project:
   * Right-click in the *Sources* pane and select *Add Sources...*.  In the popup, select *Add or create simulation sources*, *Add file*, then browse to your newly created SystemVerilog test bench file.
@@ -112,7 +112,7 @@ By default, Vivado will only run your simulation for 1000ns (1us).  This may not
   * Update the *xsim.simulate.runtime* value to something longer (eg. 10000ns).  You can make this quite large, and as long as you include a `$finish` statement in your test bench, the simulation will stop when it reaches the end of the test bench.
 
 ## Save Your Waveform
-  * You can save your waveform by clicking *File->Simulation Waveform->Save As...*.  You can save the waveform as a *.wcfg* file.  Once again, choose a location that is part of your repo, but not part of your Vivado project.  Nothing in the Vivado project directory should be committed to your repository.  
+  * You can save your waveform by clicking *File->Simulation Waveform->Save As...*.  You can save the waveform as a *.wcfg* file.  Once again, **<span style="color:red">choose a location that is part of your repo, but not part of your Vivado project.  Nothing in the Vivado project directory should be committed to your repository</span>**.  
 
   * When you *Save As* the waveform, you will be asked if you automatically want this waveform added to your project.  Make sure to select *Yes*.  As you add more signals to your waveform, you can save the waveform again, and it will automatically be updated in your project.  When you run simulation in the future, this waveform layout will automatically be loaded. 
 
