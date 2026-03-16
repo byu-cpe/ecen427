@@ -22,11 +22,14 @@ Vivado is installed in the lab machines.  You can run it like this:
 
 ## Vivado Projects
 
-### Creating Projects
-In Lab 5 you will need to create a project to simulate and verify your PIT module.
-You should have learned how to create Vivado projects in ECEN 220.  If you want a refresher, you can go back and watch the video on the [Creating a New Vivado Project](http://ecen220wiki.groups.et.byu.net/tutorials/lab_03/00_vivado_project_setup/) page.  Use part *xc7z020clg400-1* for the PYNQ board.
+In Lab 5, you will:
+  * Create your own Vivado project to simulate and verify your PIT module (Milestone 1).
+  * Edit the existing Vivado project for the ECEN 427 hardware to add your PIT (Milestone 2).
 
-**You will want to create your lab5 project in the *hw* directory of your repo, so it's best to start Vivado from the command line in that directory, then create the project there.**
+### Creating New Projects
+We will use project mode in Vivado, which you may not have used before.  The old ECEN 220 website has a video tutorial on [Creating a New Vivado Project](http://ecen220wiki.groups.et.byu.net/tutorials/lab_03/00_vivado_project_setup/) page.  Use part *xc7z020clg400-1* for the PYNQ board.
+
+**You will want to create your lab5 project in the *hw* directory of your repo, so it's best to <span style="color:red">start Vivado from the command line in that directory, then create the project there.</span>**
 
 ### Block Design
 *For Lab 6 M1, you will need to create a simulation project with a block diagram.  In Lab 6 M2, you will edit an existing block diagram for the hardware on the board.*
@@ -39,7 +42,7 @@ The block diagram feature of Vivado allows you to visually instantiate and conne
 
 ### Committing your Vivado Project to Git 
 
-You will want to commit your Vivado projects to Git.  You shouldn't attempt to commit the actual project files, as there are sometimes hundreds of files.  Instead, you should follow these steps to generate a Tcl file that can be used to recreate your project.  
+You will want to commit your Vivado projects to Git.  <span style="color:red">You shouldn't attempt to commit the actual project files, as there are sometimes hundreds of files</span>.  Instead, you should follow these steps to generate a Tcl file that can be used to recreate your project.  
 
 <!-- 1. Vivado will attempt to save results of your synthesis run to avoid having to run it again when the project is recreated.  We don't want to save these, so we need to change a setting first.  Right-click *Synthesis* in the left-hand menu and select *Synthesis Settings*.  Locate the *Incremental Synthesis* option, and click the "..." box to change to *Disable Incremental Synthesis*.  Click *OK* to save the setting. -->
 1. *File*->*Project*->*Write Tcl*
@@ -52,7 +55,7 @@ You will want to commit your Vivado projects to Git.  You shouldn't attempt to c
 The hardware that you have been using for the labs up to this point is provided in a Vivado project included in the class repository.  All of the necessary files are located in the [hw](https://github.com/byu-cpe/ecen427_student/tree/master/hw) directory.
 
 
-### Creating the ECEN 427 Project in Vivado
+### Recreating the ECEN 427 Project in Vivado
 *You don't need to do this for Lab6 M1, only Lab6 M2.*
 
 The project can be created using the [ecen427.tcl](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ecen427.tcl) script. However, the project depends on at least one file that is too large to commit to Github, so it must first be unzipped.  Unzipping the file, and running the *ecen427.tcl* script can be done in one step using a provided [Makefile target](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L4):
@@ -94,3 +97,6 @@ On your PYNQ board:
 1. Go to the *device_tree* folder. 
 1. Run `sudo make install` to copy the new *ecen427.bit.bin* file into the system directory that is used to configure the FPGA (*/lib/firmware*).  This command will instantly load the new hardware, as well as overwrite the old bitstream, such that this new bitstream will be used anytime you reboot the board.
 
+
+### Saving your Vivado Project
+Make sure to save your design changes to git by following the steps above to update the provided *ecen427.tcl* script, and then committing the updated script to git.
