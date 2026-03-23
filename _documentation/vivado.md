@@ -22,7 +22,7 @@ Vivado is installed in the lab machines.  You can run it like this:
 
 ## Vivado Projects
 
-In Lab 5, you will:
+In Lab 6, you will:
   * Create your own Vivado project to simulate and verify your PIT module (Milestone 1).
   * Edit the existing Vivado project for the ECEN 427 hardware to add your PIT (Milestone 2).
 
