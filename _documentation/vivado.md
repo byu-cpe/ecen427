@@ -44,7 +44,7 @@ The block diagram feature of Vivado allows you to visually instantiate and conne
 
 You will want to commit your Vivado projects to Git.  <span style="color:red">You shouldn't attempt to commit the actual project files, as there are sometimes hundreds of files</span>.  Instead, you should follow these steps to generate a Tcl file that can be used to recreate your project.  
 
-<!-- 1. Vivado will attempt to save results of your synthesis run to avoid having to run it again when the project is recreated.  We don't want to save these, so we need to change a setting first.  Right-click *Synthesis* in the left-hand menu and select *Synthesis Settings*.  Locate the *Incremental Synthesis* option, and click the "..." box to change to *Disable Incremental Synthesis*.  Click *OK* to save the setting. -->
+1. Vivado will attempt to save results of your synthesis run to avoid having to run it again when the project is recreated.  We don't want to save these, so we need to change a setting first.  Right-click *Synthesis* in the left-hand menu and select *Synthesis Settings*.  Locate the *Incremental Synthesis* option, and click the "..." box to change to *Disable Incremental Synthesis*.  Click *OK* to save the setting.
 1. *File*->*Project*->*Write Tcl*
 1. Make sure to check the box *Recreate Block Designs using Tcl*.
 1. Specify a path to save your Tcl file.
