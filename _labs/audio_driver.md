@@ -91,6 +91,7 @@ Your kernel driver needs to:
     * When a device is removed, undo all appropriate actions that were done when the device was added.
   * Add messages to print:
     * When your driver is loaded and unloaded.
+    * When your class is created.
     * When your device is added and removed.
     * The allocated major number of the driver and minor number of the device.
     * When you create your device using `device_create()`.
