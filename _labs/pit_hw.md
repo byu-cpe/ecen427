@@ -37,6 +37,9 @@ Your PIT module must include the following:
       * You may use the remaining bits in the programmable control register as you see fit.
     - **Ofset 0x04**: A 32-bit delay-value register that must be readable and writeable from the CPU. This value controls the period of the interrupt output.  
   - **Reset**: Your PIT must reset along with the rest of the system.  Make sure to reset your PIT using the AXI resetn signal.
+    - It would be good to reset your PIT into a state equivalent to the FIT, so that you can test that it's working without needing to perform any register writes.  Thus:
+      * Reset the offset 0x00 control register to 3 (i.e., enable the counter and enable interrupts).
+      * Reset the offset 0x04 delay-value register to 1,666,667 (16.67ms at 100MHz, which is the same period as the FIT).
 
 ### PIT Behavior
   - The timer-counter should auto-reload (i.e., when the timer-counter reaches 0, it should be reloaded based on the delay-value register, and continue decrementing).
@@ -97,6 +100,10 @@ Here are some tips to help you integrate your PIT:
 After it is integrated:
   * Verify that all of the connections are hooked up properly by running 'Validate Design'
   * Make sure you compile a new bitstream.  See [Compiling a New Bitstream]({% link _documentation/vivado.md %}#compiling-a-new-bitstream).
+
+Final verification:
+  * Pull down the new bitstream onto your PYNQ board, and replace your boot bitstream with the new one that includes your PIT.
+  * Update the `int_rate` application to use your PIT instead of the FIT, and verify you are getting interrupts at the expected rate.
 
 Make sure to commit:
   * Your changes to the ECEN 427 project.  You will need to export the Tcl file for the project, overwriting the provided [ecen427.tcl](https://github.com/byu-cpe/ecen427_student/blob/main/hw/ecen427.tcl) file.
