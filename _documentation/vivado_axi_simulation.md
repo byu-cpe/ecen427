@@ -7,7 +7,7 @@ number: 25
 ---
 
 To make sure that your AXI module works correctly, you must simulate it.  As you know, the AXI bus is complicated, with many different signals and specific protocols.
-Writing a test bench to correctly set these signals would be a lot of work, so Xilinx provides an IP that contains a set of test bench functions to simulate transactions on the AXI bus.  This IP is called the AXI Verification  IP (VIP) <https://www.xilinx.com/support/documentation/ip_documentation/axi_vip/v1_1/pg267-axi-vip.pdf>
+Writing a test bench to correctly set these signals would be a lot of work, so Xilinx provides an IP that contains a set of test bench functions to simulate transactions on the AXI bus.  This IP is called the <[AXI Verification  IP (VIP)](https://docs.amd.com/r/en-US/pg267-axi-vip/Introduction)>
 
 
 ## Creating a VIP Project 
