@@ -73,7 +73,7 @@ Make sure you recognize the distinction between the driver (kernel module) and t
 
 Based on the above, it is important to recognize which of the driver features should be done once when the module is loaded, and which should be done for each device.  Even though the driver you make in this lab is only going to **support one device**, as good coders, we want to organize our code in such a way that it could more easily be extended in the future.
 
-
+**<[Resources](#resources-tips-and-hints)> is an important reference for each milestone!**
 
 
 ## Milestone 1 
