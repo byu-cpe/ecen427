@@ -7,7 +7,7 @@ number: 3
 under_construction: false
 ---
 
-In this lab will implement a simple real-time clock application, that will print the current time, using **printf()**, in a terminal window that is connected to the PYNQ system. 
+In this lab you will implement a simple real-time clock application, that will print the current time, using **printf()**, in a terminal window that is connected to the PYNQ system. 
 
 ## Objectives 
 * Write an interrupt-driven user-space application.
@@ -17,11 +17,11 @@ In this lab will implement a simple real-time clock application, that will print
 
 ### Software Stack 
 
-Review the [Software Stack]({% link _documentation/software_stack.md %}) that illustrates how the different software modules you will create in this class will work together.  Make note of the provided [system.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/system.h) file.
+Review the [Software Stack]({% link _documentation/software_stack.md %}) that illustrates how the different software modules you will create in this class will work together.  Make note of the provided [system.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/system.h) file.
 
 ## Implementation 
 
-Complete the real-time clock application.  Some starting code is provided to you: [clock.cpp](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/clock/clock.cpp).  Requirements:
+Complete the real-time clock application.  Some starting code is provided to you: [clock.cpp](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/clock/clock.cpp).  Requirements:
   1. **Print format:** 
       * Time is printed to the terminal in the following 24-hour format (includes leading zero): HH:MM:SS
       * The time display in the terminal emulator is stationary; it does not scroll, etc. Search online to see how to clear the terminal window between each print of the time in order to make the display stationary.
@@ -44,7 +44,7 @@ Complete the real-time clock application.  Some starting code is provided to you
 Since the goal of the lab is to give you experience making use of interrupts, there are some requirements you must follow:
 
   1. You must use the interrupt output of the fixed-interval timer (FIT) to keep track of time (eg incrementing the clock each second, auto-incrementing when holding down the button, etc.). You are not allowed to use sleep functions, or other operating system functions (eg. sleep(), \<chrono\>, etc.) to keep track of time.
-  1. You must use interrupts to receive data from the buttons. More specifically, the buttons can only be read when its associated GPIO module generates an interrupt. **You are not allowed to poll the buttons, including using the FIT interrupt to poll the buttons.**
+  1. You must use interrupts to receive data from the buttons. More specifically, the buttons can only be read when their associated GPIO module generates an interrupt. **You are not allowed to poll the buttons, including using the FIT interrupt to poll the buttons.**
   1. You must de-bounce the buttons. You won't get full credit if you have bouncy buttons. The TA will be testing for this.
   1. The buttons must be very responsive. The TAs will test your implementation by tapping the buttons rapidly to check for responsiveness. Your implementation must be able to respond to buttons that are pushed more than once per second.
   1.  Depending how you choose to structure your code, you probably won't need to use the interrupt for the switches, since you should never be stopped waiting for a switch to change value.  It's fine to just read the current switch value directly from the driver using `switches_read()` when you need the value.
@@ -55,10 +55,10 @@ Follow the instructions on the [Submission]({% link _pages/submission.md %}) pag
 
 ## Suggestions
 
-  1. Looks at the *interrupt_test* application, which can help you structure your overall code.
+  1. Look at the *interrupt_test* application, which can help you structure your overall code.
   1. Consider creating a simple program that prints a ”.” to the screen once each second, using the FIT. This is mostly about verifying that you can get the FIT interrupt to work.
   1. Consider creating a simple program that prints a ”#” each time you press and release any button. This is mostly about verifying that you can get the button interrupts to work.
-  1. Debouncing can be trickly.  I suggest this approach:    
+  1. Debouncing can be tricky.  I suggest this approach:    
      * Have a variable that keeps track of how long it has been since the button value changed.
      * When the button generates an interrupt, reset this count to 0, and store the button value in a temporary location.      
      * When the FIT ISR generates an interrupt, increase this count.  If the count reaches a certain threshold (your debounce time), then copy the temporary button value to a variable (this is your *debounced button value*).  Only use this debounced button value elsewhere in your code, and not the raw button value.  

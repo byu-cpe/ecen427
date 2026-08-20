@@ -21,7 +21,7 @@ The first time you boot the PYNQ board, we will observe the boot process over th
   * If the boot process is already complete, you may not see anything on the serial port after connecting, but just hit `Enter` a few times to see if you can get a terminal prompt.
 1. After the boot process is complete, you should automatically be logged in as the `byu` user.  The default password is `byu`.
 
-If it doesn't seem like the PYNQ board is responding, try and figure out if it is booting the SD card correclty or not.  Check tha the DONE LED turns on and that the lights on the Ethernet port blink regularly.  If these things are not happening, it may be a problem with how the SD card is imaged.
+If it doesn't seem like the PYNQ board is responding, try and figure out if it is booting the SD card correctly or not.  Check that the DONE LED turns on and that the lights on the Ethernet port blink regularly.  If these things are not happening, it may be a problem with how the SD card is imaged.
 
 
 ## Powering Down the PYNQ Board
@@ -31,7 +31,7 @@ Once you have connected to the board using the methods described below, you can 
 
     sudo poweroff
 
-in the terminal.  Wait 10 seconds before shutting of the power switch.
+in the terminal.  Wait 10 seconds before shutting off the power switch.
 
 
 ## Connect the PYNQ to Your Network
@@ -66,7 +66,7 @@ The version of the PYNQ image we are using has a corrupted MAC address, so we wi
     sudo reboot
     ```
 
-1. After reboot, make sure you board receives the correct IP address by running.  The IP should be listed next to the MAC address in LearningSuite.
+1. After reboot, make sure your board receives the correct IP address.  The IP should be listed next to the MAC address in LearningSuite.  Run:
 
     ```bash
     ip a
@@ -81,7 +81,7 @@ ssh byu@<your pynq name>.ee.byu.edu
         
 ## SSH Keys
 
-> 📝 *Run this on your computer. If you are still SSh'd into the PYNQ board, type `exit` to get back to your computer.*
+> 📝 *Run this on your computer. If you are still SSH'd into the PYNQ board, type `exit` to get back to your computer.*
 
 Instead of having to authenticate with a password each time connecting to the PYNQ, you should set up an SSH key to do automatic authentication:
 

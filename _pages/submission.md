@@ -37,12 +37,12 @@ You may run the `make submit_*` script as many times as you like (there is no pe
 However, every time you run `make submit_*`, the submission date of your lab will be updated.
 If your submission date is past the deadline for the lab, you will receive a late penalty as described in the syllabus.
 
-<!-- Describe other optiosn to the submmission script -->
+<!-- Describe other options to the submission script -->
 
 ## If the submission fails . . .
 
 If your `make submit_*` continues to print messages saying that the commit file has not been created then you may not have GitHub Actions setup properly on your GitHub repository.
-Follow these instructions to fix this problem (this is a one-type problem that occurs when you first setup your repository).
+Follow these instructions to fix this problem (this is a one-time problem that occurs when you first setup your repository).
 
 1. Visit the website of your repository
 

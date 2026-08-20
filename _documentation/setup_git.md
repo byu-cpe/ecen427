@@ -17,7 +17,7 @@ In the labs for this class, you will be completing some tasks on your computer, 
 ### Register your SSH Key with Github
 
 
-  - Run  `cat ~/.ssh/id_ed25519.pub` to display your public key.  Copy the entire outputted text, including the `ssh-rsa` at the beginning and computer address at the end.
+  - Run  `cat ~/.ssh/id_ed25519.pub` to display your public key.  Copy the entire outputted text, including the `ssh-ed25519` at the beginning and computer address at the end.
   - Go to <https://github.com/settings/keys>, click *New SSH key* button, and paste your key in the *Key* box.  Give your key a name (like *caedm*) and click *Add SSH key* to save the key.
   - Check that you can now authenticate with Github by running
   
@@ -38,9 +38,11 @@ In the labs for this class, you will be completing some tasks on your computer, 
 
         git clone --bare git@github.com:byu-cpe/ecen427_student.git
         cd ecen427_student.git/
-        git push --mirror git@github.com:byu-ecen427-classroom/427-labs-jgoeders.git
+        git push --mirror git@github.com:byu-ecen427-classroom/427-labs-<your_github_username>.git
         cd ..
         rm -rf ecen427_student.git
+
+    <span style="color:red">Replace `<your_github_username>` in the third command with your own repository name</span> — copy it from the *SSH* button on your repository page.  Do not run the command as written above.
 
 
 ### Clone your Repo
@@ -48,7 +50,7 @@ In the labs for this class, you will be completing some tasks on your computer, 
   - Go to your newly created repo.  
   - Click the **Code** button, and then the **Use SSH** link, as shown here: 
     <img src = "{% link media/setup/git_classroom3.png %}" width="800" >
-  - Copy the URL that is shown.  It should be something like: *git@github.com:byu-cpe-classroom/427-labs-\<your_id\>.git*
+  - Copy the URL that is shown.  It should be something like: *git@github.com:byu-ecen427-classroom/427-labs-\<your_id\>.git*
   - Clone the repository into a directory you want to use, for example:  
 
         git clone <github_ssh_address> ~/ecen427

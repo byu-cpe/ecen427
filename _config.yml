@@ -18,7 +18,7 @@ class_name: Embedded Linux Systems
 class_number: ECEn 427
 email: jgoeders@byu.edu
 description: >-
-  Class website for BYU's ECEn 625: Compilation Strategies for High-Performance Systems.
+  Class website for BYU's ECEn 427: Embedded Linux Systems.
 baseurl: "/ecen427"
 url: "https://byu-cpe.github.io"
 github:

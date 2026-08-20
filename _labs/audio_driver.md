@@ -27,7 +27,7 @@ In this lab, you will add a new dimension to Space Invaders: sound! The PYNQ boa
 You will go back to working individually for this lab and the remaining labs.  You should copy your space invaders game code from your group repository to your individual repository.  **Do not commit your code for labs 5+ to your shared repository**.
 
 ## Overview 
-You will be creating a [loadable kernel module](https://en.wikipedia.org/wiki/Loadable_kernel_module), which allows you to write code that runs in kernel space.  This kernel module will be a driver for the audio codec.
+You will be creating a [loadable kernel module](https://www.kernel.org/doc/html/v5.4/kbuild/modules.html) ([background](https://en.wikipedia.org/wiki/Loadable_kernel_module)), which allows you to write code that runs in kernel space.  This kernel module will be a driver for the audio codec.
 
 Your driver code will need to do several things.  Some of the major tasks:
 
@@ -39,7 +39,7 @@ You need to register your driver with Linux, so that it calls the functions in y
 ### Creating a Character Device 
 Your driver can't be used from user space applications until you create some sort of interface that is accessible to user programs.  To do this, you will create a *character device*, accessible to user space as a *device file* in */dev*, linked to a major/minor number.  This requires you to do the following:
   * You will need to request major/minor numbers from Linux to use for your devices (`alloc_chrdev_region()`, Milestone 1).
-  * Before you can create a character device, you to first create a *device class*.  You can create this class once when your driver loads (`class_create()`, Milestone 1).
+  * Before you can create a character device, you need to first create a *device class*.  You can create this class once when your driver loads (`class_create()`, Milestone 1).
   * Create a new character device (`cdev_init()`, then `cdev_add()`, Milestone 1).
     * When you create your character device, you will need to point Linux to functions in your module that can be called when user code performs a `read()` or `write()` on your device.  
     * In Milestone 1, the `read()` and `write()` functions will only print log messages. 
@@ -49,7 +49,7 @@ Your driver can't be used from user space applications until you create some sor
 
 
 ### Communicating with the Hardware
-You driver will need to communicate with the audio hardware using register reads/writes.  Before you can do that, you will need to:
+Your driver will need to communicate with the audio hardware using register reads/writes.  Before you can do that, you will need to:
   * Retrieve the base address from the device tree (`platform_get_resource()`, Milestone 2).
   * Reserve this address space with Linux (`request_mem_region()`, Milestone 2).
   * Map this physical address space to a virtual address pointer (`ioremap()`, Milestone 2).
@@ -69,7 +69,7 @@ Make sure you recognize the distinction between the driver (kernel module) and t
     sudo rmmod audio_codec
     ```
     Triggering the loading and unloading of a module will in turn call the functions provided to `module_init()` and `module_exit()` in your module.
-  * Each time Linux finds a device managed by your driver, it will call the functions you provided in the `.probe` and `.remove` entries of the struct you provided when registering your module as a platform device driver (`platform_driver_register()`).  Since there is only one audio device listed in the device tree, you can expect these functions to both be called once.  Your `.probe` function should be called by Linux automatically, and immediately after your driver is loaded, while your `.remove` function will called by Linux immediately before your driver module is unloaded.
+  * Each time Linux finds a device managed by your driver, it will call the functions you provided in the `.probe` and `.remove` entries of the struct you provided when registering your module as a platform device driver (`platform_driver_register()`).  Since there is only one audio device listed in the device tree, you can expect these functions to both be called once.  Your `.probe` function should be called by Linux automatically, and immediately after your driver is loaded, while your `.remove` function will be called by Linux immediately before your driver module is unloaded.
 
 Based on the above, it is important to recognize which of the driver features should be done once when the module is loaded, and which should be done for each device.  Even though the driver you make in this lab is only going to **support one device**, as good coders, we want to organize our code in such a way that it could more easily be extended in the future.
 
@@ -87,7 +87,7 @@ Your kernel driver needs to:
     * The character device should implement `read()` and `write()` functions; however, for this milestone, these functions should simply print a message to the kernel log.
     * A device file should be created at `/dev/audio_codec`.
   * Make sure that:
-    * When the driver is unloaded, undo all appropriate actions that were perform when the driver was loaded.
+    * When the driver is unloaded, undo all appropriate actions that were performed when the driver was loaded.
     * When a device is removed, undo all appropriate actions that were done when the device was added.
   * Add messages to print:
     * When your driver is loaded and unloaded.
@@ -104,7 +104,7 @@ Create a new user space program in *userspace/apps/audio_driver_test1*, with app
 To grade your submission we will:
 1. Load and unload your driver (`insmod` and `rmmod`) **TWICE**.  
 
-    Make sure it works without error and has appropriate logging messages as described above.  A simple [script](https://github.com/byu-cpe/ecen427_student/blob/master/kernel/audio_codec/test_insmod.sh) is provided that loads and unloads the module twice, prints recent kernel log entries, and prints details of your device file.  
+    Make sure it works without error and has appropriate logging messages as described above.  A simple [script](https://github.com/byu-cpe/ecen427_student/blob/main/kernel/audio_codec/test_insmod.sh) is provided that loads and unloads the module twice, prints recent kernel log entries, and prints details of your device file.  
 
 1. Compile and run your *audio_driver_test1* program.  
 
@@ -170,8 +170,8 @@ In this milestone you will add an *ioctl* interface to your driver to allow user
     - Turn off looping for the current audio clip.  
   
   * Integrate sound into Space Invaders by generating the following sounds during game operation:
-    * WAVE files are provided [here](https://github.com/byu-cpe/ecen427_student/tree/master/resources/wavFiles).
-    * The "marching" sound the aliens make as they move back and forth across the screen is comprised of four separate walk1, walk2, walk3, and walk4 sounds.  You start with walk1 the first time an alien moves and then play the next sound in the sequence on each successive move, cycling back to wave1.  You will need to have a pause between each sound.
+    * WAVE files are provided [here](https://github.com/byu-cpe/ecen427_student/tree/main/resources/wavFiles).
+    * The "marching" sound the aliens make as they move back and forth across the screen is comprised of four separate walk1, walk2, walk3, and walk4 sounds.  You start with walk1 the first time an alien moves and then play the next sound in the sequence on each successive move, cycling back to walk1.  You will need to have a pause between each sound.
     * The sound that the red flying saucer makes as it flies across the screen (use your looping functionality for this)
     * The sound that occurs when your tank is hit by an alien bullet.
     * The sound that occurs when an alien is hit by a tank bullet.
@@ -191,7 +191,7 @@ In this milestone you will add an *ioctl* interface to your driver to allow user
 Your Space Invaders game should be operating with all of the sound effects.  
 
 
-**Important:** All necessary WAVE files should be committed as part of your repository.  Your game should not rely on these files being located at a specific absolute path, as the TAs will likely clone your repo to a different path.  You can use [read_link](https://stackoverflow.com/questions/933850/how-do-i-find-the-location-of-the-executable-in-c) to get the path to your `space_invaders` executable, and then use a relative path from that location to access the WAVE files in your repository.  <span style="color:red">You should assume the executable will be located within your build directory.  For example, during grading, *read_link* will provide a path similar to */home/.../userspace/build/apps/space_invaders/space_invaders*, and you will need to adjust this path to locate the wave files.  Do not assume the executable is in a "cross-compiled" directory as you may have been testing with on your own. </span>
+**Important:** All necessary WAVE files should be committed as part of your repository.  Your game should not rely on these files being located at a specific absolute path, as the TAs will likely clone your repo to a different path.  You can use [readlink()](https://man7.org/linux/man-pages/man2/readlink.2.html) ([example](https://stackoverflow.com/questions/933850/how-do-i-find-the-location-of-the-executable-in-c)) to get the path to your `space_invaders` executable, and then use a relative path from that location to access the WAVE files in your repository.  <span style="color:red">You should assume the executable will be located within your build directory.  For example, during grading, *readlink()* will provide a path similar to */home/.../userspace/build/apps/space_invaders/space_invaders*, and you will need to adjust this path to locate the wave files.  Do not assume the executable is in a "cross-compiled" directory as you may have been testing with on your own. </span>
 
 ## Code Submission 
 Follow the [Submission Instructions]({% link _pages/submission.md %}).
@@ -200,7 +200,7 @@ Follow the [Submission Instructions]({% link _pages/submission.md %}).
 
 ### Milestone 1/2
 
-[audio_codec.c](https://github.com/byu-cpe/ecen427_student/blob/master/kernel/audio_codec/audio_codec.c) provides a starting framework for your driver software.  Read over it carefully before coding anything.
+[audio_codec.c](https://github.com/byu-cpe/ecen427_student/blob/main/kernel/audio_codec/audio_codec.c) provides a starting framework for your driver software.  Read over it carefully before coding anything.
 
 A few notes about the provided code:
   * Your driver only needs to support a single audio device, so we have allocated a single `struct audio_device` as a global variable at compile time.  
@@ -254,13 +254,13 @@ Some resources to help you with the kernel function calls:
     * LDD3, Ch3 discusses these functions in the section *Char Device Registration*.
   * `device_create`
     * This function will create a device file in */dev*.
-    * See the Linux documentation <https://www.kernel.org/doc/html/v4.9/driver-api/infrastructure.html>
+    * See the Linux documentation <https://www.kernel.org/doc/html/v5.4/driver-api/infrastructure.html>
     * Be careful to check the return value of ''device_create'' properly.  
   * `platform_get_resource`
     * This function is used to retrieve values from the device tree.
     * Using type `IORESOURCE_MEM` will return the physical memory address and length (`<reg>` from the device tree).
     * Using type `IORESOURCE_IRQ` will return the IRQ number.  (*Note:* It will be a virtual IRQ number, and will not be the same as the physical IRQ number listed in the device tree).
-    * Linux documentation <https://www.kernel.org/doc/html/v4.9/driver-api/infrastructure.html>
+    * Linux documentation <https://www.kernel.org/doc/html/v5.4/driver-api/infrastructure.html>
     * <https://stackoverflow.com/questions/22961714/what-is-platform-get-resource-in-linux-driver>
     * <https://lwn.net/Articles/448499/>. Look at section **Platform devices** especially for where data is stored in the struct.
   * `request_mem_region` and `ioremap`
@@ -281,7 +281,7 @@ Some resources to help you with the kernel function calls:
   * Read LDD3 chapter 6, the first section on *ioctl*.
   * Use `.unlocked_ioctl` in the `struct file_operations` (`.ioctl` as the text suggests is out of date). Even with this update, you still use the `ioctl()` system call in your user-space code for space invaders.
   * The *ioctl* interface must be implemented as described in LDD3.  Make sure the *ioctl* command values are created using the `_IO*` macros.  An example of these are given on pages 138-139 of LDD3.
-  * You probably want to read all of the WAVE files and store them in arrays at the startup of you game.  Then each time you want to play a sound effect you can pass the appropriate array buffer to the driver.  This avoids repeatedly reading the WAVE files each time you play a sound.
+  * You probably want to read all of the WAVE files and store them in arrays at the startup of your game.  Then each time you want to play a sound effect you can pass the appropriate array buffer to the driver.  This avoids repeatedly reading the WAVE files each time you play a sound.
   * No sound mixing is required for this lab, simply play one sound at a time.
 
 ### Other

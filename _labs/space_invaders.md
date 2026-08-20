@@ -7,7 +7,7 @@ number: 4
 under_construction: false
 
 ---
-In this lab you will write  the software that implements all functionality (except sound) for Space Invaders.
+In this lab you will write the software that implements all functionality (except sound) for Space Invaders.
 
 ## Objective
 * Gain experience interacting with a Linux driver (HDMI driver) from user space.
@@ -19,12 +19,12 @@ In this lab you will write  the software that implements all functionality (exce
 This is the only lab where you will be permitted to work in a team.  Your team will be three students.  The teams are pre-set and are listed on Learning Suite.  If two teams mutually agree, you may swap team members.  Do this before proceeding with the next step.
 
 
-You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.  Once you have your team arranged, follow this link to create a new shared Github repository for lab 3: <https://classroom.github.com/a/FIA1_rqk>
+You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.  Once you have your team arranged, follow this link to create a new shared Github repository for lab 4: <https://classroom.github.com/a/FIA1_rqk>
   * The first team member to sign up should create a new team name.
   * The other team members can join the team created by the first team member.
   * Once you have a team repository created, **each member of the team** needs to complete the Learning Suite quiz to indicate their team repository URL.
 
-Once your empty lab 3 repository is created, you will need to import one of your team member's individual repository, into your shared repository. You can choose which member of team's code to use, but **all team members must have submitted lab3 before you share your code**.
+Once your empty lab 4 repository is created, you will need to import one of your team member's individual repository, into your shared repository. You can choose which member of team's code to use, but **all team members must have submitted lab3 before you share your code**.
 
 You can do this in a similar manner to how you obtained the starter code:
 
@@ -46,7 +46,7 @@ src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200">
 In this milestone you will implement the functions defined in [Graphics.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/Graphics.h). These should be implemented in *Graphics.cpp*.  Some resources to review:
   * Refer to the [HDMI]({% link _documentation/hdmi.md %}) page for documentation on how to interact with the HDMI driver.
   * The individual sprites defined in [resources/sprites.c](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/resources/sprites.c)
-  * The [Sprites.cpp](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/Sprites.cpp)/[Sprites.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/Sprites.h) class which instances all of the individual sprites, provides enums and access functions to get the sprite data.
+  * The [Sprites.cpp](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/Sprites.cpp)/[Sprites.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/Sprites.h) class which instantiates all of the individual sprites, provides enums and access functions to get the sprite data.
 
 Your graphics functions need to be efficient and execute quickly.  The best way to do this is to reduce the number of system calls you make to the HDMI driver.
 
@@ -68,7 +68,7 @@ Several test functions are provided, and will be used to evaluate your graphics 
 src="https://www.youtube.com/embed/kGd4K0jBjis">
 </iframe>
 
-Implement all of the game video except for bullets and collisions.  Tanks should move, aliens should march, etc.  Use the video above as a reference. Keep in mind that when an entire column of aliens is gone from the edge the remaining aliens keep marching to the edge of the screen, past where the would have stopped if the edge aliens were alive. This feature doesn't need to be functional for this milestone, but keep it in mind for the next milestone.
+Implement all of the game video except for bullets and collisions.  Tanks should move, aliens should march, etc.  Use the video above as a reference. Keep in mind that when an entire column of aliens is gone from the edge the remaining aliens keep marching to the edge of the screen, past where they would have stopped if the edge aliens were alive. This feature doesn't need to be functional for this milestone, but keep it in mind for the next milestone.
 
 The approach you take to the game timing should be tick-based, controlled by the FIT interrupt, similar to the clock lab.  You may find it helpful to use state machines as you learned in ECEn 330 and ECEn 390, although this is not required.  If you decide not to use state machines, your code must still work with the tick-based approach.
 
@@ -95,7 +95,7 @@ The game should end if the aliens reach the bottom (either reaching the bunkers,
 
 **Note: You do not need to implement the high score screen.  Although this is shown in the video, it is not required for this lab this semester.**
 
-Student often ask whether they can change the game in some way.  The answer is yes, you can make changes, provided they are stylistic and do not reduce the complexity of the game.  For example, the following would be permitted:
+Students often ask whether they can change the game in some way.  The answer is yes, you can make changes, provided they are stylistic and do not reduce the complexity of the game.  For example, the following would be permitted:
 * Changing the colors of the aliens, bunkers, or ship.
 * Changing the shape of the aliens, bunkers, or ship.
 * Slight modifications to the speed of the game.
@@ -145,9 +145,9 @@ One of the requirements is for the sprites to be scaled to be the same size as i
 
 To save some time, we will give you the definitions of the aliens in their two guises, the spaceship, etc. These definitions are useful if you use the approach that was discussed above.
 
-  * [sprites.c](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/space_invaders/resources/sprites.c)
-  * [sprites.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/space_invaders/resources/sprites.h)
+  * [sprites.c](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/resources/sprites.c)
+  * [sprites.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/resources/sprites.h)
 
 ### Bunker Erosion Patterns 
 
- Take a look at the [sprites.c](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/space_invaders/resources/sprites.c) file for erosion patterns. The corners of the bunkers should erode such that no pixels get set that weren't set before they started to erode.  So, although the erosion patterns are square in shape, the corners of the bunkers should erode within their original pixel constraints.
+ Take a look at the [sprites.c](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/resources/sprites.c) file for erosion patterns. The corners of the bunkers should erode such that no pixels get set that weren't set before they started to erode.  So, although the erosion patterns are square in shape, the corners of the bunkers should erode within their original pixel constraints.

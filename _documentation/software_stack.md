@@ -11,4 +11,4 @@ number: 10
 
 ## Header File 
 
-The [system.h](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/drivers/system.h) header file provides many useful *#define* statements for your convenience.
+The [system.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/system.h) header file provides many useful *#define* statements for your convenience.

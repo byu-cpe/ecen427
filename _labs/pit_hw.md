@@ -10,11 +10,11 @@ number: 6
 In this lab you will create a Programmable Interval Timer (PIT) in SystemVerilog that is accessible through the CPU's memory-mapped AXI bus.
 
 ## Objectives
-* Gain experience with IP-based harware design.
+* Gain experience with IP-based hardware design.
 * Learn about, and implement, the AXI protocol.
 * Practice writing timing-sensitive HDL code.
 
-## Prelminary
+## Preliminary
 In the real-time clock lab, you used a fixed-interval timer (FIT) from the IP catalog. As you may recall, the FIT generates interrupts at a fixed rate, based upon a single build parameter that cannot be changed once you have built the FPGA hardware. This makes the FIT very easy to use once your system is built, but the FIT is very inflexible. For this lab you are going to build a Programmable Interval Timer (PIT) in SystemVerilog and add it to the hardware system. 
 
 The PIT will be an AXI peripheral, allowing the CPU to control the PIT's behavior through memory-mapped registers.  The PIT logic itself is very simple, and you will likely have made more complex designs in a previous class.  The challenging part of this lab is getting the AXI interface correct, which has strict protocol requirements.
@@ -35,7 +35,7 @@ Your PIT module must include the following:
       * *bit 0 - enable*: enables the counter to decrement if set to '1', holds the counter at its current value if set to a '0'.
       * *bit 1 - interrupt enable*: enables interrupts if set to a '1', disables interrupts if set to a '0'.
       * You may use the remaining bits in the programmable control register as you see fit.
-    - **Ofset 0x04**: A 32-bit delay-value register that must be readable and writeable from the CPU. This value controls the period of the interrupt output.  
+    - **Offset 0x04**: A 32-bit delay-value register that must be readable and writeable from the CPU. This value controls the period of the interrupt output.  
   - **Reset**: Your PIT must reset along with the rest of the system.  Make sure to reset your PIT using the AXI resetn signal.
     - It would be good to reset your PIT into a state equivalent to the FIT, so that you can test that it's working without needing to perform any register writes.  Thus:
       * Reset the offset 0x00 control register to 3 (i.e., enable the counter and enable interrupts).
@@ -65,7 +65,7 @@ The [make sim_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makef
       * To create this file, you will need to make your own Vivado simulation project that contains the AXI VIP and your module, connected appropriately.  The Tcl script can then be exported using the *Write Tcl* menu option, as as described on the [vivado]({% link _documentation/vivado.md %}) page.  
       * When this script is run, it should create a Vivado project with a block diagram that uses the AXI VIP to test your module. 
     
-  1. It sources [run_sim.tcl](https://github.com/byu-cpe/ecen427_student/blob/master/hw/run_sim.tcl), which simply runs functional simulation in Vivado.  This means that the Vivado project must be set up with a SystemVerilog test bench that runs the VIP-driven simulation.    
+  1. It sources [run_sim.tcl](https://github.com/byu-cpe/ecen427_student/blob/main/hw/run_sim.tcl), which simply runs functional simulation in Vivado.  This means that the Vivado project must be set up with a SystemVerilog test bench that runs the VIP-driven simulation.    
       * The test bench must:
         * Demonstrate writing and reading back the control registers.  When you read back the control register, print it out using `$display`. 
         * Demonstrate writing and reading back the delay-value register.  When you read back the delay-value register, print it out using `$display`. 
@@ -83,7 +83,7 @@ The [make synth_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Mak
   
 You may want to go back and forth between these two targets as you work on your PIT design.  If synthesis has errors, you will need to fix them and then go back to simulation again to verify that your changes didn't break anything.  Once both of these targets run without errors, you are ready to move on to Milestone 2.
 
-<span style="color:red">**IMPORTANT:**</span> Students frequently forget to commit all necessary files for the TAs to run the above commands.  Make sure you commit your *sim_proj.tcl* file, your waveform configuration file, and any other necessary files to your repository.  It is recommended that your perform a fresh clone of your repository and run the above commands to make sure that everything is committed that needs to be.  
+<span style="color:red">**IMPORTANT:**</span> Students frequently forget to commit all necessary files for the TAs to run the above commands.  Make sure you commit your *sim_proj.tcl* file, your waveform configuration file, and any other necessary files to your repository.  It is recommended that you perform a fresh clone of your repository and run the above commands to make sure that everything is committed that needs to be.  
 
 ### Milestone 2: Integration
 
@@ -112,7 +112,7 @@ Make sure to commit:
 
 ## How to Get Started 
 * Review the available documentation on [using the Vivado software]({% link _documentation/vivado.md %}) and [simulating AXI IP]({% link _documentation/vivado_axi_simulation.md %}).
-* Write the PIT module, implemented in [pit.sv](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ip_repo/pit/pit.sv)
+* Write the PIT module, implemented in [pit.sv](https://github.com/byu-cpe/ecen427_student/blob/main/hw/ip_repo/pit/pit.sv)
 * Write your test bench to simulate your PIT module to make sure it works correctly.
 * Complete the rest of the requirements described above.
 
@@ -121,7 +121,7 @@ Make sure to commit:
 Follow the [submission instructions]({% link _pages/submission.md %}).  Make sure that you have pushed up all your new hardware to Github, including at least:
   * *(Milestone 1)* The *sim_proj.tcl* file that will be used to create your simulation project.
   * *(Milestone 1)* The waveform configuration file.
-  * *(Milestone 1)* Your [pit.sv](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ip_repo/pit/pit.sv) changes.
-  * *(Milestone 2)* The changes to the [ecen427.tcl](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ecen427.tcl) file.
-  * *(Milestone 2)* Your new [ecen427.bit](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ecen427.bit) bitstream.
-  * *(Milestone 2)* Your bitstream packaged into the [ecen427.bit.bin](https://github.com/byu-cpe/ecen427_student/blob/master/device_tree/ecen427.bit.bin) format.
+  * *(Milestone 1)* Your [pit.sv](https://github.com/byu-cpe/ecen427_student/blob/main/hw/ip_repo/pit/pit.sv) changes.
+  * *(Milestone 2)* The changes to the [ecen427.tcl](https://github.com/byu-cpe/ecen427_student/blob/main/hw/ecen427.tcl) file.
+  * *(Milestone 2)* Your new [ecen427.bit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/ecen427.bit) bitstream.
+  * *(Milestone 2)* Your bitstream packaged into the [ecen427.bit.bin](https://github.com/byu-cpe/ecen427_student/blob/main/device_tree/ecen427.bit.bin) format.

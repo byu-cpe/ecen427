@@ -3,7 +3,7 @@ layout: lab
 toc: true
 title: "Lab 8: Self-Directed Learning"
 short_title: Self Study
-number: 8
+number: 10
 under_construction: false
 hide: true
 
@@ -19,7 +19,7 @@ This lab will give you practice in this area.
     * Online tutorials & blogs
     * Youtube videos
     * Textbooks
-    * ChatGPT
+    * AI chat tools (within the limits of the [AI Usage Policy]({% link _pages/ai.md %}))
 * Write a short report on what you learned.  While you can use AI tools to help you learn the concepts, this short report should be written in your own words.  The report should have the following headings.
 
         Topic: 

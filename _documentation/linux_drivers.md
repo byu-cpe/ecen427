@@ -75,7 +75,7 @@ Simply run `make` to compile your driver.  A kernel module/object (''.ko'') file
 ### Adding the Driver to Linux 
 There are generally three ways to add your driver to the Linux system:
   - Compile it into the kernel when you originally compile the kernel.
-  - Run it as a [Kernel Module](https://wiki.archlinux.org/index.php/Kernel_module) that is loaded at boot.
+  - Run it as a [Kernel Module](https://www.kernel.org/doc/html/v5.4/kbuild/modules.html) that is loaded at boot.
   - Run it as a Kernel Module that is loaded manually.
 
 Since we aren't going to recompile the kernel, #1 is not possible.  While you are developing your kernel you should use method #3:

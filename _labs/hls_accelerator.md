@@ -12,7 +12,7 @@ hide: true
 ## Overview
 In this final lab, you will create another piece of custom digital hardware, which will be capable of modifying the graphics on the screen in an accelerated manner.  Rather than relying on the processor to draw each pixel of the graphics, you will be able to issue a command to your hardware accelerator to do this for you.
 
-Your hardware accelerator will need the ability to change memory values in the pixel buffer.  This means that it will act as a *master* on the system bus, with the ability to initiate read and write operations.  This is also means that this hardware will be much more complex than your PIT device, which was a *slave* device, and could only wait and respond to requests initiated by a master device (the processor).
+Your hardware accelerator will need the ability to change memory values in the pixel buffer.  This means that it will act as a *master* on the system bus, with the ability to initiate read and write operations.  This also means that this hardware will be much more complex than your PIT device, which was a *slave* device, and could only wait and respond to requests initiated by a master device (the processor).
 
 Fortunately, we are going to make use of a modern digital design technology, *High-Level Synthesis (HLS)*, which will automatically create our Verilog digital circuit from a far simpler C-code description.
 
@@ -22,7 +22,7 @@ Fortunately, we are going to make use of a modern digital design technology, *Hi
 ## Describing Functionality in C Code
 HLS tools allow you to design hardware using C/C++ code (with some limitations; for example, code that uses dynamic memory allocation or recursion isn't supported).  To use HLS, you must write your hardware behavior as a C/C++ function, and then run the HLS tools to convert this into a Verilog module.  The function arguments will become top-level interfaces to your hardware block.
 
-For this lab, you will implement the the `fill_bitmap_region` function, defined in bitmap_accelerator.h:
+For this lab, you will implement the `fill_bitmap_region` function, defined in bitmap_accelerator.h:
 
 ```
 // Draw a rectangular region of pixels at (dest_x, dest_y), of size (width, height).
@@ -38,7 +38,7 @@ void fill_bitmap_region(uint8_t *frame_buffer, uint16_t src_x, uint16_t src_y,
                         uint8_t const_G, uint8_t const_B);
 ```
 
-Create a *bitmap_accelerator.c* file where you implement this function.  You can write this function now, or leave it empty and move onto the next step, but you need to make sure and create the file and function body before proceeding.
+Create a *bitmap_accelerator.c* file where you implement this function.  You can write this function now, or leave it empty and move onto the next step, but you need to make sure to create the file and function body before proceeding.
 
 Some test code is provided to you in *bitmap_accelerator_test.c* to ensure that you implement it correctly.  This will be used in the next step.
 
@@ -126,7 +126,7 @@ Or though Tcl:
 
 ### IP Export
 
-As you did in Lab 5, the next step is to package your Verilog into an IP module that you can include in your Vivado project.  Fortunately, you don't have to do this manually; Vitis HLS will automatically package your IP.  You can select *Export RTL* from the run menu, and output your IP to the *hw/ip_repo* folder.  Or add this to the end of your proj.tcl:
+As you did in Lab 6, the next step is to package your Verilog into an IP module that you can include in your Vivado project.  Fortunately, you don't have to do this manually; Vitis HLS will automatically package your IP.  You can select *Export RTL* from the run menu, and output your IP to the *hw/ip_repo* folder.  Or add this to the end of your proj.tcl:
 
     export_design -format ip_catalog -output ../../ip_repo/fill_bitmap_region.zip
 
@@ -139,7 +139,7 @@ Then commit these IP files to your repo.
 
 ### Connecting your IP in your Vivado Project
 
-Add your new IP to your Vivado project like you did in Lab 5.  Wiring up this IP will be slightly different, and more complicated, than your PIT.  Follow these steps:
+Add your new IP to your Vivado project like you did in Lab 6.  Wiring up this IP will be slightly different, and more complicated, than your PIT.  Follow these steps:
 1. Connect the clock input.  This should come from the 100MHz clock output of the ZYNQ7 Processing System (*FCLK_CLK0*).
 1. Connect the reset input.  This should come from the *peripheral_aresetn* output of the *rst_ps7_0_fclk0* block.  
 2. Attach the AXI4-Lite slave interface to the appropriate bus (same as Lab 5). In our system, the *axi_interconnect_0* block implements the bus for memory-mapped 100MHz devices.  Double click to reconfigure this bus and add another master port.  
@@ -167,7 +167,7 @@ If done correctly, it should look something like this:
 
 ### Compiling and Committing the Hardware 
 
-As with lab5:
+As with Lab 6:
 1. Save your hardware project changes by generating a new *ecen427.tcl* file (and commit to Git).  
 1. Generate a new bitstream, copy it to *hw/ecen427.bit* and commit it to git.
 1. Add a new entry to the device tree, with a *compatible* field set to *generic-uio*, and a *reg* field that is the AXI slave address of your new IP.  
@@ -184,7 +184,7 @@ Take a look at the *ip_repo/copy_bitmap_region/drivers/fill_bitmap_region_v1_0/s
 
 With this information you could write your own user space driver that accesses these registers via UIO (like you did in Lab 2).  However, there is no need to do so, since Vitis HLS automatically creates such a driver for you.  This driver is located in the various _xfill_bitmap_region*_ files.
 
-Copy these files to the [fill_bitmap_region](https://github.com/byu-cpe/ecen427_student/tree/master/userspace/drivers/) driver folder.  This folder serves as a simple wrapper around the Xilinx-created driver.  You should create a *fill_bitmap_region.c* file, and implement the three functions listed in the [fill_bitmap_region.h](https://github.com/byu-cpe/ecen427_student/blob/master/hw/) file.
+Copy these files to the [fill_bitmap_region](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/drivers/) driver folder.  This folder serves as a simple wrapper around the Xilinx-created driver.  You should create a *fill_bitmap_region.c* file, and implement the three functions listed in the [fill_bitmap_region.h](https://github.com/byu-cpe/ecen427_student/blob/main/hw/) file.
 
 These functions are quite simple, and just need to call the appropriate functions that are listed in *xfill_bitmap_region.h*:
   * To initialize the driver you will need to call *XCopy_bitmap_region_Initialize*.  The first argument is a pointer to a *XFill_bitmap_region* struct that will be initialized by this function. The second argument to this function is *InstanceName*, which is the name you chose for your accelerator in the Linux Device Tree.  Unlike the drivers you created in Lab 2 which used hard-coded */dev/* filenames, the Xilinx driver uses the device tree name to lookup the appropriate */dev/ file to use.
@@ -195,7 +195,7 @@ These functions are quite simple, and just need to call the appropriate function
     you will provide a pointer to the *XFill_bitmap_region* struct you initialized earlier, as well as the data to set.
 
 
-Once you implement these functions correctly, we have provided a [frame_buffer_test](https://github.com/byu-cpe/ecen427_student/tree/master/userspace/apps/) application to test that it's working.  This application draws a red, green and blue square in the top-left of the screen, then copies these three squares to the middle fo the screen.  It looks like this:
+Once you implement these functions correctly, we have provided a [frame_buffer_test](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/) application to test that it's working.  This application draws a red, green and blue square in the top-left of the screen, then copies these three squares to the middle of the screen.  It looks like this:
 <img src="{% link media/labs/frame_buffer_test.jpg %}" width=600>
 
 This application is worth looking through as an example on how to use your accelerator.  One important thing to note: to use your accelerator, you need a pointer to the frame buffer.  As shown in this application, you can retrieve this by making an IOCTL call to the HDMI driver.  
@@ -208,7 +208,7 @@ Now that you have a working driver, you should make use of it in your Space Inva
 
 Your accelerator can be used to copy one alien to many different locations quickly.  However, you may be wondering the best way to do this; since aliens can be destroyed, and can move around, you can't always rely on one being at a specific location to copy from.  To make this easier, we have added 40 extra rows of pixels below the screen that you can use to temporarily store your sprites.  If you draw aliens to this "off-screen" region using the original software method, you can then reliably copy from these locations using your accelerator throughout gameplay.
 
-**Note:** You are free to work with your lab3 partner(s) to perform this stage of the lab.  However, make sure you commit the changes to your *individual* Github repository.
+**Note:** You are free to work with your lab 4 partner(s) to perform this stage of the lab.  However, make sure you commit the changes to your *individual* Github repository.
 
 ## Submission
 

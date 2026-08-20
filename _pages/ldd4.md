@@ -6,7 +6,7 @@ title: Linux Device Drivers, Chapter 4
 
 ## Reading
 
-Pages Debugging by Printing (75-82), Debugging System Faults (93-98).  Also read about the *dev_\** and *pr_\** functions (<https://www.kernel.org/doc/html/latest/process/coding-style.html#printing-kernel-messages> (only Section 13) and <https://lwn.net/Articles/487437/>). 
+Pages Debugging by Printing (75-82), Debugging System Faults (93-98).  Also read about the *dev_\** and *pr_\** functions (<https://www.kernel.org/doc/html/v5.4/process/coding-style.html#printing-kernel-messages> (only Section 13) and <https://lwn.net/Articles/487437/>). 
 
 ## Study Questions
 

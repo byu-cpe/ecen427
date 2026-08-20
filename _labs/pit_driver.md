@@ -58,7 +58,7 @@ Your driver must expose the following functionality through the sysfs interface:
 
 ### Add sysfs interfaces
   * Extend your driver to support the sysfs interfaces described above.
-  * To add sysfs attributes, you need a `struct kobject *` type.  You can obtain this from your `probe` function.  The probe function provide a `struct platform_device *pdev` argument, and you can obtain the `struct kobject *` by doing `&pdev->dev.kobj`.
+  * To add sysfs attributes, you need a `struct kobject *` type.  You can obtain this from your `probe` function.  The probe function provides a `struct platform_device *pdev` argument, and you can obtain the `struct kobject *` by doing `&pdev->dev.kobj`.
 
 ### Verifying with Int Rate
 You can verify that your PIT is working correctly by testing it with the [int_rate](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/int_rate) application.  Modify [this line](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/int_rate/int_rate.cpp#L12) in the source code to use the PIT interrupt line instead of the FIT interrupt line.  
@@ -98,7 +98,7 @@ You may find the following tutorial helpful: <https://www.cs.swarthmore.edu/~new
   * You shouldn't need to call `root_device_register` because you should already have a handle to a `struct device *` from the argument passed into your `probe()` function (`&pdev->dev`).
   * You don't need to create subdirectories, as you should place all attributes in the main directory for your PIT.
   * On the slide titled **Adding 1 File** there is a function mentioned, `sysfs_add_file`.  This is a typo.  It should be `sysfs_create_file`.
-  * I recommend using `sysfs_create_group` instead of adding attributes one by one.  While it may seem like more work, it will actually save you time as your error handling/removal code is much simpler. `sysfs_remove_group` will only remove those attributes that were successfully added (instead of you having to keep track of of this).
+  * I recommend using `sysfs_create_group` instead of adding attributes one by one.  While it may seem like more work, it will actually save you time as your error handling/removal code is much simpler. `sysfs_remove_group` will only remove those attributes that were successfully added (instead of you having to keep track of this).
 
 
 ### sysfs permissions 

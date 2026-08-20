@@ -12,7 +12,7 @@ Look through the files provided to you in the Git repo.  There are some helpful 
 
 ## Build System
 
-For most programs you create in this class, you will compile them on your workstation, and then copy them over to the PYNQ board to run them.  This is called **cross-compiling**.  This is done because the ARM CPU on the PYNQ board is very slow, and it is much faster to compile on your workstation.  Running VS Code on your workstation will also allow you to use such benefits as intellisense and github co-pilot to help you write your code.  
+For most programs you create in this class, you will compile them on your workstation, and then copy them over to the PYNQ board to run them.  This is called **cross-compiling**.  This is done because the ARM CPU on the PYNQ board is very slow, and it is much faster to compile on your workstation.  Running VS Code on your workstation will also allow you to use such benefits as intellisense and GitHub Copilot autocomplete.  <span style="color:red">Before using any AI tooling, read the [AI Usage Policy]({% link _pages/ai.md %})</span> — autocomplete is permitted, but pasting AI-generated code and using agent mode are not.  
 
 ### Install Compiler
 Before proceeding you should install the G++ ARM compiler on your workstation.  You can do this by running the following command:
@@ -20,18 +20,18 @@ Before proceeding you should install the G++ ARM compiler on your workstation.  
     cd <your_repo>
     make g++-arm-11.2
 
-This will take a few minutes and you will need about 1GB of free space in your home drive. If you don't want to install these, you can compile on the PYNQ board, but it will be much slower.
+This will take a few minutes and you will need about 1GB of free space. The toolchain is installed into the `tools/` directory of your repository. If you don't want to install these, you can compile on the PYNQ board, but it will be much slower.
 
 ### CMake 
 
 To build your user space programs, you are required to use CMake.  CMake is a tool that will automatically create Makefiles for you, based on a configuration file called `CMakelists.txt`.  CMake is already set up in the provided repo. 
 
-You can look at the top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/CMakeLists.txt) file provided to you.  *Note:* This file is located in your `userspace` folder.  For the first few labs of the class you will be writing code that runs in Linux user space, so all of your code will be placed within this folder.  Later, beginning in Lab 5, you will write kernel code that will be located in the `kernel` folder, but this will not be built using the CMake system.
+You can look at the top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/CMakeLists.txt) file provided to you.  *Note:* This file is located in your `userspace` folder.  For the first few labs of the class you will be writing code that runs in Linux user space, so all of your code will be placed within this folder.  Later, beginning in Lab 5, you will write kernel code that will be located in the `kernel` folder, but this will not be built using the CMake system.
 
-For Lab1, you are provided a *Hello, World* application, [main.cpp](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/helloworld/main.cpp).
+For Lab1, you are provided a *Hello, World* application, [main.cpp](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/helloworld/main.cpp).
 
 
-Note that the top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/CMakeLists.txt) file has a `add_subdirectory(apps)` statement, which will instruct CMake to process the apps [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/CMakeLists.txt) file.  This in turn has a `add_subdirectory(helloworld)` statement that will process the lab1 [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/helloworld/CMakeLists.txt) file.  
+Note that the top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/CMakeLists.txt) file has a `add_subdirectory(apps)` statement, which will instruct CMake to process the apps [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/CMakeLists.txt) file.  This in turn has a `add_subdirectory(helloworld)` statement that will process the lab1 [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/helloworld/CMakeLists.txt) file.  
 
 ### Deploying Executables to the PYNQ Board
 
@@ -73,7 +73,7 @@ While you don't need sudo to run the helloworld program, you will need it for al
 
 ## Understanding the CMakeLists.txt files 
 
-The top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/CMakeLists.txt) file contains the following line
+The top-level [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/CMakeLists.txt) file contains the following line
 
     cmake_minimum_required(VERSION 3.5)
 
@@ -88,13 +88,18 @@ The next set of lines allow you to compile your code on your computer, even thou
     if (NOT ${CMAKE_HOST_SYSTEM_PROCESSOR} STREQUAL "armv7l")
         message(WARNING "Building on non-PYNQ board.  Cross-compiling will be performed.")
 
+        if (NOT EXISTS "${ROOT_DIR}/tools/gcc-arm-11.2-2022.02-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-g++")
+            message(FATAL_ERROR "Cross-compilation ARM toolchain not found.  Please run `make g++-arm-11.2` from the root directory.")
+        endif()
+
         SET(CMAKE_SYSTEM_PROCESSOR armv7)
         SET(CMAKE_CROSSCOMPILING 1)
-        set(CMAKE_C_COMPILER "$ENV{HOME}/g++-arm-8.2-ecen427/bin/arm-linux-gnueabihf-gcc")
-        set(CMAKE_CXX_COMPILER "$ENV{HOME}/g++-arm-8.2-ecen427/bin/arm-linux-gnueabihf-g++")
+        set(CMAKE_C_COMPILER "${ROOT_DIR}/tools/gcc-arm-11.2-2022.02-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-gcc")
+        set(CMAKE_CXX_COMPILER "${ROOT_DIR}/tools/gcc-arm-11.2-2022.02-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-g++")
         add_compile_options("-march=armv7-a")
         add_compile_options("-mfpu=vfpv3")
         add_compile_options("-mfloat-abi=hard")
+        add_compile_options("-Wno-abi")
         add_link_options("-march=armv7-a")
         add_link_options("-mfpu=vfpv3")
         add_link_options("-mfloat-abi=hard")
@@ -114,11 +119,11 @@ line instructs CMake where to look for header (*.h*) files.  In Lab 2 you will c
 These lines instruct CMake to look in these directories for additional CMakeLists.txt files and process them.
 
 
-The Lab 1 [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/master/userspace/apps/helloworld/CMakeLists.txt) file contains the following: 
+The Lab 1 [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/helloworld/CMakeLists.txt) file contains the following: 
 
-    add_executable(helloworld main.c)
+    add_executable(helloworld main.cpp)
 
-This directs CMake to create a new executable program.  The first argument is the name of the executable, which in this case is `helloworld`.  The remaining arguments to the command provide a list of source code files, which in this case is only main.c.
+This directs CMake to create a new executable program.  The first argument is the name of the executable, which in this case is `helloworld`.  The remaining arguments to the command provide a list of source code files, which in this case is only main.cpp.
 
 
 ## Backing up Your Code

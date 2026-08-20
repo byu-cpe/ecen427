@@ -17,7 +17,7 @@ If you choose to use your own computer, the easiest way to get the necessary sof
 If you are using Windows, it is recommended to use Linux via the Windows Subsystem for Linux (WSL).  Follow [Microsoft's instructions](https://learn.microsoft.com/en-us/windows/wsl/install) to install it. You may want to use the new [Windows Terminal](https://apps.microsoft.com/detail/9N0DX20HK701?hl=en-US&gl=US) application as your default terminal.
 
 ### Mac
-If you are using a Mac, you can use the built-in terminal to connect to the PYNQ board; however, the it will require more substantial setup to cross-compilation working (compiling on your computer and running on the board), and some labs that require Vivado will not work.
+If you are using a Mac, you can use the built-in terminal to connect to the PYNQ board; however, it will require more substantial setup to get cross-compilation working (compiling on your computer and running on the board), and some labs that require Vivado will not work.
 
 
 
@@ -38,7 +38,7 @@ The PYNQ runs Linux off of an external micro SD card that you must provide. It i
 Be wary of counterfeit SD cards, especially if you purchase them from online marketplaces that contain 3rd party sellers.  There are SD card readers in a drawer at the back of the lab.  Please return them when you are done.
 
 The SD card must have a valid system image in order for Linux to run.  We have provided a working system image [here](https://byu.box.com/s/btgto9zrhluikq58qmrubld0b3rbh7xh) (alternate download link [here](https://drive.google.com/file/d/1-6xko67BkEfBbHU2tFpgBE976g7P54vs/view?usp=sharing)).  Unzip it after you download it.  The official PYNQ documentation has a guide to [writing the SD card image](https://pynq.readthedocs.io/en/latest/appendix/sdcard.html) that you should follow. Some notes:
-* The tutorial suggests running `df -h` to see what your drive is called, but a newly purchased SD card that has not been formatted will not show up here.  Try `fsblk` instead.  If you use a USB card reader on the lab computer, it will likely be `/dev/sda`.  If you are using your personal computer, be careful to select the correct drive, as you can accidentally overwrite your hard drive.
+* The tutorial suggests running `df -h` to see what your drive is called, but a newly purchased SD card that has not been formatted will not show up here.  Try `lsblk` instead.  If you use a USB card reader on the lab computer, it will likely be `/dev/sda`.  If you are using your personal computer, be careful to select the correct drive, as you can accidentally overwrite your hard drive.
 * In the lab you do not need to use *sudo* to run the *dd* command, so remove this from the command when you image the SD card.
 * You probably won't have space to unzip the .img file onto your home directory, so instead extract it to the `/tmp` folder on the computers.  This is a local folder that is cleared when you log out, so you don't have to worry about filling up the hard drive. Example:
 

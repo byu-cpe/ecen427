@@ -11,7 +11,7 @@ The PYNQ-Z2 board is equipped with an [Analog Devices ADAU1761](http://www.analo
 To play audio you will need to perform two major tasks, 1) Configure the codec chip using the external I2C bus, and 2) supply the *audio_tx* IP core with audio data.  
 
 ## Configuring the Codec Chip 
-The audio codec chip on the PYNQ-Z2 board must be configured before it will operate correctly.  The codec chip is connected to the ZYNQ SoC via an [I2C bus](https://en.wikipedia.org/wiki/I%C2%B2C).  The ARM-A9 processor on the ZYNQ has a built-in I2C controller, that drives this I2C bus.  To configure the audio codec you will need to call the provided `audio_config_init()`.  This function is provided as part of a user space [audio_config](https://github.com/byu-cpe/ecen427_student/tree/master/userspace/drivers/audio_config) driver.
+The audio codec chip on the PYNQ-Z2 board must be configured before it will operate correctly.  The codec chip is connected to the ZYNQ SoC via an [I2C bus](https://en.wikipedia.org/wiki/I%C2%B2C).  The ARM-A9 processor on the ZYNQ has a built-in I2C controller, that drives this I2C bus.  To configure the audio codec you will need to call the provided `audio_config_init()`.  This function is provided as part of a user space [audio_config](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/drivers/audio_config) driver.
 
 ## Playing Audio Data 
 

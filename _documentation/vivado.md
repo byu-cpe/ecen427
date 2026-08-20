@@ -29,7 +29,7 @@ In Lab 6, you will:
 ### Creating New Projects
 We will use project mode in Vivado, which you may not have used before.  The old ECEN 220 website has a video tutorial on [Creating a New Vivado Project](http://ecen220wiki.groups.et.byu.net/tutorials/lab_03/00_vivado_project_setup/) page.  Use part *xc7z020clg400-1* for the PYNQ board.
 
-**You will want to create your lab5 project in the *hw* directory of your repo, so it's best to <span style="color:red">start Vivado from the command line in that directory, then create the project there.</span>**
+**You will want to create your Lab 6 project in the *hw* directory of your repo, so it's best to <span style="color:red">start Vivado from the command line in that directory, then create the project there.</span>**
 
 ### Block Design
 *For Lab 6 M1, you will need to create a simulation project with a block diagram.  In Lab 6 M2, you will edit an existing block diagram for the hardware on the board.*
@@ -37,7 +37,7 @@ We will use project mode in Vivado, which you may not have used before.  The old
 The block diagram feature of Vivado allows you to visually instantiate and connect different IP and hardware modules.  Some things to note:
   * To create a block design, click *Create Block Design* in the left-side menu of Vivado. The block design should now show up in the *Sources* window.
   * To open an existing block design, click *Open Block Design*, or double click the *.bd* file in the *Sources* window.
-  * A block design can be instantiated in HDL modules just like you would instantiate other HDL modules.  An example is shown in the test bench provided on the [Simulating AXI IP]({% link _documentation/vivado_axi_simulation.md %}) page.  A block doesn't can't function as the top-level module for a Vivado project, so it is always instantiated in a a top-level wrapper module, or test bench module.
+  * A block design can be instantiated in HDL modules just like you would instantiate other HDL modules.  An example is shown in the test bench provided on the [Simulating AXI IP]({% link _documentation/vivado_axi_simulation.md %}) page.  A block design can't function as the top-level module for a Vivado project, so it is always instantiated in a top-level wrapper module, or test bench module.
   * With a block design open, you can right click on empty space and click *Add IP...* to add Xilinx IP, click *Add Module...* to add a Verilog module you created (the Verilog file must already be added to the project sources), or *Create Port...* to create input/output ports.
 
 ### Committing your Vivado Project to Git 
@@ -52,13 +52,13 @@ You will want to commit your Vivado projects to Git.  <span style="color:red">Yo
 1. In the future, you can recreate your project by running `vivado -source your_project.tcl`; however, in Lab 6, there is a provided Makefile that will do this for you.
 
 ## Updating the ECEN 427 Hardware 
-The hardware that you have been using for the labs up to this point is provided in a Vivado project included in the class repository.  All of the necessary files are located in the [hw](https://github.com/byu-cpe/ecen427_student/tree/master/hw) directory.
+The hardware that you have been using for the labs up to this point is provided in a Vivado project included in the class repository.  All of the necessary files are located in the [hw](https://github.com/byu-cpe/ecen427_student/tree/main/hw) directory.
 
 
 ### Recreating the ECEN 427 Project in Vivado
 *You don't need to do this for Lab6 M1, only Lab6 M2.*
 
-The project can be created using the [ecen427.tcl](https://github.com/byu-cpe/ecen427_student/blob/master/hw/ecen427.tcl) script. However, the project depends on at least one file that is too large to commit to Github, so it must first be unzipped.  Unzipping the file, and running the *ecen427.tcl* script can be done in one step using a provided [Makefile target](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L4):
+The project can be created using the [ecen427.tcl](https://github.com/byu-cpe/ecen427_student/blob/main/hw/ecen427.tcl) script. However, the project depends on at least one file that is too large to commit to Github, so it must first be unzipped.  Unzipping the file, and running the *ecen427.tcl* script can be done in one step using a provided [Makefile target](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L4):
 ```
 cd hw
 make
