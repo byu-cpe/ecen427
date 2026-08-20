@@ -17,7 +17,8 @@ In the labs for this class, you will be completing some tasks on your computer, 
 ### Register your SSH Key with Github
 
 
-  - Run  `cat ~/.ssh/id_ed25519.pub` to display your public key.  Copy the entire outputted text, including the `ssh-ed25519` at the beginning and computer address at the end.
+  - Run `ls ~/.ssh/id_*.pub` to find your public key file.  Depending on the Ubuntu version, it will be named either `id_ed25519.pub` or `id_rsa.pub`.
+  - Run `cat ~/.ssh/<your key file>` to display your public key.  Copy the entire outputted text, including the `ssh-ed25519` (or `ssh-rsa`) at the beginning and computer address at the end.
   - Go to <https://github.com/settings/keys>, click *New SSH key* button, and paste your key in the *Key* box.  Give your key a name (like *caedm*) and click *Add SSH key* to save the key.
   - Check that you can now authenticate with Github by running
   
@@ -83,7 +84,7 @@ This will create two files in your `~/.ssh` directory: `id_rsa` and `id_rsa.pub`
 
 ### Register with Github
 
-Follow the same steps as above to register your PYNQ public key with Github.  Check that you can now authenticate with Github by running 
+Follow the same steps as above to register your PYNQ public key with Github.  Note that on the PYNQ board your public key is `~/.ssh/id_rsa.pub` and begins with `ssh-rsa`, which differs from your computer as described above.  Check that you can now authenticate with Github by running 
 
     ssh -T git@github.com
   

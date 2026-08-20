@@ -144,11 +144,11 @@ Install the *Remote - SSH* extension from *Microsoft*.
 <img src="{% link media/setup/vscoderemoteextensionssh.jpg %}" width="400">
 
 ### SSH Keys
-Before proceeding, make sure you set up your SSH keys (`~/.ssh/id_rsa` and `~/.ssh/id_rsa.pub`) as described on an earlier [page]({% link _documentation/setup_pynq_board.md %}#ssh-keys).  
+Before proceeding, make sure you have set up the SSH keys **on your computer** as described on an earlier [page]({% link _documentation/setup_pynq_board.md %}#ssh-keys).  You can confirm they exist by running `ls ~/.ssh/id_*` — depending on your Ubuntu version they will be named either `id_ed25519`/`id_ed25519.pub` or `id_rsa`/`id_rsa.pub`.  
 
 *Note:* If you are using Windows on your personal computer, VSCode will look for your SSH keys in your Windows home directory (not the WSL home directory).  You may want to copy your SSH keys there:
 
-    cp ~/.ssh/id_rsa* /mnt/c/Users/<your windows username>/.ssh/
+    cp ~/.ssh/id_* /mnt/c/Users/<your windows username>/.ssh/
 
 
 ### Connecting 
