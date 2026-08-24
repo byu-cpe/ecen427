@@ -40,7 +40,7 @@ ecen427_dma {
 The DMA device is accessible using the following (already in your *system.h*):
 
 ```
-#define SYSTEM_DMA_UIO_FILE "/dev/uio7"
+#define SYSTEM_DMA_UIO_FILE "/dev/ecen427/dma"
 ```
 
 
@@ -63,7 +63,7 @@ In order to accomplish this, we need a couple extra things:
 In order to get the physical address of the pixel buffer, you can use the `ECEN427_IOC_FRAME_BUFFER_ADDR` ioctl command on the HDMI driver.  See the [ecen427_ioctl.h](https://github.com/byu-cpe/ecen427_student/blob/main/kernel/hdmi_ctrl/ecen427_ioctl.h) file.  This will provide you with a 32-bit physical address of the pixel buffer.  You can then use offsets from this address to determine the source and destination address for each transfer descriptor.
 
 ### DMA Descriptor Memory
-Another kernel driver is provided to you that will give you some access to a block of physical memory that you can use for your transfer descriptor array.  This driver is already installed and running on your system.  You can access this memory via the `/dev/dma_desc` device file.
+Another kernel driver is provided to you that will give you some access to a block of physical memory that you can use for your transfer descriptor array.  This driver is already installed and running on your system.  You can access this memory via the `/dev/ecen427/dma_desc` device file.
 
 You will need to know a couple things about this memory:
 1. You need to know the physical address.  You need to provide the physical address of your first and last transfer descriptor to the DMA engine.  In addition, within each transfer descriptor, you need to provide the physical address of the next transfer descriptor.  You can obtain this address via the `DMA_DESC_IOC_BUFFER_ADDR` ioctl command:
@@ -82,7 +82,7 @@ You will need to know a couple things about this memory:
 
 
 ### Security
-The approach we are taking in this lab is not secure.  We are providing a user space driver with access to a DMA engine that allows for reading and writing arbitrary physical memory locations.  _**This is a massive security vulnerability**_.  By reading arbitrary physical memory, a user could steal sensitive information from the system, including passwords, encryption keys, etc.  In a typical system, only the kernel would have access to the DMA engine.  However, for simplicity of development and debugging, we are doing this lab in user space.  This means it is a bit clunky since we have to use the `/dev/dma_desc` device file to get access to the physical memory for the transfer descriptors, but it is still easier than coding this up in the kernel.
+The approach we are taking in this lab is not secure.  We are providing a user space driver with access to a DMA engine that allows for reading and writing arbitrary physical memory locations.  _**This is a massive security vulnerability**_.  By reading arbitrary physical memory, a user could steal sensitive information from the system, including passwords, encryption keys, etc.  In a typical system, only the kernel would have access to the DMA engine.  However, for simplicity of development and debugging, we are doing this lab in user space.  This means it is a bit clunky since we have to use the `/dev/ecen427/dma_desc` device file to get access to the physical memory for the transfer descriptors, but it is still easier than coding this up in the kernel.
 
 
 ### In-Class Discussion

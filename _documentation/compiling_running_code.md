@@ -66,9 +66,8 @@ Your executables will be copied to the *cross-compiled* directory you set in the
 
     ssh <mypynq>
     cd <myrepo>/cross-compiled
-    sudo ./helloworld
+    ./helloworld
 
-While you don't need sudo to run the helloworld program, you will need it for all later programs that access hardware devices. 
 
 
 ## Understanding the CMakeLists.txt files 

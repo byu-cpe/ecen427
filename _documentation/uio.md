@@ -34,12 +34,14 @@ From user space, to check if an interrupt occurred for a device, you should perf
 
 In order to enable and to re-enable interrupts, it is necessary to use the [write()](https://linux.die.net/man/2/write) function to write a '1' to the UIO device file. Note that this information is available via the [uio_pdrv_genirq](https://www.kernel.org/doc/html/v5.4/driver-api/uio-howto.html#using-uio-pdrv-genirq-for-platform-devices) page that is referenced above, but it may be difficult to find. Here's the relevant quote from that page: "After doing its work, userspace can reenable the interrupt by writing 0x00000001 to the UIO device file."
 
-*Note*:  By the time your userspace code is running, it is likely that an interrupt has already occurred and the interrupt line has been disabled, thus I found it necessary to notify the UIO to enable the interrupt line on initialization, *before* I started waiting for interrupts, and would do so again after detecting each interrupt.
+*Note*:  By the time your userspace code is running, it is likely that an interrupt has already occurred and the interrupt line has been disabled, so do this `write()` once in your init function as well, before you start waiting for interrupts.
+
+After that, the natural place for the `write()` is wherever you acknowledge the interrupt, at the end of handling it.  Acknowledge the hardware *first*: the interrupt controller holds its output asserted until it is cleared, so re-enabling Linux before that would immediately produce a duplicate interrupt.
 
 *Hint*: If you need to find out how to use read() and write() for this lab, try not to ask the TAs, just hunt around the web and find your own answers. You will find lots of examples.  Be sure to check the return values of these functions to see if they are successful.
 
 ## Important Notes (DON'T IGNORE THESE!!) 
-  - By default, users are not allowed to access device files.  You will need to execute your code as *sudo*.
+  - Don't open a `/dev/uioN` path directly.  The UIO numbers are assigned in the order devices are probed, so they change if hardware is added or removed.  A *udev* rule on the board creates stable names under `/dev/ecen427/` (for example `/dev/ecen427/switches`), which is what the `SYSTEM_*_UIO_FILE` defines in [system.h]({% link _documentation/software_stack.md %}) point at.  Always use those defines.
   - The UIO will only respond to `read()` and `write()` operations that are 32 bits (4 bytes).  Anything else will be ignored without you knowing.
 
 ## Example Code 

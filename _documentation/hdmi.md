@@ -12,12 +12,12 @@ Because of the complexity of the initialization sequences of the various compone
 ## Device Validation 
 The first step is to make sure that the driver has properly registered itself with the Linux kernel.  This can be done by checking the list of devices:
 
-    ls /dev | grep "hdmi"
+    ls /dev/ecen427
 
 
-If this returns something like ''ecen427_hdmi'', then that means it is registered.
+If this lists ''hdmi'', then that means it is registered.
 
-Next you must obtain a file descriptor for the character device so you can perform read and write operations on it.  This can be done with the [open()](http://man7.org/linux/man-pages/man2/open.2.html) function, using `/dev/ecen427_hdmi` as the *pathname* parameter.
+Next you must obtain a file descriptor for the character device so you can perform read and write operations on it.  This can be done with the [open()](http://man7.org/linux/man-pages/man2/open.2.html) function, using the `SYSTEM_HDMI_FILE` define from *system.h* (which is `/dev/ecen427/hdmi`) as the *pathname* parameter.
 
 ## Device Functions 
 
