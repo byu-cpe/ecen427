@@ -29,7 +29,7 @@ In Lab 6, you will:
 ### Creating New Projects
 We will use project mode in Vivado, which you may not have used before.  The old ECEN 220 website has a video tutorial on [Creating a New Vivado Project](http://ecen220wiki.groups.et.byu.net/tutorials/lab_03/00_vivado_project_setup/) page.  Use part *xc7z020clg400-1* for the PYNQ board.
 
-**You will want to create your Lab 6 project in the *hw* directory of your repo, so it's best to <span style="color:red">start Vivado from the command line in that directory, then create the project there.</span>**
+<span style="color:red">**Important:** You will want to create your Lab 6 project in the *hw* directory of your repo. Start Vivado from the command line in that directory, and create your project there — **not** somewhere else that you move or copy in afterward.</span>
 
 ### Block Design
 *For Lab 6 M1, you will need to create a simulation project with a block diagram.  In Lab 6 M2, you will edit an existing block diagram for the hardware on the board.*
