@@ -18,7 +18,7 @@ Students may use AI tools for the following purposes:
 
 - Ideation & conceptual support (brainstorming, explanations, pseudocode guidance). 
 - Improving understanding (alternative explanations, debugging strategies, API insights). 
-- Syntax assistance & autocomplete (GitHub Copilot, IDE autocomplete).  Single-line autocomplete suggestions are fine; this is not the same as generating whole functions or files with AI, which is prohibited. 
+- Syntax assistance & autocomplete (GitHub Copilot autocomplete, IDE autocomplete).  Short autocomplete suggestions are fine; this is not the same as generating whole functions or files with AI, which is prohibited. 
 - Pseudocode usage, provided that students independently translate it into real code. 
 
 ## Prohibited Uses of AI 
