@@ -52,6 +52,7 @@ Look over the functions in [dma.h](https://github.com/byu-cpe/ecen427_student/bl
 *dma_start_sprite_copy()* This function will be used to offload sprite drawing from the CPU to the DMA engine, and will copy a sprite from one location of the pixel buffer to another. 
 
 Unfortunately a sprite is not a simple contiguous block of memory, since each line of the sprite is in a different location in the pixel buffer memory.  This means that we can't use a simple single-source, single-destination DMA transfer.  Instead, we will use the Scatter Gather mode of the AXI CDMA to copy the sprite to the pixel buffer.  Each line of the sprite will be handled by one transfer descriptor, and the CDMA will chain these together to copy the entire sprite without CPU intervention.
+**Use of Scatter Gather mode is required for this lab.**
 
 In order to accomplish this, we need a couple extra things:
 1. We need to know the **physical** address of the pixel buffer.  
