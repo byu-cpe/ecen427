@@ -62,6 +62,8 @@ Several test functions are provided, and will be used to evaluate your graphics 
    When this test program is run, the number of system calls should be less than 500. If you are making more than 500 system calls, you will need to better optimize your code.
 1. The [graphics_benchmarking](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/graphics_benchmarking) program.  This will measure the average runtime to perform the *drawSprite()* functions on a sprite of a set size.  The average reported runtime for the *drawSprite()* functions should be less than 3ms.
 
+Any changes you make to these test applications will be discarded during grading.
+
 ### Milestone 2 
 
 <iframe width="500" height="350"
