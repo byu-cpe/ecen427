@@ -91,10 +91,11 @@ Your kernel driver needs to:
     * When a device is removed, undo all appropriate actions that were done when the device was added.
   * Add messages to print:
     * When your driver is loaded and unloaded.
-    * When your class is created.
+    * When your class is created and destroyed.
     * When your device is added and removed.
-    * The allocated major number of the driver and minor number of the device.
-    * When you create your device using `device_create()`.
+    * The allocated major number of the driver and minor number of the device, both when allocated and when unregistered.
+    * When you create and destroy your device using `device_create()`/`device_destroy()`.
+    * When your character device is registered (`cdev_add()`) and removed (`cdev_del()`).
     * When `read()` and `write()` are called.
 
 Create a new user space program in *userspace/apps/audio_driver_test1*, with appropriate CMake file to create an executable named *audio_driver_test1* (we use automated scripts when grading to make sure your executable is created at `userspace/build/apps/audio_driver_test1/audio_driver_test1`).
@@ -120,8 +121,9 @@ In this milestone you will complete the skeleton of your kernel driver to provid
 
 Expand your kernel driver:
   * Upon device probe, the driver should:
+    * Print the physical address read from the device tree, and confirm in the kernel log when the memory region has been reserved.
     * Setup a virtual address pointer as described above, and print the physical and virtual address to the kernel log.
-    * Setup an interrupt handler as described above, and print the IRQ number to the kernel log.
+    * Print the IRQ number read from the device tree, and confirm in the kernel log when the interrupt handler has been registered.
   * Create helper functions to read and write registers in the audio device.
   * Add code at the end of your probe function that enables the interrupt output of the audio core.  Since there is no data in the FIFOs, this should immediately trigger your ISR.  In your ISR print a message to the kernel log and then disable the interrupt output of the audio core (or you will be stuck in an endless loop).  
   * Make sure that the driver and device continue to be properly cleaned up when the driver is unloaded and the device is removed.
