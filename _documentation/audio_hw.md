@@ -31,7 +31,7 @@ While configuring the codec is done using I2C, sending the actual audio data (mu
 
 The internals of the *audio_tx* hardware are shown here:
 
-<img src="{% link media/audio_hw.png %}" width="800">
+<img src="{% link media/audio_hw.png %}" width="800" alt="Block diagram of the audio hardware: audio codec connected to the FPGA audio IP core">
 
 There are two FIFOs that are used to play audio on the left and right channel.  You can add audio samples to these FIFOs by writing to the DataTx registers, although you will only want to do so when you know there is available space in the FIFO.
 
@@ -44,7 +44,7 @@ The FIFOs both have a depth of 1024, and if interrupts are enabled, the audio co
 
 ### Register map 
 
-<img src="{% link media/audio_registers.png %}" width="800">
+<img src="{% link media/audio_registers.png %}" width="800" alt="Register map of the audio IP core">
 
 
 **I2S_DATA_RX_L_REG: details**

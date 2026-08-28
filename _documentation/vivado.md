@@ -1,6 +1,6 @@
 ---
 layout: page
-toc: false
+toc: true
 title: Building Hardware in Vivado
 short_title: Vivado
 indent: 1
@@ -75,7 +75,7 @@ Creating the project only needs to be done once.  In the future you can just do 
 
 ### Compiling a new Bitstream
 
-1. The main function of the Vivado software is to compile your design to a *bitstream*.  A bitstream (''.bit'' file) can be used to reconfigure the FPGA to implement your circuit. In Vivado, click *Generate Bitstream*.  It will take several minutes to compile.
+1. The main function of the Vivado software is to compile your design to a *bitstream*.  A bitstream (`.bit` file) can be used to reconfigure the FPGA to implement your circuit. In Vivado, click *Generate Bitstream*.  It will take several minutes to compile.
 1. The created bitstream, *system_wrapper.bit*, will be located in your Vivado project folder *hw/ecen427/*, in the subdirectory *ecen427.runs/impl_1/*.  (It's often a good idea to check the timestamp on the file to make sure it was indeed updated recently.)
 1. We provided you with a bitstream for the original hardware system, which is located at *hw/ecen427.bit*.  After you change the hardware and generate a new bitstream, you **need** to replace this bitstream with your new one, before proceeding to the next step:
 ```

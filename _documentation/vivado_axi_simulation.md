@@ -1,6 +1,6 @@
 ---
 layout: page
-toc: false
+toc: true
 title: Simulating AXI IP
 indent: 1
 number: 25
@@ -28,7 +28,7 @@ You will need to create a new Vivado project.
   * Remember to set the address of your PIT in the *Address Editor* (the actual address doesn't matter, you can just right-click and select *Assign*).
   * Use the small checkbox icon at the top of the block design to *Validate Design*.  You should not have any errors or warnings.
 
-<img src="{% link media/vip_system.png %}">
+<img src="{% link media/vip_system.png %}" alt="Vivado block design with an AXI Verification IP connected to the IP under test">
 
 ## Create a Test Bench 
 Create a new SystemVerilog file to use as a test bench.  Create this file somewhere in your repository (such as your [pit](https://github.com/byu-cpe/ecen427_student/tree/main/hw/ip_repo/pit) directory), but <span style="color:red">**do not create it inside your Vivado project**</span>.  You should treat your Vivado project as *temporary files* that will *NEVER* be committed to your repository.  You can start with the HDL provided below.  

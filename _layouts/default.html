@@ -14,17 +14,17 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
-      <nav class="navbar sticky-top navbar-expand-lg border-bottom">
-        <button class="btn btn-brand" id="menu-toggle">
+      <nav class="navbar sticky-top navbar-expand-lg border-bottom px-3">
+        <button class="btn btn-brand" id="menu-toggle" aria-label="Toggle sidebar">
           <i class="fas fa-bars"></i>
         </button>
 
-        <a href="#" class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></a>
+        <span class="navbar-brand mb-0 h1 page-title-bar text-center mx-auto" id="page-title-bar"></span>
 
-        <ul class="navbar-nav">
+        <ul class="navbar-nav flex-row">
           <li class="nav-item">
             <a class="nav-link btn btn-brand suggest-edits" target="_blank" rel="noopener noreferrer"
-              href="https://github.com/byu-cpe/ecen427/issues/new?labels=website&title=Updates to {{page.title}} page"><i
+              href="{{ site.github.url }}/issues/new?labels=website&title=Updates to {{page.title | url_encode }} page"><i
                 class="fab fa-github"></i> Suggest
               Edits</a>
           </li>

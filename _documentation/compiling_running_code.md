@@ -1,6 +1,6 @@
 ---
 layout: page
-toc: false
+toc: true
 title: Compiling and Running Programs on the PYNQ Board
 short_title: Compiling Programs
 indent: 1
@@ -59,7 +59,7 @@ This will produce a Makefile in your build directory.  Run it to compile the *He
 
 **Tip:** After running `cmake` once, you won't need to run it ever again (unless you completely delete your build directory).  Once CMake has set up the Makefile system, you can just re-run `make` for any future changes.  Even if you change the CMake files, the system is set up so that the generated Makefile will detect these updates, and automatically call CMake to update itself.
 
-<span style="color:red">**IMPORTANT:**</span> Never run ''cmake'' from anywhere but your *build* directory.  It creates *many* temporary files that will clutter up your source files.
+<span style="color:red">**IMPORTANT:**</span> Never run `cmake` from anywhere but your *build* directory.  It creates *many* temporary files that will clutter up your source files.
 
 ## Running Your Code 
 Your executables will be copied to the *cross-compiled* directory you set in the earlier step.  Connect to your PYNQ board via SSH, and navigate to the directory where your executables are located.  You can then run them like so:
@@ -140,7 +140,7 @@ Instead of cross-compiling, you can connect directly to your PYNQ board and buil
 
 Install the *Remote - SSH* extension from *Microsoft*. 
 
-<img src="{% link media/setup/vscoderemoteextensionssh.jpg %}" width="400">
+<img src="{% link media/setup/vscoderemoteextensionssh.jpg %}" width="400" alt="VS Code Remote-SSH extension in the extensions sidebar">
 
 ### SSH Keys
 Before proceeding, make sure you have set up the SSH keys **on your computer** as described on an earlier [page]({% link _documentation/setup_pynq_board.md %}#ssh-keys).  You can confirm they exist by running `ls ~/.ssh/id_*` — depending on your Ubuntu version they will be named either `id_ed25519`/`id_ed25519.pub` or `id_rsa`/`id_rsa.pub`.  

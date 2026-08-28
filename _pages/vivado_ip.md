@@ -10,7 +10,7 @@ number: 24
 ##  Creating the IP 
 
 ### Initializing the IP 
-In Vivado you can create your own IP modules by packaging up your Verilog/VHDL.  There are some Xilinx tutorials on using the IP packaging wizard here: <https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1119-vivado-creating-packaging-ip-tutorial.pdf>.  For reference, the part number of the chip on the PYNQ is ''xc7z020clg400-1''.
+In Vivado you can create your own IP modules by packaging up your Verilog/VHDL.  There are some Xilinx tutorials on using the IP packaging wizard here: <https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1119-vivado-creating-packaging-ip-tutorial.pdf>.  For reference, the part number of the chip on the PYNQ is *xc7z020clg400-1*.
 
 In this class you will be creating an AXI peripheral IP, that is, an IP that can be connected to the bus, such that the CPU can read and write registers in your module from a software program.  The IP creator wizard has a specific options for this type of IP that will automatically create all of the bus interaction logic for us; unfortunately this option is not explored in the tutorial document linked above.  So, I will provide a brief set of steps here:
 1. Before you can run the wizard, you need a project open in Vivado (doesn't matter which one)
@@ -21,7 +21,7 @@ In this class you will be creating an AXI peripheral IP, that is, an IP that can
   * By default there should one interface already added, *S00_AXI*, an AXI slave connection.  This slave connection allows us to connect our IP to the CPU bus.  The *slave* designation means that our IP will only *respond* to read/write requests by a *master* device on the bus (ie, the CPU), it won't be initiating its own requests. 
   * For the slave interface, choose the number of registers you want and the data width.  You will need to read over the lab specifiction to determine how many registers you will need.  However, it's fine to add extra.
   * You don't need to add any more interfaces.
-  * There is a check box for *Enable interrupt support*.  Although in Lab 5 you will create a PIT with an interrupt output, you should still leave this box unchecked, as checking it will add a complex, full-featured, interrupt system to your IP, which is far more than you need for this class.
+  * There is a check box for *Enable interrupt support*.  Although in Lab 6 you will create a PIT with an interrupt output, you should still leave this box unchecked, as checking it will add a complex, full-featured, interrupt system to your IP, which is far more than you need for this class.
 1. The final page will tell you where the IP will be generated (you chose this in one of the earlier steps).
 1. Before clicking *Finish*, choose *Edit IP*.  
 
@@ -43,18 +43,15 @@ When you are done making changes to the source HDL files for your IP, you can pa
   * In *Ports and Interfaces* you will instruct Vivado what the purpose of each of the ports in your design are.  (This doesn't change the functionality of the port; rather, it is used by Vivado in the *IP Integrator* to make sure the when the user wires modules together only compatible ports are connected)
     * The existing ports should already be set up correctly.
     * If you added new ports, you may need to click *Merge changes from Ports and Interfaces Wizard*.
-    - For Lab 5 you will only need to add an interrupt port.  Make sure this port belongs to an interrupt bus. (You can right click, and select *Add Bus Interace*.  For the *Interface Definition* you should choose *signal*->*interrupt_rtl*, and for *Mode* chose *master*.)
+    - For Lab 6 you will only need to add an interrupt port.  Make sure this port belongs to an interrupt bus. (You can right click, and select *Add Bus Interace*.  For the *Interface Definition* you should choose *signal*->*interrupt_rtl*, and for *Mode* chose *master*.)
   * Once you have green check marks for all of the *Packaging Steps*, choose *Review and Package* and then click the button to *Re-Package IP*.  This should save your IP and close the project.
-<img src="{% link media/vivado_ip.jpg %}" width="600">
-
-<!-- NOTE: I had better luck if I quit and restarted Vivado after repacking my IP but before adding the new IP to my design. In my case, I created the new IP using the initially provided 427 project. If I did not restart Vivado, my newly added irq pin did not show up when I inserted the IP. YMMV. (11/13/20 - BLH). -->
+<img src="{% link media/vivado_ip.jpg %}" width="600" alt="Vivado IP packager showing the Merge changes from File Groups Wizard prompt">
 
 ## Adding the IP to your Vivado project 
-NOTE: I found that the repo was already added and skipped this step (11/13/20 - BLH).
 
 To add your IP to an existing project:
   - Open the IP Catalog
-  - Right click within the catalog, select ''Add Repository'', and choose the directory where your new IP is located.
+  - Right click within the catalog, select *Add Repository*, and choose the directory where your new IP is located.
   - Your IP should now show up in the IP repository
   - Open the block design for your project.  Right click->Add IP to add your IP to the design.
 

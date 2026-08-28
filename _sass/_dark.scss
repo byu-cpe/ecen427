@@ -1,0 +1,122 @@
+/**
+ * Dark theme overrides.
+ * The active Bootstrap theme is set on <html data-bs-theme="..."> from the
+ * user's prefers-color-scheme setting (see _includes/head.html).
+ */
+html[data-bs-theme="dark"] {
+
+    $dark-bg: #1a1d21;
+    $dark-surface: #22262b;
+    $dark-text: #d8d8d8;
+
+    body {
+        color: $dark-text;
+        background-color: $dark-bg;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        color: #c8c8c8;
+    }
+
+    a {
+        color: lighten($brand-color, 8%);
+
+        &:hover {
+            color: lighten($brand-color, 20%);
+        }
+    }
+
+    blockquote {
+        color: #aaa;
+        border-left-color: #555;
+    }
+
+    pre,
+    code {
+        border-color: #3a3f45;
+        background-color: $dark-surface;
+    }
+
+    code {
+        color: lighten($code-color, 10%);
+    }
+
+    .sidebar-color,
+    .navbar {
+        background-color: $dark-surface;
+    }
+
+    .sidebar-heading-big a {
+        color: $dark-text;
+
+        &:hover {
+            color: $dark-text;
+        }
+    }
+
+    .badge-dark-grey {
+        border-color: #adb5bd;
+    }
+
+    .search-box {
+        background-color: $dark-bg;
+        color: $dark-text;
+        border: 1px solid #3a3f45;
+    }
+
+    .lab-toc {
+        border-color: #3a3f45;
+
+        h4 {
+            text-shadow: none;
+        }
+    }
+
+    td,
+    th {
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    tr:nth-child(even) {
+        background-color: #22262b;
+    }
+
+    th {
+        background-color: #2c4a54;
+        color: $dark-text;
+    }
+
+    // Syntax highlighting: keep the light-theme token palette readable on a
+    // dark surface by brightening the low-contrast token colors.
+    .highlight {
+        background: $dark-surface;
+
+        .highlighter-rouge & {
+            background: $dark-surface;
+        }
+
+        .err   { color: #ff8181; background-color: transparent; }
+        .gd    { color: #ffdcd7; background-color: #67060c; }
+        .gd .x { color: #ffdcd7; background-color: #82071e; }
+        .gr    { color: #ff8181; }
+        .gi    { color: #aff5b4; background-color: #033a16; }
+        .gi .x { color: #aff5b4; background-color: #0f5323; }
+        .gt    { color: #ff8181; }
+        .kt    { color: #79b8ff; }
+        .m, .mf, .mh, .mi, .mo, .il { color: #56d4dd; }
+        .s, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .s1 { color: #ff9da4; }
+        .na, .no, .nv, .vc, .vg, .vi { color: #4ec9b0; }
+        .nb    { color: #79b8ff; }
+        .nc    { color: #79b8ff; }
+        .ni    { color: #d2a8ff; }
+        .ne, .nf { color: #ffab70; }
+        .nn    { color: #b0b0b0; }
+        .nt    { color: #85a8ff; }
+        .sr    { color: #57ab5a; }
+        .ss    { color: #f286c4; }
+    }
+}

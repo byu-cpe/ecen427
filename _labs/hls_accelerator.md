@@ -17,7 +17,7 @@ Your hardware accelerator will need the ability to change memory values in the p
 Fortunately, we are going to make use of a modern digital design technology, *High-Level Synthesis (HLS)*, which will automatically create our Verilog digital circuit from a far simpler C-code description.
 
 <p style="text-align:center;">
-<img src="{% link media/labs/hls_bus.png %}" class="center"></p>
+<img src="{% link media/labs/hls_bus.png %}" class="center" alt="Block diagram of the HLS accelerator connected to the system buses"></p>
 
 ## Describing Functionality in C Code
 HLS tools allow you to design hardware using C/C++ code (with some limitations; for example, code that uses dynamic memory allocation or recursion isn't supported).  To use HLS, you must write your hardware behavior as a C/C++ function, and then run the HLS tools to convert this into a Verilog module.  The function arguments will become top-level interfaces to your hardware block.
@@ -144,7 +144,7 @@ Then commit these IP files to your repo.
 Add your new IP to your Vivado project like you did in Lab 6.  Wiring up this IP will be slightly different, and more complicated, than your PIT.  Follow these steps:
 1. Connect the clock input.  This should come from the 100MHz clock output of the ZYNQ7 Processing System (*FCLK_CLK0*).
 1. Connect the reset input.  This should come from the *peripheral_aresetn* output of the *rst_ps7_0_fclk0* block.  
-2. Attach the AXI4-Lite slave interface to the appropriate bus (same as Lab 5). In our system, the *axi_interconnect_0* block implements the bus for memory-mapped 100MHz devices.  Double click to reconfigure this bus and add another master port.  
+2. Attach the AXI4-Lite slave interface to the appropriate bus (same as Lab 6). In our system, the *axi_interconnect_0* block implements the bus for memory-mapped 100MHz devices.  Double click to reconfigure this bus and add another master port.  
   * Connect the new master interface (*MXX_AXI*) to the slave port on your IP (*S00_AXI*).
   * Connect the clock and reset inputs on the bus to the same clock and reset used above.
   * Open the *Address Editor* and assign an address to your block (*/fill_bitmap_region_0/s_axi_control*)
@@ -158,11 +158,11 @@ Add your new IP to your Vivado project like you did in Lab 6.  Wiring up this IP
     * Connect the *S00_ARESETN* and *M00_ARESETN* resets to the *peripheral_aresetn* output of the *rst_ps7_0_fclk0* block.
     * Open the *Address Editor* and assign an address to the */ps7_0/S_AXI_HP1* entry.  This should automatically be set to address 0, as shown below:
 
-<img src="{% link media/labs/maxi_address.png %}">
+<img src="{% link media/labs/maxi_address.png %}" alt="Vivado Address Editor showing the S_AXI_HP1 entry assigned to address 0">
 
 If done correctly, it should look something like this:
 
-<img src="{% link media/labs/maxi_wiring.png %}">
+<img src="{% link media/labs/maxi_wiring.png %}" alt="Vivado block design showing the accelerator AXI master wired through an AXI Interconnect to S_AXI_HP1">
 
 
 **Click the _Validate Design_ button (looks like a check mark) to ensure that your design is valid.**
@@ -198,7 +198,7 @@ These functions are quite simple, and just need to call the appropriate function
 
 
 Once you implement these functions correctly, we have provided a [frame_buffer_test](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/) application to test that it's working.  This application draws a red, green and blue square in the top-left of the screen, then copies these three squares to the middle of the screen.  It looks like this:
-<img src="{% link media/labs/frame_buffer_test.jpg %}" width=600>
+<img src="{% link media/labs/frame_buffer_test.jpg %}" width="600" alt="Monitor output of the frame buffer test: red, green, and blue squares in the top-left corner copied to the middle of the screen">
 
 This application is worth looking through as an example on how to use your accelerator.  One important thing to note: to use your accelerator, you need a pointer to the frame buffer.  As shown in this application, you can retrieve this by making an IOCTL call to the HDMI driver.  
 

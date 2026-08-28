@@ -5,6 +5,8 @@
 
 .badge-dark-grey {
     border: solid 1.5px #495057;
+    // Bootstrap 5's .badge defaults to white text; inherit the theme text color instead
+    color: var(--bs-body-color);
 }
 
 h1 {

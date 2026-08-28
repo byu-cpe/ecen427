@@ -1,6 +1,6 @@
 ---
 layout: page
-toc: false
+toc: true
 title: Linux Device Drivers
 short_title: Linux Drivers
 indent: 1
@@ -68,9 +68,9 @@ install:
 endif
 ```
 
-In the above Makefile, you should replace the ''TARGET_MODULE=audio'' with the name of your .c file.
+In the above Makefile, you should replace the `TARGET_MODULE=audio` with the name of your .c file.
 
-Simply run `make` to compile your driver.  A kernel module/object (''.ko'') file will be produced.
+Simply run `make` to compile your driver.  A kernel module/object (`.ko`) file will be produced.
 
 ### Adding the Driver to Linux 
 There are generally three ways to add your driver to the Linux system:

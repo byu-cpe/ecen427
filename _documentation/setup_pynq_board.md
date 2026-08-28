@@ -1,6 +1,6 @@
 ---
 layout: page
-toc: false
+toc: true
 title: Setting up the PYNQ board
 short_title: Setup PYNQ
 indent: 1

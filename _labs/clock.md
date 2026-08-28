@@ -63,5 +63,3 @@ Follow the instructions on the [Submission]({% link _pages/submission.md %}) pag
      * When the button generates an interrupt, reset this count to 0, and store the button value in a temporary location.      
      * When the FIT ISR generates an interrupt, increase this count.  If the count reaches a certain threshold (your debounce time), then copy the temporary button value to a variable (this is your *debounced button value*).  Only use this debounced button value elsewhere in your code, and not the raw button value.  
   1. Other than various initializations and set up, your `main()` must contain only a while(1) loop that waits for interrupts to occur. If the loop has anything else then you are probably doing the forbidden, a.k.a. polling.
-  
-  <!-- <img src = "{% link media/labs/lab2_polling.jpg %}"> -->

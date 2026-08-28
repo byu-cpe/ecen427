@@ -7,15 +7,13 @@ title:
 # {{ site.class_number }}: {{ site.class_name}}
 
 <p float="left">
-<img src="{% link media/full_stack.png %}" width="300">
-<img src="{% link media/pynq.jpg %}" width="500">
+<img src="{% link media/full_stack.png %}" width="300" alt="Diagram of the embedded systems full stack covered in this course: applications, drivers, operating system, and hardware">
+<img src="{% link media/pynq.jpg %}" width="500" alt="Xilinx PYNQ-Z2 development board">
 </p>
 
 This course covers the "full stack" of embedded systems, including developing software applications, user space and kernel drivers, and custom digital hardware.  
 All of these pieces are integrated together in a semester-long project to implement the original Space Invaders game.  
 The development platform used in the class is a Linux-based embedded system, and much of the course focuses on learning about Linux and operating systems in general.
-
-<!-- This course has been updated to focus on Linux-based embedded systems and focuses on general programming in a Linux environment, with a focus on device drivers and hardware development.  -->
 
 The class is hands-on; learning is primarily accomplished by completing a series of lab assignments and reading/studying online documentation.
 

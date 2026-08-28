@@ -15,7 +15,7 @@ The first step is to make sure that the driver has properly registered itself wi
     ls /dev/ecen427
 
 
-If this lists ''hdmi'', then that means it is registered.
+If this lists `hdmi`, then that means it is registered.
 
 Next you must obtain a file descriptor for the character device so you can perform read and write operations on it.  This can be done with the [open()](http://man7.org/linux/man-pages/man2/open.2.html) function, using the `SYSTEM_HDMI_FILE` define from *system.h* (which is `/dev/ecen427/hdmi`) as the *pathname* parameter.
 
@@ -27,9 +27,9 @@ The device maintains an offset, meaning it will keep track of where in the virtu
     lseek(fd, 12, SEEK_SET);
 
 
-You cannot change the offset to be less than 0 or greater than the size of the buffer.  The screen resolution of the HDMI driver is by default configured to be **640x480**.  This measurement is in pixels, and each pixel is 3 bytes (one green byte, one blue byte, one red byte).  The frame buffer is byte packed, meaning there are no useless bytes.  Thus, the total size of the pixel buffer is 640x480x3 = 921,600 bytes. Care must be taken that all writes are pixel-aligned, which is not necessarily word-aligned.  Note that index ''0'' of the buffer is the top left of the screen:
+You cannot change the offset to be less than 0 or greater than the size of the buffer.  The screen resolution of the HDMI driver is by default configured to be **640x480**.  This measurement is in pixels, and each pixel is 3 bytes (one green byte, one blue byte, one red byte).  The frame buffer is byte packed, meaning there are no useless bytes.  Thus, the total size of the pixel buffer is 640x480x3 = 921,600 bytes. Care must be taken that all writes are pixel-aligned, which is not necessarily word-aligned.  Note that index `0` of the buffer is the top left of the screen:
 
-<img src="{% link media/hdmi_screen.png %}" width="400">
+<img src="{% link media/hdmi_screen.png %}" width="400" alt="Diagram of the HDMI frame buffer layout, with byte index 0 at the top-left of the screen">
 
 ### Reading
 The read function is very simple - it will return byte values from the frame buffer.  The read will start from the current offset of the file and include the number of bytes you specify, as long as this does not cause the offset to go out of bounds.  Use the [read()](http://man7.org/linux/man-pages/man2/read.2.html) function.

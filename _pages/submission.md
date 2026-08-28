@@ -94,11 +94,11 @@ Follow these instructions to fix this problem (this is a one-time problem that o
 
 1. Click on the "Actions" button in the tool-bar of the web page.
 
-   <img src="{% link media/git/git_web_toolbar.png %}">
+   <img src="{% link media/git/git_web_toolbar.png %}" alt="GitHub repository toolbar with the Actions tab">
 
    You may see the following image:
 
-   <img src="{% link media/git/git_actions.png %}" >
+   <img src="{% link media/git/git_actions.png %}" alt="GitHub Actions page listing workflow runs for each commit">
 
    Click "Enable Actions on this repository"
 

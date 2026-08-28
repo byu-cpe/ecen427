@@ -39,10 +39,6 @@ You can do this in a similar manner to how you obtained the starter code:
 
 ### Milestone 1: Graphics
 
-<!-- <iframe width="500" height="350"
-src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200">
-</iframe> -->
-
 In this milestone you will implement the functions defined in [Graphics.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/Graphics.h). These should be implemented in *Graphics.cpp*.  Some resources to review:
   * Refer to the [HDMI]({% link _documentation/hdmi.md %}) page for documentation on how to interact with the HDMI driver.
   * The individual sprites defined in [resources/sprites.c](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/resources/sprites.c)
@@ -52,7 +48,7 @@ Your graphics functions need to be efficient and execute quickly.  The best way 
 
 Several test functions are provided, and will be used to evaluate your graphics functions:
 1. The [graphics_test](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/graphics_test) program should be used first to verify correctness of your Graphics functions.  It should produce an image that looks like this:
-    <img src="{% link media/graphics_test.jpg %}" width="500">
+    <img src="{% link media/graphics_test.jpg %}" width="500" alt="Monitor output of the graphics test application showing Space Invaders sprites drawn on screen">
   
     Pay attention to how your UFO (in red) and tank (in yellow) are drawn, as they test sprite drawing with no filled background color vs. filled background color, respectively.  
 1. The [graphics_syscall](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/graphics_syscalls) program.  This program draws a single large sprite.  It should be run like so to measure the number of system calls made:

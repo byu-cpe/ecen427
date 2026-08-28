@@ -1,4 +1,4 @@
-<div class="border-right sidebar-color" id="sidebar-wrapper">
+<div class="border-end sidebar-color" id="sidebar-wrapper">
     <div class="sidebar-sticky">
         <div class="sidebar-heading-big">
             <a href="{% link index.md %}">
@@ -7,9 +7,9 @@
         </div>
 
         <div class="search-bar">
-            <form method="get" action="https://www.google.com/search" target="_blank">
-                <input class="search-box" type="hidden" name="sitesearch" value="{{ site.url }}{{ site.baseurl }}" />
-                <input class="search-box" type="text" name="q" maxlength="255" placeholder="Search" />
+            <form method="get" action="https://www.google.com/search" target="_blank"
+                onsubmit="this.q.value = 'site:{{ site.url | replace: 'https://', '' | replace: 'http://', '' }}{{ site.baseurl }} ' + this.q.value;">
+                <input class="search-box" type="text" name="q" maxlength="255" placeholder="Search" aria-label="Search this site" />
             </form>
         </div>
 
@@ -20,8 +20,9 @@
             <!-- Look for specific front-matter tag -->
             <a {% if item.link_external %} href="{{ item.link_external }}" {% elsif item.link_internal %}
                 href="{% link {{item.link_internal }} %}" {% else %} href="{% link {{item.path }} %}" {% endif %}
-                class="list-item-normal list-group-item list-group-item-action  sidebar-item" {% if item.new_window
-                %}target="_blank" {% endif %}>
+                class="list-item-normal list-group-item list-group-item-action sidebar-item{% if item.url == page.url %} active{% endif %}"
+                {% if item.new_window %}target="_blank" {% endif %}
+                {% if item.url == page.url %}aria-current="page" {% endif %}>
                 {% if item.icon %}
                 <i class="{{ item.icon }}"></i>
                 {% endif %}
@@ -36,8 +37,9 @@
             {% for item in site.labs %}
             {% unless item.hide %}
             <a href="{% link {{ item.path }} %}"
-                class="list-item-normal list-group-item list-group-item-action bg-light sidebar-item">
-                <span class="badge badge-pill badge-dark-grey">{{ item.number }}</span>
+                class="list-item-normal list-group-item list-group-item-action sidebar-item{% if item.url == page.url %} active{% endif %}"
+                {% if item.url == page.url %}aria-current="page" {% endif %}>
+                <span class="badge rounded-pill badge-dark-grey">{{ item.number }}</span>
                 {{ item.short_title | default: item.title }}
 
             </a>
@@ -50,7 +52,8 @@
         <div class="list-group list-group-flush">
             {% for item in site.documentation %}
             <a href="{% link {{ item.path }} %}"
-                class="list-item-narrow list-group-item list-group-item-action bg-light sidebar-item">
+                class="list-item-narrow list-group-item list-group-item-action sidebar-item{% if item.url == page.url %} active{% endif %}"
+                {% if item.url == page.url %}aria-current="page" {% endif %}>
                 {% for i in (1..{{item.indent}}) %}&emsp;{% endfor %}
 
                 {{ item.short_title | default: item.title }}

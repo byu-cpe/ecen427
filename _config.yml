@@ -40,10 +40,6 @@ collections:
   pages:
     output: true
     permalink: /:name/
-    order:
-      - overview.md
-      - goals.md
-      - lab_setup.md
 
 exclude:
   - icon.ai
@@ -60,3 +56,4 @@ exclude:
 plugins:
   - jekyll-sitemap
   - jekyll-target-blank
+  - jekyll-seo-tag

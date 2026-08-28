@@ -14,9 +14,6 @@ A few things to note about the hardware system that we have provided to you:
   * **Fixed Interval Timer (FIT)** [Documentation]({% link media/docs/pg086-fit-timer.pdf %}): *fit_timer_0* has been configured to generate an interrupt every [16.67ms](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/system.h#L16).
   * **AXI Interrupt Controller** [Documentation]({% link media/docs/pg099-axi-intc-2.pdf %}) As you can see, *user_intc* has three interrupt **inputs**, *fit_timer_0*, *btns_gpio* and *switches_gpio*. The interrupt controller generates an interrupt **output**, which is connected to an interrupt line of the CPU. 
   * **AXI CDMA** [Documentation]({% link media/docs/pg034-axi-cdma.pdf %})
-  * **Audio**:
-  * **Video**:
-  <!-- Note that the interrupt controller does not contain any of registers noted as optional in the interrupt controller documentation. -->
 
 [system.pdf]({% link media/system.pdf %})
 <embed src="{% link media/system.pdf %}" width="1000" height="600" type="application/pdf">
@@ -24,7 +21,7 @@ A few things to note about the hardware system that we have provided to you:
 ## Interrupt System & UIO
 
 Here is simplified system diagram that only contains interrupt-relevant stuff.  
-<img src="{% link media/pynqinterruptstructure.jpg %}" width="800">
+<img src="{% link media/pynqinterruptstructure.jpg %}" width="800" alt="Simplified diagram of the PYNQ interrupt structure: FIT and GPIO interrupt lines feed the AXI interrupt controller, which interrupts the CPU">
 
 ### UIO
 

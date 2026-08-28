@@ -4,7 +4,6 @@ toc: true
 title: "Lab 1: Hello World on the PYNQ-Z2 Board"
 short_title: Hello World
 number: 1
-# repo: lab_graphs
 ---
 
 In this lab you will set up your PYNQ board and run a simple program on it.  
@@ -44,36 +43,3 @@ After you have completed these steps, do the following:
 ##  Submission
 
 Follow the instructions on the [Submission]({% link _pages/submission.md %}) page.
-
-<!-- ## Resources
-  * [Official PYNQ documentation](http://pynq.readthedocs.io/en/latest/getting_started.html) -->
-
-<!-- 
-## Study Questions
-These study questions are provided as a guide but are not a complete test of your knowledge. You are responsible for completely learning the tutorial on your own. If there is something in the tutorial that you do not initially understand, search out the internet to try and understand it. Only ask the TAs as a last resort.
-
-  - How are files organized?
-  - How do you list the contents of a directory?
-  - How do you 'move' to another directory?
-  - How do you print out the name of your current directory?
-  - What is the difference between a relative and absolute path?
-  - What is tab completion?
-  - How does Linux treat file extensions differently than Windows or MacOS?
-  - Is Linux case sensitive?
-  - How do we list all of the hidden files in a directory?
-  - How can you find out everything about a Linux command?
-  - How do you make a new directory?
-  - How do you delete a directory? Note that Linux can be unforgiving when deleting files. Almost nothing in Linux is 'undoable'.
-  - What command do you use to find out more about a file?
-  - How do we make a copy of a file? How do we make a copy of a directory?
-  - How do we move a file or directory?
-  - How do we rename a file or directory?
-  - Learn how to use a command line text editor. You may demonstrate the use of either to the TAs. You must know how to use the editor sufficient to create and edit files.
-  - Understand how to use wildcards in Linux commands.
-  - Understand file permissions and how to view and modify them.
-  - Understand how to use all of filters described in the tutorial (you don't need to worry about awk/diff/sed for now).
-  - Understand grep/egrep and basic regular expressions. You should be able to understand how small modifications to the tutorial examples will change the output. You can use the section directly under the Regular Expression Overview as a cheat-sheet during pass off.
-  - Understand the three basic streams associated with each process and understand how to pipe the output from one stream to another.
-  - Know how to list and kill currently running processes.
-  - Also be familiar with basic Git commands.
-   -->

@@ -74,7 +74,7 @@ The [make sim_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makef
         * Demonstrate your PIT running with a delay-value of 4, with the PIT enabled and generating interrupts.  Make sure it runs long enough to generate several interrupts.
         * Demonstrate that the *enable* and *interrupt enable* bits of the control register work properly.
       * You should have a pre-configured waveform file (.wcfg) set up that has appropriate signals added and organized in a way that the TAs can verify correct operation.  Here is an example:      
-      <img src="{% link media/labs/pit_sim.png %}" width="1000">
+      <img src="{% link media/labs/pit_sim.png %}" width="1000" alt="Simulation waveform of the PIT timer">
 
 The [make clean](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L7-L8) target removes all the temporary Vivado project files.  You will need to update this command to delete your simulation project files, otherwise it will prevent you from recreating the project in the next step.
 

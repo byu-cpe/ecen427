@@ -72,7 +72,13 @@ h5 {
  */
 img {
     max-width: 100%;
+    height: auto;
     vertical-align: middle;
+}
+
+embed,
+iframe {
+    max-width: 100%;
 }
 
 /**

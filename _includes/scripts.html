@@ -1,33 +1,21 @@
 <!-- Bootstrap core JavaScript -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-    crossorigin="anonymous"></script>
-<script src={{ "/js/jquery.visible.min.js" | relative_url }}></script>
 
-<!-- Menu Toggle Script -->
 <script>
-    $("#menu-toggle").click(function (e) {
+    // Sidebar toggle
+    document.getElementById("menu-toggle").addEventListener("click", function (e) {
         e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
+        document.getElementById("wrapper").classList.toggle("toggled");
     });
 
-    var prevVisible = $('#page-title').visible();
-
-    $(window).scroll(function () {
-        currentVisible = $('#page-title').visible()
-        if (prevVisible && !currentVisible) {
-            console.log("Do something!");
-            $("#page-title-bar").html($('#page-title').text());
-        }
-
-        if (!prevVisible && currentVisible) {
-            $("#page-title-bar").html("")
-        }
-
-        prevVisible = currentVisible;
-    });
-
+    // Show the page title in the navbar once the on-page title scrolls out of view
+    var pageTitle = document.getElementById("page-title");
+    var titleBar = document.getElementById("page-title-bar");
+    if (pageTitle && titleBar && "IntersectionObserver" in window) {
+        new IntersectionObserver(function (entries) {
+            titleBar.textContent = entries[0].isIntersecting ? "" : pageTitle.textContent.trim();
+        }).observe(pageTitle);
+    }
 </script>

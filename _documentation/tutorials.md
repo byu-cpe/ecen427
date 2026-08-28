@@ -13,7 +13,7 @@ Now that you can SSH into your PYNQ board, you have access to a Linux system to 
 
 Work through Modules 1, 2, 3 (skip the printing commands), and 4 of the [Linux Survival tutorial](http://linuxsurvival.com/). It has a simulated Linux terminal for practicing what you learn in the modules.
 
-For a brief list of commonly used commands, see the [Linux Command Summary](https://byu-cpe.github.io/ecen224/resources#linux_commands_summary/).
+For a brief list of commonly used commands, see the [Linux Command Summary](https://byu-cpe.github.io/ecen224/resources#linux_commands_summary).
 
 
 ## Git and Github

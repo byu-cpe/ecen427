@@ -180,10 +180,6 @@ In this milestone you will add an *ioctl* interface to your driver to allow user
     * The sound that occurs when you fire a bullet.
     * the sound the flying saucer makes if you hit it with a bullet.
   
-  <!-- * Implement volume control in the following manner: -->
-    <!-- * To increase volume, slide sw0 up, press btn3.  Each press increases the volume a preset amount, such as 10%. -->
-    <!-- * To decrease volume, slide sw0 down, press btn3.  Each press decreases the volume a preset amount, such as 10%. --> 
-
   * Sound Priority:
     * The UFO sound has the highest priority.  When it is present, no other sound should be played.
     * The walking sounds have the lowest priority.  They should be played only if no other sound is currently playing.
@@ -257,7 +253,7 @@ Some resources to help you with the kernel function calls:
   * `device_create`
     * This function will create a device file in */dev*.
     * See the Linux documentation <https://www.kernel.org/doc/html/v5.4/driver-api/infrastructure.html>
-    * Be careful to check the return value of ''device_create'' properly.  
+    * Be careful to check the return value of `device_create` properly.  
   * `platform_get_resource`
     * This function is used to retrieve values from the device tree.
     * Using type `IORESOURCE_MEM` will return the physical memory address and length (`<reg>` from the device tree).

@@ -51,6 +51,14 @@ a.sidebar-item:hover {
   background-color: rgba($sidebar-hover-color, 0.7) !important;
 }
 
+/* Highlight the page currently being viewed */
+a.sidebar-item.active {
+  background-color: rgba($sidebar-hover-color, 0.3) !important;
+  border-color: transparent;
+  color: inherit;
+  font-weight: bold;
+}
+
 #sidebar-wrapper .sidebar-heading {
   padding: 1rem 1.25rem 0.2rem 1.25rem;
   font-size: 1rem;
@@ -61,6 +69,11 @@ a.sidebar-item:hover {
 
 #sidebar-wrapper .list-group {
   width: 16rem;
+}
+
+/* Let the sidebar background show through in both light and dark themes */
+#sidebar-wrapper .list-group-item {
+  background-color: transparent;
 }
 
 #page-content-wrapper {

@@ -1,6 +1,6 @@
 ---
 layout: page
-toc: false
+toc: true
 title: Git Setup
 indent: 1
 number: 7
@@ -33,7 +33,7 @@ In the labs for this class, you will be completing some tasks on your computer, 
 1. Sign up for your Github classroom repo using this link: <https://classroom.github.com/a/_DQgWuiv> This will create an empty private repository on Github for you to use throughout the entire semester. **You must create your repository using this link, or the TAs will not be able to grade your code.**
 
 1. You should now see the message below.  Click the link to navigate to your repository.
-<img src = "{% link media/setup/git_classroom1.png %}" width="800" >
+<img src="{% link media/setup/git_classroom1.png %}" width="800" alt="GitHub Classroom assignment acceptance page">
   
 1. Your repository will begin empty, but you will need to import the starter code.  To do this we will do a bare clone of the starter code repository, and push it to your repository.  Then you can delete this clone.  Make sure to replace the URL in the third step with the URL of your repository, that you can find by clicking the *SSH* button on your repository page.  You can run these commands in any directory you want. 
 
@@ -50,7 +50,7 @@ In the labs for this class, you will be completing some tasks on your computer, 
 
   - Go to your newly created repo.  
   - Click the **Code** button, and then the **Use SSH** link, as shown here: 
-    <img src = "{% link media/setup/git_classroom3.png %}" width="800" >
+    <img src="{% link media/setup/git_classroom3.png %}" width="800" alt="GitHub Classroom page showing the link to your newly created student repository">
   - Copy the URL that is shown.  It should be something like: *git@github.com:byu-ecen427-classroom/427-labs-\<your_id\>.git*
   - Clone the repository into a directory you want to use, for example:  
 

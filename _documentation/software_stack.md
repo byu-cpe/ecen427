@@ -6,7 +6,7 @@ indent: 0
 number: 10
 ---
 
-<img src = "{% link media/software_stack.png %}" width="1100">
+<img src="{% link media/software_stack.png %}" width="1100" alt="Diagram of the class software stack, from user applications through drivers and the Linux kernel down to the hardware">
 
 
 ## Header File 
