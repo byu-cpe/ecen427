@@ -33,6 +33,8 @@ make submit_lab7
 make submit_lab8
 ```
 
+If the script fails, see [If the submission fails . . .](#if-the-submission-fails---) below.
+
 You may run the `make submit_*` script as many times as you like (there is no penalty for multiple submissions).
 However, every time you run `make submit_*`, the submission date of your lab will be updated.
 If your submission date is past the deadline for the lab, you will receive a late penalty as described in the syllabus.
@@ -52,14 +54,35 @@ Before you submit, make sure that:
 * A fresh clone of your repository builds cleanly.  The surest way to check is to clone your repository
   into a new directory and build it there.
 
-<span style="color:red">**If the TAs cannot build your submission — for example, because your CMake files are
-missing or configured incorrectly — and they have to modify your build in order to grade it, an automatic
-10% deduction will be applied.**</span>
+If the TAs cannot build your submission — for example, because your CMake files are
+missing or configured incorrectly — and they have to modify your build in order to grade it,
+an automatic <span style="color:red">10% deduction will be applied.</span>
 
-<span style="color:red">**If you forget to commit your code and a TA has to reach out to you to obtain it, you
-will receive a 20% penalty for the first offense (equivalent to the minimum late penalty).  For any
+If you forget to commit your code and a TA has to reach out to you to obtain it,
+you will receive a <span style="color:red">20% penalty for the first offense</span> (equivalent to the minimum late penalty).  For any
 subsequent offense, you will be required to resubmit the lab at the then-current date, and that resubmission
-will incur the associated late penalty.**</span>
+will <span style="color:red">incur the associated late penalty.</span>
+
+### Compiler Warnings
+
+Your code must compile with zero warnings using the standard build process.  If it doesn't, <span style="color:red">a 10% deduction will be applied.</span>  This applies to every lab that compiles C/C++ code — not just the code you're actively submitting for that lab.  If a warning from an earlier lab's code is still present, the same 10% deduction applies to the current lab too, until it's fixed.
+
+### Valgrind
+
+For labs where you submit standalone userspace applications, your code must also run cleanly under `valgrind`, with no memory errors or leaks reported.  If it doesn't, an additional <span style="color:red">10% deduction will be applied.</span>  This does not apply to kernel driver labs, since kernel modules can't be run under valgrind.
+
+The table below shows which labs each policy applies to:
+
+| Lab | Compiler Warnings | Valgrind |
+|---|---|---|
+| Lab 1: Hello World | Yes | Yes |
+| Lab 2: Userspace Drivers | Yes | Yes |
+| Lab 3: Clock | Yes | Yes |
+| Lab 4: Space Invaders | Yes | Yes |
+| Lab 5: Audio Driver | Yes | No (kernel module) |
+| Lab 6: PIT Hardware | No | No |
+| Lab 7: PIT Driver | Yes | No (kernel module) |
+| Lab 8: DMA | Yes | Yes |
 
 ## If the submission fails . . .
 
