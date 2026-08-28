@@ -30,6 +30,10 @@ Students may not:
 - Submit AI-written code as original work. 
 - Provide assignment prompts to AI to receive completed solutions. 
 
+## TA Support
+
+TAs may help you debug **your own code**. If you cannot explain what a piece of code does or why you wrote it that way — including code an AI tool suggested or helped you write — do not ask the TA to debug it for you.
+
 ## Rationale 
 
 These courses emphasize systems-level thinking, debugging, and comprehension. Copying AI-generated code bypasses these learning objectives, while guided explanation supports them.  
