@@ -14,7 +14,7 @@ In this lab you will set up your PYNQ board and run a simple program on it.
 
 ## Overview 
 
-**Before you can proceed with this lab**, you must complete the Microsoft Form and submit your GitHub username.  Your Git repository for the semester is created from these form responses, which may take up to 24 hours.  If you added the class late, message the instructor so your repository gets created promptly.
+**Before you can proceed with this lab**, you must complete [this Microsoft Form](https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=m278xvtRqEi3eZ7lZLQEE4ha3g3zImFKktW1XFmV3zhUNE45UEUzWlJPVVkwVEwzOUxXTkc3RU5QTC4u) and submit your GitHub username.  Your Git repository for the semester is created from these form responses, which may take up to 24 hours.  If you added the class late, message the instructor so your repository gets created promptly.
 
 To fully pass off this lab, you will need to perform all of the required setup activities listed below, including tutorials on Linux and Git.  Questions from this material will be on the first quiz.
 

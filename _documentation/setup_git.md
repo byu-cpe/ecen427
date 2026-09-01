@@ -33,7 +33,7 @@ In the labs for this class, you will be completing some tasks on your computer, 
 
 A private repository is created for you, already containing the starter code.  You will use this repository throughout the entire semester.
 
-1. Make sure you have completed the Microsoft Form asking for your GitHub username.  Your repository is created from these form responses, so it cannot be created until you have done this.
+1. Make sure you have completed the [Microsoft Form](https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=m278xvtRqEi3eZ7lZLQEE4ha3g3zImFKktW1XFmV3zhUNE45UEUzWlJPVVkwVEwzOUxXTkc3RU5QTC4u) asking for your GitHub username.  Your repository is created from these form responses, so it cannot be created until you have done this.
 
 1. Once your repository has been created, GitHub will email you an invitation to collaborate on *byu-ecen427-classroom/427-labs-\<your_github_username\>* (sent to the email address on your GitHub account).  Accept it.  If you can't find the email, log in to Github and visit `https://github.com/byu-ecen427-classroom/427-labs-<your_github_username>`, replacing `<your_github_username>` with your GitHub username; a banner with the invitation will appear at the top of the page.
 
