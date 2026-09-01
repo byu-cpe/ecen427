@@ -63,3 +63,16 @@ Follow the instructions on the [Submission]({% link _pages/submission.md %}) pag
      * When the button generates an interrupt, reset this count to 0, and store the button value in a temporary location.      
      * When the FIT ISR generates an interrupt, increase this count.  If the count reaches a certain threshold (your debounce time), then copy the temporary button value to a variable (this is your *debounced button value*).  Only use this debounced button value elsewhere in your code, and not the raw button value.  
   1. Other than various initializations and set up, your `main()` must contain only a while(1) loop that waits for interrupts to occur. If the loop has anything else then you are probably doing the forbidden, a.k.a. polling.
+
+## Lifelong Learning: What's Next?
+
+Your clock keeps time by counting FIT interrupts, and the FIT is driven by a clock signal derived from a crystal oscillator on the board.  Crystals are good, but not perfect.  A typical crystal is only accurate to within ±50–100 **ppm** (parts per million).
+
+Explore this question: **How accurate is your clock, really?**
+  * Try it: set your clock to match the clock on your phone, wait a few minutes, and compare them again.
+  * Do the math: if the crystal is off by 100 ppm, how many seconds does your clock gain or lose per day?
+  * Your phone and laptop have crystals with the same kind of tolerance, yet they always show the right time.  How do real systems fix this?  Look into battery-backed RTCs, NTP (how does your phone stay within milliseconds of true time?), and PTP, which is used where systems need microsecond agreement, like cell towers and trading systems.
+
+**AI use is encouraged for this section.**  This is a great topic to explore in a conversation with an AI tool.  See the [Lifelong Learning: What's Next?]({% link _pages/lifelong_learning.md %}) page.
+
+When you're done, record what you learned in a few sentences in `lifelong_learning/lab3.txt`.

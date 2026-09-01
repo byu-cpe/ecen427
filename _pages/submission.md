@@ -13,7 +13,7 @@ Lab pass-offs will not be done in person.  Instead, you will run a script that w
 * Tag your repository with the proper lab-specific tag
 * Check to make sure that the `.commitdate` file in your tagged repository is created. (this will be used to determine if you submitted on time)
 
-**Important:** Before submitting, make sure you have completed the [Lifelong Learning and Service]({% link _pages/lifelong_learning_and_service.md %}) requirement for the lab.
+**Important:** Before submitting, make sure you have completed the [Lifelong Learning: What's Next?]({% link _pages/lifelong_learning.md %}) requirement for the lab.
 
 To submit your lab, run one of the following commands from within your lab repository:
 ```bash

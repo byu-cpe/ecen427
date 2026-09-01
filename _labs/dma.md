@@ -130,3 +130,16 @@ You might try approaching this lab in the following order:
   * Expand your previous code to initialize an array of transfer descriptors, with source and destination addresses for each line of the sprite.
   * Chain the transfer descriptors together by setting the next descriptor address in each descriptor.
   * Make sure the tail register is set to the last descriptor in the chain.
+
+## Lifelong Learning: What's Next?
+
+The *Security* section above told you that what you just built is *"a massive security vulnerability"*: a userspace program controlling a device that can read and write arbitrary physical memory.  So how do real systems get the performance of userspace DMA without the danger?
+
+Explore this question: **How do real systems make DMA safe?**
+  * What is an **IOMMU**, and how does it constrain what memory a DMA-capable device can touch?
+  * How does Linux's **VFIO** framework give userspace processes *controlled* DMA access?  (This is how high-performance networking stacks like DPDK, and virtual machines with passthrough devices, work.)
+  * Given those tools, why does the kernel still normally own DMA?
+
+**AI use is encouraged for this section.**  You are welcome to paste your completed `dma.c` into an AI tool to give it context, then discuss the question with it.  See the [Lifelong Learning: What's Next?]({% link _pages/lifelong_learning.md %}) page.
+
+When you're done, record what you learned in a few sentences in `lifelong_learning/lab8.txt`.

@@ -30,6 +30,8 @@ Students may not:
 - Submit AI-written code as original work. 
 - Provide assignment prompts to AI to receive completed solutions. 
 
+**Exception:** The [Lifelong Learning: What's Next?]({% link _pages/lifelong_learning.md %}) section at the end of each lab may explicitly authorize you to share your *completed* solution code with an AI tool, so the AI has context for a learning discussion. This exception applies only where the lab writeup states it, and only after your lab work is done.
+
 ## TA Support
 
 TAs may help you debug **your own code**. If you cannot explain what a piece of code does or why you wrote it that way — including code an AI tool suggested or helped you write — do not ask the TA to debug it for you.

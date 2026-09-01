@@ -64,4 +64,16 @@ When you are graded we will run each of the test applications and verify that th
 
 Follow the instructions on the [Submission]({% link _pages/submission.md %}) page.
 
+## Lifelong Learning: What's Next?
+
+Your drivers work, but you built and tested them with only one program using them at a time.  Real systems rarely have that luxury.
+
+Explore this question: **Could your buttons and switches drivers be used by multiple applications at the same time?**
+  * Which of your driver functions would be safe for two processes to call concurrently, and which would misbehave?
+  * What would it take to properly support multiple applications?
+
+**AI use is encouraged for this section.**  You are welcome to paste your completed driver code into an AI tool to give it context, then discuss the question with it.  See the [Lifelong Learning: What's Next?]({% link _pages/lifelong_learning.md %}) page.
+
+When you're done, record what you learned in a few sentences in `lifelong_learning/lab2.txt`.
+
 

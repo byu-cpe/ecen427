@@ -127,3 +127,13 @@ Follow the [submission instructions]({% link _pages/submission.md %}).  Make sur
   * *(Milestone 2)* The changes to the [ecen427.tcl](https://github.com/byu-cpe/ecen427_student/blob/main/hw/ecen427.tcl) file.
   * *(Milestone 2)* Your new [ecen427.bit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/ecen427.bit) bitstream.
   * *(Milestone 2)* Your bitstream packaged into the [ecen427.bit.bin](https://github.com/byu-cpe/ecen427_student/blob/main/device_tree/ecen427.bit.bin) format.
+
+## Lifelong Learning: What's Next?
+
+Your PIT passed the AXI VIP simulation, but a simulation only checks the scenarios your test bench happens to exercise.  Professional hardware teams routinely subject their RTL to *adversarial review*: someone (or something) whose whole job is to find the cases you didn't think of.
+
+Paste your completed `pit.sv` into an AI tool and ask it to hunt for AXI4-Lite protocol violations and corner cases.  For example: What happens if the master asserts `AWVALID` and `WVALID` in different orders, or in the same cycle?  What if a read and a write arrive at the same time?  Does every handshake hold `VALID` until `READY`?  Push back on its claims.  AI reviewers are sometimes wrong, and deciding whether a reported bug is real is exactly the skill this exercise builds.  If you want to take it further, paste your test bench as well and ask which scenarios it does *not* cover.
+
+**AI use is encouraged (and required) for this section.**  This is an explicit exception to the usual policy; see the [Lifelong Learning: What's Next?]({% link _pages/lifelong_learning.md %}) page.
+
+When you're done, record what you learned in a few sentences in `lifelong_learning/lab6.txt`.

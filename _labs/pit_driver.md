@@ -104,3 +104,16 @@ You may find the following tutorial helpful: <https://www.cs.swarthmore.edu/~new
 ### sysfs permissions 
 
 The Linux kernel prevents you from setting certain permission bits on *sysfs* files.  You are not allowed to set the *write* or *execute* bits for all users.  Thus, the example command requires *sudo* to write to the *sysfs* file.
+
+## Lifelong Learning: What's Next?
+
+You have now built kernel interfaces two different ways: a character device in `/dev` with `read()`/`write()`/`ioctl()` (Lab 5), and sysfs attributes (this lab).
+
+Explore this question: **When is each kernel/userspace interface the right choice?**
+  * What are the tradeoffs between a `/dev` character device and sysfs attributes?  (Think about data volume, data format, discoverability, and who the "user" is.)
+  * Two more interfaces you haven't used are `debugfs` and `netlink`.  What are they, and when would a driver author pick them?
+  * If you were designing a driver for a brand-new device, which interface(s) would you choose, and why?
+
+**AI use is encouraged for this section.**  You are welcome to paste your completed audio and PIT drivers into an AI tool to give it context, then discuss the question with it.  See the [Lifelong Learning: What's Next?]({% link _pages/lifelong_learning.md %}) page.
+
+When you're done, record what you learned in a few sentences in `lifelong_learning/lab7.txt`.

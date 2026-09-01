@@ -149,3 +149,26 @@ To save some time, we will give you the definitions of the aliens in their two g
 ### Bunker Erosion Patterns 
 
  Take a look at the [sprites.c](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/resources/sprites.c) file for erosion patterns. The corners of the bunkers should erode such that no pixels get set that weren't set before they started to erode.  So, although the erosion patterns are square in shape, the corners of the bunkers should erode within their original pixel constraints.
+
+## Lifelong Learning: What's Next?
+
+Your game is now a substantial program, with sprites, game objects, drivers, and buffers.  But where does each piece of it actually *live* in memory?
+
+While your game is running, open a second SSH session to your board and inspect the kernel's memory map of your process:
+
+```bash
+pid=$(pidof space_invaders)
+cat /proc/$pid/maps      # every memory region in your process
+pmap -x $pid             # same information, formatted more readably
+```
+
+Each line is one region of your process's virtual address space: its address range, permissions (`r`/`w`/`x`, `p`rivate vs `s`hared), and what file (if any) backs it.  Things to explore:
+
+  * Find the `[heap]`, the `[stack]`, and the regions belonging to your executable.  Why does your executable appear several times with different permissions (`r--`, `r-x`, `rw-`)?
+  * Where do your sprites live?  (Hint: they are `const` arrays.  Look at which of your executable's regions is read-only, and confirm by printing a sprite's address with `printf("%p", ...)` and finding it in the map.)
+  * Where do your `GameObject`s live?  Your local variables?  A global?
+  * Find the mapped device files from your Lab 2 drivers (`/dev/ecen427/...`).  What do those regions actually point to?
+
+**AI use is encouraged for this section.**  Paste your game's `maps` output into an AI tool and ask it to explain the entries you don't recognize.  See the [Lifelong Learning: What's Next?]({% link _pages/lifelong_learning.md %}) page.
+
+Explore this with your team.  When you're done, record what you learned in a few sentences in `lifelong_learning/lab4.txt` in your team repository.

@@ -4,7 +4,7 @@ toc: true
 title: "Lab 5: Kernel Driver for Playing Audio"
 short_title: Audio Driver
 number: 5
-under_construction: false
+under_construction: true
 
 ---
 
@@ -286,3 +286,7 @@ Some resources to help you with the kernel function calls:
 ### Other
 
 * [Class slides]({% link media/labs/lab5_kernel_driver.pdf %})
+
+## Lifelong Learning: What's Next?
+
+TBD

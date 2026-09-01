@@ -43,3 +43,16 @@ After you have completed these steps, do the following:
 ##  Submission
 
 Follow the instructions on the [Submission]({% link _pages/submission.md %}) page.
+
+## Lifelong Learning: What's Next?
+
+During setup you ran `ssh-keygen` and `ssh-copy-id`, and suddenly you could log into your board without a password.  That wasn't magic; it was public-key cryptography.
+
+Explore this question: **What did `ssh-keygen` and `ssh-copy-id` actually do?**
+  * What are the two files `ssh-keygen` created, and what is each one for?
+  * What ended up in `~/.ssh/authorized_keys` on the board, and how does the server use it to decide you are you?
+  * Why does the private key never need to leave your machine, even during login?  (At a hand-wavy level, how can you prove you *have* a secret without *showing* it?)
+
+**AI use is encouraged for this section.**  This is a great topic to explore in a conversation with an AI tool.  See the [Lifelong Learning: What's Next?]({% link _pages/lifelong_learning.md %}) page.
+
+When you're done, record what you learned in a few sentences in `lifelong_learning/lab1.txt`.
