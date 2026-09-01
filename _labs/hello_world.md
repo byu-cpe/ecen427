@@ -13,6 +13,9 @@ In this lab you will set up your PYNQ board and run a simple program on it.
 * Learn how to build and run programs on the PYNQ board.
 
 ## Overview 
+
+**Before you can proceed with this lab**, you must complete the Microsoft Form and submit your GitHub username.  Your Git repository for the semester is created from these form responses, which may take up to 24 hours.  If you added the class late, message the instructor so your repository gets created promptly.
+
 To fully pass off this lab, you will need to perform all of the required setup activities listed below, including tutorials on Linux and Git.  Questions from this material will be on the first quiz.
 
 The last setup step involves compiling and running a *Hello, World!* application on the PYNQ board.  You need modify this program as described below, and submit your code.
@@ -36,7 +39,6 @@ If you run into issues, post on Teams.  <ins>**Do not skip any setup steps**</in
 After you have completed these steps, do the following:
 
   - Modify the *Hello, World* application so that it prints `Hello, World from <your name>!`
-  - We need to know your Github repository URL.  Complete the Learning Suite "quiz" titled "Github URL".  **Don't forget to do this!**
   - Submit your code.
 
 

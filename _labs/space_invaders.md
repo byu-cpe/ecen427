@@ -19,20 +19,9 @@ In this lab you will write the software that implements all functionality (excep
 This is the only lab where you will be permitted to work in a team.  Your team will be three students.  The teams are pre-set and are listed on Learning Suite.  If two teams mutually agree, you may swap team members.  Do this before proceeding with the next step.
 
 
-You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.  Once you have your team arranged, follow this link to create a new shared Github repository for lab 4: <https://classroom.github.com/a/FIA1_rqk>
-  * The first team member to sign up should create a new team name.
-  * The other team members can join the team created by the first team member.
-  * Once you have a team repository created, **each member of the team** needs to complete the Learning Suite quiz to indicate their team repository URL.
+You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.
 
-Once your empty lab 4 repository is created, you will need to import one of your team member's individual repository, into your shared repository. You can choose which member of team's code to use, but **all team members must have submitted lab3 before you share your code**.
-
-You can do this in a similar manner to how you obtained the starter code:
-
-        git clone --bare git@github.com:<team member's repo>.git
-        cd <team member's repo>.git/
-        git push --mirror git@github.com:byu-ecen427-classroom/<your team repo>.git
-        cd ..
-        rm -rf <team member's repo>.git
+**TBD:** Instructions for creating your shared team repository will be provided when the lab begins.
 
 
 ## Implementation

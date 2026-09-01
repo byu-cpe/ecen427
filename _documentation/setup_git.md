@@ -29,28 +29,20 @@ In the labs for this class, you will be completing some tasks on your computer, 
         Hi <your_github_username>! You've successfully authenticated, but GitHub does not provide shell access.
 
 
-### Github Repository Creation
-1. Sign up for your Github classroom repo using this link: <https://classroom.github.com/a/_DQgWuiv> This will create an empty private repository on Github for you to use throughout the entire semester. **You must create your repository using this link, or the TAs will not be able to grade your code.**
+### Github Repository Access
 
-1. You should now see the message below.  Click the link to navigate to your repository.
-<img src="{% link media/setup/git_classroom1.png %}" width="800" alt="GitHub Classroom assignment acceptance page">
-  
-1. Your repository will begin empty, but you will need to import the starter code.  To do this we will do a bare clone of the starter code repository, and push it to your repository.  Then you can delete this clone.  Make sure to replace the URL in the third step with the URL of your repository, that you can find by clicking the *SSH* button on your repository page.  You can run these commands in any directory you want. 
+A private repository is created for you, already containing the starter code.  You will use this repository throughout the entire semester.
 
-        git clone --bare git@github.com:byu-cpe/ecen427_student.git
-        cd ecen427_student.git/
-        git push --mirror git@github.com:byu-ecen427-classroom/427-labs-<your_github_username>.git
-        cd ..
-        rm -rf ecen427_student.git
+1. Make sure you have completed the Microsoft Form asking for your GitHub username.  Your repository is created from these form responses, so it cannot be created until you have done this.
 
-    <span style="color:red">Replace `<your_github_username>` in the third command with your own repository name</span> — copy it from the *SSH* button on your repository page.  Do not run the command as written above.
+1. Once your repository has been created, GitHub will email you an invitation to collaborate on *byu-ecen427-classroom/427-labs-\<your_github_username\>* (sent to the email address on your GitHub account).  Accept it.  If you can't find the email, log in to Github and visit `https://github.com/byu-ecen427-classroom/427-labs-<your_github_username>`, replacing `<your_github_username>` with your GitHub username; a banner with the invitation will appear at the top of the page.
 
+1. Repositories are created in batches as students complete the form, which may take up to 24 hours.  If you haven't received an invitation within a day of completing the form, post on Teams.
 
 ### Clone your Repo
 
-  - Go to your newly created repo.  
-  - Click the **Code** button, and then the **Use SSH** link, as shown here: 
-    <img src="{% link media/setup/git_classroom3.png %}" width="800" alt="GitHub Classroom page showing the link to your newly created student repository">
+  - Go to your repository page: *https://github.com/byu-ecen427-classroom/427-labs-\<your_github_username\>*
+  - Click the **Code** button, and then the **SSH** tab.
   - Copy the URL that is shown.  It should be something like: *git@github.com:byu-ecen427-classroom/427-labs-\<your_id\>.git*
   - Clone the repository into a directory you want to use, for example:  
 
