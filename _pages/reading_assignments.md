@@ -17,6 +17,7 @@ OSTEP: <https://pages.cs.wisc.edu/~remzi/OSTEP/>
 
 | Date | Slides | Reading | Study Questions | Quiz |
 |------|--------|---------|-----------------|------|
+| Sep 2 | [Intro]({% link media/slides/00-intro.pdf %}) | | | |
 | TBD | [OS Intro]({% link media/slides/01-OS-intro.pdf %}) | [OSTEP Chapter 2: Introduction](https://pages.cs.wisc.edu/~remzi/OSTEP/intro.pdf) | | Quiz 1 |
 | TBD | [Devices]({% link media/slides/02-devices.pdf %}) | [UIO]({% link _documentation/uio.md %}) & [OSTEP Chapter 4: Processes](https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf) | | Quiz 1 |
 | TBD | [Lab 2]({% link media/slides/lab2.pdf %}) | | | Quiz: Interrupts, Lab 2 & 3 |
