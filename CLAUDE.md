@@ -4,6 +4,8 @@ This is a Jekyll site (deployed from GitHub: byu-cpe/ecen427).
 
 - Build to verify changes: `make build`
 - Commit and push to publish.
+- Do not commit or push content changes on your own; the instructor prefers to review and push changes personally.
+  Exception: when asked to update slides, commit and push the slide updates without asking.
 
 ## Publishing lecture slides
 
