@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/home/jgoeders/.cache/learningsuite/venv/bin/python .claude/skills/learning-suite/scripts/ls_browser.py:*)",
+      "Bash(/home/jgoeders/.cache/learningsuite/venv/bin/python .claude/skills/learning-suite/scripts/pull_schedule.py:*)",
+      "Bash(/home/jgoeders/.cache/learningsuite/venv/bin/python .claude/skills/learning-suite/scripts/add_item.py:*)",
+      "Bash(/home/jgoeders/.cache/learningsuite/venv/bin/python .claude/skills/learning-suite/scripts/edit_item.py:*)"
+    ]
+  }
+}

@@ -1,0 +1,151 @@
+# Hand-maintained overlay of website links, merged into _data/schedule.yml by
+#   .claude/skills/learning-suite/scripts/pull_schedule.py
+#
+# Learning Suite owns the dates, lecture titles, quizzes and due dates. This file
+# owns the links and website-only notes, because Learning Suite has no place to
+# record them. Keys are dates. `slides` keys are matched against the Learning
+# Suite item title (a case-insensitive substring is enough). `note` renders as a
+# small grey line at the top of the day, `holiday` relabels a day off, `rename`
+# shortens a Learning Suite item title for the public calendar, `add_lectures`
+# lists website-only lecture lines (each is dropped automatically once an item
+# with the same title exists in Learning Suite), and `order` pins the display
+# order of that day's lecture titles.
+
+"2026-09-02":
+  order: ["Class Overview", "Intro to Operating Systems"]
+  slides:
+    "Class Overview": media/slides/00-intro.pdf
+    "Intro to Operating Systems": media/slides/01-OS-intro.pdf
+  reading:
+    - { title: "OSTEP Ch 2: Introduction", url: "https://pages.cs.wisc.edu/~remzi/OSTEP/intro.pdf" }
+    - { title: "OSTEP Ch 4: Processes", url: "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf" }
+    - { title: "OSTEP Ch 6: Limited Direct Execution", url: "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-mechanisms.pdf" }
+  study:
+    - { title: "Fourteen Ways to Fool Your Synchronizer", url: /synchronizer/ }
+
+"2026-09-04":
+  order: ["Intro to Operating Systems Cont'd", "Devices & UIO", "Lab 2 Discussion - UIO driver"]
+  slides:
+    "Intro to Operating Systems": media/slides/01-OS-intro.pdf
+    "Devices": media/slides/02-devices.pdf
+    "Lab 2 Discussion": media/slides/lab2.pdf
+  reading:
+    - { title: "UIO", url: /documentation/uio/ }
+
+"2026-09-09":
+  slides:
+    "Lab 2 discussion": media/slides/lab2.pdf
+
+"2026-09-11":
+  slides:
+    "Lab 2": media/slides/lab2.pdf
+
+"2026-09-16":
+  slides:
+    "LDD3 Ch. 1": media/ldd/ldd3-ch1.pdf
+  reading:
+    - { title: "LDD3 Ch 1", url: "https://lwn.net/images/pdf/LDD3/ch01.pdf" }
+  study:
+    - { title: "Ch 1 Study Questions", url: /ldd1/ }
+
+"2026-09-21":
+  note: "Instructor gone, substitute or video lecture will be arranged."
+  slides:
+    "C++": media/slides/c++.pdf
+
+"2026-09-23":
+  study:
+    - { title: "Valgrind", url: /documentation/valgrind/ }
+
+"2026-09-25":
+  slides:
+    "LDD3 Ch.2": media/ldd/ldd3-ch2.pdf
+  reading:
+    - { title: "LDD3 Ch 2", url: "https://lwn.net/images/pdf/LDD3/ch02.pdf" }
+  study:
+    - { title: "Ch 2 Study Questions", url: /ldd2/ }
+
+"2026-09-28":
+  note: "Instructor gone, substitute or video lecture will be arranged."
+  slides:
+    "LDD3 Ch. 3": media/ldd/ldd3-ch3.pdf
+  reading:
+    - { title: "LDD3 Ch 3", url: "https://lwn.net/images/pdf/LDD3/ch03.pdf" }
+  study:
+    - { title: "Ch 3 Study Questions", url: /ldd3/ }
+
+"2026-10-07":
+  slides:
+    "Lab 5": media/labs/lab5_kernel_driver.pdf
+
+"2026-10-09":
+  slides:
+    "LDD3 Ch 4,11": media/ldd/ldd3-ch4,11.pdf
+  reading:
+    - { title: "LDD3 Ch 4", url: "https://lwn.net/images/pdf/LDD3/ch04.pdf" }
+    - { title: "LDD3 Ch 11", url: "https://lwn.net/images/pdf/LDD3/ch11.pdf" }
+  study:
+    - { title: "Ch 4 Study Questions", url: /ldd4/ }
+    - { title: "Ch 11 Study Questions", url: /ldd11/ }
+
+"2026-10-12":
+  slides:
+    "LDD 6, 9, 10": media/ldd/ldd3-ch6,9,10.pdf
+  reading:
+    - { title: "LDD3 Ch 6", url: "https://lwn.net/images/pdf/LDD3/ch06.pdf" }
+    - { title: "LDD3 Ch 9", url: "https://lwn.net/images/pdf/LDD3/ch09.pdf" }
+    - { title: "LDD3 Ch 10", url: "https://lwn.net/images/pdf/LDD3/ch10.pdf" }
+  study:
+    - { title: "Ch 6 Study Questions", url: /ldd6/ }
+    - { title: "Ch 9 Study Questions", url: /ldd9/ }
+    - { title: "Ch 10 Study Questions", url: /ldd10/ }
+
+"2026-11-02":
+  slides:
+    "AXI Bus I": media/slides/axi.pdf
+  reading:
+    - { title: "AXI Bus Spec", url: "http://gstitt.ece.ufl.edu/courses/fall15/eel4720_5721/labs/refs/AXI4_specification.pdf" }
+  study:
+    - { title: "AXI Bus I Study Questions", url: /axi1/ }
+
+"2026-11-04":
+  study:
+    - { title: "Simulating AXI IP", url: /documentation/vivado-axi-simulation/ }
+
+"2026-11-11":
+  slides:
+    "AXI Bus II": media/slides/axi.pdf
+  study:
+    - { title: "AXI Bus II Study Questions", url: /axi2/ }
+
+"2026-11-09":
+  study:
+    - { title: "Creating AXI Peripheral IP in Vivado", url: /vivado-ip/ }
+
+"2026-09-18":
+  note: "Instructor gone, substitute or video lecture will be arranged."
+
+"2026-09-30":
+  note: "Instructor gone, substitute or video lecture will be arranged."
+
+"2026-10-02":
+  note: "Instructor gone, substitute or video lecture will be arranged."
+
+"2026-12-07":
+  note: "Instructor gone, substitute or video lecture will be arranged."
+
+"2026-12-09":
+  note: "Instructor gone, substitute or video lecture will be arranged."
+
+"2026-12-11":
+  note: "Instructor gone, substitute or video lecture will be arranged."
+
+# BYU labels the three days of Thanksgiving break differently; say the same thing.
+"2026-11-25":
+  holiday: "No class - Thanksgiving Holiday"
+
+"2026-11-26":
+  holiday: "No class - Thanksgiving Holiday"
+
+"2026-11-27":
+  holiday: "No class - Thanksgiving Holiday"

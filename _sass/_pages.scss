@@ -276,3 +276,134 @@ table {
     padding-top: 1pt;
     padding-bottom: 1pt;
 }
+/* ------------------------------------------------------------------ calendar */
+.course-calendar {
+    --cal-border: var(--bs-border-color);
+    --cal-muted: var(--bs-secondary-color);
+}
+
+.cal-month-name {
+    margin-top: 2.2rem;
+    margin-bottom: 0.6rem;
+}
+
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1px;
+    background-color: var(--cal-border);
+    border: 1px solid var(--cal-border);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.cal-dow {
+    background-color: var(--bs-tertiary-bg);
+    padding: 0.35rem 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--cal-muted);
+}
+
+.cal-day {
+    background-color: var(--bs-body-bg);
+    min-height: 6.5rem;
+    padding: 0.3rem 0.4rem 0.5rem;
+    font-size: 0.82rem;
+}
+
+.cal-day.cal-off {
+    background-color: var(--bs-tertiary-bg);
+}
+
+.cal-day.cal-today {
+    box-shadow: inset 0 0 0 2px $brand-color;
+}
+
+.cal-date {
+    font-weight: 700;
+    color: var(--cal-muted);
+    margin-bottom: 0.25rem;
+}
+
+.cal-item {
+    margin-bottom: 0.3rem;
+    line-height: 1.25;
+}
+
+.cal-item a {
+    text-decoration: none;
+}
+
+.cal-item a:hover {
+    text-decoration: underline;
+}
+
+.cal-item-lecture {
+    font-weight: 600;
+}
+
+.cal-item-tbd,
+.cal-item-note,
+.cal-item-off {
+    color: var(--cal-muted);
+    font-style: italic;
+}
+
+/* Every item type is marked by a small coloured square and nothing else, so a
+   dense day stays readable. The legend is what names the colours. */
+.cal-dot {
+    display: inline-block;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 2px;
+    margin-right: 0.25rem;
+    vertical-align: 1px;
+    background-color: var(--cal-muted);
+}
+
+.cal-dot-lecture { background-color: #fd7e14; }
+.cal-dot-reading { background-color: #0d6efd; }
+.cal-dot-study   { background-color: #6f42c1; }
+.cal-dot-quiz    { background-color: #dc3545; }
+.cal-dot-lab     { background-color: #198754; }
+.cal-dot-exam    { background-color: #212529; }
+.cal-dot-other   { background-color: #6c757d; }
+
+.cal-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0.75rem 0 0.25rem;
+    font-size: 0.85rem;
+}
+
+/* Narrow screens: the grid stops being a grid and becomes a day list. */
+@media (max-width: 820px) {
+    .cal-grid {
+        display: block;
+        background-color: transparent;
+    }
+
+    .cal-dow {
+        display: none;
+    }
+
+    .cal-day {
+        min-height: 0;
+        border-bottom: 1px solid var(--cal-border);
+        grid-column-start: auto !important;
+    }
+
+    .cal-day:not(:has(.cal-item)) {
+        display: none;
+    }
+
+    .cal-date::after {
+        content: attr(data-dow);
+        font-weight: 400;
+        color: var(--cal-muted);
+    }
+}

@@ -1,0 +1,116 @@
+{%- comment -%}
+Renders site.data.schedule as a Mon-Sat month grid.
+Sundays are never rendered, so each week is exactly 6 cells wide and the
+columns stay aligned without any padding logic beyond the first day.
+Data is generated from Learning Suite; see the header of _data/schedule.yml.
+{%- endcomment -%}
+{%- assign sched = site.data.schedule -%}
+{%- assign today = 'now' | date: '%Y-%m-%d' -%}
+
+<div class="course-calendar">
+{%- for m in sched.semester.months -%}
+  {%- assign mm = m.month | prepend: '0' | slice: -2, 2 -%}
+  <h2 class="cal-month-name" id="cal-{{ m.name | downcase }}">{{ m.name }} {{ m.year }}</h2>
+  <div class="cal-grid">
+    {%- for dow in sched.semester.dow_labels -%}
+    <div class="cal-dow">{{ dow }}</div>
+    {%- endfor -%}
+
+    {%- assign first_rendered = true -%}
+    {%- for d in (1..m.days) -%}
+      {%- assign dd = d | prepend: '0' | slice: -2, 2 -%}
+      {%- assign iso = m.year | append: '-' | append: mm | append: '-' | append: dd -%}
+      {%- assign wday = iso | date: '%w' | plus: 0 -%}
+      {%- if wday != 0 and iso >= sched.semester.start and iso <= sched.semester.end -%}
+        {%- assign ev = sched.events | where: 'date', iso | first -%}
+
+        {%- assign classes = 'cal-day' -%}
+        {%- if ev.holiday -%}
+          {%- assign classes = classes | append: ' cal-off' -%}
+        {%- endif -%}
+        {%- if iso == today -%}
+          {%- assign classes = classes | append: ' cal-today' -%}
+        {%- endif -%}
+
+        {%- assign style = '' -%}
+        {%- if first_rendered -%}
+          {%- assign style = ' style="grid-column-start: ' | append: wday | append: ';"' -%}
+          {%- assign first_rendered = false -%}
+        {%- endif -%}
+
+    <div class="{{ classes }}"{{ style }}>
+      <div class="cal-date" data-dow=" {{ iso | date: '%a, %b ' }}{{ d }}">{{ d }}</div>
+
+      {%- if ev.holiday %}
+      <div class="cal-item cal-item-off">{{ ev.holiday }}</div>
+      {%- endif -%}
+
+      {%- if ev.note %}
+      <div class="cal-item cal-item-note">{{ ev.note }}</div>
+      {%- endif -%}
+
+      {%- for lec in ev.lectures %}
+      <div class="cal-item cal-item-lecture">
+        <span class="cal-dot cal-dot-lecture" aria-hidden="true"></span>
+        {% if lec.slides %}<a href="{{ lec.slides | relative_url }}">{{ lec.title }}</a>
+        {%- else %}{{ lec.title }}{% endif %}
+      </div>
+      {%- endfor -%}
+
+      {%- unless ev.lectures or ev.holiday -%}
+        {%- if iso <= sched.semester.classes_end -%}
+          {%- if wday == 1 or wday == 3 or wday == 5 %}
+      <div class="cal-item cal-item-tbd">Lecture TBD</div>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endunless -%}
+
+      {%- for r in ev.reading %}
+      <div class="cal-item cal-item-reading">
+        <span class="cal-dot cal-dot-reading" aria-hidden="true"></span>
+        <a href="{{ r.url | relative_url }}">{{ r.title }}</a>
+      </div>
+      {%- endfor -%}
+
+      {%- for s in ev.study %}
+      <div class="cal-item cal-item-study">
+        <span class="cal-dot cal-dot-study" aria-hidden="true"></span>
+        <a href="{{ s.url | relative_url }}">{{ s.title }}</a>
+      </div>
+      {%- endfor -%}
+
+      {%- for q in ev.quizzes %}
+      <div class="cal-item cal-item-quiz">
+        <span class="cal-dot cal-dot-quiz" aria-hidden="true"></span> {{ q.title | remove_first: 'Quiz: ' }}
+      </div>
+      {%- endfor -%}
+
+      {%- for x in ev.exams %}
+      <div class="cal-item cal-item-exam">
+        <span class="cal-dot cal-dot-exam" aria-hidden="true"></span> {{ x.title }}
+      </div>
+      {%- endfor -%}
+
+      {%- for l in ev.labs %}
+        {%- assign labpage = site.labs | where: 'number', l.lab | first -%}
+      <div class="cal-item cal-item-lab">
+        <span class="cal-dot cal-dot-lab" aria-hidden="true"></span>
+        {%- if labpage -%}
+        <a href="{{ labpage.url | relative_url }}">{{ l.title }}</a>
+        {%- else -%}
+        {{ l.title }}
+        {%- endif -%}
+      </div>
+      {%- endfor -%}
+
+      {%- for o in ev.other %}
+      <div class="cal-item cal-item-other">
+        <span class="cal-dot cal-dot-other" aria-hidden="true"></span> {{ o.title }}
+      </div>
+      {%- endfor %}
+    </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endfor -%}
+</div>

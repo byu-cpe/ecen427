@@ -1,0 +1,229 @@
+# GENERATED FILE - do not hand-edit.
+#
+# Regenerate with:
+#   .claude/skills/learning-suite/scripts/pull_schedule.py
+#
+# Dates, lecture titles, quizzes, exams and due dates come from the ECEn 427
+# Learning Suite calendar. Slide, reading and study-question links come from the
+# hand-maintained overlay _data/schedule_links.yml. Edit that file, or Learning
+# Suite itself, and re-run the script.
+semester:
+  start: '2026-09-02'
+  end: '2026-12-11'
+  classes_end: '2026-12-10'
+  class_days:
+  - 1
+  - 3
+  - 5
+  dow_labels:
+  - Mon
+  - Tue
+  - Wed
+  - Thu
+  - Fri
+  - Sat
+  period: Fall 2026
+  months:
+  - name: September
+    year: 2026
+    month: 9
+    days: 30
+  - name: October
+    year: 2026
+    month: 10
+    days: 31
+  - name: November
+    year: 2026
+    month: 11
+    days: 30
+  - name: December
+    year: 2026
+    month: 12
+    days: 31
+events:
+- date: '2026-09-02'
+  note: Start of Classes
+  lectures:
+  - title: Class Overview
+    slides: media/slides/00-intro.pdf
+  - title: Intro to Operating Systems
+    slides: media/slides/01-OS-intro.pdf
+  reading:
+  - title: 'OSTEP Ch 2: Introduction'
+    url: https://pages.cs.wisc.edu/~remzi/OSTEP/intro.pdf
+  - title: 'OSTEP Ch 4: Processes'
+    url: https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf
+  - title: 'OSTEP Ch 6: Limited Direct Execution'
+    url: https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-mechanisms.pdf
+- date: '2026-09-04'
+  lectures:
+  - title: Intro to Operating Systems Cont'd
+  - title: Devices & UIO
+  - title: Lab 2 Discussion - UIO driver
+- date: '2026-09-05'
+  labs:
+  - title: Lab 1
+    points: 20
+    lab: 1
+- date: '2026-09-07'
+  holiday: Labor Day
+- date: '2026-09-09'
+  lectures:
+  - title: Lab 2 discussion - GPIO
+- date: '2026-09-11'
+  lectures:
+  - title: 'Lab 2: Interrupt Controller'
+- date: '2026-09-12'
+  labs:
+  - title: Lab 2
+    points: 20
+    lab: 2
+- date: '2026-09-14'
+  lectures:
+  - title: Lab 3 Discussion
+  - title: Lab 2 Q&A
+- date: '2026-09-16'
+  lectures:
+  - title: LDD3 Ch. 1
+- date: '2026-09-18'
+  note: Instructor gone, substitute or video lecture will be arranged.
+  lectures:
+  - title: HDMI Device Driver Discussion
+  - title: Lab4 M1 Discussion
+- date: '2026-09-19'
+  labs:
+  - title: Lab 3
+    points: 20
+    lab: 3
+- date: '2026-09-21'
+  note: Instructor gone, substitute or video lecture will be arranged.
+  lectures:
+  - title: C++
+  - title: Review clock solution
+- date: '2026-09-23'
+  lectures:
+  - title: Lab4 M1 Questions
+  - title: Valgrind
+- date: '2026-09-25'
+  lectures:
+  - title: Lab 4 M2/M3 discussion
+  - title: LDD3 Ch.2
+- date: '2026-09-26'
+  labs:
+  - title: Lab 4 M1
+    points: 20
+    lab: 4
+- date: '2026-09-28'
+  note: Instructor gone, substitute or video lecture will be arranged.
+  lectures:
+  - title: LDD3 Ch. 3
+- date: '2026-09-30'
+  note: Instructor gone, substitute or video lecture will be arranged.
+- date: '2026-10-02'
+  note: Instructor gone, substitute or video lecture will be arranged.
+- date: '2026-10-03'
+  labs:
+  - title: Lab 4 M2
+    points: 30
+    lab: 4
+- date: '2026-10-07'
+  lectures:
+  - title: Lab 5 Milestone 1 Discussion
+- date: '2026-10-09'
+  lectures:
+  - title: LDD3 Ch 4,11
+- date: '2026-10-10'
+  labs:
+  - title: Lab 4 M3
+    points: 30
+    lab: 4
+- date: '2026-10-12'
+  lectures:
+  - title: LDD 6, 9, 10
+- date: '2026-10-17'
+  labs:
+  - title: Lab 5 M1
+    points: 10
+    lab: 5
+- date: '2026-10-19'
+  lectures:
+  - title: Lab 5 Milestone 3 Discussion
+  - title: Lab 5 Milestone 2 Discussion
+- date: '2026-10-24'
+  labs:
+  - title: Lab 5 M2
+    points: 10
+    lab: 5
+- date: '2026-10-26'
+  lectures:
+  - title: Lab 5 Milestone 3/4 discussion
+- date: '2026-10-31'
+  labs:
+  - title: Lab 5 M3
+    points: 20
+    lab: 5
+- date: '2026-11-02'
+  lectures:
+  - title: AXI Bus I
+  - title: AXI Activity
+- date: '2026-11-04'
+  lectures:
+  - title: AXI Read Example RTL
+  - title: Lab 6 M1 Discussion
+- date: '2026-11-07'
+  labs:
+  - title: Lab 5 M4
+    points: 20
+    lab: 5
+- date: '2026-11-09'
+  lectures:
+  - title: Vivado Simulation Demo
+  - title: Lab 6 M1 Q&A
+- date: '2026-11-11'
+  lectures:
+  - title: AXI Bus II
+- date: '2026-11-13'
+  lectures:
+  - title: Lab 6 M2 Discussion
+  - title: Vivado block design demo
+- date: '2026-11-14'
+  labs:
+  - title: Lab 6 M1
+    points: 20
+    lab: 6
+- date: '2026-11-20'
+  lectures:
+  - title: Lab 7 Discussion
+- date: '2026-11-21'
+  labs:
+  - title: Lab 6 M2
+    points: 20
+    lab: 6
+- date: '2026-11-25'
+  holiday: No class - Thanksgiving Holiday
+- date: '2026-11-26'
+  holiday: No class - Thanksgiving Holiday
+- date: '2026-11-27'
+  holiday: No class - Thanksgiving Holiday
+- date: '2026-11-28'
+  labs:
+  - title: Lab 7
+    points: 20
+    lab: 7
+- date: '2026-12-02'
+  lectures:
+  - title: Lab 8 discussion
+- date: '2026-12-07'
+  note: Instructor gone, substitute or video lecture will be arranged.
+- date: '2026-12-09'
+  note: Instructor gone, substitute or video lecture will be arranged.
+  lectures:
+  - title: Exam Review Q&A
+  labs:
+  - title: Lab 8
+    points: 10
+    lab: 8
+- date: '2026-12-10'
+  note: Last Day of Class
+- date: '2026-12-11'
+  note: Instructor gone, substitute or video lecture will be arranged.
