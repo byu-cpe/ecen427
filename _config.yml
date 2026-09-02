@@ -42,6 +42,7 @@ collections:
     permalink: /:name/
 
 exclude:
+  - CLAUDE.md
   - icon.ai
   - Dockerfile
   - Makefile
