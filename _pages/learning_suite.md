@@ -5,6 +5,6 @@ title: Learning Suite
 icon: fa fa-chalkboard
 number: 1
 sidebar: true
-link_external: https://learningsuite.byu.edu/.lbip/cid-rqRJYn1rYvA8/
+link_external: https://learningsuite.byu.edu/.SFAd/cid-rqRJYn1rYvA8/calendar
 new_window: true
 ---
