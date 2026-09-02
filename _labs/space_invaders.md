@@ -52,7 +52,8 @@ Any changes you make to these test applications will be discarded during grading
 ### Milestone 2 
 
 <iframe width="500" height="350"
-src="https://www.youtube.com/embed/kGd4K0jBjis">
+src="https://www.youtube.com/embed/kGd4K0jBjis"
+allowfullscreen>
 </iframe>
 
 Implement all of the game video except for bullets and collisions.  Tanks should move, aliens should march, etc.  Use the video above as a reference. Keep in mind that when an entire column of aliens is gone from the edge the remaining aliens keep marching to the edge of the screen, past where they would have stopped if the edge aliens were alive. This feature doesn't need to be functional for this milestone, but keep it in mind for the next milestone.
@@ -74,7 +75,8 @@ You can optionally comment out [this line](https://github.com/byu-cpe/ecen427_st
 
 ### Milestone 3 
 <iframe width="500" height="350"
-src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200">
+src="https://www.youtube.com/embed/V5XPFLa0Cdk?start=200"
+allowfullscreen>
 </iframe>
 Implement all of the game video, including bullets and all game interactions.  When you have finished this milestone, you will have the entire game implemented minus sound.  Use the above video as a reference.  It is difficult to see, but the number of points added to the score for each saucer destroyed is a number between 50 and 300, in multiples of 50. Also, the points for the block aliens are 10, 20 and 40, starting from the type on the bottom row and going up to the type on the top row.
 
