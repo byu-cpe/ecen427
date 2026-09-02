@@ -71,12 +71,16 @@ Your code must compile with zero warnings using the standard build process.  If 
 
 For labs where you submit standalone userspace applications, your code must also run cleanly under `valgrind`, with no memory errors or leaks reported.  If it doesn't, an additional <span style="color:red">10% deduction will be applied.</span>  This does not apply to kernel driver labs, since kernel modules can't be run under valgrind.
 
+Valgrind is not required for Lab 1.  For Lab 2, your code will be checked with valgrind and any issues will be reported to you, but no points will be deducted; use it as a chance to learn the tool before the deduction applies.
+
+Instructions for running valgrind on your code, and for interpreting its output, are on the [Valgrind]({% link _documentation/valgrind.md %}) page.  Check your code before you submit; the TAs will run it the same way.
+
 The table below shows which labs each policy applies to:
 
 | Lab | Compiler Warnings | Valgrind |
 |---|---|---|
-| Lab 1: Hello World | Yes | Yes |
-| Lab 2: Userspace Drivers | Yes | Yes |
+| Lab 1: Hello World | Yes | No |
+| Lab 2: Userspace Drivers | Yes | Checked, but no deduction |
 | Lab 3: Clock | Yes | Yes |
 | Lab 4: Space Invaders | Yes | Yes |
 | Lab 5: Audio Driver | Yes | No (kernel module) |
