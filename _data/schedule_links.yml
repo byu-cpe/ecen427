@@ -29,6 +29,7 @@
     "Intro to Operating Systems": media/slides/01-OS-intro.pdf
     "Devices": media/slides/02-devices.pdf
   reading:
+    - { title: "OSTEP Ch 36: I/O Devices", url: "https://pages.cs.wisc.edu/~remzi/OSTEP/file-devices.pdf" }
     - { title: "UIO", url: /documentation/uio/ }
 
 "2026-09-09":
@@ -39,7 +40,16 @@
   slides:
     "Lab 2 M2 Discussion": media/slides/lab2.pdf
 
-"2026-09-16":
+"2026-09-21":
+  slides:
+    "C++": media/slides/c++.pdf
+
+"2026-09-25":
+  study:
+    - { title: "Valgrind", url: /documentation/valgrind/ }
+
+"2026-09-28":
+  note: "Instructor gone, substitute or video lecture will be arranged."
   slides:
     "LDD3 Ch. 1": media/ldd/ldd3-ch1.pdf
   reading:
@@ -47,16 +57,8 @@
   study:
     - { title: "Ch 1 Study Questions", url: /ldd1/ }
 
-"2026-09-21":
+"2026-09-30":
   note: "Instructor gone, substitute or video lecture will be arranged."
-  slides:
-    "C++": media/slides/c++.pdf
-
-"2026-09-23":
-  study:
-    - { title: "Valgrind", url: /documentation/valgrind/ }
-
-"2026-09-25":
   slides:
     "LDD3 Ch.2": media/ldd/ldd3-ch2.pdf
   reading:
@@ -64,8 +66,7 @@
   study:
     - { title: "Ch 2 Study Questions", url: /ldd2/ }
 
-"2026-09-28":
-  note: "Instructor gone, substitute or video lecture will be arranged."
+"2026-10-07":
   slides:
     "LDD3 Ch. 3": media/ldd/ldd3-ch3.pdf
   reading:
@@ -73,7 +74,7 @@
   study:
     - { title: "Ch 3 Study Questions", url: /ldd3/ }
 
-"2026-10-07":
+"2026-10-14":
   slides:
     "Lab 5": media/labs/lab5_kernel_driver.pdf
 
@@ -120,9 +121,6 @@
 "2026-11-09":
   study:
     - { title: "Creating AXI Peripheral IP in Vivado", url: /vivado-ip/ }
-
-"2026-09-30":
-  note: "Instructor gone, substitute or video lecture will be arranged."
 
 "2026-10-02":
   note: "Instructor gone, substitute or video lecture will be arranged."

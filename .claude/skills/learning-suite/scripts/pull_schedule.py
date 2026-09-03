@@ -41,7 +41,7 @@ SHOW_OTHER = False         # graded items outside Labs/Quizzes/Exams, e.g.
 # Slides, readings and study questions are published only for lectures that have
 # already happened, so future topics do not link to material that may still
 # change. None means "through today".
-MATERIALS_THROUGH = None
+MATERIALS_THROUGH = "2026-09-04"
 CAL_URL = f"https://learningsuite.byu.edu/.2MSl/cid-{COURSE_ID}/calendar/calendar"
 OUT = os.path.join(REPO, "_data", "schedule.yml")
 LINKS = os.path.join(REPO, "_data", "schedule_links.yml")

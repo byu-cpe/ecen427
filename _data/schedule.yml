@@ -58,7 +58,14 @@ events:
 - date: '2026-09-04'
   lectures:
   - title: Intro to Operating Systems Cont'd
+    slides: media/slides/01-OS-intro.pdf
   - title: Devices & UIO
+    slides: media/slides/02-devices.pdf
+  reading:
+  - title: 'OSTEP Ch 36: I/O Devices'
+    url: https://pages.cs.wisc.edu/~remzi/OSTEP/file-devices.pdf
+  - title: UIO
+    url: /documentation/uio/
 - date: '2026-09-05'
   labs:
   - title: Lab 1
@@ -68,7 +75,7 @@ events:
   holiday: Labor Day
 - date: '2026-09-09'
   lectures:
-  - title: Lab 2 M1 Discussion
+  - title: 'Lab 2 M1 Discussion: GPIO'
 - date: '2026-09-11'
   lectures:
   - title: Lecture TBD
@@ -79,10 +86,9 @@ events:
     lab: 2
 - date: '2026-09-14'
   lectures:
-  - title: Lab 2 M2 Discussion
+  - title: 'Lab 2 M2 Discussion: Interrupts'
 - date: '2026-09-16'
   lectures:
-  - title: LDD3 Ch. 1
   - title: Lab 3 Discussion
 - date: '2026-09-18'
   lectures:
@@ -93,19 +99,15 @@ events:
     points: 20
     lab: 2
 - date: '2026-09-21'
-  note: Instructor gone, substitute or video lecture will be arranged.
   lectures:
   - title: C++
-  - title: Review clock solution
+  - title: Instructor Gone - No class
 - date: '2026-09-23'
   lectures:
-  - title: Lab4 M1 Questions
-  - title: Valgrind
+  - title: Lab4 M1 Discussion
 - date: '2026-09-25'
   lectures:
-  - title: Lab 4 M2/M3 discussion
-  - title: LDD3 Ch.2
-  - title: Lab4 M1 Discussion
+  - title: Valgrind
 - date: '2026-09-26'
   labs:
   - title: Lab 3
@@ -114,44 +116,55 @@ events:
 - date: '2026-09-28'
   note: Instructor gone, substitute or video lecture will be arranged.
   lectures:
-  - title: LDD3 Ch. 3
+  - title: LDD3 Ch. 1
 - date: '2026-09-30'
   note: Instructor gone, substitute or video lecture will be arranged.
+  lectures:
+  - title: LDD3 Ch.2
 - date: '2026-10-02'
   note: Instructor gone, substitute or video lecture will be arranged.
 - date: '2026-10-03'
   labs:
-  - title: Lab 4 M2
-    points: 30
-    lab: 4
   - title: Lab 4 M1
     points: 20
     lab: 4
+- date: '2026-10-05'
+  lectures:
+  - title: Lab 4 M2/M3 discussion
+  - title: Review clock solution
 - date: '2026-10-07'
   lectures:
-  - title: Lab 5 Milestone 1 Discussion
+  - title: LDD3 Ch. 3
 - date: '2026-10-09'
   lectures:
   - title: LDD3 Ch 4,11
 - date: '2026-10-10'
   labs:
-  - title: Lab 4 M3
+  - title: Lab 4 M2
     points: 30
     lab: 4
 - date: '2026-10-12'
   lectures:
   - title: LDD 6, 9, 10
+- date: '2026-10-14'
+  lectures:
+  - title: Lab 5 Milestone 1 Discussion
+- date: '2026-10-16'
+  lectures:
+  - title: Lab 5 Milestone 2 Discussion
 - date: '2026-10-17'
+  labs:
+  - title: Lab 4 M3
+    points: 30
+    lab: 4
+- date: '2026-10-19'
+  lectures:
+  - title: Lab 5 Milestone 3 Discussion
+- date: '2026-10-24'
   labs:
   - title: Lab 5 M1
     points: 10
     lab: 5
-- date: '2026-10-19'
-  lectures:
-  - title: Lab 5 Milestone 3 Discussion
-  - title: Lab 5 Milestone 2 Discussion
-- date: '2026-10-24'
-  labs:
   - title: Lab 5 M2
     points: 10
     lab: 5
