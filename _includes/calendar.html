@@ -50,11 +50,16 @@ Data is generated from Learning Suite; see the header of _data/schedule.yml.
       {%- endif -%}
 
       {%- for lec in ev.lectures %}
+        {%- assign lc = lec.title | downcase -%}
+        {%- if lc contains 'no class' or lc contains 'instructor gone' %}
+      <div class="cal-item cal-item-cancelled">{{ lec.title }}</div>
+        {%- else %}
       <div class="cal-item cal-item-lecture">
         <span class="cal-dot cal-dot-lecture" aria-hidden="true"></span>
         {% if lec.slides %}<a href="{{ lec.slides | relative_url }}">{{ lec.title }}</a>
         {%- else %}{{ lec.title }}{% endif %}
       </div>
+        {%- endif -%}
       {%- endfor -%}
 
       {%- unless ev.lectures or ev.holiday -%}

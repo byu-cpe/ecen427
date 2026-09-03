@@ -7,12 +7,13 @@ number: 2
 under_construction: true
 ---
 
-In this lab you will create user space drivers for the buttons, switches, and interrupt controller on the hardware system. 
+In this lab you will create user space drivers for the buttons, switches, LEDs, and interrupt controller on the hardware system, and write a small application that uses them. 
 
 ## Objectives 
 * Implement user space drivers for an embedded Linux system.
 * Learn how to use the Linux UIO driver to access hardware from user space.
 * Learn how to control GPIO and Interrupt Controller IP cores with registers.
+* Write an application that uses your drivers.
    
 ## Preliminary 
 
@@ -27,9 +28,9 @@ For this lab, the complete hardware system will be provided; you shouldn't make 
 
 ### AXI GPIO Module 
 
-You will need to write drivers for the buttons and switches.  Both of these are connected to the hardware using an *AXI GPIO* module. Read the *AXI GPIO* documentation (link on the [hardware system]({% link _documentation/hardware.md %}) page).
+You will need to write drivers for the buttons, switches, and LEDs.  Each of these is connected to the hardware using its own *AXI GPIO* module. Read the *AXI GPIO* documentation (link on the [hardware system]({% link _documentation/hardware.md %}) page).  Pay particular attention to the *GPIO_DATA* register, and to the interrupt registers (*GIER*, *IP_IER*, and *IP_ISR*) that you will use to detect when the buttons or switches change.
 
-*Note:* The *GPIO_TRI* register was not generated for the buttons and switches GPIO blocks. If you try to read the *GPIO_TRI* register, you will get nonsense. Also, it makes no sense to write this register as it does not exist.
+*Note:* The buttons and switches GPIO blocks were generated as *all inputs*, and the LEDs GPIO block as *all outputs*.  In these configurations the *GPIO_TRI* register is not generated. If you try to read the *GPIO_TRI* register, you will get nonsense. Also, it makes no sense to write this register as it does not exist.
 
 ### AXI Interrupt Controller 
 
@@ -42,14 +43,30 @@ Make sure you read the entire [hardware system]({% link _documentation/hardware.
 
 ## Implementation 
 
+This lab is split into two milestones.  In the first milestone you will write drivers for the buttons, switches, and LEDs, and an application that uses them.  In the second milestone you will write a driver for the interrupt controller.
+
+### Milestone 1: Buttons, Switches, and LEDs
+
   1. Implement a driver for the buttons.  
-     * [buttons.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/buttons/buttons.h) is provided to you.  
+     * [buttons.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/buttons/buttons.h) is provided to you.  You must implement each function in this header in a corresponding *buttons.c* file.
      * The [drivers](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/drivers) folder contains [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/CMakeLists.txt) that you can uncomment line by line when you are ready to compile your drivers.  
      * A [buttons_test](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/buttons_test/buttons_test.cpp) application is provided to you.  You will need to uncomment the appropriate line from the *app* folder's [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/CMakeLists.txt) to compile it.
 
   1. Implement a driver for the switches.
      * Since the switches use the same GPIO module as the buttons, this driver will be nearly identical to the buttons driver.
      * You are given [switches.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/switches/switches.h) and a [switches_test](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/switches_test/switches_test.cpp) application.
+
+  1. Implement a driver for the LEDs.
+     * [leds.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/leds/leds.h) is provided to you.
+     * The LEDs are connected to a GPIO module configured as outputs, so this driver is simpler than the buttons and switches drivers: it only needs to write (and read back) the *GPIO_DATA* register.  There are no interrupts.
+
+  1. Write the `leds_test` application.
+     * Unlike the other test applications, this one is not written for you.  A stub [leds_test.cpp](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/leds_test/leds_test.cpp) and its [CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/leds_test/CMakeLists.txt) are provided; uncomment the `leds_test` line in the *apps* folder's *CMakeLists.txt* to build it.
+     * The application must behave as follows:
+       * The LEDs follow the buttons: LED *i* is on while button *i* is pressed.
+       * If either switch is up, the LEDs are instead the inverse of the buttons: LED *i* is on while button *i* is *not* pressed.
+
+### Milestone 2: Interrupt Controller
 
   1. Implement a driver for the AXI Interrupt Controller.
      * [intc.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/intc/intc.h) is provided to you.
@@ -62,7 +79,7 @@ When you are graded we will run each of the test applications and verify that th
 
 ## Submission 
 
-Follow the instructions on the [Submission]({% link _pages/submission.md %}) page.
+Follow the submission instructions for each milestone on the [Submission]({% link _pages/submission.md %}) page.
 
 ## Lifelong Learning: What's Next?
 

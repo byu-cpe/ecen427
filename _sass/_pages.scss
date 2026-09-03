@@ -352,6 +352,12 @@ table {
     font-style: italic;
 }
 
+/* A cancelled class day: no lecture marker, just the notice in red. */
+.cal-item-cancelled {
+    color: #dc3545;
+    font-weight: 600;
+}
+
 /* Every item type is marked by a small coloured square and nothing else, so a
    dense day stays readable. The legend is what names the colours. */
 .cal-dot {

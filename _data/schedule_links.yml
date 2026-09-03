@@ -24,21 +24,20 @@
     - { title: "Fourteen Ways to Fool Your Synchronizer", url: /synchronizer/ }
 
 "2026-09-04":
-  order: ["Intro to Operating Systems Cont'd", "Devices & UIO", "Lab 2 Discussion - UIO driver"]
+  order: ["Intro to Operating Systems Cont'd", "Devices & UIO"]
   slides:
     "Intro to Operating Systems": media/slides/01-OS-intro.pdf
     "Devices": media/slides/02-devices.pdf
-    "Lab 2 Discussion": media/slides/lab2.pdf
   reading:
     - { title: "UIO", url: /documentation/uio/ }
 
 "2026-09-09":
   slides:
-    "Lab 2 discussion": media/slides/lab2.pdf
+    "Lab 2 M1 Discussion": media/slides/lab2.pdf
 
-"2026-09-11":
+"2026-09-14":
   slides:
-    "Lab 2": media/slides/lab2.pdf
+    "Lab 2 M2 Discussion": media/slides/lab2.pdf
 
 "2026-09-16":
   slides:
@@ -121,9 +120,6 @@
 "2026-11-09":
   study:
     - { title: "Creating AXI Peripheral IP in Vivado", url: /vivado-ip/ }
-
-"2026-09-18":
-  note: "Instructor gone, substitute or video lecture will be arranged."
 
 "2026-09-30":
   note: "Instructor gone, substitute or video lecture will be arranged."

@@ -59,7 +59,6 @@ events:
   lectures:
   - title: Intro to Operating Systems Cont'd
   - title: Devices & UIO
-  - title: Lab 2 Discussion - UIO driver
 - date: '2026-09-05'
   labs:
   - title: Lab 1
@@ -69,32 +68,30 @@ events:
   holiday: Labor Day
 - date: '2026-09-09'
   lectures:
-  - title: Lab 2 discussion - GPIO
+  - title: Lab 2 M1 Discussion
 - date: '2026-09-11'
   lectures:
-  - title: 'Lab 2: Interrupt Controller'
+  - title: Lecture TBD
 - date: '2026-09-12'
   labs:
-  - title: Lab 2
+  - title: Lab 2 M1
     points: 20
     lab: 2
 - date: '2026-09-14'
   lectures:
-  - title: Lab 3 Discussion
-  - title: Lab 2 Q&A
+  - title: Lab 2 M2 Discussion
 - date: '2026-09-16'
   lectures:
   - title: LDD3 Ch. 1
+  - title: Lab 3 Discussion
 - date: '2026-09-18'
-  note: Instructor gone, substitute or video lecture will be arranged.
   lectures:
-  - title: HDMI Device Driver Discussion
-  - title: Lab4 M1 Discussion
+  - title: Instructor Gone - No class
 - date: '2026-09-19'
   labs:
-  - title: Lab 3
+  - title: Lab 2 M2
     points: 20
-    lab: 3
+    lab: 2
 - date: '2026-09-21'
   note: Instructor gone, substitute or video lecture will be arranged.
   lectures:
@@ -108,11 +105,12 @@ events:
   lectures:
   - title: Lab 4 M2/M3 discussion
   - title: LDD3 Ch.2
+  - title: Lab4 M1 Discussion
 - date: '2026-09-26'
   labs:
-  - title: Lab 4 M1
+  - title: Lab 3
     points: 20
-    lab: 4
+    lab: 3
 - date: '2026-09-28'
   note: Instructor gone, substitute or video lecture will be arranged.
   lectures:
@@ -125,6 +123,9 @@ events:
   labs:
   - title: Lab 4 M2
     points: 30
+    lab: 4
+  - title: Lab 4 M1
+    points: 20
     lab: 4
 - date: '2026-10-07'
   lectures:

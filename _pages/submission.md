@@ -18,7 +18,8 @@ Lab pass-offs will not be done in person.  Instead, you will run a script that w
 To submit your lab, run one of the following commands from within your lab repository:
 ```bash
 make submit_lab1
-make submit_lab2
+make submit_lab2_m1
+make submit_lab2_m2
 make submit_lab3
 make submit_lab4_m1
 make submit_lab4_m2

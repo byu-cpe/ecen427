@@ -132,6 +132,8 @@ You should commit your files and push them up to Github <ins>**OFTEN!!**</ins>. 
 
 
 
+<!-- Remote - SSH no longer supports 32-bit ARM targets, so this section is disabled.
+
 ## Remote Development with VS Code
 
 Instead of cross-compiling, you can connect directly to your PYNQ board and build the code there.  This is slower, but is required for labs where you are writing kernel code.  The easiest way to do this is to use the *Remote - SSH* extension in VS Code, which allows you to run a VS code window on your workstation, but have it connect to your PYNQ board.
@@ -159,3 +161,4 @@ Before proceeding, make sure you have set up the SSH keys **on your computer** a
 ### Opening a Folder
   - You can now click *File->Open Folder* and then select your repository folder that you cloned on the PYNQ board.
   - If you open a Terminal, it will be a remote terminal on the PYNQ board.
+-->

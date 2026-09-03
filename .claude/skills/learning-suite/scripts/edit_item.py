@@ -37,7 +37,8 @@ new Promise(function(res){
       var names=window.CKEDITOR?Object.keys(CKEDITOR.instances):[];
       if(!names.length) return res({error:"editor did not open"});
       var ed=CKEDITOR.instances[names[names.length-1]];
-      if(ed.getData().indexOf(%(current_frag)s)<0)
+      var probe=document.createElement("div"); probe.innerHTML=ed.getData();
+      if(probe.textContent.indexOf(%(current_frag)s)<0)
         return res({error:"wrong item in editor",editorData:ed.getData()});
       ed.setData(%(new)s,{callback:function(){
         var save=null;

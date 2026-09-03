@@ -132,7 +132,13 @@ this:
 ```bash
 $VENV/bin/python $SKILL/edit_item.py "<exact current text>" "<p>New text</p>"
 $VENV/bin/python $SKILL/add_item.py 2026-09-04 "<p>New topic</p>" [column-index]
+$VENV/bin/python $SKILL/delete_item.py "<exact current text>"
 ```
+
+`delete_item.py` opens the item's chevron dropdown, clicks "Delete item", and
+confirms the "permanently delete this text item?" dialog. It refuses to act
+unless exactly one item matches the text. There is no undo. To move an item to
+another day, delete it and `add_item.py` it on the new date.
 
 `add_item.py` creates a new item by clicking the empty space in that day's
 column cell (0 = Column 1 / lecture topics); the new item lands at the end of
