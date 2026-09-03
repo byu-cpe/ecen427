@@ -79,6 +79,19 @@ Once you have the PYNQ set up you can connect to it using SSH, which will be muc
 ssh byu@<your pynq name>.ee.byu.edu
 ```
         
+## Extend your Partition 
+
+> 📝 Run this on the PYNQ board
+
+You should extend the PYNQ filesystem to fill your entire SD card (by default the filesystem only provides a small amount of free space, and doesn't fill your SD card)
+
+Run these commands.  Please copy and paste them one at a time, and be careful in the process.  It's easy to mess up your entire SD card image:
+
+```
+sudo growpart /dev/mmcblk0 2
+sudo resize2fs /dev/mmcblk0p2
+``` 
+
 ## SSH Keys
 
 > 📝 *Run this on your computer. If you are still SSH'd into the PYNQ board, type `exit` to get back to your computer.*
@@ -108,15 +121,3 @@ Instead of having to authenticate with a password each time connecting to the PY
 You should change the password for the *byu* account in your PYNQ Linux system.  This is not just to prevent people from looking at your work, it also prevents another student from accidentally SSH'ing in your PYNQ board and modifying your files.
 
 To change the *byu* user password, SSH into your PYNQ board and run the `passwd` command.
-
-
-## Extend your Partition 
-
-You should extend the PYNQ filesystem to fill your entire SD card (by default the filesystem only provides a small amount of free space, and doesn't fill your SD card)
-
-Run these commands.  Please copy and paste them one at a time, and be careful in the process.  It's easy to mess up your entire SD card image:
-
-```
-sudo growpart /dev/mmcblk0 2
-sudo resize2fs /dev/mmcblk0p2
-``` 
