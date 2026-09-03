@@ -91,6 +91,6 @@ Explore this question: **Could your buttons and switches drivers be used by mult
 
 **AI use is encouraged for this section.**  You are welcome to paste your completed driver code into an AI tool to give it context, then discuss the question with it.  See the [Lifelong Learning: What's Next?]({% link _pages/lifelong_learning.md %}) page.
 
-When you're done, record what you learned in a few sentences in `lifelong_learning/lab2.txt`.
+When you're done, record what you learned in a few sentences in `lifelong_learning/lab2.txt`.  Submit this file with **Milestone 2**; it is not required for Milestone 1.
 
 

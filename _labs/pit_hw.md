@@ -136,4 +136,4 @@ Paste your completed `pit.sv` into an AI tool and ask it to hunt for AXI4-Lite p
 
 **AI use is encouraged (and required) for this section.**  This is an explicit exception to the usual policy; see the [Lifelong Learning: What's Next?]({% link _pages/lifelong_learning.md %}) page.
 
-When you're done, record what you learned in a few sentences in `lifelong_learning/lab6.txt`.
+When you're done, record what you learned in a few sentences in `lifelong_learning/lab6.txt`.  Submit this file with **Milestone 2**; it is not required for Milestone 1.

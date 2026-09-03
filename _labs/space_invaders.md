@@ -156,4 +156,4 @@ Each line is one region of your process's virtual address space: its address ran
 
 **AI use is encouraged for this section.**  Paste your game's `maps` output into an AI tool and ask it to explain the entries you don't recognize.  See the [Lifelong Learning: What's Next?]({% link _pages/lifelong_learning.md %}) page.
 
-Explore this with your team.  When you're done, record what you learned in a few sentences in `lifelong_learning/lab4.txt` in your team repository.
+Explore this with your team.  When you're done, record what you learned in a few sentences in `lifelong_learning/lab4.txt` in your team repository.  Submit this file with **Milestone 3**; it is not required for Milestones 1 or 2.

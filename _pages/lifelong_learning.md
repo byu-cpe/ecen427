@@ -43,4 +43,4 @@ Use the following lab names for your files:
 - `lab7.txt`
 - `lab8.txt`
 
-There is one file per lab. For multi-milestone labs, the file is checked when you submit the final milestone. For Lab 4, the file goes in your team repository; each team member should participate in the exploration.
+There is one file per lab, not one per milestone.  **For multi-milestone labs (Labs 2, 4, 5, and 6), submit the file with the final milestone.**  It is not required for earlier milestones and is only graded with the final one.  For Lab 4, the file goes in your team repository; each team member should participate in the exploration.

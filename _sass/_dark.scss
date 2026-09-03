@@ -42,7 +42,7 @@ html[data-bs-theme="dark"] {
     }
 
     code {
-        color: lighten($code-color, 10%);
+        color: $dark-text;
     }
 
     .sidebar-color,
