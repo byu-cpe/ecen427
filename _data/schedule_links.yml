@@ -25,8 +25,6 @@
 
 "2026-09-04":
   order: ["Intro to Operating Systems Cont'd", "Devices"]
-  rename:
-    "Devices & UIO": "Devices"
   slides:
     "Intro to Operating Systems": media/slides/01-OS-intro.pdf
     "Devices": media/slides/02-devices.pdf
@@ -34,7 +32,6 @@
     - { title: "OSTEP Ch 36: I/O Devices", url: "https://pages.cs.wisc.edu/~remzi/OSTEP/file-devices.pdf" }
 
 "2026-09-09":
-  add_lectures: ["Userspace I/O (UIO)"]
   slides:
     "Lab 2 M1 Discussion": media/slides/lab2.pdf
     "UIO": media/slides/03-uio.pdf
