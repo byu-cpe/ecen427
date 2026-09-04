@@ -11,16 +11,25 @@ This is a Jekyll site (deployed from GitHub: byu-cpe/ecen427).
 
 Lecture slides are authored as .pptx in OneDrive and posted here as PDFs.
 
-- Source pptx files: `/mnt/c/Users/jeffg/OneDrive - Brigham Young University/ECEN_427/lectures/`
+- Source pptx files live in OneDrive under `ECEN_427/lectures/`. The Windows
+  username differs between the instructor's machines (`Jeff` on some, `jeffg` on
+  others), so locate the folder with a glob rather than a hard-coded path:
+  `/mnt/c/Users/*/OneDrive - Brigham Young University/ECEN_427/lectures/`
 - Published PDFs: `media/slides/`
-- They are linked from the schedule table in `_pages/reading_assignments.md`
+- Slide links live in the hand-maintained overlay `_data/schedule_links.yml`
+  (keyed by date). `_data/schedule.yml` is generated from it plus Learning Suite
+  by `.claude/skills/learning-suite/scripts/pull_schedule.py`; do not hand-edit it.
+- A `.pptx` is often newer than the `.pdf` next to it in OneDrive; check mtimes
+  and read the pptx (unzip and parse `ppt/slides/slide*.xml`) when reviewing.
 
-To export a pptx to PDF, LibreOffice is not installed in WSL; use PowerPoint via PowerShell COM automation:
+To export a pptx to PDF, LibreOffice is not installed in WSL; use PowerPoint via
+PowerShell COM automation (`$env:USERPROFILE` resolves the per-machine username):
 
 ```bash
 powershell.exe -NoProfile -Command '
-$pptx = "C:\Users\jeffg\OneDrive - Brigham Young University\ECEN_427\lectures\<NAME>.pptx"
-$pdf = "C:\Users\jeffg\OneDrive - Brigham Young University\ECEN_427\lectures\<NAME>.pdf"
+$dir = "$env:USERPROFILE\OneDrive - Brigham Young University\ECEN_427\lectures"
+$pptx = "$dir\<NAME>.pptx"
+$pdf = "$dir\<NAME>.pdf"
 $pp = New-Object -ComObject PowerPoint.Application
 $pres = $pp.Presentations.Open($pptx, $true, $false, $false)
 $pres.SaveAs($pdf, 32)
@@ -29,6 +38,6 @@ $pp.Quit()
 '
 ```
 
-Then copy the PDF into `media/slides/`, and if it is a new deck, add a row to the
-table in `_pages/reading_assignments.md` linking it with
-`{% link media/slides/<NAME>.pdf %}`.
+Then copy the PDF into `media/slides/`, and if it is a new deck, add it under the
+matching date's `slides:` map in `_data/schedule_links.yml` and re-run
+`pull_schedule.py` to regenerate `_data/schedule.yml`.
