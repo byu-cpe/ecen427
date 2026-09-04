@@ -26,6 +26,8 @@ You will use a shared repository for this lab, and then return to working in you
 
 ## Implementation
 
+{% include starter_code_note.md %}
+
 ### Milestone 1: Graphics
 
 In this milestone you will implement the functions defined in [Graphics.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/Graphics.h). These should be implemented in *Graphics.cpp*.  Some resources to review:

@@ -21,6 +21,8 @@ Review the [Software Stack]({% link _documentation/software_stack.md %}) that il
 
 ## Implementation 
 
+{% include starter_code_note.md %}
+
 Complete the real-time clock application.  Some starting code is provided to you: [clock.cpp](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/clock/clock.cpp).  Requirements:
   1. **Print format:** 
       * Time is printed to the terminal in the following 24-hour format (includes leading zero): HH:MM:SS

@@ -4,7 +4,6 @@ toc: true
 title: "Lab 2: Userspace Drivers"
 short_title: Userspace Drivers
 number: 2
-under_construction: true
 ---
 
 In this lab you will create user space drivers for the buttons, switches, LEDs, and interrupt controller on the hardware system, and write a small application that uses them. 
@@ -42,6 +41,8 @@ The drivers you write in this lab will run in user space; however, from user spa
 Make sure you read the entire [hardware system]({% link _documentation/hardware.md %}) page, including the text at the bottom that discussed how the UIO driver is used for the different pieces of hardware in this lab.
 
 ## Implementation 
+
+{% include starter_code_note.md %}
 
 This lab is split into two milestones.  In the first milestone you will write drivers for the buttons, switches, and LEDs, and an application that uses them.  In the second milestone you will write a driver for the interrupt controller.
 

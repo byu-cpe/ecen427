@@ -49,6 +49,8 @@ Your PIT module must include the following:
   - You will need to initialize your timer-counter at an appropriate time.  This is best done when the delay-value register is changed.
 
 ## Implementation
+
+{% include starter_code_note.md %}
 ### Milestone 1: Simulation Project
 
 <span style="color:red">**Important:** Create your Vivado simulation project in the *hw* directory of your repo — start Vivado from the command line in *hw*, then create the project there. See the [Vivado documentation]({% link _documentation/vivado.md %}) for details. The grading commands below assume your project lives in *hw*; if it doesn't, `make sim_pit` and `make synth_pit` will fail.</span>

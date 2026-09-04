@@ -34,6 +34,8 @@ Your driver must expose the following functionality through the sysfs interface:
 
 ## Getting Started
 
+{% include starter_code_note.md %}
+
 ### Update the Linux Device Tree 
 
   * Add your PIT to the linux device tree.  Make sure the base address matches the address in your Vivado hardware design.

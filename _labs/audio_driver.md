@@ -79,6 +79,8 @@ Based on the above, it is important to recognize which of the driver features sh
 ## Milestone 1 
 
 ### Implementation
+
+{% include starter_code_note.md %}
 In this milestone you will create the basic skeleton of your kernel driver, including creating your character device.  You will also create a simple user space program to test your driver.  
 
 Your kernel driver needs to:

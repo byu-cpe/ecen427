@@ -1,7 +1,7 @@
 ---
 layout: page
 toc: false
-title: Schedule
+title: Schedule & Slides
 sidebar: true
 icon: fa fa-calendar-days
 number: 2

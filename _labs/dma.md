@@ -101,6 +101,8 @@ value written to the CURDESC_PNTR register.
 
 ## Implementation
 
+{% include starter_code_note.md %}
+
 1. Implement a user space driver for copying sprites using the AXI CDMA.  Implement the functions listed in [dma.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/dma/dma.h) in a *dma.c* file.
 
 1. Use the [dma_test](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/dma_test) application to verify that your driver is working correctly.  This application will draw a sprite in the top-left corner of the screen, and then copy it to the three other corners using the DMA engine.  
