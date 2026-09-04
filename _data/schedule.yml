@@ -59,13 +59,11 @@ events:
   lectures:
   - title: Intro to Operating Systems Cont'd
     slides: media/slides/01-OS-intro.pdf
-  - title: Devices & UIO
+  - title: Devices
     slides: media/slides/02-devices.pdf
   reading:
   - title: 'OSTEP Ch 36: I/O Devices'
     url: https://pages.cs.wisc.edu/~remzi/OSTEP/file-devices.pdf
-  - title: UIO
-    url: /documentation/uio/
 - date: '2026-09-05'
   labs:
   - title: Lab 1
@@ -76,6 +74,7 @@ events:
 - date: '2026-09-09'
   lectures:
   - title: 'Lab 2 M1 Discussion: GPIO'
+  - title: Userspace I/O (UIO)
 - date: '2026-09-11'
   lectures:
   - title: Lecture TBD
