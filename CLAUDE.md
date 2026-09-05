@@ -41,3 +41,14 @@ $pp.Quit()
 Then copy the PDF into `media/slides/`, and if it is a new deck, add it under the
 matching date's `slides:` map in `_data/schedule_links.yml` and re-run
 `pull_schedule.py` to regenerate `_data/schedule.yml`.
+
+## Quizzes and due dates
+
+- This repo is public. Quizzes (questions and answer keys) live in the private
+  solutions repo at `../solns/quizzes/*.yml`, never here. They are pushed to
+  Learning Suite with the `learning-suite` skill's `push_quiz.py`
+  (format and conventions in `../solns/quizzes/README.md`).
+- When a quiz or lab due date changes, change it in Learning Suite, and for a
+  lab also update the grader checkout at `../grader`
+  (`grade_items/<lab>/config.yaml`, `duedate`). `set_due_date.py` in the
+  learning-suite skill does both; then re-run `pull_schedule.py`.

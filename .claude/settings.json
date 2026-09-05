@@ -4,7 +4,11 @@
       "Bash(/home/jgoeders/.cache/learningsuite/venv/bin/python .claude/skills/learning-suite/scripts/ls_browser.py:*)",
       "Bash(/home/jgoeders/.cache/learningsuite/venv/bin/python .claude/skills/learning-suite/scripts/pull_schedule.py:*)",
       "Bash(/home/jgoeders/.cache/learningsuite/venv/bin/python .claude/skills/learning-suite/scripts/add_item.py:*)",
-      "Bash(/home/jgoeders/.cache/learningsuite/venv/bin/python .claude/skills/learning-suite/scripts/edit_item.py:*)"
+      "Bash(/home/jgoeders/.cache/learningsuite/venv/bin/python .claude/skills/learning-suite/scripts/edit_item.py:*)",
+      "Bash(/home/jgoeders/.cache/learningsuite/venv/bin/python .claude/skills/learning-suite/scripts/push_quiz.py:*)",
+      "Bash(/home/jgoeders/.cache/learningsuite/venv/bin/python .claude/skills/learning-suite/scripts/export_quiz.py:*)",
+      "Bash(/home/jgoeders/.cache/learningsuite/venv/bin/python .claude/skills/learning-suite/scripts/quiz_to_moodle.py:*)",
+      "Bash(/home/jgoeders/.cache/learningsuite/venv/bin/python .claude/skills/learning-suite/scripts/set_due_date.py:*)"
     ]
   }
 }

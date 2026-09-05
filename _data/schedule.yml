@@ -64,13 +64,13 @@ events:
   reading:
   - title: 'OSTEP Ch 36: I/O Devices'
     url: https://pages.cs.wisc.edu/~remzi/OSTEP/file-devices.pdf
-- date: '2026-09-05'
+- date: '2026-09-07'
+  holiday: Labor Day
+- date: '2026-09-08'
   labs:
   - title: Lab 1
     points: 20
     lab: 1
-- date: '2026-09-07'
-  holiday: Labor Day
 - date: '2026-09-09'
   lectures:
   - title: 'Lab 2 M1 Discussion: GPIO'

@@ -163,3 +163,79 @@ Gotchas learned the hard way:
 * Item ids and current text live in the page's embedded `data` JSON under
   `calendarItems` (`description` holds the html); `events` is the same content
   shaped for display.
+
+## Quizzes (exams)
+
+Quizzes live in the private solutions repo at `../solns/quizzes/*.yml` (format in
+`../solns/quizzes/README.md`), never in this public website repo, and are pushed
+into an existing Learning Suite exam of the same `title`. Create or copy the
+exam itself in Learning Suite by hand (`exam/list`, "Create new exam" or the
+Copy action); the scripts only manage its question list.
+
+```bash
+$VENV/bin/python $SKILL/push_quiz.py ../solns/quizzes/quiz1.yml --dry-run   # show current + planned questions
+$VENV/bin/python $SKILL/push_quiz.py ../solns/quizzes/quiz1.yml --replace   # wipe the exam's questions, import the YAML
+$VENV/bin/python $SKILL/push_quiz.py ../solns/quizzes/quiz1.yml             # append instead
+$VENV/bin/python $SKILL/export_quiz.py "Quiz: AXI Bus 1" out.xml   # download an exam as Moodle XML (read-only)
+$VENV/bin/python $SKILL/quiz_to_moodle.py ../solns/quizzes/quiz1.yml out.xml  # just the XML, for hand import
+```
+
+Always run `--dry-run` first and show the instructor the "planned import"
+listing; `--replace` deletes questions permanently. Both quiz scripts refuse to
+`--replace` a published exam.
+
+How the exam pages work (learned by reading `app/drivers/exam/questions/drivervue-build.js`):
+
+* Exam list: `exam/list`. The page embeds every exam as JSON
+  (`{"id":..,"type":"Exam",...,"name":..,"url":..}`); `ls_quiz.list_exams`
+  parses it. The questions editor for an exam is `exam/questions/id-<url>`.
+* Question types offered by the editor: MultipleChoice, MultipleResponse,
+  TrueFalse, ShortText, OpenResponse, Numeric, Date, Ordering, FillInTheBlank,
+  Matching, Hotspot, Calculated.
+* "Import questions" accepts Moodle XML or QTI 2.2. The Moodle file is parsed by
+  a read-only server call (`QuestionImportUtil.processQuestionImportFile`,
+  method `importMoodle` on `ajax/models/exam/ImportExport.php`) into question
+  JSON, and only then does the page's `importQuestions()` create them
+  (`batch_create`). `push_quiz.py` calls those two steps itself, patching the
+  JSON in between, because the Moodle dialect loses information:
+  `<question type="category">` is ignored (so no blocks), `<single>0</single>`
+  still yields MultipleChoice, `<usecase>` is ignored (always case-sensitive),
+  and `numerical` questions vanish. `shortanswer` becomes a FillInTheBlank
+  holding one ShortText; `essay` becomes OpenResponse.
+* Blocks are `ItemGroup` items with `children`; `createQuestionBlock` takes the
+  payload built in `block_payload()` (`headerText` is the block title).
+* Deleting uses the page's own methods: `confirmDeleteQuestion(i)` then
+  `deleteQuestionButtonClick("save")`, or for a block
+  `deleteBlockValue="all"` + `deleteQuestionBlockButtonClick("save")`.
+* "Export questions" (Moodle radio, Select All checkbox) downloads a file;
+  `export_quiz.py` captures it with `Page.setDownloadBehavior`.
+* Per-choice points are rounded to two decimals on the server, so three
+  33.33% shares total 0.99. `quiz_to_moodle.py` emits whole-percent shares
+  (34/33/33) and `push_quiz.py` re-splits multiple-response points so they sum
+  to the question total.
+* An import can outlast the 60 s CDP socket timeout; `push_quiz.py` starts it,
+  parks the outcome on `window`, and polls, rather than awaiting one long call.
+* The pages and quiz scripts write nothing until `push_quiz.py` is run without
+  `--dry-run`; auto permission mode's classifier blocks that write even though
+  the command is allowlisted, so run it in default mode.
+
+## Due dates (quizzes and labs)
+
+Whenever the instructor changes a quiz or lab due date, change it in Learning
+Suite; for a lab, also update the grader. One script does both:
+
+```bash
+$VENV/bin/python $SKILL/set_due_date.py "Quiz 1: OS, Lab 1" 2026-09-09   # 11:59 pm by default
+$VENV/bin/python $SKILL/set_due_date.py "Lab 1" 2026-09-08
+$VENV/bin/python $SKILL/pull_schedule.py                                 # then refresh the website calendar
+```
+
+* Exams are saved via the exam-list row's `updateDate("dueDate", "YYYY-MM-DD HH:MM:SS")`
+  (server method `saveDate`; it rejects a due date before the begin date or after
+  the late date). Assignments are saved via the gradebook/assignments row's
+  `onPropertyChanged("dueDate", ...)`. Dates are local strings, no timezone.
+* The grader lives at `../grader` relative to this repo (GitHub
+  `byu-cpe/ecen427_grader`). Each `grade_items/<lab>/config.yaml` names its
+  Learning Suite column (`learning_suite_column: "Lab 1"`) and carries
+  `duedate: "YYYY-MM-DD 23:59:59"`. `set_due_date.py` edits the matching file;
+  the instructor commits it.
