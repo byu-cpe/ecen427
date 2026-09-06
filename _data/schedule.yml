@@ -62,6 +62,8 @@ events:
   - title: Devices
     slides: media/slides/02-devices.pdf
   reading:
+  - title: 'OSTEP Ch 13: Address Spaces'
+    url: https://pages.cs.wisc.edu/~remzi/OSTEP/vm-intro.pdf
   - title: 'OSTEP Ch 36: I/O Devices'
     url: https://pages.cs.wisc.edu/~remzi/OSTEP/file-devices.pdf
 - date: '2026-09-07'
@@ -74,10 +76,15 @@ events:
 - date: '2026-09-09'
   lectures:
   - title: 'Lab 2 M1 Discussion: GPIO'
-  - title: Userspace I/O (UIO)
+    slides: media/slides/lab2.pdf
+  - title: 'Userspace I/O (UIO): Part 1'
+    slides: media/slides/03-uio-part1.pdf
+  reading:
+  - title: UIO
+    url: /documentation/uio/
 - date: '2026-09-11'
   lectures:
-  - title: Lecture TBD
+  - title: Interrupts and UIO Part 2
 - date: '2026-09-12'
   labs:
   - title: Lab 2 M1

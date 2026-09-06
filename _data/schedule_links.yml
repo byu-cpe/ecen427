@@ -29,12 +29,13 @@
     "Intro to Operating Systems": media/slides/01-OS-intro.pdf
     "Devices": media/slides/02-devices.pdf
   reading:
+    - { title: "OSTEP Ch 13: Address Spaces", url: "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-intro.pdf" }
     - { title: "OSTEP Ch 36: I/O Devices", url: "https://pages.cs.wisc.edu/~remzi/OSTEP/file-devices.pdf" }
 
 "2026-09-09":
   slides:
     "Lab 2 M1 Discussion": media/slides/lab2.pdf
-    "UIO Part 1": media/slides/03-uio-part1.pdf
+    "UIO): Part 1": media/slides/03-uio-part1.pdf
   reading:
     - { title: "UIO", url: /documentation/uio/ }
 
