@@ -7,6 +7,32 @@ This is a Jekyll site (deployed from GitHub: byu-cpe/ecen427).
 - Do not commit or push content changes on your own; the instructor prefers to review and push changes personally.
   Exception: when asked to update slides, commit and push the slide updates without asking.
 
+## Working notes and conventions
+
+Durable notes about how to work on this course go **in this file**, not in
+Claude's per-machine memory directory under `~/.claude`. The instructor works
+from several different computers, and only what is committed to the repo travels
+with him. This file is in a public repo, so keep anything sensitive out of it.
+
+- **Never modify the git index.** No `git add`, and equally no `git reset`,
+  `git restore --staged`, `git stash`, or `git mv` (it stages; use plain `mv`).
+  The instructor stages files himself as he reviews changes, so the index is his
+  record of what he has already looked at; `git add` puts unreviewed things
+  there, and `git reset` destroys the record irrecoverably. Make edits in the
+  working tree and stop. If `git status` shows staged entries, they are his -
+  leave them. Read-only git (`status`, `diff`, `log`, `show`) is always fine.
+  Commit only when he asks in that same message.
+- **Learning Suite writes are blocked in auto permission mode.** The permission
+  classifier judges the outward-facing write itself, so `Bash(...)` allow rules
+  in `.claude/settings.json` do not lift it. Reads pass normally. For a push,
+  ask the instructor to run the session in default permission mode so an
+  approval prompt appears; do not retry a blocked write in new phrasings.
+- **"Add X as a lecture topic"** means append to
+  `../solns/instructor/course_improvement_ideas.md` in the private solutions
+  repo, not schedule anything in Learning Suite. It lives there, not in this
+  repo, because this one is public. Add to the numbered "Smaller topics" lists
+  (keep numbering sequential) or as a new "Larger topics" section.
+
 ## Publishing lecture slides
 
 Lecture slides are authored as .pptx in OneDrive and posted here as PDFs.
@@ -48,6 +74,23 @@ matching date's `slides:` map in `_data/schedule_links.yml` and re-run
   solutions repo at `../solns/quizzes/*.yml`, never here. They are pushed to
   Learning Suite with the `learning-suite` skill's `push_quiz.py`
   (format and conventions in `../solns/quizzes/README.md`).
+- Every quiz's Learning Suite description must say, in this order, that the quiz
+  is open book, that it is to be completed individually without the help of
+  others, and what material it covers (name the lectures and labs, not the
+  specific topics). For example: "Open book. Complete individually, without the
+  help of others. Covers Lab 1 and the OS lecture." The description is pushed
+  from the YAML's `description` field, so set it there.
+- Do not push a quiz to Learning Suite, or publish one on the website, until the
+  instructor has reviewed the questions and said to. A quiz appears on the
+  public schedule only via `PUBLISHED_QUIZZES` in `pull_schedule.py`, one quiz
+  at a time; never infer it from Learning Suite's own `isPublished` flag, and
+  never publish them all at once. Quiz names and dates in Learning Suite are
+  drafts until he says otherwise.
+- A quiz's **open (begin) date is always the first day of the semester**, so
+  students can work ahead; only the due date varies. The semester start is in
+  `_data/schedule.yml` under `semester.start`. Learning Suite also rejects a due
+  date earlier than the begin date, so an early begin date keeps `set_due_date.py`
+  from failing.
 - When a quiz or lab due date changes, change it in Learning Suite, and for a
   lab also update the grader checkout at `../grader`
   (`grade_items/<lab>/config.yaml`, `duedate`). `set_due_date.py` in the
