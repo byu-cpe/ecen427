@@ -15,6 +15,8 @@ readings are posted as each lecture is reached.
   <span><span class="cal-dot cal-dot-lecture"></span> lecture topic</span>
   <span><span class="cal-dot cal-dot-reading"></span> reading assignment</span>
   <span><span class="cal-dot cal-dot-lab"></span> lab deadline</span>
+  <span><span class="cal-dot cal-dot-quiz"></span> quiz deadline</span>
+  <span><span class="cal-dot cal-dot-exam"></span> midterm exam</span>
 </div>
 
 {% include calendar.html %}

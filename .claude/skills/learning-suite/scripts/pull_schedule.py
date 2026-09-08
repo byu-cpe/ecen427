@@ -31,9 +31,26 @@ COURSE_ID = "6Is1O-Gljw6E"
 # ---------------------------------------------------------------- toggles
 # What the public website is allowed to show. The instructor controls these;
 # flip one to True and re-run to publish that kind of item.
-SHOW_QUIZZES = False       # quiz names and dates
+# Quizzes are published one at a time: a quiz appears on the website only after
+# the instructor says it is published on Learning Suite. List its exact Learning
+# Suite title here (Learning Suite's own isPublished flag is deliberately not
+# used - the announcement is the instructor's call, not Learning Suite's).
+PUBLISHED_QUIZZES = [
+    "Quiz 1: OS, Lab 1",
+]
+# Midterms, listed the same way and for the same reason. These are testing
+# centre exams with an open..close window, and each day of the window is marked
+# so a student can see the centre is open for it that day. SHOW_UNIVERSITY_EXAM_DAYS is
+# separate and stays off: it controls BYU's own exam-period clutter, not these.
+PUBLISHED_EXAMS = [
+    "Midterm 1",
+    "Midterm 2",
+    "Midterm 3",
+]
 SHOW_STUDY = False         # study-question links
-SHOW_EXAMS = False         # exam items, and "Final Exam ..." schedule entries
+SHOW_UNIVERSITY_EXAM_DAYS = False   # BYU exam-period days, and the university
+                                    # "Final Exam" room/time entries. This does NOT
+                                    # gate the midterms above - see PUBLISHED_EXAMS.
 SHOW_DEVOTIONALS = False   # BYU devotional and forum days
 SHOW_OTHER = False         # graded items outside Labs/Quizzes/Exams, e.g.
                            # "Metastability", "Github URL"
@@ -114,7 +131,7 @@ def build(data, links, materials_through):
             continue
         if not SHOW_DEVOTIONALS and re.search(r"devotional|forum", title, re.I):
             continue
-        if not SHOW_EXAMS and re.search(r"exam", title, re.I):
+        if not SHOW_UNIVERSITY_EXAM_DAYS and re.search(r"exam", title, re.I):
             continue
         day(d).setdefault("byu", []).append(title)
 
@@ -122,7 +139,7 @@ def build(data, links, materials_through):
         d, name = e.get("serverDate"), clean(e.get("name"))
         if not d:
             continue
-        if not SHOW_EXAMS and re.search(r"final exam", name, re.I):
+        if not SHOW_UNIVERSITY_EXAM_DAYS and re.search(r"final exam", name, re.I):
             continue
         day(d).setdefault("items", []).append((e.get("displayOrder", 0), name))
 
@@ -133,6 +150,20 @@ def build(data, links, materials_through):
         d = due[:10]
         entry = {"title": a["name"], "cat": cats.get(a.get("categoryID"), "Other"),
                  "points": a.get("points"), "time": due[11:16]}
+        # A testing-centre exam runs from beginDate to dueDate. Mark every day
+        # in that window, carrying the points on the closing day only so the
+        # same score is not reported two or three times.
+        begin = (a.get("beginDate") or due)[:10]
+        if entry["cat"] == "Exams" and a["name"] in PUBLISHED_EXAMS and begin < d:
+            cur = datetime.date.fromisoformat(begin)
+            last = datetime.date.fromisoformat(d)
+            while cur <= last:
+                span = dict(entry)
+                if cur != last:
+                    span["points"] = None
+                day(cur.isoformat()).setdefault("due", []).append(span)
+                cur += datetime.timedelta(days=1)
+            continue
         day(d).setdefault("due", []).append(entry)
 
     events = []
@@ -205,7 +236,7 @@ def build(data, links, materials_through):
             if a["points"]:
                 item["points"] = a["points"]
             if a["cat"] == "Quizzes":
-                if SHOW_QUIZZES:
+                if a["title"] in PUBLISHED_QUIZZES:
                     quizzes.append(item)
             elif a["cat"] == "Labs":
                 num = LAB_RE.search(a["title"])
@@ -213,7 +244,7 @@ def build(data, links, materials_through):
                     item["lab"] = int(num.group(1))
                 labs.append(item)
             elif a["cat"] == "Exams":
-                if SHOW_EXAMS:
+                if a["title"] in PUBLISHED_EXAMS:
                     exams.append(item)
             elif SHOW_OTHER:
                 other.append(item)

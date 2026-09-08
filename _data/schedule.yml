@@ -81,6 +81,9 @@ events:
   reading:
   - title: UIO
     url: /documentation/uio/
+  quizzes:
+  - title: 'Quiz 1: OS, Lab 1'
+    points: 15
 - date: '2026-09-11'
   lectures:
   - title: Interrupts and UIO Part 2
@@ -165,6 +168,12 @@ events:
 - date: '2026-10-19'
   lectures:
   - title: Lab 5 Milestone 3 Discussion
+  exams:
+  - title: Midterm 1
+- date: '2026-10-20'
+  exams:
+  - title: Midterm 1
+    points: 48
 - date: '2026-10-24'
   labs:
   - title: Lab 5 M1
@@ -210,14 +219,22 @@ events:
   - title: Lab 6 M1
     points: 20
     lab: 6
+- date: '2026-11-19'
+  exams:
+  - title: Midterm 2
 - date: '2026-11-20'
   lectures:
   - title: Lab 7 Discussion
+  exams:
+  - title: Midterm 2
 - date: '2026-11-21'
   labs:
   - title: Lab 6 M2
     points: 20
     lab: 6
+  exams:
+  - title: Midterm 2
+    points: 5
 - date: '2026-11-25'
   holiday: No class - Thanksgiving Holiday
 - date: '2026-11-26'
@@ -234,6 +251,11 @@ events:
   - title: Lab 8 discussion
 - date: '2026-12-07'
   note: Instructor gone, substitute or video lecture will be arranged.
+  exams:
+  - title: Midterm 3
+- date: '2026-12-08'
+  exams:
+  - title: Midterm 3
 - date: '2026-12-09'
   note: Instructor gone, substitute or video lecture will be arranged.
   lectures:
@@ -242,6 +264,9 @@ events:
   - title: Lab 8
     points: 10
     lab: 8
+  exams:
+  - title: Midterm 3
+    points: 25
 - date: '2026-12-10'
   note: Last Day of Class
 - date: '2026-12-11'
