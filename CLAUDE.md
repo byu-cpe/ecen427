@@ -86,6 +86,16 @@ matching date's `slides:` map in `_data/schedule_links.yml` and re-run
   at a time; never infer it from Learning Suite's own `isPublished` flag, and
   never publish them all at once. Quiz names and dates in Learning Suite are
   drafts until he says otherwise.
+- Every quiz must have its **exam review options** set so that after the
+  deadline students can view all items (score, comments, feedback, answers and
+  the exam itself). This is currently a **manual step in Learning Suite** - set
+  it when you create the exam. It cannot be scripted yet: the row-level
+  `updateProperty` silently discards the `view*After` fields (they are absent
+  from the 54-key record the server returns), and the assignment editor's own
+  Save reports success without persisting them either. The editor shows unset
+  options as checked, and the gradebook row model shows them as false, so
+  neither read tells you the stored state - verify in the exam's own settings
+  UI.
 - A quiz's **open (begin) date is always the first day of the semester**, so
   students can work ahead; only the due date varies. The semester start is in
   `_data/schedule.yml` under `semester.start`. Learning Suite also rejects a due

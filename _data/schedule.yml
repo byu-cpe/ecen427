@@ -87,6 +87,9 @@ events:
 - date: '2026-09-11'
   lectures:
   - title: Interrupts and UIO Part 2
+  quizzes:
+  - title: 'Quiz 2: Devices'
+    points: 15
 - date: '2026-09-12'
   labs:
   - title: Lab 2 M1
