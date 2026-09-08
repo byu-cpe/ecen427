@@ -70,38 +70,35 @@ matching date's `slides:` map in `_data/schedule_links.yml` and re-run
 
 ## Quizzes and due dates
 
+The mechanics - creating an exam, loading questions, setting review options,
+moving due dates - live in the `learning-suite` skill (`.claude/skills/
+learning-suite/SKILL.md`) and its scripts. This section is only the policy those
+scripts implement.
+
 - This repo is public. Quizzes (questions and answer keys) live in the private
-  solutions repo at `../solns/quizzes/*.yml`, never here. They are pushed to
-  Learning Suite with the `learning-suite` skill's `push_quiz.py`
-  (format and conventions in `../solns/quizzes/README.md`).
-- Every quiz's Learning Suite description must say, in this order, that the quiz
-  is open book, that it is to be completed individually without the help of
-  others, and what material it covers (name the lectures and labs, not the
-  specific topics). For example: "Open book. Complete individually, without the
-  help of others. Covers Lab 1 and the OS lecture." The description is pushed
-  from the YAML's `description` field, so set it there.
-- Do not push a quiz to Learning Suite, or publish one on the website, until the
-  instructor has reviewed the questions and said to. A quiz appears on the
-  public schedule only via `PUBLISHED_QUIZZES` in `pull_schedule.py`, one quiz
-  at a time; never infer it from Learning Suite's own `isPublished` flag, and
-  never publish them all at once. Quiz names and dates in Learning Suite are
-  drafts until he says otherwise.
-- Every quiz must have its **exam review options** set so that after the
-  deadline students can view all items (score, comments, feedback, answers and
-  the exam itself). This is currently a **manual step in Learning Suite** - set
-  it when you create the exam. It cannot be scripted yet: the row-level
-  `updateProperty` silently discards the `view*After` fields (they are absent
-  from the 54-key record the server returns), and the assignment editor's own
-  Save reports success without persisting them either. The editor shows unset
-  options as checked, and the gradebook row model shows them as false, so
-  neither read tells you the stored state - verify in the exam's own settings
-  UI.
-- A quiz's **open (begin) date is always the first day of the semester**, so
-  students can work ahead; only the due date varies. The semester start is in
-  `_data/schedule.yml` under `semester.start`. Learning Suite also rejects a due
-  date earlier than the begin date, so an early begin date keeps `set_due_date.py`
-  from failing.
+  solutions repo at `../solns/quizzes/*.yml`, never here (format in
+  `../solns/quizzes/README.md`). Setting one up is `create_exam.py`, then
+  `push_quiz.py`, then publish; each is dry-runnable.
+- Every quiz's description must say, in this order, that the quiz is open book,
+  that it is to be completed individually without the help of others, and what
+  material it covers (name the lectures and labs, not the specific topics). For
+  example: "Open book. Complete individually, without the help of others. Covers
+  Lab 1 and the OS lecture." Set it in the YAML `description`; the scripts push
+  it.
+- Every quiz opens on the first day of the semester, so students can work ahead;
+  only the due date varies.
+- Every quiz lets students view all items after the due date - score, questions
+  and comments, marked responses with feedback, correct answers, and all of that
+  even if they did not take the exam - and its review date equals its due date.
+  `create_exam.py` sets this; after moving a due date with `set_due_date.py`,
+  re-run `create_exam.py --update` so the review date follows.
+- Do not push a quiz's questions to Learning Suite, or publish it there or on the
+  website, until the instructor has reviewed the questions and said to. A quiz
+  appears on the public schedule only via `PUBLISHED_QUIZZES` in
+  `pull_schedule.py`, one quiz at a time; never infer it from Learning Suite's
+  `isPublished` flag, and never publish them all at once. Quiz names and dates in
+  Learning Suite are drafts until he says otherwise.
 - When a quiz or lab due date changes, change it in Learning Suite, and for a
   lab also update the grader checkout at `../grader`
-  (`grade_items/<lab>/config.yaml`, `duedate`). `set_due_date.py` in the
-  learning-suite skill does both; then re-run `pull_schedule.py`.
+  (`grade_items/<lab>/config.yaml`, `duedate`). `set_due_date.py` does both;
+  then re-run `pull_schedule.py`.

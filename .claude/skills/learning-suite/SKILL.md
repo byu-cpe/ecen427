@@ -167,10 +167,37 @@ Gotchas learned the hard way:
 ## Quizzes (exams)
 
 Quizzes live in the private solutions repo at `../solns/quizzes/*.yml` (format in
-`../solns/quizzes/README.md`), never in this public website repo, and are pushed
-into an existing Learning Suite exam of the same `title`. Create or copy the
-exam itself in Learning Suite by hand (`exam/list`, "Create new exam" or the
-Copy action); the scripts only manage its question list.
+`../solns/quizzes/README.md`), never in this public website repo. Setting one up
+is three steps, each its own script, each dry-runnable:
+
+```bash
+$VENV/bin/python $SKILL/create_exam.py ../solns/quizzes/quiz2.yml --due 2026-09-11 --dry-run
+$VENV/bin/python $SKILL/create_exam.py ../solns/quizzes/quiz2.yml --due 2026-09-11   # 1. exam + review options
+$VENV/bin/python $SKILL/push_quiz.py   ../solns/quizzes/quiz2.yml --dry-run
+$VENV/bin/python $SKILL/push_quiz.py   ../solns/quizzes/quiz2.yml                    # 2. questions
+#                                                                                       3. publish (below)
+$VENV/bin/python $SKILL/create_exam.py ../solns/quizzes/quiz1.yml --update            # fix an existing exam's
+                                                                                      #    description/review options
+```
+
+`create_exam.py` builds the exam from the YAML `title` and `description`: Quizzes
+category, open on the first day of the semester at 7:00 am (`semester.start` in
+`_data/schedule.yml`), due at 11:59 pm on `--due`, points left to "calculate
+from question values". It then sets the review options every quiz must have -
+after the due date students may view their score, the questions and comments,
+their marked responses with feedback, the correct answers, and all of that even
+if they did not take the exam - and sets the review date (`scoreVisibleDate`)
+equal to the due date. A copied exam inherits the old quiz's review date (Quiz 1
+arrived with Sep 5 against a Sep 9 due date, which would have shown answers four
+days early), and `set_due_date.py` does not touch it, so after moving a due date
+re-run `create_exam.py --update`. The script verifies from a fresh page load and
+exits non-zero if anything is not as intended.
+
+Publishing: on `exam/list`, `InstructorExamList.handlePublish(examId)` runs the
+page's own checks (at least one question, non-zero points, proctoring) and then
+publishes; it is not scripted yet, so call it from `ls_browser.py js` or click
+Publish. Order matters: questions first, then publish - `push_quiz.py --replace`
+refuses to run on a published exam.
 
 ```bash
 $VENV/bin/python $SKILL/push_quiz.py ../solns/quizzes/quiz1.yml --dry-run   # show current + planned questions
@@ -218,6 +245,39 @@ How the exam pages work (learned by reading `app/drivers/exam/questions/drivervu
 * The pages and quiz scripts write nothing until `push_quiz.py` is run without
   `--dry-run`; auto permission mode's classifier blocks that write even though
   the command is allowlisted, so run it in default mode.
+
+How the exam editor works (learned building `create_exam.py`):
+
+* Both "Create new exam" (`InstructorExamList.createExam()` on `exam/list`) and
+  editing an existing item (the gradebook/assignments row component's
+  `editAssignment()`) open the same editor dialog: the Vue component that owns
+  `saveAssignment()`, with the item as `vm.assignment`.
+* **The dialog's Save reads that Vuex model, not the form inputs.** Typing into
+  the title box and clicking Save creates nothing and can bounce the page to a
+  bare landing URL. Set `assignment.name/description/categoryID/beginDate/
+  dueDate` (local `YYYY-MM-DD HH:MM:SS`, no zone) and call `saveAssignment()`.
+  It calls `basicSettings.updateDescription()` first, which re-reads the visible
+  description control, so mirror the description into that textarea too.
+* Review options are five booleans on the assignment - `viewScoreAfter`,
+  `viewCommentsAfter`, `viewFeedbkAfter`, `viewAnswersAfter`, `viewExamAfter` -
+  plus `scoreVisibleDate`, the date at the top of the "after due date" column.
+  The `view*Immediate` twins are the "upon submit" column.
+* The gradebook category list is `$store.state.categoryEditor.categories` on the
+  assignments page (`{id, title}`); look "Quizzes" up by title.
+* **Verify only in the editor.** Three other readings look authoritative and are
+  not: the gradebook row model reports every `view*After` as false whether or
+  not it is set and exposes the review date read-only as six `view*AfterDate`
+  fields; the calendar page's embedded JSON omits the review fields entirely;
+  and the row-level `updateProperty` / `onPropertyChanged` channel (fine for
+  `dueDate`, `points`, `description`) silently drops the review fields - they
+  are absent from the record it returns. Re-open the editor from a fresh page
+  load and read `vm.assignment`; the rendered `<time datetime="...">` elements
+  in the expanded "Exam Review Options" section (`LsExpandable.open()`) show
+  the same values.
+* Points saved at creation are overwritten by "calculate from question values"
+  once questions exist, so do not bother setting them.
+* `exam/list` reports `itemCount: 0` for an exam whose questions sit inside
+  blocks; count them on the questions page, not there.
 
 ## Due dates (quizzes and labs)
 
