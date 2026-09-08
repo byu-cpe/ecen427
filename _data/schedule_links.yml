@@ -34,14 +34,9 @@
 
 "2026-09-09":
   slides:
-    "Lab 2 M1 Discussion": media/slides/lab2.pdf
     "UIO): Part 1": media/slides/03-uio-part1.pdf
   reading:
     - { title: "UIO", url: /documentation/uio/ }
-
-"2026-09-14":
-  slides:
-    "Lab 2 M2 Discussion": media/slides/lab2.pdf
 
 "2026-09-21":
   slides:

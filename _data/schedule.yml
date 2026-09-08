@@ -76,7 +76,6 @@ events:
 - date: '2026-09-09'
   lectures:
   - title: 'Lab 2 M1 Discussion: GPIO'
-    slides: media/slides/lab2.pdf
   - title: 'Userspace I/O (UIO): Part 1'
     slides: media/slides/03-uio-part1.pdf
   reading:
