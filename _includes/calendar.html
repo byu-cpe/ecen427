@@ -5,7 +5,6 @@ columns stay aligned without any padding logic beyond the first day.
 Data is generated from Learning Suite; see the header of _data/schedule.yml.
 {%- endcomment -%}
 {%- assign sched = site.data.schedule -%}
-{%- assign today = 'now' | date: '%Y-%m-%d' -%}
 
 <div class="course-calendar">
 {%- for m in sched.semester.months -%}
@@ -28,17 +27,13 @@ Data is generated from Learning Suite; see the header of _data/schedule.yml.
         {%- if ev.holiday -%}
           {%- assign classes = classes | append: ' cal-off' -%}
         {%- endif -%}
-        {%- if iso == today -%}
-          {%- assign classes = classes | append: ' cal-today' -%}
-        {%- endif -%}
-
         {%- assign style = '' -%}
         {%- if first_rendered -%}
           {%- assign style = ' style="grid-column-start: ' | append: wday | append: ';"' -%}
           {%- assign first_rendered = false -%}
         {%- endif -%}
 
-    <div class="{{ classes }}"{{ style }}>
+    <div class="{{ classes }}" data-date="{{ iso }}"{{ style }}>
       <div class="cal-date" data-dow=" {{ iso | date: '%a, %b ' }}{{ d }}">{{ d }}</div>
 
       {%- if ev.holiday %}
@@ -119,3 +114,17 @@ Data is generated from Learning Suite; see the header of _data/schedule.yml.
   </div>
 {%- endfor -%}
 </div>
+
+<script>
+// The highlight has to be decided in the browser, not at build time: this is a
+// static site, so a Liquid `now` would freeze whatever day the last GitHub
+// Pages build ran on (in UTC, no less) until the next push.
+(function () {
+  var now = new Date();
+  var iso = now.getFullYear() + '-' +
+            String(now.getMonth() + 1).padStart(2, '0') + '-' +
+            String(now.getDate()).padStart(2, '0');
+  var cell = document.querySelector('.course-calendar .cal-day[data-date="' + iso + '"]');
+  if (cell) { cell.classList.add('cal-today'); }
+})();
+</script>
