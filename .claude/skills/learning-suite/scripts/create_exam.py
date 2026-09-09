@@ -15,6 +15,7 @@ What it sets, so every quiz comes out the same way:
   open date       first day of the semester, 7:00 am (`semester.start` in _data/schedule.yml)
   due date        --due, 11:59 pm unless --time says otherwise
   points          left to "calculate from question values"; correct once push_quiz.py runs
+  save and exit   students may save, exit the exam and submit later
   review options  after the due date students may view their score, the questions and
                   comments, their marked responses with feedback, the correct answers,
                   and all of that even if they did not take the exam
@@ -35,7 +36,10 @@ How it works (the page's own code paths, not the DOM):
   same editor for an existing item. `viewScoreAfter`, `viewCommentsAfter`,
   `viewFeedbkAfter`, `viewAnswersAfter`, `viewExamAfter` are the five checkboxes
   in the "after due date" column; `scoreVisibleDate` is the date at the top of
-  that column. `saveAssignment()` persists all of them.
+  that column. The save-and-exit checkbox is not on the assignment itself but
+  nested at `assignment.examOptions.submissions.allowSaveExit`; the model's
+  `saveAssignment()` runs `examOptions.prepareForSync()` and sends the whole
+  thing in one `updateAssignment`, so one save persists all of it.
 * Verifying: only the editor tells the truth. The gradebook row model reports
   every `view*After` as false whether or not it is set, the calendar payload
   omits them, and the row-level `updateProperty` silently drops them. This
@@ -64,6 +68,9 @@ CATEGORY_TITLE = "Quizzes"
 OPEN_TIME = "07:00:00"
 REVIEW_FLAGS = ["viewScoreAfter", "viewCommentsAfter", "viewFeedbkAfter",
                 "viewAnswersAfter", "viewExamAfter"]
+# "Allow students to save, exit the exam and submit later". Lives on the nested
+# exam-options model, not the assignment, so READ_JS and SAVE_JS special-case it.
+SAVE_EXIT = "allowSaveExit"
 
 # The editor dialog is the component owning saveAssignment(); the same dialog
 # serves "Create new exam" and "edit this row".
@@ -116,6 +123,7 @@ READ_JS = """
   var a = vm.assignment, out = {name: a.name, description: a.description, categoryID: a.categoryID,
     beginDate: a.beginDate, dueDate: a.dueDate, scoreVisibleDate: a.scoreVisibleDate};
   %s.forEach(function(k){ out[k] = a[k]; });
+  out.allowSaveExit = (a.examOptions && a.examOptions.submissions) ? a.examOptions.submissions.allowSaveExit : null;
   out.times = [].slice.call(document.querySelectorAll("time")).map(function(t){
     return t.textContent.replace(/\\u00a0/g, " ").trim() + " [" + t.getAttribute("datetime") + "]"; });
   return out;
@@ -138,7 +146,10 @@ SAVE_JS = """
 new Promise(function(r){ %s
   if (!vm || !vm.assignment) return r({error: "editor dialog not open"});
   var a = vm.assignment, fields = %s;
-  Object.keys(fields).forEach(function(k){ a[k] = fields[k]; });
+  if ("allowSaveExit" in fields && !(a.examOptions && a.examOptions.submissions))
+    return r({error: "assignment has no examOptions.submissions; is this an exam?"});
+  Object.keys(fields).forEach(function(k){
+    if (k === "allowSaveExit") a.examOptions.submissions[k] = fields[k]; else a[k] = fields[k]; });
   function set(el, v){ var s = Object.getOwnPropertyDescriptor(el.constructor.prototype, "value").set;
     s.call(el, v); el.dispatchEvent(new Event("input", {bubbles: true})); el.dispatchEvent(new Event("change", {bubbles: true})); }
   var title = document.getElementById("titleBox"); if (title && "name" in fields) set(title, fields.name);
@@ -230,7 +241,7 @@ def create(tab, title, desc, cat_id, begin, due):
 
 def plan_options(model, desc):
     """Fields the options pass would change, given the editor's current model."""
-    want = {"description": desc, "scoreVisibleDate": model["dueDate"]}
+    want = {"description": desc, "scoreVisibleDate": model["dueDate"], SAVE_EXIT: True}
     for k in REVIEW_FLAGS:
         want[k] = True
     return {k: v for k, v in want.items() if model.get(k) != v}
@@ -249,6 +260,8 @@ def verify(tab, name, desc):
     off = [k for k in REVIEW_FLAGS if model.get(k) is not True]
     if off:
         problems.append("not set after due date: " + ", ".join(off))
+    if model.get(SAVE_EXIT) is not True:
+        problems.append("save, exit and submit later is %r" % model.get(SAVE_EXIT))
     return model, problems
 
 
@@ -259,6 +272,7 @@ def show(model):
     print("  due           %s" % model["dueDate"])
     print("  review date   %s" % model["scoreVisibleDate"])
     print("  after due     %s" % ", ".join("%s=%s" % (k, model.get(k)) for k in REVIEW_FLAGS))
+    print("  save & exit   %s" % model.get(SAVE_EXIT))
     print("  page dates    %s" % "; ".join(model.get("times") or []))
 
 
@@ -268,7 +282,7 @@ def main():
     ap.add_argument("--due", help="due date YYYY-MM-DD (required unless --update)")
     ap.add_argument("--time", default="23:59", help="due time HH:MM, default 23:59")
     ap.add_argument("--update", action="store_true",
-                    help="exam already exists: set its description and review options only")
+                    help="exam already exists: set its description, save/exit and review options only")
     ap.add_argument("--dry-run", action="store_true", help="print the plan and change nothing")
     args = ap.parse_args()
 

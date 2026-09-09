@@ -183,11 +183,12 @@ $VENV/bin/python $SKILL/create_exam.py ../solns/quizzes/quiz1.yml --update      
 `create_exam.py` builds the exam from the YAML `title` and `description`: Quizzes
 category, open on the first day of the semester at 7:00 am (`semester.start` in
 `_data/schedule.yml`), due at 11:59 pm on `--due`, points left to "calculate
-from question values". It then sets the review options every quiz must have -
-after the due date students may view their score, the questions and comments,
-their marked responses with feedback, the correct answers, and all of that even
-if they did not take the exam - and sets the review date (`scoreVisibleDate`)
-equal to the due date. A copied exam inherits the old quiz's review date (Quiz 1
+from question values". It then turns on "allow students to save, exit the exam
+and submit later", sets the review options every quiz must have - after the due
+date students may view their score, the questions and comments, their marked
+responses with feedback, the correct answers, and all of that even if they did
+not take the exam - and sets the review date (`scoreVisibleDate`) equal to the
+due date. A copied exam inherits the old quiz's review date (Quiz 1
 arrived with Sep 5 against a Sep 9 due date, which would have shown answers four
 days early), and `set_due_date.py` does not touch it, so after moving a due date
 re-run `create_exam.py --update`. The script verifies from a fresh page load and
@@ -262,6 +263,16 @@ How the exam editor works (learned building `create_exam.py`):
   `viewCommentsAfter`, `viewFeedbkAfter`, `viewAnswersAfter`, `viewExamAfter` -
   plus `scoreVisibleDate`, the date at the top of the "after due date" column.
   The `view*Immediate` twins are the "upon submit" column.
+* "Allow students to save, exit the exam and submit later" is **not** on the
+  assignment: it is `assignment.examOptions.submissions.allowSaveExit`, on the
+  nested exam-options model (which also holds the time limit, retakes, IP
+  restriction, password and proctoring under `submissions`/`access`/
+  `proctoring`). No separate save is needed: the assignment model's
+  `saveAssignment()` calls `examOptions.prepareForSync()` and sends it all in
+  one `updateAssignment`. `prepareForSync` resets the children of any option
+  object whose `checked` is false back to defaults, so a flag placed inside a
+  `{checked, ...}` group is dropped unless `checked` is also true;
+  `allowSaveExit` is a bare boolean on `submissions`, so it is unaffected.
 * The gradebook category list is `$store.state.categoryEditor.categories` on the
   assignments page (`{id, title}`); look "Quizzes" up by title.
 * **Verify only in the editor.** Three other readings look authoritative and are

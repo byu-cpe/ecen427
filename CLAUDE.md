@@ -87,6 +87,8 @@ scripts implement.
   it.
 - Every quiz opens on the first day of the semester, so students can work ahead;
   only the due date varies.
+- Every quiz lets students save, exit and submit later, so they are not forced to
+  finish in one sitting. `create_exam.py` sets this alongside the review options.
 - Every quiz lets students view all items after the due date - score, questions
   and comments, marked responses with feedback, correct answers, and all of that
   even if they did not take the exam - and its review date equals its due date.
