@@ -38,6 +38,10 @@
   reading:
     - { title: "UIO", url: /documentation/uio/ }
 
+"2026-09-11":
+  slides:
+    "UIO Part 2": media/slides/04-uio-part2.pdf
+
 "2026-09-21":
   slides:
     "C++": media/slides/c++.pdf

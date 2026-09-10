@@ -87,6 +87,7 @@ events:
 - date: '2026-09-11'
   lectures:
   - title: Interrupts and UIO Part 2
+    slides: media/slides/04-uio-part2.pdf
   quizzes:
   - title: 'Quiz 2: Devices'
     points: 15

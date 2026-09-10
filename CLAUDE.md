@@ -5,7 +5,8 @@ This is a Jekyll site (deployed from GitHub: byu-cpe/ecen427).
 - Build to verify changes: `make build`
 - Commit and push to publish.
 - Do not commit or push content changes on your own; the instructor prefers to review and push changes personally.
-  Exception: when asked to update slides, commit and push the slide updates without asking.
+  Exception: when asked to publish or update slides, commit and push the slide
+  updates without asking, and never stall that on Learning Suite (see below).
 
 ## Working notes and conventions
 
@@ -21,7 +22,11 @@ with him. This file is in a public repo, so keep anything sensitive out of it.
   there, and `git reset` destroys the record irrecoverably. Make edits in the
   working tree and stop. If `git status` shows staged entries, they are his -
   leave them. Read-only git (`status`, `diff`, `log`, `show`) is always fine.
-  Commit only when he asks in that same message.
+  Commit only when he asks in that same message, and commit by explicit path
+  (`git commit -- <files>`) so nothing else he has staged is swept in. The one
+  exception is the slides workflow: a new PDF is untracked and `git commit --`
+  cannot take it, so `git add` exactly the slide files being published, nothing
+  more.
 - **Learning Suite writes are blocked in auto permission mode.** The permission
   classifier judges the outward-facing write itself, so `Bash(...)` allow rules
   in `.claude/settings.json` do not lift it. Reads pass normally. For a push,
@@ -67,6 +72,19 @@ $pp.Quit()
 Then copy the PDF into `media/slides/`, and if it is a new deck, add it under the
 matching date's `slides:` map in `_data/schedule_links.yml` and re-run
 `pull_schedule.py` to regenerate `_data/schedule.yml`.
+
+**Publishing slides must not block on Learning Suite.** "Publish the slides"
+means: export, copy, link, build, commit, push - all of it, in that request.
+The Learning Suite session often has expired by the next day, and
+`pull_schedule.py` then fails with a login prompt. Do not stop there and ask for
+a sign-in. Instead, hand-apply the one line the pull would have produced - the
+`slides: media/slides/<file>.pdf` entry under that date's lecture in
+`_data/schedule.yml`, same format as the neighbouring entries - build, verify
+the link renders in `_site/schedule/index.html`, commit and push. This is the
+one sanctioned hand-edit of the generated file; the overlay in
+`schedule_links.yml` is the source of truth, so the next `pull_schedule.py`
+regenerates the identical line. Only after the push is done, ask for a
+Learning Suite sign-in if anything there still needs doing.
 
 ## Quizzes and due dates
 
