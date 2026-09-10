@@ -70,8 +70,11 @@ $pp.Quit()
 ```
 
 Then copy the PDF into `media/slides/`, and if it is a new deck, add it under the
-matching date's `slides:` map in `_data/schedule_links.yml` and re-run
-`pull_schedule.py` to regenerate `_data/schedule.yml`.
+matching date's `slides:` map in `_data/schedule_links.yml`, **bump
+`MATERIALS_THROUGH` in `pull_schedule.py` to that lecture's date** (it gates
+slide, reading and study links to lectures on or before it, so without the bump
+the next pull silently drops the new link again), and re-run `pull_schedule.py`
+to regenerate `_data/schedule.yml`.
 
 **Publishing slides must not block on Learning Suite.** "Publish the slides"
 means: export, copy, link, build, commit, push - all of it, in that request.
