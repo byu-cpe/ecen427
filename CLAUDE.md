@@ -69,6 +69,12 @@ $pp.Quit()
 '
 ```
 
+If the deck is open in PowerPoint, that call can fail with
+`RPC_E_CALL_REJECTED` ("Call was rejected by callee") and leave the old PDF in
+place, while any trailing `Write-Output` still prints. Never trust an echo:
+compare the PDF's mtime (or size) before and after, and retry after a few
+seconds - the second attempt normally succeeds without closing PowerPoint.
+
 Then copy the PDF into `media/slides/`, and if it is a new deck, add it under the
 matching date's `slides:` map in `_data/schedule_links.yml`, **bump
 `MATERIALS_THROUGH` in `pull_schedule.py` to that lecture's date** (it gates
@@ -108,6 +114,11 @@ scripts implement.
   it.
 - Every quiz opens on the first day of the semester, so students can work ahead;
   only the due date varies.
+- Randomize where the correct answer sits. When drafting multiple-choice and
+  multiple-response questions, the right choice must land at varied indices,
+  not first by default (a draft once came out with all 14 correct answers at
+  index 0). Shuffle the choices after writing them and check the distribution
+  of `correct` before showing the quiz for review.
 - Every quiz lets students save, exit and submit later, so they are not forced to
   finish in one sitting. `create_exam.py` sets this alongside the review options.
 - Every quiz lets students view all items after the due date - score, questions
