@@ -38,6 +38,7 @@ COURSE_ID = "6Is1O-Gljw6E"
 PUBLISHED_QUIZZES = [
     "Quiz 1: OS, Lab 1",
     "Quiz 2: Devices",
+    "Quiz 3: UIO Part 1",
 ]
 # Midterms, listed the same way and for the same reason. These are testing
 # centre exams with an open..close window, and each day of the window is marked
@@ -59,7 +60,7 @@ SHOW_OTHER = False         # graded items outside Labs/Quizzes/Exams, e.g.
 # Slides, readings and study questions are published only for lectures that have
 # already happened, so future topics do not link to material that may still
 # change. None means "through today".
-MATERIALS_THROUGH = "2026-09-11"
+MATERIALS_THROUGH = "2026-09-14"
 CAL_URL = f"https://learningsuite.byu.edu/.2MSl/cid-{COURSE_ID}/calendar/calendar"
 OUT = os.path.join(REPO, "_data", "schedule.yml")
 LINKS = os.path.join(REPO, "_data", "schedule_links.yml")

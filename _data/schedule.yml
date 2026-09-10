@@ -99,6 +99,10 @@ events:
 - date: '2026-09-14'
   lectures:
   - title: 'Lab 2 M2 Discussion: Interrupts'
+    slides: media/slides/05-lab2-interrupts.pdf
+  quizzes:
+  - title: 'Quiz 3: UIO Part 1'
+    points: 10
 - date: '2026-09-16'
   lectures:
   - title: Lab 3 Discussion
