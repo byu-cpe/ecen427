@@ -47,8 +47,11 @@
     "Lab 2 M2 Discussion": media/slides/05-lab2-interrupts.pdf
 
 "2026-09-21":
+  note: "Instructor out of town, no lecture. Work through the C++ Refresher page during the class period."
   slides:
     "C++": media/slides/c++.pdf
+  reading:
+    - { title: "C++ Refresher", url: /cpp-refresher/ }
 
 "2026-09-25":
   study:

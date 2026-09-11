@@ -24,6 +24,28 @@ You will use a shared repository for this lab, and then return to working in you
 **TBD:** Instructions for creating your shared team repository will be provided when the lab begins.
 
 
+## Preliminary
+
+### C++ Refresher
+
+This lab is written in C++.  Work through the [C++ Refresher]({% link _pages/cpp_refresher.md %}) page before you start.  It covers the C++ features this lab relies on (references, initializer lists, inheritance, STL containers and static members) with short videos and readings, and points out where each shows up in the provided code.
+
+### Provided Code
+
+A set of class headers is provided in the [space_invaders](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/space_invaders) folder.  **Using them is completely optional.**  They are one reasonable design for the game; you may use them as-is, change them however you like, or ignore them and write all of the Space Invaders code from scratch.  If you do use them, read through them before writing any code.  In particular:
+  * [GameObject.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/GameObject.h) is the base class for everything drawn on the screen (aliens, bullets, bunkers, tank, UFO).  Understand what it already does for you before you implement a subclass.
+  * [Globals.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/Globals.h) is how the rest of the game reaches the shared graphics, sprites, bullets, score and lives objects.
+  * [config.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/config.h) holds the game's tunable constants (sizes, speeds, colors, points).  Use these rather than hard-coding numbers.
+  * [main.cpp](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/main.cpp) is provided and already runs the tick loop off the FIT interrupt, the same way your clock did in Lab 3.
+
+### HDMI Driver
+
+All drawing goes through the HDMI driver's device file.  Read the [HDMI]({% link _documentation/hdmi.md %}) page for how to seek, read and write the pixel buffer.
+
+### Code Quality
+
+Your code is checked for compiler warnings and run under valgrind when graded; see the [Submission]({% link _pages/submission.md %}) page for the deductions.  Review the [Coding Standard]({% link _pages/coding_standard.md %}) and the [Valgrind]({% link _documentation/valgrind.md %}) page before you start, and check your code as you go rather than at the end.
+
 ## Implementation
 
 {% include starter_code_note.md %}

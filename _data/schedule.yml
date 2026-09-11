@@ -115,9 +115,15 @@ events:
     points: 20
     lab: 2
 - date: '2026-09-21'
+  note: Instructor out of town, no lecture. Work through the C++ Refresher page during
+    the class period.
   lectures:
   - title: C++
+    slides: media/slides/c++.pdf
   - title: Instructor Gone - No class
+  reading:
+  - title: C++ Refresher
+    url: /cpp-refresher/
   quizzes:
   - title: 'Quiz 4: Interrupts, UIO Part 2, Lab 2'
     points: 19
