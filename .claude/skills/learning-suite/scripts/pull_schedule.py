@@ -197,6 +197,8 @@ def build(data, links, materials_through):
         # The overlay may shorten a title for the public calendar.
         renames = {k.lower(): v for k, v in (overlay.get("rename") or {}).items()}
         titles = [renames.get(t.lower(), t) for t in titles]
+        # Two Learning Suite items renamed to the same title collapse to one line.
+        titles = list(dict.fromkeys(titles))
 
         # Website-only lecture lines, e.g. one announced before it exists in
         # Learning Suite. Each is skipped automatically once Learning Suite has

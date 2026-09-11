@@ -47,9 +47,10 @@
     "Lab 2 M2 Discussion": media/slides/05-lab2-interrupts.pdf
 
 "2026-09-21":
-  note: "Instructor out of town, no lecture. Work through the C++ Refresher page during the class period."
-  slides:
-    "C++": media/slides/c++.pdf
+  # Learning Suite lists "C++" and "Instructor Gone - No class"; both collapse to one line.
+  rename:
+    "C++": "Instructor gone: work through the C++ Refresher page"
+    "Instructor Gone - No class": "Instructor gone: work through the C++ Refresher page"
   reading:
     - { title: "C++ Refresher", url: /cpp-refresher/ }
 
