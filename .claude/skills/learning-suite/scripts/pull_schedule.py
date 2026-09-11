@@ -39,6 +39,7 @@ PUBLISHED_QUIZZES = [
     "Quiz 1: OS, Lab 1",
     "Quiz 2: Devices",
     "Quiz 3: UIO Part 1",
+    "Quiz 4: Interrupts, UIO Part 2, Lab 2",
 ]
 # Midterms, listed the same way and for the same reason. These are testing
 # centre exams with an open..close window, and each day of the window is marked

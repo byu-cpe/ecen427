@@ -241,6 +241,15 @@ How the exam pages work (learned by reading `app/drivers/exam/questions/drivervu
   33.33% shares total 0.99. `quiz_to_moodle.py` emits whole-percent shares
   (34/33/33) and `push_quiz.py` re-splits multiple-response points so they sum
   to the question total.
+* Exam names in the `exam/list` JSON are HTML-escaped, so a name with an
+  ampersand must be passed escaped: `"Quiz: Interrupts, Lab 2 &amp; 3"`.
+* `export_quiz.py` can report "download did not arrive" even though the dialog
+  ran. To read an exam's questions without the download, open the questions
+  page with `ls_quiz.open_questions_page(name)` and evaluate
+  `VM_JS + ".loadedQuestions"`: each item (or block child) carries `question`,
+  `type`, `points`, feedback fields and a `choices` map whose entries have
+  `text`, `display_order` and `correct`. TrueFalse items do not mark the
+  correct choice there.
 * An import can outlast the 60 s CDP socket timeout; `push_quiz.py` starts it,
   parks the outcome on `window`, and polls, rather than awaiting one long call.
 * The pages and quiz scripts write nothing until `push_quiz.py` is run without
