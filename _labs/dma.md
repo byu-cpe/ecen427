@@ -112,7 +112,7 @@ value written to the CURDESC_PNTR register.
 Any changes you make to these test applications will be discarded during grading.
 
 ## Submission
-Follow the instructions on the [Submission]({% link _pages/submission.md %}) page.
+Follow the instructions on the [Submission]({% link _pages/submission.md %}) page.  Reminder: your code must compile with zero warnings and run cleanly under `valgrind`.
 
 ## Suggestions
 

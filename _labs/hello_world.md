@@ -34,6 +34,7 @@ If you run into issues, post on Teams.  <ins>**Do not skip any setup steps**</in
   - [Complete the Tutorials]({% link _documentation/tutorials.md %})  
   - [Setup Git/Github]({% link _documentation/setup_git.md %})  
   - [Compiling and Running Programs]({% link _documentation/compiling_running_code.md %})  
+  - Read the [Lab Submission]({% link _pages/submission.md %}) page, including the compiler warning and Valgrind grading policies.  These apply to every lab.  
 
 
 After you have completed these steps, do the following:
@@ -44,7 +45,7 @@ After you have completed these steps, do the following:
 
 ##  Submission
 
-Follow the instructions on the [Submission]({% link _pages/submission.md %}) page.
+Read the entire [Submission]({% link _pages/submission.md %}) page before submitting.  It describes how labs are graded, including deductions for compiler warnings and Valgrind errors, and applies to every lab in this class.
 
 ## Lifelong Learning: What's Next?
 

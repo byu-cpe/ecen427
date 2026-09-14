@@ -80,7 +80,7 @@ When you are graded we will run each of the test applications and verify that th
 
 ## Submission 
 
-Follow the submission instructions for each milestone on the [Submission]({% link _pages/submission.md %}) page.
+Follow the submission instructions for each milestone on the [Submission]({% link _pages/submission.md %}) page.  Reminder: your code must compile with zero warnings.  Your applications will also be run under `valgrind`; for this lab any issues are reported to you but not deducted.
 
 ## Lifelong Learning: What's Next?
 

@@ -86,7 +86,7 @@ sudo bash -c "echo 33334 > /sys/devices/soc0/axi/\<your baseaddr\>.ecen427_pit/p
 The above command should cause your game to run at half speed.  
 
 
-Follow the [usual submission instructions]({% link _pages/submission.md %}).
+Follow the [usual submission instructions]({% link _pages/submission.md %}).  Reminder: your code must compile with zero warnings.  The `valgrind` requirement does not apply to kernel modules.
 
 
 ## Documentation 

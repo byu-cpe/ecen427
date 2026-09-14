@@ -42,10 +42,6 @@ A set of class headers is provided in the [space_invaders](https://github.com/by
 
 All drawing goes through the HDMI driver's device file.  Read the [HDMI]({% link _documentation/hdmi.md %}) page for how to seek, read and write the pixel buffer.
 
-### Code Quality
-
-Your code is checked for compiler warnings and run under valgrind when graded; see the [Submission]({% link _pages/submission.md %}) page for the deductions.  Review the [Coding Standard]({% link _pages/coding_standard.md %}) and the [Valgrind]({% link _documentation/valgrind.md %}) page before you start, and check your code as you go rather than at the end.
-
 ## Implementation
 
 {% include starter_code_note.md %}
@@ -121,7 +117,7 @@ The following would not be permitted:
 
 
 ## Submission 
-Follow the submission instructions for each milestone on the [Submission]({% link _pages/submission.md %}) page.
+Follow the submission instructions for each milestone on the [Submission]({% link _pages/submission.md %}) page.  Reminder: your code must compile with zero warnings and run cleanly under `valgrind`.
 
 
 ## Resources 

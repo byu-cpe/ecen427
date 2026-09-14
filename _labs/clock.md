@@ -53,7 +53,7 @@ Since the goal of the lab is to give you experience making use of interrupts, th
 
 ## Submission 
 
-Follow the instructions on the [Submission]({% link _pages/submission.md %}) page.
+Follow the instructions on the [Submission]({% link _pages/submission.md %}) page.  Reminder: your code must compile with zero warnings and run cleanly under `valgrind`.
 
 ## Suggestions
 
