@@ -46,6 +46,12 @@
   slides:
     "Lab 2 M2 Discussion": media/slides/05-lab2-interrupts.pdf
 
+"2026-09-16":
+  order: ["Cross Compilation", "Lab 3 Discussion"]
+  add_lectures: ["Cross Compilation"]
+  slides:
+    "Cross Compilation": media/slides/06-cross-compiling.pdf
+
 "2026-09-21":
   # Learning Suite lists "C++" and "Instructor Gone - No class"; both collapse to one line.
   rename:

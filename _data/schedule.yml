@@ -105,6 +105,8 @@ events:
     points: 10
 - date: '2026-09-16'
   lectures:
+  - title: Cross Compilation
+    slides: media/slides/06-cross-compiling.pdf
   - title: Lab 3 Discussion
 - date: '2026-09-18'
   lectures:
