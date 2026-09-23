@@ -1,5 +1,5 @@
 # Hand-maintained overlay of website links, merged into _data/schedule.yml by
-#   .claude/skills/learning-suite/scripts/pull_schedule.py
+#   .claude/skills/learning-suite/scripts/pull_schedule.py in the private solutions repo (../solns)
 #
 # Learning Suite owns the dates, lecture titles, quizzes and due dates. This file
 # owns the links and website-only notes, because Learning Suite has no place to
