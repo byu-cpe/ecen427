@@ -51,7 +51,7 @@ Before you submit, make sure that:
 * Every source file you wrote is committed **and pushed** — not just saved locally.
 * Every change you made to a `CMakeLists.txt` is committed and pushed.  The lines you uncomment in
   `userspace/drivers/CMakeLists.txt` and `userspace/apps/CMakeLists.txt` to compile your drivers and
-  applications are especially easy to forget, because your own build keeps working after you edit them.
+  applications (including test applications) are especially easy to forget, because your own build keeps working after you edit them.
 * A fresh clone of your repository builds cleanly.  The surest way to check is to clone your repository
   into a new directory and build it there.
 
