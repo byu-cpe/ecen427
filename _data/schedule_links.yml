@@ -68,8 +68,7 @@
   study:
     - { title: "Valgrind", url: /documentation/valgrind/ }
 
-"2026-09-28":
-  note: "Instructor gone, substitute or video lecture will be arranged."
+"2026-10-05":
   slides:
     "LDD3 Ch. 1": media/ldd/ldd3-ch1.pdf
   reading:
@@ -77,8 +76,7 @@
   study:
     - { title: "Ch 1 Study Questions", url: /ldd1/ }
 
-"2026-09-30":
-  note: "Instructor gone, substitute or video lecture will be arranged."
+"2026-10-07":
   slides:
     "LDD3 Ch.2": media/ldd/ldd3-ch2.pdf
   reading:
@@ -86,7 +84,7 @@
   study:
     - { title: "Ch 2 Study Questions", url: /ldd2/ }
 
-"2026-10-07":
+"2026-10-09":
   slides:
     "LDD3 Ch. 3": media/ldd/ldd3-ch3.pdf
   reading:
@@ -94,11 +92,7 @@
   study:
     - { title: "Ch 3 Study Questions", url: /ldd3/ }
 
-"2026-10-14":
-  slides:
-    "Lab 5": media/labs/lab5_kernel_driver.pdf
-
-"2026-10-09":
+"2026-10-12":
   slides:
     "LDD3 Ch 4,11": media/ldd/ldd3-ch4,11.pdf
   reading:
@@ -108,7 +102,7 @@
     - { title: "Ch 4 Study Questions", url: /ldd4/ }
     - { title: "Ch 11 Study Questions", url: /ldd11/ }
 
-"2026-10-12":
+"2026-10-14":
   slides:
     "LDD 6, 9, 10": media/ldd/ldd3-ch6,9,10.pdf
   reading:
@@ -119,6 +113,10 @@
     - { title: "Ch 6 Study Questions", url: /ldd6/ }
     - { title: "Ch 9 Study Questions", url: /ldd9/ }
     - { title: "Ch 10 Study Questions", url: /ldd10/ }
+
+"2026-10-16":
+  slides:
+    "Lab 5": media/labs/lab5_kernel_driver.pdf
 
 "2026-11-02":
   slides:
@@ -141,9 +139,6 @@
 "2026-11-09":
   study:
     - { title: "Creating AXI Peripheral IP in Vivado", url: /vivado-ip/ }
-
-"2026-10-02":
-  note: "Instructor gone, substitute or video lecture will be arranged."
 
 "2026-12-07":
   note: "Instructor gone, substitute or video lecture will be arranged."
