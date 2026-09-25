@@ -44,4 +44,10 @@ Check your code with valgrind before you submit; it is run the same way the TAs 
 
 ## Interpreting the results
 
-If valgrind reports errors or leaks, it will point you to the source line where the bad memory was allocated or accessed.  The [examples/valgrind](https://github.com/byu-cpe/ecen427_student/tree/main/examples/valgrind) directory in your class repository contains small example programs demonstrating common memory bugs (leaks, use after free, double free, out-of-bounds access, and more), along with the valgrind output each one produces.  These are a good reference for interpreting your own valgrind reports.
+If valgrind reports errors or leaks, it will point you to the source line where the bad memory was allocated or accessed.  See the example programs below for what the common reports look like and how to read them.
+
+## Example programs
+
+<https://github.com/byu-cpe/ecen427_student/tree/main/examples/valgrind>
+
+The `examples/valgrind` directory in your class repository contains small example programs demonstrating common memory bugs (leaks, use after free, double free, out-of-bounds access, and more).  Each one has a README with the valgrind output it produces and an explanation of how to read it.  These are a good reference for interpreting your own valgrind reports.
