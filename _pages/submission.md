@@ -27,7 +27,6 @@ make submit_lab4_m3
 make submit_lab5_m1
 make submit_lab5_m2
 make submit_lab5_m3
-make submit_lab5_m4
 make submit_lab6_m1
 make submit_lab6_m2
 make submit_lab7

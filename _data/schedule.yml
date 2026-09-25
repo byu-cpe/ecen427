@@ -132,9 +132,7 @@ events:
 - date: '2026-09-25'
   lectures:
   - title: Valgrind
-  reading:
-  - title: Valgrind
-    url: /documentation/valgrind/
+    slides: /documentation/valgrind/
 - date: '2026-09-26'
   labs:
   - title: Lab 3
@@ -157,7 +155,6 @@ events:
 - date: '2026-10-05'
   lectures:
   - title: Lab 4 M2/M3 discussion
-  - title: Review clock solution
   - title: LDD3 Ch. 1
 - date: '2026-10-06'
   note: Homecoming Opening Ceremony
@@ -174,14 +171,13 @@ events:
     lab: 4
 - date: '2026-10-12'
   lectures:
-  - title: LDD3 Ch 4,11
+  - title: LDD3 Ch. 4, 11
 - date: '2026-10-14'
   lectures:
-  - title: LDD 6, 9, 10
+  - title: LDD3 Ch. 6, 9, 10
 - date: '2026-10-16'
   lectures:
   - title: Lab 5 Milestone 1 Discussion
-  - title: Lab 5 Milestone 2 Discussion
 - date: '2026-10-17'
   labs:
   - title: Lab 4 M3
@@ -189,7 +185,7 @@ events:
     lab: 4
 - date: '2026-10-19'
   lectures:
-  - title: Lab 5 Milestone 3 Discussion
+  - title: Lab 5 Milestone 2 Discussion
   exams:
   - title: Midterm 1
 - date: '2026-10-20'
@@ -199,17 +195,14 @@ events:
 - date: '2026-10-24'
   labs:
   - title: Lab 5 M1
-    points: 10
-    lab: 5
-  - title: Lab 5 M2
-    points: 10
+    points: 20
     lab: 5
 - date: '2026-10-26'
   lectures:
-  - title: Lab 5 Milestone 3/4 discussion
+  - title: Lab 5 Milestone 3 Discussion
 - date: '2026-10-31'
   labs:
-  - title: Lab 5 M3
+  - title: Lab 5 M2
     points: 20
     lab: 5
 - date: '2026-11-02'
@@ -222,7 +215,7 @@ events:
   - title: Lab 6 M1 Discussion
 - date: '2026-11-07'
   labs:
-  - title: Lab 5 M4
+  - title: Lab 5 M3
     points: 20
     lab: 5
 - date: '2026-11-09'

@@ -65,8 +65,9 @@
     "Lab4 M1": media/slides/07-lab4m1-syscalls.pdf
 
 "2026-09-25":
-  reading:
-    - { title: "Valgrind", url: /documentation/valgrind/ }
+  # No slide deck; the lecture title links straight to the website's Valgrind page.
+  slides:
+    "Valgrind": /documentation/valgrind/
 
 "2026-10-05":
   slides:
@@ -78,7 +79,7 @@
 
 "2026-10-07":
   slides:
-    "LDD3 Ch.2": media/ldd/ldd3-ch2.pdf
+    "LDD3 Ch. 2": media/ldd/ldd3-ch2.pdf
   reading:
     - { title: "LDD3 Ch 2", url: "https://lwn.net/images/pdf/LDD3/ch02.pdf" }
   study:
@@ -94,7 +95,7 @@
 
 "2026-10-12":
   slides:
-    "LDD3 Ch 4,11": media/ldd/ldd3-ch4,11.pdf
+    "LDD3 Ch. 4, 11": media/ldd/ldd3-ch4,11.pdf
   reading:
     - { title: "LDD3 Ch 4", url: "https://lwn.net/images/pdf/LDD3/ch04.pdf" }
     - { title: "LDD3 Ch 11", url: "https://lwn.net/images/pdf/LDD3/ch11.pdf" }
@@ -104,7 +105,7 @@
 
 "2026-10-14":
   slides:
-    "LDD 6, 9, 10": media/ldd/ldd3-ch6,9,10.pdf
+    "LDD3 Ch. 6, 9, 10": media/ldd/ldd3-ch6,9,10.pdf
   reading:
     - { title: "LDD3 Ch 6", url: "https://lwn.net/images/pdf/LDD3/ch06.pdf" }
     - { title: "LDD3 Ch 9", url: "https://lwn.net/images/pdf/LDD3/ch09.pdf" }
@@ -115,7 +116,6 @@
     - { title: "Ch 10 Study Questions", url: /ldd10/ }
 
 "2026-10-16":
-  order: ["Lab 5 Milestone 1 Discussion", "Lab 5 Milestone 2 Discussion"]
   slides:
     "Lab 5": media/labs/lab5_kernel_driver.pdf
 
