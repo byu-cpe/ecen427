@@ -132,21 +132,23 @@ events:
 - date: '2026-09-25'
   lectures:
   - title: Valgrind
+  reading:
+  - title: Valgrind
+    url: /documentation/valgrind/
 - date: '2026-09-26'
   labs:
   - title: Lab 3
     points: 20
     lab: 3
 - date: '2026-09-28'
-  note: Instructor gone, substitute or video lecture will be arranged.
   lectures:
-  - title: LDD3 Ch. 1
+  - title: Instructor gone - No class
 - date: '2026-09-30'
-  note: Instructor gone, substitute or video lecture will be arranged.
   lectures:
-  - title: LDD3 Ch.2
+  - title: Instructor gone - No class
 - date: '2026-10-02'
-  note: Instructor gone, substitute or video lecture will be arranged.
+  lectures:
+  - title: Instructor gone - No class
 - date: '2026-10-03'
   labs:
   - title: Lab 4 M1
@@ -156,14 +158,15 @@ events:
   lectures:
   - title: Lab 4 M2/M3 discussion
   - title: Review clock solution
+  - title: LDD3 Ch. 1
 - date: '2026-10-06'
   note: Homecoming Opening Ceremony
 - date: '2026-10-07'
   lectures:
-  - title: LDD3 Ch. 3
+  - title: LDD3 Ch. 2
 - date: '2026-10-09'
   lectures:
-  - title: LDD3 Ch 4,11
+  - title: LDD3 Ch. 3
 - date: '2026-10-10'
   labs:
   - title: Lab 4 M2
@@ -171,12 +174,13 @@ events:
     lab: 4
 - date: '2026-10-12'
   lectures:
-  - title: LDD 6, 9, 10
+  - title: LDD3 Ch 4,11
 - date: '2026-10-14'
   lectures:
-  - title: Lab 5 Milestone 1 Discussion
+  - title: LDD 6, 9, 10
 - date: '2026-10-16'
   lectures:
+  - title: Lab 5 Milestone 1 Discussion
   - title: Lab 5 Milestone 2 Discussion
 - date: '2026-10-17'
   labs:

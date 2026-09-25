@@ -65,7 +65,7 @@
     "Lab4 M1": media/slides/07-lab4m1-syscalls.pdf
 
 "2026-09-25":
-  study:
+  reading:
     - { title: "Valgrind", url: /documentation/valgrind/ }
 
 "2026-10-05":
@@ -115,6 +115,7 @@
     - { title: "Ch 10 Study Questions", url: /ldd10/ }
 
 "2026-10-16":
+  order: ["Lab 5 Milestone 1 Discussion", "Lab 5 Milestone 2 Discussion"]
   slides:
     "Lab 5": media/labs/lab5_kernel_driver.pdf
 
