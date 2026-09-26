@@ -18,11 +18,34 @@ In this lab you will write the software that implements all functionality (excep
 
 This is the only lab where you will be permitted to work in a team.  Your team will be three students.  The teams are pre-set and are listed on Learning Suite.  If two teams mutually agree, you may swap team members.  Do this before proceeding with the next step.
 
-
 You will use a shared repository for this lab, and then return to working in your private repository for the remainder of the labs.
 
-**TBD:** Instructions for creating your shared team repository will be provided when the lab begins.
+### Accept the Team Repository Invitation
 
+A private, empty repository is created for each team, and every member is invited to it; you do not need to create anything yourself.
+
+1. GitHub will email an invitation to collaborate on *byu-ecen427-classroom/427-team-\<NN\>*, where *\<NN\>* is your two-digit team number (Team 6 is *427-team-06*, Team 12 is *427-team-12*).  Accept it.
+1. If you can't find the email, log in to GitHub and visit `https://github.com/byu-ecen427-classroom/427-team-<NN>`; a banner with the invitation will appear at the top of the page.
+1. Team repositories are created once the teams are finalized.  If you swap teams after that, or you haven't received an invitation within a day of the lab starting, post on Teams.
+
+### Seed the Team Repository
+
+The team repository starts out empty.  Pick **one** team member whose individual repository will become the team's starting point; you can choose anyone's code, but **all team members must have submitted Lab 3 before you share your code**.
+
+1. The chosen member pushes their `main` branch into the team repository, from inside their existing individual clone (`~/ecen427`):
+
+        git push git@github.com:byu-ecen427-classroom/427-team-<NN>.git main
+
+1. **Every** team member (including the one who pushed) then clones the team repository into a new directory, separate from their individual repository, and opens it in VS Code:
+
+        git clone git@github.com:byu-ecen427-classroom/427-team-<NN>.git ~/ecen427_team
+        code ~/ecen427_team
+
+1. Add the starter code remote to the new clone, exactly as you did for your individual repository (see [Add Starter Code Remote]({% link _documentation/setup_git.md %}#add-starter-code-remote)), so your team can pull in any updates I make during the lab:
+
+        git remote add startercode https://github.com/byu-cpe/ecen427_student
+
+Do all of your Lab 4 work in the team clone.  Your individual repository is untouched and will be used again starting with Lab 5.  Because the team repository is what is graded, only one team member needs to run the submission script for each milestone; the submission tag is pushed to the shared repository.
 
 ## Preliminary
 
