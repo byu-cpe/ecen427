@@ -287,6 +287,46 @@ table {
     margin-bottom: 0.6rem;
 }
 
+/* The month heading is a button that collapses the grid beneath it. It is
+   styled to look like the plain heading it replaces, plus a chevron. */
+.cal-month-toggle {
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+}
+
+.cal-month-toggle:hover {
+    color: $brand-color;
+}
+
+.cal-month-toggle:focus-visible {
+    outline: 2px solid $brand-color;
+    outline-offset: 4px;
+    border-radius: 3px;
+}
+
+.cal-chevron {
+    display: inline-block;
+    width: 0.6em;
+    height: 0.6em;
+    border-right: 0.14em solid currentColor;
+    border-bottom: 0.14em solid currentColor;
+    transform: translateY(-0.15em) rotate(45deg);
+    transition: transform 0.15s ease;
+}
+
+.cal-month.cal-collapsed .cal-chevron {
+    transform: translateY(0) rotate(-45deg);
+}
+
+.cal-month.cal-collapsed .cal-grid {
+    display: none;
+}
+
 .cal-grid {
     display: grid;
     grid-template-columns: repeat(6, minmax(0, 1fr));

@@ -9,8 +9,14 @@ Data is generated from Learning Suite; see the header of _data/schedule.yml.
 <div class="course-calendar">
 {%- for m in sched.semester.months -%}
   {%- assign mm = m.month | prepend: '0' | slice: -2, 2 -%}
-  <h2 class="cal-month-name" id="cal-{{ m.name | downcase }}">{{ m.name }} {{ m.year }}</h2>
-  <div class="cal-grid">
+  {%- assign mslug = m.name | downcase -%}
+  <section class="cal-month" data-month="{{ m.year }}-{{ mm }}" data-days="{{ m.days }}">
+  <h2 class="cal-month-name" id="cal-{{ mslug }}">
+    <button type="button" class="cal-month-toggle" aria-expanded="true" aria-controls="cal-grid-{{ mslug }}">
+      <span class="cal-chevron" aria-hidden="true"></span>{{ m.name }} {{ m.year }}
+    </button>
+  </h2>
+  <div class="cal-grid" id="cal-grid-{{ mslug }}">
     {%- for dow in sched.semester.dow_labels -%}
     <div class="cal-dow">{{ dow }}</div>
     {%- endfor -%}
@@ -112,6 +118,7 @@ Data is generated from Learning Suite; see the header of _data/schedule.yml.
       {%- endif -%}
     {%- endfor -%}
   </div>
+  </section>
 {%- endfor -%}
 </div>
 
@@ -126,5 +133,32 @@ Data is generated from Learning Suite; see the header of _data/schedule.yml.
             String(now.getDate()).padStart(2, '0');
   var cell = document.querySelector('.course-calendar .cal-day[data-date="' + iso + '"]');
   if (cell) { cell.classList.add('cal-today'); }
+
+  // Each month collapses behind its heading. Months that are entirely in the
+  // past start collapsed so the page opens on what is current; the rest start
+  // open. Without JavaScript every month simply stays expanded.
+  var months = document.querySelectorAll('.course-calendar .cal-month');
+  function setOpen(month, open) {
+    month.classList.toggle('cal-collapsed', !open);
+    month.querySelector('.cal-month-toggle').setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  Array.prototype.forEach.call(months, function (month) {
+    var lastDay = month.getAttribute('data-month') + '-' +
+                  String(month.getAttribute('data-days')).padStart(2, '0');
+    setOpen(month, lastDay >= iso);
+    month.querySelector('.cal-month-toggle').addEventListener('click', function () {
+      setOpen(month, month.classList.contains('cal-collapsed'));
+    });
+  });
+
+  // A link to #cal-<month> should land on an open month, even a past one.
+  function revealHash() {
+    if (!location.hash) { return; }
+    var target = document.getElementById(location.hash.slice(1));
+    var month = target && target.closest('.cal-month');
+    if (month) { setOpen(month, true); }
+  }
+  revealHash();
+  window.addEventListener('hashchange', revealHash);
 })();
 </script>
