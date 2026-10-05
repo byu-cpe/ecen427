@@ -160,8 +160,6 @@ events:
   reading:
   - title: LDD3 Ch 1
     url: https://lwn.net/images/pdf/LDD3/ch01.pdf
-- date: '2026-10-06'
-  note: Homecoming Opening Ceremony
 - date: '2026-10-07'
   lectures:
   - title: LDD3 Ch. 2
