@@ -163,6 +163,10 @@ events:
 - date: '2026-10-07'
   lectures:
   - title: LDD3 Ch. 2
+    slides: media/ldd/ldd3-ch2.pdf
+  reading:
+  - title: LDD3 Ch 2
+    url: https://lwn.net/images/pdf/LDD3/ch02.pdf
 - date: '2026-10-09'
   lectures:
   - title: LDD3 Ch. 3
