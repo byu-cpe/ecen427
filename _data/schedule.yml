@@ -170,6 +170,9 @@ events:
 - date: '2026-10-09'
   lectures:
   - title: LDD3 Ch. 3
+  quizzes:
+  - title: 'Quiz 5: LDD3 Ch 1'
+    points: 10
 - date: '2026-10-10'
   labs:
   - title: Lab 4 M2
