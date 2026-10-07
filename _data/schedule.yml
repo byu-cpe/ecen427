@@ -181,6 +181,9 @@ events:
 - date: '2026-10-12'
   lectures:
   - title: LDD3 Ch. 4, 11
+  quizzes:
+  - title: 'Quiz 6: LDD3 Ch 2'
+    points: 16
 - date: '2026-10-14'
   lectures:
   - title: LDD3 Ch. 6, 9, 10
