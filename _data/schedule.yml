@@ -170,6 +170,10 @@ events:
 - date: '2026-10-09'
   lectures:
   - title: LDD3 Ch. 3
+    slides: media/ldd/ldd3-ch3.pdf
+  reading:
+  - title: LDD3 Ch 3
+    url: https://lwn.net/images/pdf/LDD3/ch03.pdf
   quizzes:
   - title: 'Quiz 5: LDD3 Ch 1'
     points: 19
