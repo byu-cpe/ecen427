@@ -95,7 +95,7 @@
 
 "2026-10-12":
   slides:
-    "LDD3 Ch. 4, 11": media/ldd/ldd3-ch4,11.pdf
+    "LDD3 Ch. 4": media/ldd/ldd3-ch4.pdf
   reading:
     - { title: "LDD3 Ch 4", url: "https://lwn.net/images/pdf/LDD3/ch04.pdf" }
     - { title: "LDD3 Ch 11", url: "https://lwn.net/images/pdf/LDD3/ch11.pdf" }
