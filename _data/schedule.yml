@@ -184,18 +184,17 @@ events:
     lab: 4
 - date: '2026-10-12'
   lectures:
-  - title: LDD3 Ch. 4, 11
+  - title: LDD3 Ch. 4
     slides: media/ldd/ldd3-ch4.pdf
   reading:
   - title: LDD3 Ch 4
     url: https://lwn.net/images/pdf/LDD3/ch04.pdf
-  - title: LDD3 Ch 11
-    url: https://lwn.net/images/pdf/LDD3/ch11.pdf
   quizzes:
   - title: 'Quiz 6: LDD3 Ch 2'
     points: 16
 - date: '2026-10-14'
   lectures:
+  - title: LDD3 Ch. 11
   - title: LDD3 Ch. 6, 9, 10
 - date: '2026-10-16'
   lectures:

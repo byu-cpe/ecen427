@@ -98,12 +98,11 @@
     "LDD3 Ch. 4": media/ldd/ldd3-ch4.pdf
   reading:
     - { title: "LDD3 Ch 4", url: "https://lwn.net/images/pdf/LDD3/ch04.pdf" }
-    - { title: "LDD3 Ch 11", url: "https://lwn.net/images/pdf/LDD3/ch11.pdf" }
   study:
     - { title: "Ch 4 Study Questions", url: /ldd4/ }
-    - { title: "Ch 11 Study Questions", url: /ldd11/ }
 
 "2026-10-14":
+  order: ["LDD3 Ch. 11", "LDD3 Ch. 6, 9, 10"]
   slides:
     "LDD3 Ch. 6, 9, 10": media/ldd/ldd3-ch6,9,10.pdf
   reading:
