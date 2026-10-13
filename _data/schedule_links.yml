@@ -118,7 +118,7 @@
   study:
     - { title: "Ch 11 Study Questions", url: /ldd11/ }
 
-"2026-10-30":
+"2026-10-28":
   order: ["LDD3 Ch. 6", "Lab 5 Milestone 3 Discussion"]
   reading:
     - { title: "LDD3 Ch 6", url: "https://lwn.net/images/pdf/LDD3/ch06.pdf" }
@@ -159,12 +159,6 @@
   order: ["LDD3 Ch. 14", "Lab 7 Discussion"]
   reading:
     - { title: "LDD3 Ch 14", url: "https://lwn.net/images/pdf/LDD3/ch14.pdf" }
-
-"2026-12-07":
-  note: "Instructor gone, substitute or video lecture will be arranged."
-
-"2026-12-09":
-  note: "Instructor gone, substitute or video lecture will be arranged."
 
 "2026-12-11":
   note: "Instructor gone, substitute or video lecture will be arranged."
