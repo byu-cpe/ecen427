@@ -194,8 +194,9 @@ events:
     points: 16
 - date: '2026-10-14'
   lectures:
+  - title: LDD3 Ch. 9
+  - title: LDD3 Ch. 10
   - title: LDD3 Ch. 11
-  - title: LDD3 Ch. 6, 9, 10
 - date: '2026-10-16'
   lectures:
   - title: Lab 5 Milestone 1 Discussion
@@ -205,14 +206,16 @@ events:
     points: 30
     lab: 4
 - date: '2026-10-19'
-  lectures:
-  - title: Lab 5 Milestone 2 Discussion
+  note: No class (Midterm 1)
   exams:
   - title: Midterm 1
 - date: '2026-10-20'
   exams:
   - title: Midterm 1
     points: 48
+- date: '2026-10-21'
+  lectures:
+  - title: Lab 5 Milestone 2 Discussion
 - date: '2026-10-24'
   labs:
   - title: Lab 5 M1

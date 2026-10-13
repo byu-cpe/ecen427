@@ -102,17 +102,19 @@
     - { title: "Ch 4 Study Questions", url: /ldd4/ }
 
 "2026-10-14":
-  order: ["LDD3 Ch. 11", "LDD3 Ch. 6, 9, 10"]
-  slides:
-    "LDD3 Ch. 6, 9, 10": media/ldd/ldd3-ch6,9,10.pdf
+  # Learning Suite: one item per chapter (Ch. 9, Ch. 10, Ch. 11); Ch 6 moved later in October.
+  order: ["LDD3 Ch. 9", "LDD3 Ch. 10", "LDD3 Ch. 11"]
   reading:
-    - { title: "LDD3 Ch 6", url: "https://lwn.net/images/pdf/LDD3/ch06.pdf" }
     - { title: "LDD3 Ch 9", url: "https://lwn.net/images/pdf/LDD3/ch09.pdf" }
     - { title: "LDD3 Ch 10", url: "https://lwn.net/images/pdf/LDD3/ch10.pdf" }
+    - { title: "LDD3 Ch 11", url: "https://lwn.net/images/pdf/LDD3/ch11.pdf" }
   study:
-    - { title: "Ch 6 Study Questions", url: /ldd6/ }
     - { title: "Ch 9 Study Questions", url: /ldd9/ }
     - { title: "Ch 10 Study Questions", url: /ldd10/ }
+    - { title: "Ch 11 Study Questions", url: /ldd11/ }
+
+"2026-10-19":
+  note: "No class (Midterm 1)"
 
 "2026-10-16":
   slides:
