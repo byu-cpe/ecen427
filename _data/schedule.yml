@@ -224,6 +224,8 @@ events:
   exams:
   - title: Midterm 1
 - date: '2026-10-21'
+  lectures:
+  - title: No class - Midterm 1
   exams:
   - title: Midterm 1
     points: 48
