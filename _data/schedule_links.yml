@@ -130,7 +130,6 @@
     - { title: "LDD3 Ch 5", url: "https://lwn.net/images/pdf/LDD3/ch05.pdf" }
 
 "2026-11-04":
-  order: ["AXI Bus I", "AXI Read Example RTL"]
   slides:
     "AXI Bus I": media/slides/axi.pdf
   reading:

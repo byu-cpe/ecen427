@@ -255,7 +255,6 @@ events:
 - date: '2026-11-04'
   lectures:
   - title: AXI Bus I
-  - title: AXI Read Example RTL
 - date: '2026-11-06'
   lectures:
   - title: AXI Activity
