@@ -155,6 +155,11 @@
     "Lab 6 M2 Discussion (video)": "Instructor gone: watch the Lab 6 M2 Discussion and Vivado block design demo videos"
     "Vivado block design demo (video)": "Instructor gone: watch the Lab 6 M2 Discussion and Vivado block design demo videos"
 
+"2026-11-23":
+  order: ["LDD3 Ch. 14", "Lab 7 Discussion"]
+  reading:
+    - { title: "LDD3 Ch 14", url: "https://lwn.net/images/pdf/LDD3/ch14.pdf" }
+
 "2026-12-07":
   note: "Instructor gone, substitute or video lecture will be arranged."
 

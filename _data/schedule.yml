@@ -301,6 +301,7 @@ events:
     points: 5
 - date: '2026-11-23'
   lectures:
+  - title: LDD3 Ch. 14
   - title: Lab 7 Discussion
 - date: '2026-11-25'
   holiday: No class - Thanksgiving Holiday
