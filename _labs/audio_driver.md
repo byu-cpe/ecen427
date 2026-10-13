@@ -4,7 +4,6 @@ toc: true
 title: "Lab 5: Kernel Driver for Playing Audio"
 short_title: Audio Driver
 number: 5
-under_construction: true
 
 ---
 
@@ -274,4 +273,13 @@ Some resources to help you with the kernel function calls:
 
 ## Lifelong Learning: What's Next?
 
-TBD
+Your ISR has one job: keep the FIFOs from running dry.  The audio core interrupts when a FIFO drops to 256 samples, and the codec drains 48,000 samples per second, so your ISR has about 5 ms to run before the speakers pop.  That is a *deadline*, and nothing in Linux promises you will meet it.
+
+Explore this question: **What could make your ISR miss its deadline, and how do real-time systems prevent that?**
+  * What else on the board could delay your handler?  (Other interrupts, code that disables interrupts, the scheduler.)
+  * Linux is not a real-time operating system.  What does an RTOS guarantee that stock Linux does not?
+  * What are some popular RTOSs, and what timing guarantees do they actually provide?
+
+**AI use is encouraged for this section.**  You are welcome to paste your completed `audio_codec.c` into an AI tool to give it context, then discuss the question with it.  See the [Lifelong Learning: What's Next?]({% link _pages/lifelong_learning.md %}) page.
+
+When you're done, record what you learned in a few sentences in `lifelong_learning/lab5.txt`.  Submit this file with **Milestone 3**; it is not required for Milestones 1 or 2.
