@@ -271,9 +271,7 @@ events:
   - title: AXI Bus II
 - date: '2026-11-13'
   lectures:
-  - title: Instructor gone - No class
-  - title: Lab 6 M2 Discussion (video)
-  - title: Vivado block design demo (video)
+  - title: 'Instructor gone: watch the Lab 6 M2 Discussion and Vivado block design demo videos'
 - date: '2026-11-14'
   labs:
   - title: Lab 6 M1

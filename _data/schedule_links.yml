@@ -149,7 +149,11 @@
     - { title: "Creating AXI Peripheral IP in Vivado", url: /vivado-ip/ }
 
 "2026-11-13":
-  order: ["Instructor gone - No class", "Lab 6 M2 Discussion (video)", "Vivado block design demo (video)"]
+  # Learning Suite lists the no-class item and the two recorded topics; collapse to one line.
+  rename:
+    "Instructor gone - No class": "Instructor gone: watch the Lab 6 M2 Discussion and Vivado block design demo videos"
+    "Lab 6 M2 Discussion (video)": "Instructor gone: watch the Lab 6 M2 Discussion and Vivado block design demo videos"
+    "Vivado block design demo (video)": "Instructor gone: watch the Lab 6 M2 Discussion and Vivado block design demo videos"
 
 "2026-12-07":
   note: "Instructor gone, substitute or video lecture will be arranged."
