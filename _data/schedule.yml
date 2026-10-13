@@ -196,22 +196,20 @@ events:
   lectures:
   - title: LDD3 Ch. 9
   - title: LDD3 Ch. 10
-  - title: LDD3 Ch. 11
   reading:
   - title: LDD3 Ch 9
     url: https://lwn.net/images/pdf/LDD3/ch09.pdf
   - title: LDD3 Ch 10
     url: https://lwn.net/images/pdf/LDD3/ch10.pdf
-  - title: LDD3 Ch 11
-    url: https://lwn.net/images/pdf/LDD3/ch11.pdf
 - date: '2026-10-16'
   lectures:
   - title: Platform Devices
-  - title: Lab 5 Milestone 1 Discussion
-    slides: media/labs/lab5_kernel_driver.pdf
+  - title: LDD3 Ch. 11
   reading:
   - title: Linux Platform Devices and the Device Tree
     url: /documentation/platform-device-tree/
+  - title: LDD3 Ch 11
+    url: https://lwn.net/images/pdf/LDD3/ch11.pdf
 - date: '2026-10-17'
   labs:
   - title: Lab 4 M3
@@ -219,10 +217,13 @@ events:
     lab: 4
 - date: '2026-10-19'
   lectures:
-  - title: No class - Midterm 1
+  - title: Lab 5 Milestone 1 Discussion
   exams:
   - title: Midterm 1
 - date: '2026-10-20'
+  exams:
+  - title: Midterm 1
+- date: '2026-10-21'
   exams:
   - title: Midterm 1
     points: 48
@@ -239,6 +240,7 @@ events:
   - title: Lab 5 Milestone 2 Discussion
 - date: '2026-10-30'
   lectures:
+  - title: LDD3 Ch. 6
   - title: Lab 5 Milestone 3 Discussion
 - date: '2026-10-31'
   labs:
@@ -247,12 +249,14 @@ events:
     lab: 5
 - date: '2026-11-02'
   lectures:
-  - title: AXI Bus I
-  - title: AXI Activity
+  - title: LDD3 Ch. 5
 - date: '2026-11-04'
   lectures:
+  - title: AXI Bus I
   - title: AXI Read Example RTL
-  - title: Lab 6 M1 Discussion
+- date: '2026-11-06'
+  lectures:
+  - title: AXI Activity
 - date: '2026-11-07'
   labs:
   - title: Lab 5 M3
@@ -260,16 +264,15 @@ events:
     lab: 5
 - date: '2026-11-09'
   lectures:
-  - title: Vivado Simulation Demo
-  - title: Lab 6 M1 Q&A
+  - title: Lab 6 M1 Discussion
 - date: '2026-11-11'
   lectures:
   - title: AXI Bus II
 - date: '2026-11-13'
   lectures:
-  - title: Lab 6 M2 Discussion
-  - title: Vivado block design demo
   - title: Instructor gone - No class
+  - title: Lab 6 M2 Discussion (video)
+  - title: Vivado block design demo (video)
 - date: '2026-11-14'
   labs:
   - title: Lab 6 M1

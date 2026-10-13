@@ -102,34 +102,41 @@
     - { title: "Ch 4 Study Questions", url: /ldd4/ }
 
 "2026-10-14":
-  # Learning Suite: one item per chapter (Ch. 9, Ch. 10, Ch. 11); Ch 6 moved later in October.
-  order: ["LDD3 Ch. 9", "LDD3 Ch. 10", "LDD3 Ch. 11"]
+  order: ["LDD3 Ch. 9", "LDD3 Ch. 10"]
   reading:
     - { title: "LDD3 Ch 9", url: "https://lwn.net/images/pdf/LDD3/ch09.pdf" }
     - { title: "LDD3 Ch 10", url: "https://lwn.net/images/pdf/LDD3/ch10.pdf" }
-    - { title: "LDD3 Ch 11", url: "https://lwn.net/images/pdf/LDD3/ch11.pdf" }
   study:
     - { title: "Ch 9 Study Questions", url: /ldd9/ }
     - { title: "Ch 10 Study Questions", url: /ldd10/ }
-    - { title: "Ch 11 Study Questions", url: /ldd11/ }
 
 "2026-10-16":
-  order: ["Platform Devices", "Lab 5 Milestone 1 Discussion"]
-  slides:
-    "Lab 5": media/labs/lab5_kernel_driver.pdf
+  order: ["Platform Devices", "LDD3 Ch. 11"]
   reading:
     - { title: "Linux Platform Devices and the Device Tree", url: /documentation/platform-device-tree/ }
+    - { title: "LDD3 Ch 11", url: "https://lwn.net/images/pdf/LDD3/ch11.pdf" }
+  study:
+    - { title: "Ch 11 Study Questions", url: /ldd11/ }
+
+"2026-10-30":
+  order: ["LDD3 Ch. 6", "Lab 5 Milestone 3 Discussion"]
+  reading:
+    - { title: "LDD3 Ch 6", url: "https://lwn.net/images/pdf/LDD3/ch06.pdf" }
+  study:
+    - { title: "Ch 6 Study Questions", url: /ldd6/ }
 
 "2026-11-02":
+  reading:
+    - { title: "LDD3 Ch 5", url: "https://lwn.net/images/pdf/LDD3/ch05.pdf" }
+
+"2026-11-04":
+  order: ["AXI Bus I", "AXI Read Example RTL"]
   slides:
     "AXI Bus I": media/slides/axi.pdf
   reading:
     - { title: "AXI Bus Spec", url: "http://gstitt.ece.ufl.edu/courses/fall15/eel4720_5721/labs/refs/AXI4_specification.pdf" }
   study:
     - { title: "AXI Bus I Study Questions", url: /axi1/ }
-
-"2026-11-04":
-  study:
     - { title: "Simulating AXI IP", url: /documentation/vivado-axi-simulation/ }
 
 "2026-11-11":
@@ -141,6 +148,9 @@
 "2026-11-09":
   study:
     - { title: "Creating AXI Peripheral IP in Vivado", url: /vivado-ip/ }
+
+"2026-11-13":
+  order: ["Instructor gone - No class", "Lab 6 M2 Discussion (video)", "Vivado block design demo (video)"]
 
 "2026-12-07":
   note: "Instructor gone, substitute or video lecture will be arranged."
