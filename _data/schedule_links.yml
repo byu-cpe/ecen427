@@ -8,8 +8,10 @@
 # small grey line at the top of the day, `holiday` relabels a day off, `rename`
 # shortens a Learning Suite item title for the public calendar, `add_lectures`
 # lists website-only lecture lines (each is dropped automatically once an item
-# with the same title exists in Learning Suite), and `order` pins the display
-# order of that day's lecture titles.
+# with the same title exists in Learning Suite), `order` pins the display
+# order of that day's lecture titles, and `hide_note: true` drops the
+# university-calendar note (e.g. "Last Day of Class") Learning Suite attaches
+# to that day.
 
 "2026-09-02":
   order: ["Class Overview", "Intro to Operating Systems"]
@@ -160,8 +162,8 @@
   reading:
     - { title: "LDD3 Ch 14", url: "https://lwn.net/images/pdf/LDD3/ch14.pdf" }
 
-"2026-12-11":
-  note: "Instructor gone, substitute or video lecture will be arranged."
+"2026-12-10":
+  hide_note: true   # drop BYU's "Last Day of Class"; the Dec 4 lecture item says it
 
 # BYU labels the three days of Thanksgiving break differently; say the same thing.
 "2026-11-25":

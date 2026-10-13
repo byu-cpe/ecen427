@@ -9,7 +9,7 @@
 # Suite itself, and re-run the script.
 semester:
   start: '2026-09-02'
-  end: '2026-12-11'
+  end: '2026-12-09'
   classes_end: '2026-12-10'
   class_days:
   - 1
@@ -341,7 +341,3 @@ events:
   exams:
   - title: Midterm 3
     points: 25
-- date: '2026-12-10'
-  note: Last Day of Class
-- date: '2026-12-11'
-  note: Instructor gone, substitute or video lecture will be arranged.
