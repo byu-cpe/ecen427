@@ -210,6 +210,9 @@ events:
     url: /documentation/platform-device-tree/
   - title: LDD3 Ch 11
     url: https://lwn.net/images/pdf/LDD3/ch11.pdf
+  quizzes:
+  - title: 'Quiz 7: LDD3 Ch 3'
+    points: 16
 - date: '2026-10-17'
   labs:
   - title: Lab 4 M3
