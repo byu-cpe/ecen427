@@ -197,31 +197,47 @@ events:
   - title: LDD3 Ch. 9
   - title: LDD3 Ch. 10
   - title: LDD3 Ch. 11
+  reading:
+  - title: LDD3 Ch 9
+    url: https://lwn.net/images/pdf/LDD3/ch09.pdf
+  - title: LDD3 Ch 10
+    url: https://lwn.net/images/pdf/LDD3/ch10.pdf
+  - title: LDD3 Ch 11
+    url: https://lwn.net/images/pdf/LDD3/ch11.pdf
 - date: '2026-10-16'
   lectures:
+  - title: Platform Devices
   - title: Lab 5 Milestone 1 Discussion
+    slides: media/labs/lab5_kernel_driver.pdf
+  reading:
+  - title: Linux Platform Devices and the Device Tree
+    url: /documentation/platform-device-tree/
 - date: '2026-10-17'
   labs:
   - title: Lab 4 M3
     points: 30
     lab: 4
 - date: '2026-10-19'
-  holiday: No class - Midterm 1
+  lectures:
+  - title: No class - Midterm 1
   exams:
   - title: Midterm 1
 - date: '2026-10-20'
   exams:
   - title: Midterm 1
     points: 48
-- date: '2026-10-21'
+- date: '2026-10-23'
   lectures:
-  - title: Lab 5 Milestone 2 Discussion
+  - title: No class - Lab 5 M1 help session in the lab
 - date: '2026-10-24'
   labs:
   - title: Lab 5 M1
     points: 20
     lab: 5
 - date: '2026-10-26'
+  lectures:
+  - title: Lab 5 Milestone 2 Discussion
+- date: '2026-10-30'
   lectures:
   - title: Lab 5 Milestone 3 Discussion
 - date: '2026-10-31'
@@ -253,17 +269,24 @@ events:
   lectures:
   - title: Lab 6 M2 Discussion
   - title: Vivado block design demo
+  - title: Instructor gone - No class
 - date: '2026-11-14'
   labs:
   - title: Lab 6 M1
     points: 20
     lab: 6
+- date: '2026-11-16'
+  lectures:
+  - title: Instructor gone - No class
+- date: '2026-11-18'
+  lectures:
+  - title: Instructor gone - No class
 - date: '2026-11-19'
   exams:
   - title: Midterm 2
 - date: '2026-11-20'
   lectures:
-  - title: Lab 7 Discussion
+  - title: Instructor gone - No class
   exams:
   - title: Midterm 2
 - date: '2026-11-21'
@@ -274,6 +297,9 @@ events:
   exams:
   - title: Midterm 2
     points: 5
+- date: '2026-11-23'
+  lectures:
+  - title: Lab 7 Discussion
 - date: '2026-11-25'
   holiday: No class - Thanksgiving Holiday
 - date: '2026-11-26'

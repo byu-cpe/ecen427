@@ -113,12 +113,12 @@
     - { title: "Ch 10 Study Questions", url: /ldd10/ }
     - { title: "Ch 11 Study Questions", url: /ldd11/ }
 
-"2026-10-19":
-  holiday: "No class - Midterm 1"
-
 "2026-10-16":
+  order: ["Platform Devices", "Lab 5 Milestone 1 Discussion"]
   slides:
     "Lab 5": media/labs/lab5_kernel_driver.pdf
+  reading:
+    - { title: "Linux Platform Devices and the Device Tree", url: /documentation/platform-device-tree/ }
 
 "2026-11-02":
   slides:
