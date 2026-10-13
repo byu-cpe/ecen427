@@ -206,7 +206,7 @@ events:
     points: 30
     lab: 4
 - date: '2026-10-19'
-  note: No class (Midterm 1)
+  holiday: No class - Midterm 1
   exams:
   - title: Midterm 1
 - date: '2026-10-20'
