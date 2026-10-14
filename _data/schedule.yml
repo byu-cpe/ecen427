@@ -195,6 +195,7 @@ events:
 - date: '2026-10-14'
   lectures:
   - title: LDD3 Ch. 9
+    slides: media/ldd/ldd3-ch9.pdf
   - title: LDD3 Ch. 10
   reading:
   - title: LDD3 Ch 9
