@@ -107,6 +107,7 @@
   order: ["LDD3 Ch. 9", "LDD3 Ch. 10"]
   slides:
     "LDD3 Ch. 9": media/ldd/ldd3-ch9.pdf
+    "LDD3 Ch. 10": media/ldd/ldd3-ch10.pdf
   reading:
     - { title: "LDD3 Ch 9", url: "https://lwn.net/images/pdf/LDD3/ch09.pdf" }
     - { title: "LDD3 Ch 10", url: "https://lwn.net/images/pdf/LDD3/ch10.pdf" }
