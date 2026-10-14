@@ -180,7 +180,7 @@ events:
 - date: '2026-10-10'
   labs:
   - title: Lab 4 M2
-    points: 30
+    points: 20
     lab: 4
 - date: '2026-10-12'
   lectures:
@@ -218,7 +218,7 @@ events:
 - date: '2026-10-17'
   labs:
   - title: Lab 4 M3
-    points: 30
+    points: 20
     lab: 4
 - date: '2026-10-19'
   lectures:
@@ -237,6 +237,9 @@ events:
 - date: '2026-10-23'
   lectures:
   - title: No class - Lab 5 M1 help session in the lab
+  quizzes:
+  - title: 'Quiz 8: LDD3 Ch 4, 9, 10'
+    points: 20
 - date: '2026-10-24'
   labs:
   - title: Lab 5 M1
