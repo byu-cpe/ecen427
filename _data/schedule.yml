@@ -206,7 +206,9 @@ events:
 - date: '2026-10-16'
   lectures:
   - title: Platform Devices
+    slides: media/slides/15-platform-devices.pdf
   - title: LDD3 Ch. 11
+    slides: media/ldd/ldd3-ch11.pdf
   reading:
   - title: Linux Platform Devices and the Device Tree
     url: /documentation/platform-device-tree/

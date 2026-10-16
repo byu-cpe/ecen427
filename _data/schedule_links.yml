@@ -117,6 +117,9 @@
 
 "2026-10-16":
   order: ["Platform Devices", "LDD3 Ch. 11"]
+  slides:
+    "Platform Devices": media/slides/15-platform-devices.pdf
+    "LDD3 Ch. 11": media/ldd/ldd3-ch11.pdf
   reading:
     - { title: "Linux Platform Devices and the Device Tree", url: /documentation/platform-device-tree/ }
     - { title: "LDD3 Ch 11", url: "https://lwn.net/images/pdf/LDD3/ch11.pdf" }
