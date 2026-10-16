@@ -30,9 +30,9 @@ This [stackoverflow answer](https://stackoverflow.com/a/27709901) covers a lot o
 ## Developing a Kernel Driver 
 
 ### Resources 
-The Linux system we use in this class is based on the 5.4.0 version of the Kernel:
-  * Source code is available at <https://elixir.bootlin.com/linux/v5.4/source>
-  * Documentation is available at <https://www.kernel.org/doc/html/v5.4>
+The Linux system we use in this class is based on the 6.6.10 version of the Kernel:
+  * Source code is available at <https://elixir.bootlin.com/linux/v6.6.10/source>
+  * Documentation is available at <https://www.kernel.org/doc/html/v6.6>
 
 ### Compiling the Driver 
 Write your kernel driver in a single .c file, and place it in a directory with the following Makefile.
@@ -75,7 +75,7 @@ Simply run `make` to compile your driver.  A kernel module/object (`.ko`) file w
 ### Adding the Driver to Linux 
 There are generally three ways to add your driver to the Linux system:
   - Compile it into the kernel when you originally compile the kernel.
-  - Run it as a [Kernel Module](https://www.kernel.org/doc/html/v5.4/kbuild/modules.html) that is loaded at boot.
+  - Run it as a [Kernel Module](https://www.kernel.org/doc/html/v6.6/kbuild/modules.html) that is loaded at boot.
   - Run it as a Kernel Module that is loaded manually.
 
 Since we aren't going to recompile the kernel, #1 is not possible.  While you are developing your kernel you should use method #3:
@@ -95,9 +95,9 @@ One of the trickiest things to do when writing a Linux kernel driver is to debug
 When creating a program, there is always the temptation to rush the coding part by writing as much as possible, then testing everything at the same time.  This is a particularly unwise strategy when it comes to debugging the Linux kernel.  There is a certain amount of boiler plate necessary to even get the driver to compile, but once that has been set up, changes should be made incrementally.
 
 ### Kernel Logs 
-Many people rely on using the `printf()` function to help them debug programs.  When writing a Linux driver, this function is not available because it is part of the C standard library.  There is an analogous function called `printk()` ("k" for "kernel").  However, it is recommended you use the nice [wrapper functions](https://elixir.bootlin.com/linux/v5.4/source/include/linux/printk.h#L291) instead:
+Many people rely on using the `printf()` function to help them debug programs.  When writing a Linux driver, this function is not available because it is part of the C standard library.  There is an analogous function called `printk()` ("k" for "kernel").  However, it is recommended you use the nice [wrapper functions](https://elixir.bootlin.com/linux/v6.6.10/source/include/linux/printk.h#L459) instead:
   * Use `pr_info`, `pr_warn`, `pr_err`, or `dev_info`, `dev_warn`, `dev_err` to print to the kernel logs. 
-  * When you have a device pointer available (such as within your *probe* function, use the `dev_*` [wrapper functions](https://elixir.bootlin.com/linux/v5.4/source/include/linux/device.h#L1729) instead.   
+  * When you have a device pointer available (such as within your *probe* function, use the `dev_*` [wrapper functions](https://elixir.bootlin.com/linux/v6.6.10/source/include/linux/dev_printk.h#L137) instead.   
 
 To display the most recent entries from the kernel log run `dmesg` from the shell.
 

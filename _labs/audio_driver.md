@@ -26,7 +26,7 @@ In this lab, you will add a new dimension to Space Invaders: sound! The PYNQ boa
 You will go back to working individually for this lab and the remaining labs.  You should copy your space invaders game code from your group repository to your individual repository.  **Do not commit your code for labs 5+ to your shared repository**.
 
 ## Overview 
-You will be creating a [loadable kernel module](https://www.kernel.org/doc/html/v5.4/kbuild/modules.html) ([background](https://en.wikipedia.org/wiki/Loadable_kernel_module)), which allows you to write code that runs in kernel space.  This kernel module will be a driver for the audio codec.
+You will be creating a [loadable kernel module](https://www.kernel.org/doc/html/v6.6/kbuild/modules.html) ([background](https://en.wikipedia.org/wiki/Loadable_kernel_module)), which allows you to write code that runs in kernel space.  This kernel module will be a driver for the audio codec.
 
 Your driver code will need to do several things.  Some of the major tasks:
 
@@ -236,12 +236,12 @@ Some resources to help you with the kernel function calls:
     * LDD3, Ch3 discusses these functions in the section *Char Device Registration*.
   * `device_create`
     * This function will create a device file in */dev*.
-    * See the Linux documentation <https://www.kernel.org/doc/html/v5.4/driver-api/infrastructure.html>
+    * See the Linux documentation <https://www.kernel.org/doc/html/v6.6/driver-api/infrastructure.html>
     * Be careful to check the return value of `device_create` properly.  
   * `platform_get_resource`
     * This function is used to retrieve values from the device tree.
     * Using type `IORESOURCE_MEM` will return the physical memory address and length (`<reg>` from the device tree).
-    * Linux documentation <https://www.kernel.org/doc/html/v5.4/driver-api/infrastructure.html>
+    * Linux documentation <https://www.kernel.org/doc/html/v6.6/driver-api/infrastructure.html>
     * <https://stackoverflow.com/questions/22961714/what-is-platform-get-resource-in-linux-driver>
     * <https://lwn.net/Articles/448499/>. Look at section **Platform devices** especially for where data is stored in the struct.
   * `platform_get_irq`
