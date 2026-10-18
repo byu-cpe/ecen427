@@ -67,7 +67,7 @@ Your kernel driver needs to:
   * Register itself as a platform driver, with probe and remove functions for the device.
   * Upon device probe, the driver should create a character device as described above.  
     * The character device should implement `read()` and `write()` functions; however, for this milestone, these functions should simply print a message to the kernel log.
-    * A device file should be created at `/dev/audio_codec`.
+    * Name the device `audio_codec` in `device_create()`, which creates `/dev/audio_codec`.  A udev rule on the board (like the ones for your UIO devices) matches that exact name, makes the file accessible without `sudo`, and adds the symlink `/dev/ecen427/audio_codec`.  Use the `/dev/ecen427/audio_codec` path in your user space programs.  If you name the device anything else, the rule won't apply and opening it will need `sudo`.
   * Also upon device probe, the driver should:
     * Print the physical address read from the device tree, and confirm in the kernel log when the memory region has been reserved.
     * Setup a virtual address pointer as described above, and print the physical and virtual address to the kernel log.
@@ -93,9 +93,9 @@ Create a new user space program in *userspace/apps/audio_driver_test1*, with app
 
     ```c
     int main() {
-      int fd = open("/dev/audio_codec", O_RDWR);
+      int fd = open("/dev/ecen427/audio_codec", O_RDWR);
       if (fd < 0) {
-        printf("Cannot open /dev/audio_codec.  Is the audio_codec module loaded?\n");
+        printf("Cannot open /dev/ecen427/audio_codec.  Is the audio_codec module loaded?\n");
         return 1;
       }
 
@@ -197,21 +197,23 @@ Things to remember:
 Error handling:
   * In `init` and `probe`, if you encounter an error, you will need to roll back any changes you have made.  A common technique to do this is using labels and *gotos* as shown in the pseudocode below:
 
-```
+```c
   int err;
-  
+
   err = doTask1();
   if (err)
     goto errTask1;
-  
+
   err = doTask2();
   if (err)
     goto errTask2;
-    
+
   err = doTask3();
   if (err)
     goto errTask3;
-    
+
+  return 0;  // success: skip the cleanup below
+
   errTask3:
     undoTask2();
   errTask2:
