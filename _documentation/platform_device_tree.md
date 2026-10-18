@@ -10,10 +10,10 @@ number: 12
 
 ## Platform Devices
 
-In a Linux system, some hardware devices can be automatically detected by the kernel.  An example of this is when you plug in a USB device.  Other hardware devices cannot be automatically detected by the processor; these are referred to as **platform devices**.  Platform devices, "include legacy port-based devices and host bridges to peripheral buses, and most controllers integrated into system-on-chip platforms," ([kernel docs](https://www.kernel.org/doc/Documentation/driver-model/platform.txt)).  The hardware devices you will be interacting with in this class fall into the last category, "controllers integrated into system-on-chip platforms".
+In a Linux system, some hardware devices can be automatically detected by the kernel.  An example of this is when you plug in a USB device.  Other hardware devices cannot be automatically detected by the processor; these are referred to as **platform devices**.  Platform devices, "include legacy port-based devices and host bridges to peripheral buses, and most controllers integrated into system-on-chip platforms," ([kernel docs](https://www.kernel.org/doc/html/v6.6/driver-api/driver-model/platform.html)).  The hardware devices you will be interacting with in this class fall into the last category, "controllers integrated into system-on-chip platforms".
 
 You can read more about platform devices here:
-* Kernel documentation <https://www.kernel.org/doc/Documentation/driver-model/platform.txt>
+* Kernel documentation <https://www.kernel.org/doc/html/v6.6/driver-api/driver-model/platform.html>
 * <https://stackoverflow.com/questions/15610570/what-is-the-difference-between-a-linux-platform-driver-and-normal-device-driver>
 
 ## Linux Device Tree 
