@@ -18,6 +18,7 @@ In this lab, you will add a new dimension to Space Invaders: sound! The PYNQ boa
 
   * Make sure you have completed the assigned reading from the LDD3 textbook.
   * Read the documentation on [Linux Platform Devices and the Device Tree]({% link _documentation/platform_device_tree.md %}). *Note that for this lab you don't need to modify the device tree, but you will be querying information from the device tree, so it's good to be familiar with it.*
+  * Review the [Platform Devices & Device Tree slides]({% link media/slides/15-platform-devices.pdf %}).  They cover the device tree node for a device, connecting your driver to that node, querying it for addresses and IRQs, creating the `/dev` file, and what belongs in init vs. probe.
   * Read the documentation on [Linux Device Drivers]({% link _documentation/linux_drivers.md %}).
   * Read the documentation on the [Audio Hardware]({% link _documentation/audio_hw.md %}).  
 
@@ -70,7 +71,7 @@ Make sure you recognize the distinction between the driver (kernel module) and t
     Triggering the loading and unloading of a module will in turn call the functions provided to `module_init()` and `module_exit()` in your module.
   * Each time Linux finds a device managed by your driver, it will call the functions you provided in the `.probe` and `.remove` entries of the struct you provided when registering your module as a platform device driver (`platform_driver_register()`).  Since there is only one audio device listed in the device tree, you can expect these functions to both be called once.  Your `.probe` function should be called by Linux automatically, and immediately after your driver is loaded, while your `.remove` function will be called by Linux immediately before your driver module is unloaded.
 
-Based on the above, it is important to recognize which of the driver features should be done once when the module is loaded, and which should be done for each device.  Even though the driver you make in this lab is only going to **support one device**, as good coders, we want to organize our code in such a way that it could more easily be extended in the future.
+Based on the above, it is important to recognize which of the driver features should be done once when the module is loaded, and which should be done for each device.  The [Driver vs Device slide]({% link media/slides/15-platform-devices.pdf %}#page=8) has a table of what goes in each of `module_init`, `probe`, `remove` and `module_exit`.  Even though the driver you make in this lab is only going to **support one device**, as good coders, we want to organize our code in such a way that it could more easily be extended in the future.
 
 **<[Resources](#resources-tips-and-hints)> is an important reference for each milestone!**
 
@@ -224,28 +225,31 @@ Error handling:
 Some resources to help you with the kernel function calls:
   * `alloc_chrdev_region`:
     * see LDD3, Ch3, *Major and Minor Numbers* and *Allocating and Freeing Device Numbers*.
-  * `class_create`: 
-    * All devices need to belong to a class, so you will need to create a device class for your audio code.  This class pointer will be used when you create the device file.
+  * `class_create`:
+    * All devices need to belong to a class, so you will need to create a device class for your audio code.  This class pointer will be used when you create the device file.  See the [Creating a device file slide]({% link media/slides/15-platform-devices.pdf %}#page=7).
     * You can store the `struct class*` as a static global variable.
+    * On our kernel, `class_create()` takes only the class name.  LDD3 and many online examples pass `THIS_MODULE` as a first argument; that form no longer compiles.
   * `platform_driver_register`
     * There is quite a bit of background you need to read before understanding the significance of this call.  Read the course documentation on [linux platform devices]({% link _documentation/platform_device_tree.md%}).
-    * You will need to pass in a pointer to a `struct platform_driver`.  You can create a static global variable for this struct.  
-    * [xillybus.com](http://xillybus.com/tutorials/device-tree-zynq-3) provides a good example of how your struct should be initialized.  Remember that the `.compatible` field needs to exactly match the string in our device tree. *Note: This webpage targets an older version of the kernel: you don't need to provide the `__devinitdata` attribute on your `struct of_device_id`*.
-    * Read about and study device-tree source files for this project [here]({% link _documentation/platform_device_tree.md%}). Search for a compatible string that looks like it is related to an audio codec. 
+    * You will need to pass in a pointer to a `struct platform_driver`.  You can create a static global variable for this struct.
+    * The [Connecting device tree node to driver slide]({% link media/slides/15-platform-devices.pdf %}#page=5) shows how to initialize this struct and its `struct of_device_id` match table.  Remember that the `.compatible` field needs to exactly match the string in our device tree.
+    * [xillybus.com](http://xillybus.com/tutorials/device-tree-zynq-3) walks through a longer example.  *Note: This webpage targets an older version of the kernel: you don't need to provide the `__devinitdata` attribute on your `struct of_device_id`*.
+    * Read about and study device-tree source files for this project [here]({% link _documentation/platform_device_tree.md%}). Search for a compatible string that looks like it is related to an audio codec.  The [Anatomy of a node slide]({% link media/slides/15-platform-devices.pdf %}#page=4) explains each line of a node.
   * `cdev_init` and `cdev_add`
     * LDD3, Ch3 discusses these functions in the section *Char Device Registration*.
   * `device_create`
     * This function will create a device file in */dev*.
+    * The [Creating a device file slide]({% link media/slides/15-platform-devices.pdf %}#page=7) explains each argument.  The `devt` you pass must match the one you gave `cdev_add()`.
     * See the Linux documentation <https://www.kernel.org/doc/html/v6.6/driver-api/infrastructure.html>
-    * Be careful to check the return value of `device_create` properly.  
+    * Be careful to check the return value of `device_create` properly.
   * `platform_get_resource`
     * This function is used to retrieve values from the device tree.
-    * Using type `IORESOURCE_MEM` will return the physical memory address and length (`<reg>` from the device tree).
+    * Using type `IORESOURCE_MEM` will return the physical memory address and length (`<reg>` from the device tree).  The [Querying the Device Tree slide]({% link media/slides/15-platform-devices.pdf %}#page=6) shows the call and the `struct resource` it returns.
     * Linux documentation <https://www.kernel.org/doc/html/v6.6/driver-api/infrastructure.html>
     * <https://stackoverflow.com/questions/22961714/what-is-platform-get-resource-in-linux-driver>
     * <https://lwn.net/Articles/448499/>. Look at section **Platform devices** especially for where data is stored in the struct.
   * `platform_get_irq`
-    * Use this, not `platform_get_resource` with `IORESOURCE_IRQ`, to retrieve the IRQ number.  (*Note:* It will be a virtual IRQ number, and will not be the same as the physical IRQ number listed in the device tree).
+    * Use this, not `platform_get_resource` with `IORESOURCE_IRQ`, to retrieve the IRQ number.  (*Note:* It will be a virtual IRQ number, and will not be the same as the physical IRQ number listed in the device tree).  See the [Querying the Device Tree slide]({% link media/slides/15-platform-devices.pdf %}#page=6).
   * `request_mem_region` and `ioremap`
     * See LDD3, Ch 9, *I/O Memory Allocation and Mapping*.
   * `request_irq`
@@ -269,7 +273,7 @@ Some resources to help you with the kernel function calls:
 
 ### Other
 
-* [Class slides]({% link media/labs/lab5_kernel_driver.pdf %})
+* [Platform Devices & Device Tree slides]({% link media/slides/15-platform-devices.pdf %})
 
 ## Lifelong Learning: What's Next?
 

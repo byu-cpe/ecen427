@@ -225,6 +225,7 @@ events:
 - date: '2026-10-19'
   lectures:
   - title: Lab 5 Milestone 1 Discussion
+    slides: media/slides/16-lab5-m1.pdf
   exams:
   - title: Midterm 1
 - date: '2026-10-20'

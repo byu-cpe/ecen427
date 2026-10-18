@@ -126,6 +126,10 @@
   study:
     - { title: "Ch 11 Study Questions", url: /ldd11/ }
 
+"2026-10-19":
+  slides:
+    "Lab 5 Milestone 1 Discussion": media/slides/16-lab5-m1.pdf
+
 "2026-10-28":
   order: ["LDD3 Ch. 6", "Lab 5 Milestone 3 Discussion"]
   reading:
