@@ -251,6 +251,7 @@ events:
 - date: '2026-10-26'
   lectures:
   - title: Lab 5 Milestone 2 Discussion
+    slides: media/slides/17-lab5-m2.pdf
 - date: '2026-10-28'
   lectures:
   - title: LDD3 Ch. 6
