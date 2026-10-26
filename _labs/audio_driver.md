@@ -137,6 +137,7 @@ In this milestone you will write code to read and parse WAVE files, and update y
       * Once the end of the audio clip is reached, disable interrupts on the audio core.
     * In your `read()` function, read back one byte of data, with boolean value 0 or 1, indicating whether an audio sample is currently being played (this is different than the return value of the `read()` function, which should be the number of bytes read).
   * Write a user space program that parses WAVE files and sends the PCM data to the audio driver.
+    * The format of the provided WAVE files is described in [Audio Hardware]({% link _documentation/audio_hw.md %}#provided-wave-files).
     * The audio data you read from the WAVE files (in user space) will be an array of 16-bit samples.
     * The audio data you write to the hardware FIFOs (in kernel space) needs to be 24-bit samples (there's no 24-bit data type in C, so use a 32-bit type)
     * This means you will need to convert each sample.  For example, for a 16-bit PCM sample (`int16_t`), you will want to left-shift the data by 8 bits and then store it in a 32-bit data type (`int32_t`).  This should be done in user space as you read the file into memory.

@@ -26,6 +26,12 @@ Some information on the format of WAVE files:
 
 Keep in mind not all WAV files are of the same format; for example, some WAVE files may be stereo or mono, the bit depth could be 16-bit, 24-bit, etc.  [Audacity](https://www.audacityteam.org) is installed on the lab computers and can be used to convert between audio file formats.
 
+### Provided WAVE Files
+The sound effects for the lab are provided in the [resources/wavFiles](https://github.com/byu-cpe/ecen427_student/tree/main/resources/wavFiles) directory of your repository.  All of these files share the same format:
+  * Uncompressed PCM, mono, 16-bit signed little-endian samples, at 48kHz (the same rate as the audio hardware, so no resampling is needed).
+  * The plain 44-byte header: the RIFF header, then a 16-byte `fmt ` chunk, then the `data` chunk, with no extra chunks.
+  * The audio samples start at byte offset 44.
+
 ###  Hardware System 
 While configuring the codec is done using I2C, sending the actual audio data (music, sound fx) to the codec is done using the [I2S](https://en.wikipedia.org/wiki/I2S) protocol.  The *audio_tx* IP, at a rate of 48kHZ, removes audio samples from its FIFOs, and sends them to the codec chip via the I2S pins.
 
