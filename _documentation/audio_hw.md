@@ -31,6 +31,7 @@ The sound effects for the lab are provided in the [resources/wavFiles](https://g
   * Uncompressed PCM, mono, 16-bit signed little-endian samples, at 48kHz (the same rate as the audio hardware, so no resampling is needed).
   * The plain 44-byte header: the RIFF header, then a 16-byte `fmt ` chunk, then the `data` chunk, with no extra chunks.
   * The audio samples start at byte offset 44.
+  * The longest file, *player_die.wav*, contains 63,676 samples (about 1.33 seconds), so your sound buffers must hold at least that many 32-bit entries.
 
 ###  Hardware System 
 While configuring the codec is done using I2C, sending the actual audio data (music, sound fx) to the codec is done using the [I2S](https://en.wikipedia.org/wiki/I2S) protocol.  The *audio_tx* IP, at a rate of 48kHZ, removes audio samples from its FIFOs, and sends them to the codec chip via the I2S pins.
