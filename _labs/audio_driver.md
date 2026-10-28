@@ -174,7 +174,13 @@ In this milestone you will add an *ioctl* interface to your driver to allow user
 Your Space Invaders game should be operating with all of the sound effects.  
 
 
-**Important:** All necessary WAVE files should be committed as part of your repository.  Your game should not rely on these files being located at a specific absolute path, as the TAs will likely clone your repo to a different path.  You can use [readlink()](https://man7.org/linux/man-pages/man2/readlink.2.html) ([example](https://stackoverflow.com/questions/933850/how-do-i-find-the-location-of-the-executable-in-c)) to get the path to your `space_invaders` executable, and then use a relative path from that location to access the WAVE files in your repository.  <span style="color:red">You should assume the executable will be located within your build directory.  For example, during grading, *readlink()* will provide a path similar to */home/.../userspace/build/apps/space_invaders/space_invaders*, and you will need to adjust this path to locate the wave files.  Do not assume the executable is in a "cross-compiled" directory as you may have been testing with on your own. </span>
+**Important:** Your `space_invaders` executable must take one command-line argument: the path of the directory that holds the WAVE files.  The TAs will run your game with the *resources/wavFiles* directory of your repository, for example:
+
+```bash
+./space_invaders ~/ecen427/resources/wavFiles
+```
+
+Build the path of each WAVE file from this argument.  Do not hard-code an absolute path, and do not locate the files relative to your executable (for example with `readlink()`); the TAs run your executable from a different location than you do.  You will need to update *main.cpp* to read this argument (`argv[1]`) and pass it to your audio code.
 
 ## Code Submission 
 Follow the [Submission Instructions]({% link _pages/submission.md %}).  Reminder: your code must compile with zero warnings.  The `valgrind` requirement does not apply to kernel modules.

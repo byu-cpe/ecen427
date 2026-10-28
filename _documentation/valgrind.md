@@ -21,6 +21,8 @@ Check your code with valgrind before you submit; it is run the same way the TAs 
    valgrind --leak-check=full ./apps/space_invaders/space_invaders
    ```
 
+   From Lab 5 Milestone 3 on, also pass the WAVE file directory: `valgrind --leak-check=full ./apps/space_invaders/space_invaders ../../resources/wavFiles`.
+
    Expect your program to run much slower than normal; this is a side effect of how valgrind works.
 
 1. For interactive applications like Space Invaders, exercise the program (play a game, trigger the different behaviors of your application), then stop it with `Ctrl+C`.  The TAs will do the same when grading.  Valgrind prints its report after the program exits.
