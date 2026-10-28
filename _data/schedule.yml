@@ -255,7 +255,11 @@ events:
 - date: '2026-10-28'
   lectures:
   - title: LDD3 Ch. 6
+    slides: media/ldd/ldd3-ch6.pdf
   - title: Lab 5 Milestone 3 Discussion
+  reading:
+  - title: LDD3 Ch 6
+    url: https://lwn.net/images/pdf/LDD3/ch06.pdf
 - date: '2026-10-30'
   lectures:
   - title: No class - Lab 5 M2 help session in the lab
