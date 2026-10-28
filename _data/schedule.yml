@@ -236,7 +236,7 @@ events:
   - title: No class - Midterm 1
   exams:
   - title: Midterm 1
-    points: 48
+    points: 35
 - date: '2026-10-23'
   lectures:
   - title: No class - Lab 5 M1 help session in the lab
@@ -271,6 +271,9 @@ events:
 - date: '2026-11-02'
   lectures:
   - title: LDD3 Ch. 5
+  quizzes:
+  - title: 'Quiz 9: Platform Devices, LDD3 Ch 6, 11'
+    points: 21
 - date: '2026-11-04'
   lectures:
   - title: AXI Bus I
