@@ -89,20 +89,31 @@ Your kernel driver needs to:
 Create a new user space program in *userspace/apps/audio_driver_test1*, with appropriate CMake file to create an executable named *audio_driver_test1* (we use automated scripts when grading to make sure your executable is created at `userspace/build/apps/audio_driver_test1/audio_driver_test1`).
   * This program should open your device file, perform a `read()` and `write()`, and then close it.  
   * Your *audio_driver_test1/CMakeLists.txt* only needs to `add_executable()` your source file and call `deploy_to_board()`, like the other apps.  Then uncomment the `add_subdirectory(audio_driver_test1)` line in *userspace/apps/CMakeLists.txt*.
-  * The program is only a few lines.  Roughly (you'll need to add the right `#include`s):
+  * The program is only a few lines.  You can use the following code exactly as your *main.cpp*:
 
     ```c
+    #include <fcntl.h>
+    #include <stdint.h>
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <unistd.h>
+
     int main() {
+
+      // Open device file
       int fd = open("/dev/ecen427/audio_codec", O_RDWR);
       if (fd < 0) {
-        printf("Cannot open /dev/ecen427/audio_codec.  Is the audio_codec module loaded?\n");
+        fprintf(stderr, "Cannot open /dev/ecen427/audio_codec.  Is the audio_codec "
+                        "module loaded?\n");
         return 1;
       }
 
+      // Each call should produce a log message from your driver (check dmesg)
       uint8_t buf[100];
-      read(fd, buf, sizeof(buf));   // should trigger your driver's read() log message
-      write(fd, buf, sizeof(buf));  // should trigger your driver's write() log message
+      ssize_t bytes_read = read(fd, &buf, sizeof(buf));
+      ssize_t bytes_written = write(fd, &buf, sizeof(buf));
 
+      // Close
       close(fd);
       return 0;
     }
