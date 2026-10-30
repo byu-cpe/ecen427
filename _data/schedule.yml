@@ -236,7 +236,7 @@ events:
   - title: No class - Midterm 1
   exams:
   - title: Midterm 1
-    points: 48
+    points: 35
 - date: '2026-10-23'
   lectures:
   - title: No class - Lab 5 M1 help session in the lab
@@ -251,10 +251,15 @@ events:
 - date: '2026-10-26'
   lectures:
   - title: Lab 5 Milestone 2 Discussion
+    slides: media/slides/17-lab5-m2.pdf
 - date: '2026-10-28'
   lectures:
   - title: LDD3 Ch. 6
+    slides: media/ldd/ldd3-ch6.pdf
   - title: Lab 5 Milestone 3 Discussion
+  reading:
+  - title: LDD3 Ch 6
+    url: https://lwn.net/images/pdf/LDD3/ch06.pdf
 - date: '2026-10-30'
   lectures:
   - title: No class - Lab 5 M2 help session in the lab
@@ -266,6 +271,9 @@ events:
 - date: '2026-11-02'
   lectures:
   - title: LDD3 Ch. 5
+  quizzes:
+  - title: 'Quiz 9: Platform Devices, LDD3 Ch 6, 11'
+    points: 21
 - date: '2026-11-04'
   lectures:
   - title: AXI Bus I

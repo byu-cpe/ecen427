@@ -148,6 +148,7 @@ In this milestone you will write code to read and parse WAVE files, and update y
       * Once the end of the audio clip is reached, disable interrupts on the audio core.
     * In your `read()` function, read back one byte of data, with boolean value 0 or 1, indicating whether an audio sample is currently being played (this is different than the return value of the `read()` function, which should be the number of bytes read).
   * Write a user space program that parses WAVE files and sends the PCM data to the audio driver.
+    * The format of the provided WAVE files is described in [Audio Hardware]({% link _documentation/audio_hw.md %}#provided-wave-files).
     * The audio data you read from the WAVE files (in user space) will be an array of 16-bit samples.
     * The audio data you write to the hardware FIFOs (in kernel space) needs to be 24-bit samples (there's no 24-bit data type in C, so use a 32-bit type)
     * This means you will need to convert each sample.  For example, for a 16-bit PCM sample (`int16_t`), you will want to left-shift the data by 8 bits and then store it in a 32-bit data type (`int32_t`).  This should be done in user space as you read the file into memory.
@@ -184,7 +185,13 @@ In this milestone you will add an *ioctl* interface to your driver to allow user
 Your Space Invaders game should be operating with all of the sound effects.  
 
 
-**Important:** All necessary WAVE files should be committed as part of your repository.  Your game should not rely on these files being located at a specific absolute path, as the TAs will likely clone your repo to a different path.  You can use [readlink()](https://man7.org/linux/man-pages/man2/readlink.2.html) ([example](https://stackoverflow.com/questions/933850/how-do-i-find-the-location-of-the-executable-in-c)) to get the path to your `space_invaders` executable, and then use a relative path from that location to access the WAVE files in your repository.  <span style="color:red">You should assume the executable will be located within your build directory.  For example, during grading, *readlink()* will provide a path similar to */home/.../userspace/build/apps/space_invaders/space_invaders*, and you will need to adjust this path to locate the wave files.  Do not assume the executable is in a "cross-compiled" directory as you may have been testing with on your own. </span>
+**Important:** Your `space_invaders` executable must take one command-line argument: the path of the directory that holds the WAVE files.  The TAs will run your game with the *resources/wavFiles* directory of your repository, for example:
+
+```bash
+./space_invaders ~/ecen427/resources/wavFiles
+```
+
+Build the path of each WAVE file from this argument.  Do not hard-code an absolute path, and do not locate the files relative to your executable (for example with `readlink()`); the TAs run your executable from a different location than you do.  You will need to update *main.cpp* to read this argument (`argv[1]`) and pass it to your audio code.
 
 ## Code Submission 
 Follow the [Submission Instructions]({% link _pages/submission.md %}).  Reminder: your code must compile with zero warnings.  The `valgrind` requirement does not apply to kernel modules.

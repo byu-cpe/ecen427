@@ -130,8 +130,14 @@
   slides:
     "Lab 5 Milestone 1 Discussion": media/slides/16-lab5-m1.pdf
 
+"2026-10-26":
+  slides:
+    "Lab 5 Milestone 2 Discussion": media/slides/17-lab5-m2.pdf
+
 "2026-10-28":
   order: ["LDD3 Ch. 6", "Lab 5 Milestone 3 Discussion"]
+  slides:
+    "LDD3 Ch. 6": media/ldd/ldd3-ch6.pdf
   reading:
     - { title: "LDD3 Ch 6", url: "https://lwn.net/images/pdf/LDD3/ch06.pdf" }
   study:
