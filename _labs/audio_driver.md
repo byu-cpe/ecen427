@@ -144,7 +144,7 @@ In this milestone you will write code to read and parse WAVE files, and update y
       * Copy the audio data from user space to your buffer (including safety checks on the user space pointer) - LDD page 64.
       * Make sure the audio core has interrupts enabled.
     * Your ISR will be responsible for actually playing the audio clip.  In your ISR:
-      * Determine how much free space is in the audio FIFOs and fill them up with the next audio samples to be played.
+      * Fill the audio FIFOs with the next audio samples to be played.  You can either determine how much free space is in the FIFOs, or simply write enough samples to fill 75% of each FIFO, since that is the condition that triggers the interrupt (see [Audio Hardware]({% link _documentation/audio_hw.md %})).
       * Once the end of the audio clip is reached, disable interrupts on the audio core.
     * In your `read()` function, read back one byte of data, with boolean value 0 or 1, indicating whether an audio sample is currently being played (this is different than the return value of the `read()` function, which should be the number of bytes read).
   * Write a user space program that parses WAVE files and sends the PCM data to the audio driver.
