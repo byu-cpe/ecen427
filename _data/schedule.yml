@@ -271,6 +271,10 @@ events:
 - date: '2026-11-02'
   lectures:
   - title: LDD3 Ch. 5
+    slides: media/ldd/ldd3-ch5.pdf
+  reading:
+  - title: LDD3 Ch 5
+    url: https://lwn.net/images/pdf/LDD3/ch05.pdf
   quizzes:
   - title: 'Quiz 9: Platform Devices, LDD3 Ch 6, 11'
     points: 21

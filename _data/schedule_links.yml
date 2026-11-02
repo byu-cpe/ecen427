@@ -144,6 +144,8 @@
     - { title: "Ch 6 Study Questions", url: /ldd6/ }
 
 "2026-11-02":
+  slides:
+    "LDD3 Ch. 5": media/ldd/ldd3-ch5.pdf
   reading:
     - { title: "LDD3 Ch 5", url: "https://lwn.net/images/pdf/LDD3/ch05.pdf" }
 
