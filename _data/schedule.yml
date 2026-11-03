@@ -284,6 +284,9 @@ events:
 - date: '2026-11-06'
   lectures:
   - title: AXI Activity
+  quizzes:
+  - title: 'Quiz 10: LDD3 Ch 5'
+    points: 20
 - date: '2026-11-07'
   labs:
   - title: Lab 5 M3
@@ -324,7 +327,7 @@ events:
     lab: 6
   exams:
   - title: Midterm 2
-    points: 5
+    points: 40
 - date: '2026-11-23'
   lectures:
   - title: LDD3 Ch. 14
@@ -363,4 +366,4 @@ events:
     lab: 8
   exams:
   - title: Midterm 3
-    points: 25
+    points: 40
