@@ -22,8 +22,6 @@
     - { title: "OSTEP Ch 2: Introduction", url: "https://pages.cs.wisc.edu/~remzi/OSTEP/intro.pdf" }
     - { title: "OSTEP Ch 4: Processes", url: "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf" }
     - { title: "OSTEP Ch 6: Limited Direct Execution", url: "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-mechanisms.pdf" }
-  study:
-    - { title: "Fourteen Ways to Fool Your Synchronizer", url: /synchronizer/ }
 
 "2026-09-04":
   order: ["Intro to Operating Systems Cont'd", "Devices"]
