@@ -338,17 +338,20 @@ events:
   holiday: No class - Thanksgiving Holiday
 - date: '2026-11-27'
   holiday: No class - Thanksgiving Holiday
-- date: '2026-11-28'
+- date: '2026-11-30'
+  lectures:
+  - title: Lab 8 discussion
+- date: '2026-12-01'
   labs:
   - title: Lab 7
     points: 20
     lab: 7
 - date: '2026-12-02'
   lectures:
-  - title: Lab 8 discussion
+  - title: Last day of class
 - date: '2026-12-04'
   lectures:
-  - title: Last day of class
+  - title: Instructor gone - No class
 - date: '2026-12-07'
   lectures:
   - title: No class - Midterm 3

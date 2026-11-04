@@ -179,7 +179,7 @@
     - { title: "LDD3 Ch 14", url: "https://lwn.net/images/pdf/LDD3/ch14.pdf" }
 
 "2026-12-10":
-  hide_note: true   # drop BYU's "Last Day of Class"; the Dec 4 lecture item says it
+  hide_note: true   # drop BYU's "Last Day of Class"; the Dec 2 lecture item says it
 
 # BYU labels the three days of Thanksgiving break differently; say the same thing.
 "2026-11-25":
