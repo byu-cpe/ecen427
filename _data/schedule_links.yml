@@ -149,7 +149,7 @@
 
 "2026-11-04":
   slides:
-    "AXI Bus I": media/slides/axi.pdf
+    "AXI Bus I": media/slides/20-axi.pdf
   reading:
     - { title: "AXI Bus Spec", url: "http://gstitt.ece.ufl.edu/courses/fall15/eel4720_5721/labs/refs/AXI4_specification.pdf" }
   study:
@@ -158,7 +158,7 @@
 
 "2026-11-11":
   slides:
-    "AXI Bus II": media/slides/axi.pdf
+    "AXI Bus II": media/slides/20-axi.pdf
   study:
     - { title: "AXI Bus II Study Questions", url: /documentation/axi/#axi-bus-ii }
 

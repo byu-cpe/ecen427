@@ -281,6 +281,10 @@ events:
 - date: '2026-11-04'
   lectures:
   - title: AXI Bus I
+    slides: media/slides/20-axi.pdf
+  reading:
+  - title: AXI Bus Spec
+    url: http://gstitt.ece.ufl.edu/courses/fall15/eel4720_5721/labs/refs/AXI4_specification.pdf
 - date: '2026-11-06'
   lectures:
   - title: AXI Activity
