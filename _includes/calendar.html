@@ -33,6 +33,9 @@ Data is generated from Learning Suite; see the header of _data/schedule.yml.
         {%- if ev.holiday -%}
           {%- assign classes = classes | append: ' cal-off' -%}
         {%- endif -%}
+        {%- if ev.finals -%}
+          {%- assign classes = classes | append: ' cal-finals' -%}
+        {%- endif -%}
         {%- assign style = '' -%}
         {%- if first_rendered -%}
           {%- assign style = ' style="grid-column-start: ' | append: wday | append: ';"' -%}
@@ -44,6 +47,10 @@ Data is generated from Learning Suite; see the header of _data/schedule.yml.
 
       {%- if ev.holiday %}
       <div class="cal-item cal-item-off">{{ ev.holiday }}</div>
+      {%- endif -%}
+
+      {%- if ev.finals %}
+      <div class="cal-item cal-item-finals">{{ ev.finals }}</div>
       {%- endif -%}
 
       {%- if ev.note %}

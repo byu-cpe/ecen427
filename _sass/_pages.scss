@@ -358,6 +358,14 @@ table {
     background-color: var(--bs-tertiary-bg);
 }
 
+/* BYU's final exam period: a light tint, distinct from the grey of a day off. */
+.cal-day.cal-finals {
+    /* Layered over the body colour so the grey grid behind the cells does not
+       show through; this keeps the tint light in both themes. */
+    background: linear-gradient(rgba($brand-color, 0.12), rgba($brand-color, 0.12)),
+                var(--bs-body-bg);
+}
+
 .cal-day.cal-today {
     box-shadow: inset 0 0 0 2px $brand-color;
 }
@@ -387,6 +395,7 @@ table {
 
 .cal-item-tbd,
 .cal-item-note,
+.cal-item-finals,
 .cal-item-off {
     color: var(--cal-muted);
     font-style: italic;
