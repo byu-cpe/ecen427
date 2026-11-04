@@ -153,14 +153,14 @@
   reading:
     - { title: "AXI Bus Spec", url: "http://gstitt.ece.ufl.edu/courses/fall15/eel4720_5721/labs/refs/AXI4_specification.pdf" }
   study:
-    - { title: "AXI Bus I Study Questions", url: /axi1/ }
+    - { title: "AXI Bus I Study Questions", url: /documentation/axi/#axi-bus-i }
     - { title: "Simulating AXI IP", url: /documentation/vivado-axi-simulation/ }
 
 "2026-11-11":
   slides:
     "AXI Bus II": media/slides/axi.pdf
   study:
-    - { title: "AXI Bus II Study Questions", url: /axi2/ }
+    - { title: "AXI Bus II Study Questions", url: /documentation/axi/#axi-bus-ii }
 
 "2026-11-09":
   study:
