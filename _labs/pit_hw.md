@@ -36,6 +36,7 @@ Your PIT module must include the following:
       * *bit 1 - interrupt enable*: enables interrupts if set to a '1', disables interrupts if set to a '0'.
       * You may use the remaining bits in the programmable control register as you see fit.
     - **Offset 0x04**: A 32-bit delay-value register that must be readable and writeable from the CPU. This value controls the period of the interrupt output.  
+    - **Write strobes**: Your PIT driver should only perform full 32-bit writes, so you may ignore *s_axi_wstrb*. Alternatively, you may return a *SLVERR* response (*s_axi_bresp = 2'b10*) for any write whose strobe is not *4'b1111*, and leave the register unchanged. Returning *SLVERR* is optional and not required.
   - **Reset**: Your PIT must reset along with the rest of the system.  Make sure to reset your PIT using the AXI resetn signal.
     - It would be good to reset your PIT into a state equivalent to the FIT, so that you can test that it's working without needing to perform any register writes.  Thus:
       * Reset the offset 0x00 control register to 3 (i.e., enable the counter and enable interrupts).
