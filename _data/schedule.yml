@@ -365,7 +365,17 @@ events:
   exams:
   - title: Midterm 3
     points: 40
+- date: '2026-12-12'
+  finals: BYU Final Exam Period
+  note: No final exam in this class, only a final comprehensive lab (Lab 8)
+- date: '2026-12-14'
+  finals: BYU Final Exam Period
+- date: '2026-12-15'
+  finals: BYU Final Exam Period
+- date: '2026-12-16'
+  finals: BYU Final Exam Period
 - date: '2026-12-17'
+  finals: BYU Final Exam Period
   labs:
   - title: Lab 8
     points: 10

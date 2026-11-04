@@ -181,6 +181,9 @@
 "2026-12-10":
   hide_note: true   # drop BYU's "Last Day of Class"; the Dec 2 lecture item says it
 
+"2026-12-12":
+  note: "No final exam in this class, only a final comprehensive lab (Lab 8)"
+
 # BYU labels the three days of Thanksgiving break differently; say the same thing.
 "2026-11-25":
   holiday: "No class - Thanksgiving Holiday"
