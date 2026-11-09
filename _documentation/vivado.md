@@ -72,6 +72,8 @@ Creating the project only needs to be done once.  In the future you can just do 
 1. Open your Vivado project, which should be listed under recent projects.  If it isn't listed there, you can always go to *File->Open Project* and browse to your Vivado project file (*hw/ecen427/ecen427.xpr*).
 1. Alternatively, you can run `vivado hw/ecen427/ecen427.xpr`
 
+The same applies to your Lab 6 simulation project (Milestone 1): reopen it from the recent projects list, or open the *.xpr* file in its project directory under *hw*.  If you've deleted the project (e.g., with `make clean`), recreate it from your Tcl file with `vivado -source sim_proj.tcl`, run from the *hw* directory.
+
 
 ### Compiling a new Bitstream
 

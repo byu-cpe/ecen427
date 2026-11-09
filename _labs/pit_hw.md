@@ -114,7 +114,7 @@ The provided stress test in [hw/pit_test](https://github.com/byu-cpe/ecen427_stu
 
 Once *sim_pit* and *synth_pit* run without errors, and *test_pit* passes, you are ready to move on to Milestone 2.
 
-<span style="color:red">**IMPORTANT:**</span> Students frequently forget to commit all necessary files for the TAs to run the above commands.  Make sure you commit your *sim_proj.tcl* file, your waveform configuration file, and any other necessary files to your repository.  It is recommended that you perform a fresh clone of your repository and run the above commands to make sure that everything is committed that needs to be.  
+<span style="color:red">**IMPORTANT:**</span> Students frequently forget to commit all necessary files for the TAs to run the above commands.  Make sure you commit your *sim_proj.tcl* file, your test bench, your waveform configuration file, and any other necessary files to your repository.  It is recommended that you perform a fresh clone of your repository and run the above commands to make sure that everything is committed that needs to be.  
 
 ### Milestone 2: Integration
 
@@ -134,9 +134,11 @@ After it is integrated:
 
 Final verification:
   * Pull down the new bitstream onto your PYNQ board and install it as your boot bitstream (see [Loading the new Bitstream on your PYNQ board]({% link _documentation/vivado.md %}#loading-the-new-bitstream-on-your-pynq-board)).
-  * Update the [int_rate](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/int_rate) application to use your PIT instead of the FIT: change [this line](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/int_rate/int_rate.cpp#L20) from `SYSTEM_INTC_IRQ_FIT_MASK` to `SYSTEM_INTC_IRQ_PIT_MASK`.  Since your PIT resets to the FIT's period, verify that you are getting interrupts every 16.67ms.
+  * Update the [int_rate](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/int_rate) application to use your PIT instead of the FIT: change [this line](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/int_rate/int_rate.cpp#L20) from `SYSTEM_INTC_IRQ_FIT_MASK` to `SYSTEM_INTC_IRQ_PIT_MASK`.
+  * Run *int_rate*.  Since your PIT resets to the FIT's period, you don't need a driver or any register writes; verify that you are getting interrupts every 16.67ms.  The TAs will grade this milestone by running your *int_rate* on your new bitstream.
 
 Make sure to commit:
+  * Your updated *int_rate.cpp*.
   * Your changes to the ECEN 427 project.  You will need to export the Tcl file for the project, overwriting the provided [ecen427.tcl](https://github.com/byu-cpe/ecen427_student/blob/main/hw/ecen427.tcl) file.
   * Your new bitstream (both the .bit file and the .bin file).
 
@@ -152,6 +154,7 @@ Make sure to commit:
 
 Follow the [submission instructions]({% link _pages/submission.md %}).  Make sure that you have pushed up all your new hardware to Github, including at least:
   * *(Milestone 1)* The *sim_proj.tcl* file that will be used to create your simulation project.
+  * *(Milestone 1)* Your test bench.
   * *(Milestone 1)* The waveform configuration file.
   * *(Milestone 1)* Your [pit.sv](https://github.com/byu-cpe/ecen427_student/blob/main/hw/ip_repo/pit/pit.sv) changes.
   * *(Milestone 2)* The changes to the [ecen427.tcl](https://github.com/byu-cpe/ecen427_student/blob/main/hw/ecen427.tcl) file.

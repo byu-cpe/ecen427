@@ -7,13 +7,15 @@ number: 25
 ---
 
 To make sure that your AXI module works correctly, you must simulate it.  As you know, the AXI bus is complicated, with many different signals and specific protocols.
-Writing a test bench to correctly set these signals would be a lot of work, so Xilinx provides an IP that contains a set of test bench functions to simulate transactions on the AXI bus.  This IP is called the <[AXI Verification  IP (VIP)](https://docs.amd.com/r/en-US/pg267-axi-vip/Introduction)>
+Writing a test bench to correctly set these signals would be a lot of work, so Xilinx provides an IP that contains a set of test bench functions to simulate transactions on the AXI bus.  This IP is called the [AXI Verification IP (VIP)](https://docs.amd.com/r/en-US/pg267-axi-vip/Introduction).
 
 
 ## Creating a VIP Project 
 You will need to create a new Vivado project.
   * Create the project as a subdirectory of your *hw* directory.
-  * Add your IP RTL files to the project (*pit.sv*). Make sure you DO NOT select the box *Copy sources into project*.
+  * Add your IP RTL files to the project: both *pit.sv* and *pit.v* from *hw/ip_repo/pit*. Make sure you DO NOT select the box *Copy sources into project*.
+    * *pit.sv* contains the `pit_sv` module, which is where you write your PIT.
+    * *pit.v* is a provided Verilog wrapper (module `pit`) that instantiates `pit_sv`.  You don't need to edit it.  It exists because Vivado's *Add Module...* can't add a SystemVerilog module to a block design directly.
   * You don't need any constraint files for a simulation project.
   * Use FPGA part #: xc7z020clg400-1
   
@@ -23,27 +25,37 @@ You will need to create a new Vivado project.
   * Add the AXI Verification IP (VIP) by right-clicking in the block design and selecting *Add IP...*. 
     * Double-click to configure the VIP
     * The VIP should be configured with *INTERFACE MODE = MASTER* and *PROTOCOL = AXI4LITE*. You may need to first select *INTERFACE MODE = MASTER*, then click *OK* to close the configuration window, then re-open the configuration window to set *PROTOCOL = AXI4LITE*.
-  * Add your IP to the block design by right-clicking in the block design and selecting *Add Module...*.  You can then select your IP from the list of available modules.
-  * Create external ports for your input and output signals.
-  * Remember to set the address of your PIT in the *Address Editor* (the actual address doesn't matter, you can just right-click and select *Assign*).
+  * Add your IP to the block design by right-clicking in the block design and selecting *Add Module...*.  Select the `pit` module (from *pit.v*), not `pit_sv`.
+  * Connect the VIP's *M_AXI* interface to your PIT's *s_axi* interface.
+  * Create external ports for the clock, the reset, and the interrupt (right-click a pin and select *Make External*):
+    * The VIP's *aclk* and your PIT's *s_axi_aclk* must both connect to the same clock port.
+    * The VIP's *aresetn* and your PIT's *s_axi_aresetn* must both connect to the same reset port.  This reset is active low.
+    * Your PIT's *irq* output gets its own port.
+    * Vivado names each port after the pin, with a *_0* suffix (e.g., *aclk_0*).  These are the port names your test bench connects to when it instantiates the block design.  Make sure the names match; you can rename the ports in the block design or in the test bench.  The names don't matter, but they must match.
+  * Assign your PIT an address.  Open the *Address Editor* tab (next to the *Diagram* tab in the block design window).  Your PIT appears under the VIP's address space; right-click it and select *Assign*.  Any address works.  Note the *Master Base Address* it gets, because your test bench uses it.  If you skip this, *Validate Design* reports the PIT as unassigned.
   * Use the small checkbox icon at the top of the block design to *Validate Design*.  You should not have any errors or warnings.
 
 <img src="{% link media/vip_system.png %}" alt="Vivado block design with an AXI Verification IP connected to the IP under test">
 
 ## Create a Test Bench 
-Create a new SystemVerilog file to use as a test bench.  Create this file somewhere in your repository (such as your [pit](https://github.com/byu-cpe/ecen427_student/tree/main/hw/ip_repo/pit) directory), but <span style="color:red">**do not create it inside your Vivado project**</span>.  You should treat your Vivado project as *temporary files* that will *NEVER* be committed to your repository.  You can start with the HDL provided below.  
+The test bench is the top-level module of your simulation.  It instantiates your block design (the VIP and your PIT), generates the clock and reset, and uses the VIP's *master agent* to issue AXI reads and writes to your PIT.  It instantiates the block design (`design_1`) directly, so you don't need to create an HDL wrapper for the block design.  If you do create one and instantiate it instead, the path to the VIP in the test bench (`design_1_i.axi_vip_0.inst.IF`) will no longer be correct.
+
+Create a new SystemVerilog file for your test bench (e.g., *tb.sv*) in your [pit](https://github.com/byu-cpe/ecen427_student/tree/main/hw/ip_repo/pit) directory, *hw/ip_repo/pit*, next to *pit.sv*.  <span style="color:red">**Do not create it inside your Vivado project**</span>.  You should treat your Vivado project as *temporary files* that will *NEVER* be committed to your repository.  The test bench, however, must be committed.  You can start with the HDL provided below.  
 
 Add this test bench to your project:
-  * Right-click in the *Sources* pane and select *Add Sources...*.  In the popup, select *Add or create simulation sources*, *Add file*, then browse to your newly created SystemVerilog test bench file.
+  * Right-click in the *Sources* pane and select *Add Sources...*.  In the popup, select *Add or create simulation sources*, *Add Files*, then browse to your test bench file.  Leave *Copy sources into project* unchecked.
   * Make this test-bench the top-level simulation source.  Go to *Sources*, *Hierarchy*, *Simulation Sources* and right-click on your test bench file and choose *Set as Top*.
 
 A simple starting test bench is included below. It was created based on a tutorial here: <http://www.wiki.xilinx.com/Using+the+AXI4+VIP+as+a+master+to+read+and+write+to+an+AXI4-Lite+slave+interface>.  
 
-It should work for you with a few minor modifications.  The test bench writes the PIT's delay-value register with `AXI4LITE_WRITE_BURST`, then reads it back with `AXI4LITE_READ_BURST` and prints it with `$display`.  You will need to perform more reads and writes to the PIT to make sure it is designed to specification correctly, and meet the simulation requirements for Lab 6.  Some notes
+It should work for you with a few minor modifications.  The test bench writes the PIT's delay-value register with `AXI4LITE_WRITE_BURST`, then reads it back with `AXI4LITE_READ_BURST` and prints it with `$display`.  You will need to perform more reads and writes to the PIT to make sure it is designed to specification correctly, and meet the [simulation requirements for Lab 6]({% link _labs/pit_hw.md %}#milestone-1-simulation-project).  Some notes
+  * Each read and write returns the PIT's AXI response in `resp`.  The test bench prints a message if it is anything other than *OKAY*.
+  * `$display` output appears in the *Tcl Console* at the bottom of the Vivado window, and in the simulation log (*simulate.log*).
   * The `import design_1_axi_vip_0_0_pkg::*;` assumes your VIP simulation package is named `design_1_axi_vip_0_0`.  Depending on how you chose to name things, yours could have a different name.  You can expand and check *Sources*, *IP Sources*, *Simulation* for the name of the VIP simulation package in your project.  Note that Vivado may underline these lines in red (indicating an error) even if they are written correctly.
   * The datatype of `master_agent` will be *\<package_name\>_mst_t*. 
   * The instantiation of the block design might be a bit different depending on how you named your block design file and the external ports.
-  * Change the addresses (`32'h44A0_0000` and `32'h44A0_0004`) to appropriate addresses for the PIT in your design.
+  * `design_1_i.axi_vip_0.inst.IF` is the path to the VIP inside your block design: `design_1_i` is the instance name in the test bench, and `axi_vip_0` is the VIP's name in your block design.  If you renamed the VIP, change this path to match.
+  * Set `addrCtrl` and `addrPeriod` (`32'h44A0_0000` and `32'h44A0_0004` below) to your PIT's *Master Base Address* from the *Address Editor*, plus 0x0 and 0x4.
 
 ```
 `timescale 1ns / 1ps
@@ -76,23 +88,30 @@ module tb(
   always #5ns clock <= ~clock;
 
   initial begin
+    // Assert reset (active low) from the start of simulation
+    reset_n = 1'b0;
+
     master_agent = new("master vip agent",design_1_i.axi_vip_0.inst.IF);
     
     //Start the agent
     master_agent.start_master();
     
-    // Hold reset for a while before releasing it
-    #500ns
-    reset_n = 1'b1;
+    // Hold reset for 16 clock cycles, then release it on a clock edge
+    repeat (16) @(posedge clock);
+    reset_n <= 1'b1;
     
     // Write a register
     #50ns
     data = 32'd5;
     master_agent.AXI4LITE_WRITE_BURST(addrPeriod, prot, data, resp);
+    if (resp != XIL_AXI_RESP_OKAY)
+      $display("[%0t] ERROR: write got response %s", $time, resp.name());
 
     // Read it back and print it
     #50ns
     master_agent.AXI4LITE_READ_BURST(addrPeriod, prot, data, resp);
+    if (resp != XIL_AXI_RESP_OKAY)
+      $display("[%0t] ERROR: read got response %s", $time, resp.name());
     $display("[%0t] Read delay-value = %0d", $time, data);
 
     #200ns
@@ -136,4 +155,4 @@ The VIP only checks the transactions your test bench generates, and the `AXI4LIT
 ## Commit Your Vivado Project to Git
 See the [Vivado documentation]({% link _documentation/vivado.md %}) for instructions on how to commit your Vivado project to Git.  You should commit all files needed to re-run your simulation (project creation Tcl file, testbench, waveform configuration, etc.), but not the actual project files.  
 
-Make sure you note that for the PIT hardware lab, you must save your project Tcl file at a specific location.  See the lab description for details.
+For the PIT hardware lab, save your project Tcl file as *hw/sim_proj.tcl*; the `make sim_pit` and `make synth_pit` targets look for it there.  Also add your simulation project's directory to the `make clean` target in *hw/Makefile*, so that `make clean` deletes it and the project can be recreated from *sim_proj.tcl*.
