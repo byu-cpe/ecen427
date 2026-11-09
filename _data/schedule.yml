@@ -299,15 +299,15 @@ events:
 - date: '2026-11-09'
   lectures:
   - title: Lab 6 M1 Discussion
-  quizzes:
-  - title: 'Quiz 11: AXI Bus I'
-    points: 24
 - date: '2026-11-11'
   lectures:
   - title: AXI Bus II
 - date: '2026-11-13'
   lectures:
   - title: 'Instructor gone: watch the Lab 6 M2 Discussion and Vivado block design demo videos'
+  quizzes:
+  - title: 'Quiz 11: AXI Bus I'
+    points: 24
 - date: '2026-11-14'
   labs:
   - title: Lab 6 M1
