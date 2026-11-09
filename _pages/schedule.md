@@ -26,11 +26,3 @@ readings are posted as each lecture is reached.
 LDD3: <https://lwn.net/Kernel/LDD3/>
 
 OSTEP: <https://pages.cs.wisc.edu/~remzi/OSTEP/>
-
-## Other Study Questions
-
-These study question sets are not tied to a specific lecture date, but are covered
-by in-class quizzes:
-
-* [IIC / SPI]({% link _pages/iic_spi.md %})
-* [Fourteen Ways to Fool Your Synchronizer]({% link _pages/synchronizer.md %})

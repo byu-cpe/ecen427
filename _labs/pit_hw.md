@@ -71,12 +71,19 @@ The [make sim_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makef
       * When this script is run, it should create a Vivado project with a block diagram that uses the AXI VIP to test your module. 
     
   1. It sources [run_sim.tcl](https://github.com/byu-cpe/ecen427_student/blob/main/hw/run_sim.tcl), which simply runs functional simulation in Vivado.  This means that the Vivado project must be set up with a SystemVerilog test bench that runs the VIP-driven simulation.    
-      * The test bench must:
-        * Demonstrate writing and reading back the control registers.  When you read back the control register, print it out using `$display`. 
-        * Demonstrate writing and reading back the delay-value register.  When you read back the delay-value register, print it out using `$display`. 
-        * Demonstrate your PIT running with a delay-value of 4, with the PIT enabled and generating interrupts.  Make sure it runs long enough to generate several interrupts.
-        * Demonstrate that the *enable* and *interrupt enable* bits of the control register work properly.
-      * You should have a pre-configured waveform file (.wcfg) set up that has appropriate signals added and organized in a way that the TAs can verify correct operation.  Here is an example:      
+      * The test bench must do each of the following, and each must be visible in your waveform:
+        1. **Reset values:** After reset and before any writes, read both registers and `$display` them (expect 3 and 1,666,667).
+        1. **Register read/write:** Write each register with a value different from its reset value, read it back, and `$display` both the written and the read value.
+        1. **Periodic interrupts:** Set the delay-value register to 4 and the control register to 3, and run for at least 5 interrupts.  *irq* must be high for exactly one cycle every 4 cycles.
+        1. **Enable (bit 0):** Clear it partway through a count and hold it clear for at least 10 cycles.  Show that the counter holds and *irq* stays low.  Then set it again and show that the counter continues from the value it held.
+        1. **Interrupt enable (bit 1):** With the counter running, clear it for at least 2 full periods.  Show that the counter keeps reloading while *irq* stays low.  Then set it again and show that *irq* returns.
+        1. **Delay change:** While the PIT is running, change the delay-value register (e.g., 4 → 6) and show that the new period takes effect.
+      * You must have a pre-configured waveform file (.wcfg) with signals added and organized so the TAs can verify each of the items above.  It must include at least:
+        * The clock, *resetn*, and *irq*.
+        * Your control register (or its *enable* and *interrupt enable* bits), your delay-value register, and your timer-counter.
+        * The AXI signals for all five channels (AW, W, B, AR, R): each channel's *valid* and *ready*, plus its address, data, or response signals.  Group them by channel (e.g., with dividers) so each handshake is easy to follow.
+      
+      Here is an example:      
       <img src="{% link media/labs/pit_sim.png %}" width="1000" alt="Simulation waveform of the PIT timer">
 
 The [make clean](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L7-L8) target removes all the temporary Vivado project files.  You will need to update this command to delete your simulation project files, otherwise it will prevent you from recreating the project in the next step.
