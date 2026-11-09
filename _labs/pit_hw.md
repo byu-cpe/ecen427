@@ -104,9 +104,9 @@ You may want to go back and forth between these targets as you work on your PIT 
 Passing your VIP test bench does not mean your PIT will work in hardware.  The VIP's `AXI4LITE_WRITE_BURST` and `AXI4LITE_READ_BURST` functions always use the same forgiving timing, but the real AXI bus does not.  Designs that pass the VIP but fail in hardware usually:
   * use *s_axi_awaddr*, *s_axi_wdata*, or *s_axi_araddr* after the handshake, instead of capturing them during it;
   * assume the AW and W channels arrive in the same cycle;
-  * make *bvalid*/*rvalid* wait for *bready*/*rready* (this hangs the CPU), or change *s_axi_rdata* while *rvalid* is waiting for *rready*.
+  * make *bvalid*/*rvalid* wait for *bready*/*rready* (this hangs the CPU).
 
-The provided stress test in [hw/pit_test](https://github.com/byu-cpe/ecen427_student/tree/main/hw/pit_test) drives your *pit_sv* module with randomized AXI timing and checks it against the AXI protocol and the specification above.  Run it from the *hw* directory with `make test_pit`.  It prints `ALL SEEDS PASSED` when your PIT passes; logs are in *hw/pit_test_proj*, and `bash pit_test/run_pit_test.sh -g -s <seed>` opens a failing seed in the waveform viewer.
+The provided stress test in [hw/pit_test](https://github.com/byu-cpe/ecen427_student/tree/main/hw/pit_test) drives your *pit_sv* module with randomized AXI timing and checks it against the AXI protocol and the specification above.  Run it from the *hw* directory with `make test_pit`.  It ends with `PIT TEST RESULT: ALL TESTS PASSED` when your PIT passes, along with any warnings (e.g., *s_axi_rdata* changing while *rvalid* waits for *rready*), which don't affect grading but are worth fixing.  The full log is *hw/pit_test_proj/sim.log*, and `make test_pit_gui` runs the test in the waveform viewer for debugging.
 
 **Your PIT must pass this test; it is part of grading.**  
 
