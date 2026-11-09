@@ -287,6 +287,7 @@ Some resources to help you with the kernel function calls:
   * Read LDD3 chapter 6, the first section on *ioctl*.
   * Use `.unlocked_ioctl` in the `struct file_operations` (`.ioctl` as the text suggests is out of date). Even with this update, you still use the `ioctl()` system call in your user-space code for space invaders.
   * The *ioctl* interface must be implemented as described in LDD3.  Make sure the *ioctl* command values are created using the `_IO*` macros.  An example of these are given on pages 138-139 of LDD3.
+  * Both your driver and your Space Invaders code need the *ioctl* command values, so put them in a header file in your *kernel/audio_codec/* directory.  The userspace build already adds that directory to the include path ([userspace/CMakeLists.txt](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/CMakeLists.txt#L98)), so your userspace code can `#include` the header by its file name alone.  The HDMI driver's [ecen427_ioctl.h](https://github.com/byu-cpe/ecen427_student/blob/main/kernel/hdmi_ctrl/ecen427_ioctl.h) is an example of a header shared this way.
   * You probably want to read all of the WAVE files and store them in arrays at the startup of your game.  Then each time you want to play a sound effect you can pass the appropriate array buffer to the driver.  This avoids repeatedly reading the WAVE files each time you play a sound.
   * No sound mixing is required for this lab, simply play one sound at a time.
 
