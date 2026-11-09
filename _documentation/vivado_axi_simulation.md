@@ -131,6 +131,8 @@ Warning: XILINX_RECS_WLCMD_TO_BVALID_MAX_WAIT: BVALID should be asserted within 
 
 If your module produces AXI protocol warnings during simulation, the TAs will deduct points from your lab.
 
+The VIP only checks the transactions your test bench generates, and the `AXI4LITE_WRITE_BURST`/`AXI4LITE_READ_BURST` functions always use the same forgiving timing.  A module with no VIP warnings can still fail in hardware.  For the PIT lab, also run the provided [AXI stress test]({% link _labs/pit_hw.md %}#axi-stress-test), which exercises the other timing the AXI protocol allows.
+
 ## Commit Your Vivado Project to Git
 See the [Vivado documentation]({% link _documentation/vivado.md %}) for instructions on how to commit your Vivado project to Git.  You should commit all files needed to re-run your simulation (project creation Tcl file, testbench, waveform configuration, etc.), but not the actual project files.  
 

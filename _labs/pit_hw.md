@@ -62,7 +62,10 @@ To grade your lab, the TAs will run the following:
   make sim_pit
   make clean
   make synth_pit
+  make test_pit
   ```
+
+The *sim_pit* and *synth_pit* targets use your own Vivado project and test bench.  The *test_pit* target runs a provided stress test against your *pit.sv*; see [AXI Stress Test](#axi-stress-test) below.
 
 The [make sim_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L25-L26) target runs Vivado and does two things:
     
@@ -94,7 +97,22 @@ The [make synth_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Mak
   1. Like the above target, it sources *sim_proj.tcl* to create your Vivado project. 
   1. It performs Synthesis to ensure that your PIT design can be implemented in hardware. Synthesis will check certain design rules that simulation does not check. 
   
-You may want to go back and forth between these two targets as you work on your PIT design.  If synthesis has errors, you will need to fix them and then go back to simulation again to verify that your changes didn't break anything.  Once both of these targets run without errors, you are ready to move on to Milestone 2.
+You may want to go back and forth between these targets as you work on your PIT design.  If synthesis has errors, you will need to fix them and then go back to simulation again to verify that your changes didn't break anything.
+
+#### AXI Stress Test
+
+Passing your VIP test bench does not mean your PIT will work in hardware.  The VIP's `AXI4LITE_WRITE_BURST` and `AXI4LITE_READ_BURST` functions always use the same forgiving timing, but the real AXI bus does not.  Designs that pass the VIP but fail in hardware usually:
+  * use *s_axi_awaddr*, *s_axi_wdata*, or *s_axi_araddr* after the handshake, instead of capturing them during it;
+  * assume the AW and W channels arrive in the same cycle;
+  * make *bvalid*/*rvalid* wait for *bready*/*rready* (this hangs the CPU), or change *s_axi_rdata* while *rvalid* is waiting for *rready*.
+
+The provided stress test in [hw/pit_test](https://github.com/byu-cpe/ecen427_student/tree/main/hw/pit_test) drives your *pit_sv* module with randomized AXI timing and checks it against the AXI protocol and the specification above.  Run it from the *hw* directory with `make test_pit`.  It prints `ALL SEEDS PASSED` when your PIT passes; logs are in *hw/pit_test_proj*, and `bash pit_test/run_pit_test.sh -g -s <seed>` opens a failing seed in the waveform viewer.
+
+**Your PIT must pass this test; it is part of grading.**  
+
+#### Before Moving On
+
+Once *sim_pit* and *synth_pit* run without errors, and *test_pit* passes, you are ready to move on to Milestone 2.
 
 <span style="color:red">**IMPORTANT:**</span> Students frequently forget to commit all necessary files for the TAs to run the above commands.  Make sure you commit your *sim_proj.tcl* file, your waveform configuration file, and any other necessary files to your repository.  It is recommended that you perform a fresh clone of your repository and run the above commands to make sure that everything is committed that needs to be.  
 
@@ -127,6 +145,7 @@ Make sure to commit:
 * Review the available documentation on [using the Vivado software]({% link _documentation/vivado.md %}) and [simulating AXI IP]({% link _documentation/vivado_axi_simulation.md %}).
 * Write the PIT module, implemented in [pit.sv](https://github.com/byu-cpe/ecen427_student/blob/main/hw/ip_repo/pit/pit.sv)
 * Write your test bench to simulate your PIT module to make sure it works correctly.
+* Run the [AXI stress test](#axi-stress-test) (`make test_pit`) to check your AXI interface against the timing the real system uses.
 * Complete the rest of the requirements described above.
 
 ## Submission 
