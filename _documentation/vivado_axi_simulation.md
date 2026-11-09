@@ -39,7 +39,7 @@ Add this test bench to your project:
 
 A simple starting test bench is included below. It was created based on a tutorial here: <http://www.wiki.xilinx.com/Using+the+AXI4+VIP+as+a+master+to+read+and+write+to+an+AXI4-Lite+slave+interface>.  
 
-It should work for you with a few minor modifications.  The test bench performs two writes to registers in the PIT IP.  You will need to perform more reads and writes to the PIT to make sure it is designed to specification correctly, and meet the simulation requirements for Lab 6.  Some notes
+It should work for you with a few minor modifications.  The test bench writes the PIT's delay-value register with `AXI4LITE_WRITE_BURST`, then reads it back with `AXI4LITE_READ_BURST` and prints it with `$display`.  You will need to perform more reads and writes to the PIT to make sure it is designed to specification correctly, and meet the simulation requirements for Lab 6.  Some notes
   * The `import design_1_axi_vip_0_0_pkg::*;` assumes your VIP simulation package is named `design_1_axi_vip_0_0`.  Depending on how you chose to name things, yours could have a different name.  You can expand and check *Sources*, *IP Sources*, *Simulation* for the name of the VIP simulation package in your project.  Note that Vivado may underline these lines in red (indicating an error) even if they are written correctly.
   * The datatype of `master_agent` will be *\<package_name\>_mst_t*. 
   * The instantiation of the block design might be a bit different depending on how you named your block design file and the external ports.
@@ -81,17 +81,21 @@ module tb(
     //Start the agent
     master_agent.start_master();
     
-    #50ns
+    // Hold reset for a while before releasing it
+    #500ns
     reset_n = 1'b1;
     
+    // Write a register
     #50ns
     data = 32'd5;
     master_agent.AXI4LITE_WRITE_BURST(addrPeriod, prot, data, resp);
-    
-    #50ns
-    data = 32'h00000007;
-    master_agent.AXI4LITE_WRITE_BURST(addrCtrl, prot, data, resp);
 
+    // Read it back and print it
+    #50ns
+    master_agent.AXI4LITE_READ_BURST(addrPeriod, prot, data, resp);
+    $display("[%0t] Read delay-value = %0d", $time, data);
+
+    #200ns
     $finish;
 
   end

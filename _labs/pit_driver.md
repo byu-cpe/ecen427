@@ -63,7 +63,7 @@ Your driver must expose the following functionality through the sysfs interface:
   * To add sysfs attributes, you need a `struct kobject *` type.  You can obtain this from your `probe` function.  The probe function provides a `struct platform_device *pdev` argument, and you can obtain the `struct kobject *` by doing `&pdev->dev.kobj`.
 
 ### Verifying with Int Rate
-You can verify that your PIT is working correctly by testing it with the [int_rate](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/int_rate) application.  Modify [this line](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/int_rate/int_rate.cpp#L12) in the source code to use the PIT interrupt line instead of the FIT interrupt line.  
+You can verify that your PIT is working correctly by testing it with the [int_rate](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/int_rate) application.  Modify [this line](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/int_rate/int_rate.cpp#L20) in the source code to use the PIT interrupt line instead of the FIT interrupt line.  
 
 While this application is running, you can run a command like this to change the period of your PIT on the fly:
 ```

@@ -38,16 +38,16 @@ Your PIT module must include the following:
     - **Offset 0x04**: A 32-bit delay-value register that must be readable and writeable from the CPU. This value controls the period of the interrupt output.  
     - **Write strobes**: Your PIT driver should only perform full 32-bit writes, so you may ignore *s_axi_wstrb*. Alternatively, you may return a *SLVERR* response (*s_axi_bresp = 2'b10*) for any write whose strobe is not *4'b1111*, and leave the register unchanged. Returning *SLVERR* is optional and not required.
   - **Reset**: Your PIT must reset along with the rest of the system.  Make sure to reset your PIT using the AXI resetn signal.
-    - It would be good to reset your PIT into a state equivalent to the FIT, so that you can test that it's working without needing to perform any register writes.  Thus:
-      * Reset the offset 0x00 control register to 3 (i.e., enable the counter and enable interrupts).
-      * Reset the offset 0x04 delay-value register to 1,666,667 (16.67ms at 100MHz, which is the same period as the FIT).
+    - Your PIT must reset into a state equivalent to the FIT, so that you can test that it's working without needing to perform any register writes:
+      * The offset 0x00 control register must reset to 3 (i.e., enable the counter and enable interrupts).
+      * The offset 0x04 delay-value register must reset to 1,666,667 (16.67ms at 100MHz, which is the same period as the FIT).
 
 ### PIT Behavior
   - The timer-counter should auto-reload (i.e., when the timer-counter reaches 0, it should be reloaded based on the delay-value register, and continue decrementing).
   - If you disable the counter, and then re-enable it, it should just continue as if it had not been disabled.  
-  - Interrupts should not occur when disabled (i.e., if you happen to disable it exactly when the counter == 0).
+  - *irq* must stay low whenever either the *enable* or *interrupt enable* bit is 0, even if the counter is at 0 (e.g., if you happen to disable it exactly when the counter == 0).
   - During normal operation, you program the delay-value register to contain a value that indicates how often an interrupt occurs.  If you set the delay-value register to N, then an interrupt should occur every N cycles.  For example, when the delay-value register contains a '2', the interrupt output is a square wave with a 50% duty cycle. When the register is set to '3', an interrupt occurs every third cycle.  You don't have to worry about what happens when the register is set to '0' or '1'; that behavior is undefined.
-  - You will need to initialize your timer-counter at an appropriate time.  This is best done when the delay-value register is changed.
+  - Writing the delay-value register must reload the timer-counter, so the new period takes effect immediately rather than after the current count finishes.
 
 ## Implementation
 
@@ -67,7 +67,7 @@ To grade your lab, the TAs will run the following:
 The [make sim_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L25-L26) target runs Vivado and does two things:
     
   1. It sources *sim_proj.tcl*, which builds your Vivado project (you don't commit your Vivado project to your repo, only this Tcl file).
-      * To create this file, you will need to make your own Vivado simulation project that contains the AXI VIP and your module, connected appropriately.  The Tcl script can then be exported using the *Write Tcl* menu option, as as described on the [vivado]({% link _documentation/vivado.md %}) page.  
+      * To create this file, you will need to make your own Vivado simulation project that contains the AXI VIP and your module, connected appropriately.  The Tcl script can then be exported using the *Write Tcl* menu option, as described on the [vivado]({% link _documentation/vivado.md %}) page.  
       * When this script is run, it should create a Vivado project with a block diagram that uses the AXI VIP to test your module. 
     
   1. It sources [run_sim.tcl](https://github.com/byu-cpe/ecen427_student/blob/main/hw/run_sim.tcl), which simply runs functional simulation in Vivado.  This means that the Vivado project must be set up with a SystemVerilog test bench that runs the VIP-driven simulation.    
@@ -78,6 +78,7 @@ The [make sim_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makef
         1. **Enable (bit 0):** Clear it partway through a count and hold it clear for at least 10 cycles.  Show that the counter holds and *irq* stays low.  Then set it again and show that the counter continues from the value it held.
         1. **Interrupt enable (bit 1):** With the counter running, clear it for at least 2 full periods.  Show that the counter keeps reloading while *irq* stays low.  Then set it again and show that *irq* returns.
         1. **Delay change:** While the PIT is running, change the delay-value register (e.g., 4 → 6) and show that the new period takes effect.
+      * Your simulation log must not contain any AXI protocol warnings from the VIP (see [AXI Messages]({% link _documentation/vivado_axi_simulation.md %}#axi-messages)).  The TAs will deduct points for any such warnings.
       * You must have a pre-configured waveform file (.wcfg) with signals added and organized so the TAs can verify each of the items above.  It must include at least:
         * The clock, *resetn*, and *irq*.
         * Your control register (or its *enable* and *interrupt enable* bits), your delay-value register, and your timer-counter.
@@ -88,7 +89,7 @@ The [make sim_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makef
 
 The [make clean](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L7-L8) target removes all the temporary Vivado project files.  You will need to update this command to delete your simulation project files, otherwise it will prevent you from recreating the project in the next step.
 
-The [make synth_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L28-29) target runs Vivado and does two things:
+The [make synth_pit](https://github.com/byu-cpe/ecen427_student/blob/main/hw/Makefile#L28-L29) target runs Vivado and does two things:
 
   1. Like the above target, it sources *sim_proj.tcl* to create your Vivado project. 
   1. It performs Synthesis to ensure that your PIT design can be implemented in hardware. Synthesis will check certain design rules that simulation does not check. 
@@ -114,8 +115,8 @@ After it is integrated:
   * Make sure you compile a new bitstream.  See [Compiling a New Bitstream]({% link _documentation/vivado.md %}#compiling-a-new-bitstream).
 
 Final verification:
-  * Pull down the new bitstream onto your PYNQ board, and replace your boot bitstream with the new one that includes your PIT.
-  * Update the `int_rate` application to use your PIT instead of the FIT, and verify you are getting interrupts at the expected rate.
+  * Pull down the new bitstream onto your PYNQ board and install it as your boot bitstream (see [Loading the new Bitstream on your PYNQ board]({% link _documentation/vivado.md %}#loading-the-new-bitstream-on-your-pynq-board)).
+  * Update the [int_rate](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/int_rate) application to use your PIT instead of the FIT: change [this line](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/int_rate/int_rate.cpp#L20) from `SYSTEM_INTC_IRQ_FIT_MASK` to `SYSTEM_INTC_IRQ_PIT_MASK`.  Since your PIT resets to the FIT's period, verify that you are getting interrupts every 16.67ms.
 
 Make sure to commit:
   * Your changes to the ECEN 427 project.  You will need to export the Tcl file for the project, overwriting the provided [ecen427.tcl](https://github.com/byu-cpe/ecen427_student/blob/main/hw/ecen427.tcl) file.
