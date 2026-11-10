@@ -170,9 +170,9 @@
 "2026-11-13":
   # Learning Suite lists the no-class item and the two recorded topics; collapse to one line.
   rename:
-    "Instructor gone - No class": "Instructor gone: watch the Lab 6 M2 Discussion and Vivado block design demo videos"
-    "Lab 6 M2 Discussion (video)": "Instructor gone: watch the Lab 6 M2 Discussion and Vivado block design demo videos"
-    "Vivado block design demo (video)": "Instructor gone: watch the Lab 6 M2 Discussion and Vivado block design demo videos"
+    "Instructor gone - No class": "Instructor gone: Watch the Lab 6 M2 video"
+    "Lab 6 M2 Discussion (video)": "Instructor gone: Watch the Lab 6 M2 video"
+    "Vivado block design demo (video)": "Instructor gone: Watch the Lab 6 M2 video"
   videos:
     - { title: "Lab 6 M2 integration demo (video)", url: "https://youtu.be/Qk_aPeDQgU8" }
 

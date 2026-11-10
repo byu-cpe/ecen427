@@ -304,7 +304,7 @@ events:
   - title: AXI Bus II
 - date: '2026-11-13'
   lectures:
-  - title: 'Instructor gone: watch the Lab 6 M2 Discussion and Vivado block design demo videos'
+  - title: 'Instructor gone: Watch the Lab 6 M2 video'
   videos:
   - title: Lab 6 M2 integration demo (video)
     url: https://youtu.be/Qk_aPeDQgU8
@@ -322,6 +322,8 @@ events:
 - date: '2026-11-18'
   lectures:
   - title: Instructor gone - No class
+  exams:
+  - title: Midterm 2
 - date: '2026-11-19'
   exams:
   - title: Midterm 2
