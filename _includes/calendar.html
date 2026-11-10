@@ -78,6 +78,13 @@ Data is generated from Learning Suite; see the header of _data/schedule.yml.
         {%- endif -%}
       {%- endunless -%}
 
+      {%- for v in ev.videos %}
+      <div class="cal-item cal-item-video">
+        <span class="cal-dot cal-dot-video" aria-hidden="true"></span>
+        <a href="{{ v.url | relative_url }}">{{ v.title }}</a>
+      </div>
+      {%- endfor -%}
+
       {%- for r in ev.reading %}
       <div class="cal-item cal-item-reading">
         <span class="cal-dot cal-dot-reading" aria-hidden="true"></span>

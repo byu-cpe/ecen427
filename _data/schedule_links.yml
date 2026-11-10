@@ -11,7 +11,8 @@
 # with the same title exists in Learning Suite), `order` pins the display
 # order of that day's lecture titles, and `hide_note: true` drops the
 # university-calendar note (e.g. "Last Day of Class") Learning Suite attaches
-# to that day.
+# to that day. `videos` lists recorded videos ({ title, url }); unlike slides,
+# readings and study questions they are not held back by MATERIALS_THROUGH.
 
 "2026-09-02":
   order: ["Class Overview", "Intro to Operating Systems"]
@@ -172,6 +173,8 @@
     "Instructor gone - No class": "Instructor gone: watch the Lab 6 M2 Discussion and Vivado block design demo videos"
     "Lab 6 M2 Discussion (video)": "Instructor gone: watch the Lab 6 M2 Discussion and Vivado block design demo videos"
     "Vivado block design demo (video)": "Instructor gone: watch the Lab 6 M2 Discussion and Vivado block design demo videos"
+  videos:
+    - { title: "Lab 6 M2 integration demo (video)", url: "https://youtu.be/Qk_aPeDQgU8" }
 
 "2026-11-23":
   order: ["LDD3 Ch. 14", "Lab 7 Discussion"]

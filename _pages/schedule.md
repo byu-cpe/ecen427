@@ -13,6 +13,7 @@ readings are posted as each lecture is reached.
 
 <div class="cal-legend">
   <span><span class="cal-dot cal-dot-lecture"></span> lecture topic</span>
+  <span><span class="cal-dot cal-dot-video"></span> lecture video</span>
   <span><span class="cal-dot cal-dot-reading"></span> reading assignment</span>
   <span><span class="cal-dot cal-dot-lab"></span> lab deadline</span>
   <span><span class="cal-dot cal-dot-quiz"></span> quiz deadline</span>
