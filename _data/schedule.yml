@@ -306,7 +306,7 @@ events:
   lectures:
   - title: 'Instructor gone: Watch the Lab 6 M2 video'
   videos:
-  - title: Lab 6 M2 integration demo (video)
+  - title: 'Lab 6 M2 video: Vivado block design demo'
     url: https://youtu.be/Qk_aPeDQgU8
   quizzes:
   - title: 'Quiz 11: AXI Bus I'

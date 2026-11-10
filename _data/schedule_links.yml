@@ -168,13 +168,13 @@
     - { title: "Creating AXI Peripheral IP in Vivado", url: /vivado-ip/ }
 
 "2026-11-13":
-  # Learning Suite lists the no-class item and the two recorded topics; collapse to one line.
+  # Learning Suite lists the no-class item and the video item; collapse to one
+  # line, with the video linked below it.
   rename:
     "Instructor gone - No class": "Instructor gone: Watch the Lab 6 M2 video"
-    "Lab 6 M2 Discussion (video)": "Instructor gone: Watch the Lab 6 M2 video"
-    "Vivado block design demo (video)": "Instructor gone: Watch the Lab 6 M2 video"
+    "Lab 6 M2 video: Vivado block design demo": "Instructor gone: Watch the Lab 6 M2 video"
   videos:
-    - { title: "Lab 6 M2 integration demo (video)", url: "https://youtu.be/Qk_aPeDQgU8" }
+    - { title: "Lab 6 M2 video: Vivado block design demo", url: "https://youtu.be/Qk_aPeDQgU8" }
 
 "2026-11-23":
   order: ["LDD3 Ch. 14", "Lab 7 Discussion"]
