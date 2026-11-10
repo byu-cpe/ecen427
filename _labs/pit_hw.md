@@ -118,6 +118,8 @@ Once *sim_pit* and *synth_pit* run without errors, and *test_pit* passes, you ar
 
 ### Milestone 2: Integration
 
+**Video:** [Lab 6 Milestone 2 walkthrough](https://youtu.be/Qk_aPeDQgU8): adding your PIT to the ECEN 427 block design, building the bitstream, and testing it with *int_rate*.
+
 Once you are confident that your PIT is working correctly, integrate it into the ECEN 427 Vivado project.  See the [Vivado documentation]({% link _documentation/vivado.md %}) for information about creating a Vivado project with the existing ECEN 427 hardware system.  
 
 Here are some tips to help you integrate your PIT:
