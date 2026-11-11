@@ -315,6 +315,9 @@ events:
 - date: '2026-11-16'
   lectures:
   - title: Instructor gone - No class
+  quizzes:
+  - title: 'Quiz 12: AXI Bus II'
+    points: 19
 - date: '2026-11-17'
   labs:
   - title: Lab 6 M1
