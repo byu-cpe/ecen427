@@ -158,8 +158,10 @@
     - { title: "Simulating AXI IP", url: /documentation/vivado-axi-simulation/ }
 
 "2026-11-11":
+  add_lectures: ["AXI Handshakes: Legal or Illegal?"]
   slides:
     "AXI Bus II": media/slides/20-axi.pdf
+    "AXI Handshakes": media/slides/20-axi-legal-illegal.pdf
   study:
     - { title: "AXI Bus II Study Questions", url: /documentation/axi/#axi-bus-ii }
 

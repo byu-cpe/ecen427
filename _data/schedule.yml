@@ -303,6 +303,8 @@ events:
   lectures:
   - title: AXI Bus II
     slides: media/slides/20-axi.pdf
+  - title: 'AXI Handshakes: Legal or Illegal?'
+    slides: media/slides/20-axi-legal-illegal.pdf
 - date: '2026-11-13'
   lectures:
   - title: 'Instructor gone: Watch the Lab 6 M2 video'
