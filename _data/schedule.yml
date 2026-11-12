@@ -311,15 +311,12 @@ events:
   videos:
   - title: 'Lab 6 M2 video: Vivado block design demo'
     url: https://youtu.be/Qk_aPeDQgU8
-  quizzes:
-  - title: 'Quiz 11: AXI Bus I'
-    points: 24
 - date: '2026-11-16'
   lectures:
   - title: Instructor gone - No class
   quizzes:
-  - title: 'Quiz 12: AXI Bus II'
-    points: 19
+  - title: 'Quiz 11: AXI Bus I'
+    points: 24
 - date: '2026-11-17'
   labs:
   - title: Lab 6 M1
@@ -350,6 +347,9 @@ events:
   lectures:
   - title: LDD3 Ch. 14
   - title: Lab 7 Discussion
+  quizzes:
+  - title: 'Quiz 12: AXI Bus II'
+    points: 19
 - date: '2026-11-25'
   holiday: No class - Thanksgiving Holiday
 - date: '2026-11-26'
