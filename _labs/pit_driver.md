@@ -63,6 +63,7 @@ Your driver must expose the following functionality through the sysfs interface:
 ### Add sysfs interfaces
   * Extend your driver to support the sysfs interfaces described above.
   * To add sysfs attributes, you need a `struct kobject *` type.  You can obtain this from your `probe` function.  The probe function provides a `struct platform_device *pdev` argument, and you can obtain the `struct kobject *` by doing `&pdev->dev.kobj`.
+  * Declare each attribute by filling in a `struct device_attribute` (its `.attr.name`, `.attr.mode`, `.show` and `.store` fields).
 
 ### Verifying with Int Rate
 You can verify that your PIT is working correctly by testing it with the [int_rate](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/int_rate) application, which you already switched to the PIT interrupt line in Lab 6 Milestone 2.  
@@ -113,7 +114,7 @@ You may find the following tutorial helpful: <https://www.cs.swarthmore.edu/~new
 
 ### sysfs permissions 
 
-The Linux kernel prevents you from setting certain permission bits on *sysfs* files.  You are not allowed to set the *write* or *execute* bits for all users (*others*).  Give your attributes mode `0644` (owner read/write, everyone else read-only), which is what the `DEVICE_ATTR_RW()` macro uses.  Anyone can then `cat` your attributes, but writing them requires root.
+The Linux kernel prevents you from setting certain permission bits on *sysfs* files.  You are not allowed to set the *write* or *execute* bits for all users (*others*); if you give an attribute mode `0666`, `sysfs_create_group()` prints a kernel warning and creates the file as `0664` anyway.  Give your attributes mode `0644` (owner read/write, everyone else read-only).  Anyone can then `cat` your attributes, but writing them requires root.
 
 That is why the example commands use `sudo bash -c "echo ... > ..."` rather than `sudo echo ... > ...`.  In the second form, `sudo` only applies to `echo`; the `>` redirection is performed by your own (non-root) shell, which does not have permission to open the file for writing.
 
