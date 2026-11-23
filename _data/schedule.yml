@@ -367,13 +367,14 @@ events:
 - date: '2026-12-02'
   lectures:
   - title: Last day of class
+- date: '2026-12-04'
+  lectures:
+  - title: Instructor gone - No class
+- date: '2026-12-05'
   labs:
   - title: Lab 7
     points: 20
     lab: 7
-- date: '2026-12-04'
-  lectures:
-  - title: Instructor gone - No class
 - date: '2026-12-07'
   lectures:
   - title: No class - Midterm 3
