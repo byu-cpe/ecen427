@@ -15,7 +15,7 @@ In this lab you will create a Linux kernel driver for your programmable interval
  * Write a kernel driver for your own custom hardware.
 
 ## Preliminary
-Like device files that you used for your audio driver, sysfs is another method for allowing userspace to communicate with your device driver.  Sysfs is a virtual filesystem, located at */sys*.  Your driver will create a set of attributes, that are represented as files in this virtual filesystem.  Userspace can read and write ASCII text to these files to read/write attributes in your driver.   This interface to your device is nice for users, as they can interact with your device by simply using `cat` and `echo` through the terminal, without needing to write and compile a program.
+Like device files that you used for your audio driver, sysfs is another method for allowing userspace to communicate with your device driver.  Sysfs is a virtual filesystem, located at */sys*.  Your driver will create a set of attributes that are represented as files in this virtual filesystem.  Userspace can read and write ASCII text to these files to read/write attributes in your driver.   This interface to your device is nice for users, as they can interact with your device by simply using `cat` and `echo` through the terminal, without needing to write and compile a program.
 
 ## Specification 
 
@@ -24,6 +24,7 @@ The interface to your driver should be located at */sys/devices/soc0/axi/\<your 
 Your driver must expose the following functionality through the sysfs interface:
   * Get/set timer period
     * This should be a single integer, representing the period in **microseconds**.  Thus, if you write `16667` to this attribute, the PIT should produce interrupts at the same rate as the FIT you used when originally coding space invaders.
+    * Reading this attribute must also return the period in microseconds (e.g., `16667` right after the PIT comes out of reset), not the raw clock-cycle count stored in the hardware register.
     * The attribute name must be `period`.
   * Start/stop timer
     * This should be a single character, `0` or `1` indicating if the timer is running.
@@ -38,12 +39,13 @@ Your driver must expose the following functionality through the sysfs interface:
 
 ### Update the Linux Device Tree 
 
-  * Add your PIT to the linux device tree.  Make sure the base address matches the address in your Vivado hardware design.
-  * Compile the new device tree and replace the existing device tree on the PYNQ SD card. See [Linux Device Tree]({% link _documentation/platform_device_tree.md %}) for more information.
+  * Add an *ecen427_pit* entry for your PIT to the device tree overlay, [device_tree/ecen427.dtsi](https://github.com/byu-cpe/ecen427_student/tree/main/device_tree/ecen427.dtsi).  Make sure the base address matches the address in your Vivado hardware design, and that the `compatible` string matches the one in your driver's `of_match_table`.
+  * On a lab machine, rebuild the overlay with `make build` in the *device_tree* directory, and commit and push the new *ecen427.dtbo*.
+  * On your PYNQ board, pull, and then run `sudo make install` in the *device_tree* directory to load the new overlay.  `make install` only copies the committed *ecen427.dtbo*; it does not rebuild it, so the TAs will only see your PIT if the rebuilt *.dtbo* is committed.  See the [device tree README](https://github.com/byu-cpe/ecen427_student/tree/main/device_tree/readme.md) and [Linux Device Tree]({% link _documentation/platform_device_tree.md %}) for more information.
 
 
 ### Create your Basic Driver 
-  * Create a basic kernel driver for your PIT, using your audio driver code for reference.
+  * Create a basic kernel driver for your PIT in *kernel/pit/pit.c*, using your audio driver code for reference.  The provided [Makefile](https://github.com/byu-cpe/ecen427_student/tree/main/kernel/pit/Makefile) builds it into *pit.ko*.
   * How will this be different from your audio_driver?
     * Since we won't be interacting with the driver via device file in `/dev`, you:
       * Don't need to create a character device, or device class.
@@ -70,10 +72,10 @@ While this application is running, you can run a command like this to change the
 sudo bash -c "echo 10000 > /sys/devices/soc0/axi/\<your baseaddr\>.ecen427_pit/period"
 ```
 
-The above command should increase the tick rate from a period of 16.67ms to 10ms.  
+The above command should change the interrupt period from 16.67ms to 10ms, so *int_rate* should report interrupts more often.  
 
 ### Space Invaders 
-Modify your space invaders game code to use the interrupt from the PIT.
+Modify your space invaders game code to use the interrupt from the PIT.  This is the same one-line change you made to *int_rate* in Lab 6: in [main.cpp](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/apps/space_invaders/main.cpp#L33), change `SYSTEM_INTC_IRQ_FIT_MASK` to `SYSTEM_INTC_IRQ_PIT_MASK`.
   
 
 ## Pass-Off/Submission
@@ -87,6 +89,12 @@ The above command should cause your game to run at half speed.
 
 
 Follow the [usual submission instructions]({% link _pages/submission.md %}).  Reminder: your code must compile with zero warnings.  The `valgrind` requirement does not apply to kernel modules.
+
+Make sure that you have pushed up, at least:
+  * Your PIT driver, *kernel/pit/pit.c* (and any headers it uses).
+  * Your updated *device_tree/ecen427.dtsi* and the rebuilt *device_tree/ecen427.dtbo*.
+  * Your Space Invaders change to use the PIT interrupt.
+  * Your *lifelong_learning/lab7.txt*.
 
 
 ## Documentation 
@@ -105,7 +113,9 @@ You may find the following tutorial helpful: <https://www.cs.swarthmore.edu/~new
 
 ### sysfs permissions 
 
-The Linux kernel prevents you from setting certain permission bits on *sysfs* files.  You are not allowed to set the *write* or *execute* bits for all users.  Thus, the example command requires *sudo* to write to the *sysfs* file.
+The Linux kernel prevents you from setting certain permission bits on *sysfs* files.  You are not allowed to set the *write* or *execute* bits for all users (*others*).  Give your attributes mode `0644` (owner read/write, everyone else read-only), which is what the `DEVICE_ATTR_RW()` macro uses.  Anyone can then `cat` your attributes, but writing them requires root.
+
+That is why the example commands use `sudo bash -c "echo ... > ..."` rather than `sudo echo ... > ...`.  In the second form, `sudo` only applies to `echo`; the `>` redirection is performed by your own (non-root) shell, which does not have permission to open the file for writing.
 
 ## Lifelong Learning: What's Next?
 
