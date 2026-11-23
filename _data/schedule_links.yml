@@ -180,6 +180,9 @@
 
 "2026-11-23":
   order: ["LDD3 Ch. 14", "Lab 7 Discussion"]
+  slides:
+    "LDD3 Ch. 14": media/ldd/ldd3-ch14.pdf
+    "Lab 7 Discussion": media/ldd/ldd3-ch14.pdf
   reading:
     - { title: "LDD3 Ch 14", url: "https://lwn.net/images/pdf/LDD3/ch14.pdf" }
 

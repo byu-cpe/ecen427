@@ -346,7 +346,12 @@ events:
 - date: '2026-11-23'
   lectures:
   - title: LDD3 Ch. 14
+    slides: media/ldd/ldd3-ch14.pdf
   - title: Lab 7 Discussion
+    slides: media/ldd/ldd3-ch14.pdf
+  reading:
+  - title: LDD3 Ch 14
+    url: https://lwn.net/images/pdf/LDD3/ch14.pdf
   quizzes:
   - title: 'Quiz 12: AXI Bus II'
     points: 19
