@@ -186,6 +186,13 @@
   reading:
     - { title: "LDD3 Ch 14", url: "https://lwn.net/images/pdf/LDD3/ch14.pdf" }
 
+"2026-12-04":
+  # Same pattern as Nov 13: collapse the no-class and video items to one line.
+  # Add a videos: entry with the link once the video is recorded.
+  rename:
+    "Instructor gone - No class": "Instructor gone: Watch the power management video"
+    "Power management video": "Instructor gone: Watch the power management video"
+
 "2026-12-10":
   hide_note: true   # drop BYU's "Last Day of Class"; the Dec 2 lecture item says it
 
