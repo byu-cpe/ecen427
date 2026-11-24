@@ -24,8 +24,8 @@ Read about the [AMD AXI CDMA]({% link media/docs/pg034-axi-cdma.pdf %}).  Read o
 * Introduction & Features (Page 1)
 * Overview & Block diagram (Page 5-7)
 * Scatter Gather Mode (Page 34)
-* Scatter Gather Transfer Descriptor Definition (Page 36-41)
-* Register Space.  Focus on registers applicable to the Scatter Gather mode (Page 13-31).  Pay particular attention to *Table 3-1* as well as the note on the alignment of transfer descriptors.  We won't be using interrupts in this lab, so you can ignore the interrupt output of the DMA.
+* Scatter Gather Transfer Descriptor Definition (Page 36-41).  Pay particular attention to *Table 3-1* as well as the note on the alignment of transfer descriptors.
+* Register Space.  Focus on registers applicable to the Scatter Gather mode (Page 13-31).  We won't be using interrupts in this lab, so you can ignore the interrupt output of the DMA.
 
 You can access the DMA device via UIO, similar to how you accessed the GPIO and INTC devices in Lab 2.  The DMA is already present in the device tree overlay provided in your repo ([ecen427.dtsi](https://github.com/byu-cpe/ecen427_student/blob/main/device_tree/ecen427.dtsi)):
 
@@ -46,7 +46,7 @@ The DMA device is accessible using the following (already in your *system.h*):
 
 
 ### DMA.H
-Look over the functions in [dma.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/dma/dma.h).  The goal of this lab is to implement these functions in a *dma.c* file. 
+Look over the functions in [dma.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/dma/dma.h).  The goal of this lab is to implement these functions in a *dma.cpp* file. 
 
 *dma_init()*: This should be similar to your other user space drivers, and use `mmap` to get a virtual pointer to the device registers.  
 
@@ -87,10 +87,6 @@ You will need to know a couple things about this memory:
 The approach we are taking in this lab is not secure.  We are providing a user space driver with access to a DMA engine that allows for reading and writing arbitrary physical memory locations.  _**This is a massive security vulnerability**_.  By reading arbitrary physical memory, a user could steal sensitive information from the system, including passwords, encryption keys, etc.  In a typical system, only the kernel would have access to the DMA engine.  However, for simplicity of development and debugging, we are doing this lab in user space.  This means it is a bit clunky since we have to use the `/dev/ecen427/dma_desc` device file to get access to the physical memory for the transfer descriptors, but it is still easier than coding this up in the kernel.
 
 
-### In-Class Discussion
-
-<img src="{% link media/labs/dma_system_arch.png %}" width="1000" alt="DMA System Architecture" />
-
 ### Important Notes about the DMA Hardware
 
 1. <span style="color:red">If you use the DMA hardware incorrectly (i.e. give it an invalid address), it will enter an error state and stop responding to requests.  As such, it is good to always reset it in your init function.</span>  Write a 1 to the *Reset* bit of the *CDMACR* register, and then poll that bit and wait for the reset to complete before returning from the init function.  This will ensure that the DMA engine is in a good state before you start using it.
@@ -104,7 +100,7 @@ value written to the CURDESC_PNTR register.
 
 {% include starter_code_note.md %}
 
-1. Implement a user space driver for copying sprites using the AXI CDMA.  Implement the functions listed in [dma.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/dma/dma.h) in a *dma.c* file.
+1. Implement a user space driver for copying sprites using the AXI CDMA.  Implement the functions listed in [dma.h](https://github.com/byu-cpe/ecen427_student/blob/main/userspace/drivers/dma/dma.h) in a *dma.cpp* file.
 
 1. Use the [dma_test](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/dma_test) application to verify that your driver is working correctly.  This application will draw a sprite in the top-left corner of the screen, and then copy it to the three other corners using the DMA engine.  
 
@@ -186,6 +182,6 @@ Explore this question: **How do real systems make DMA safe?**
   * How does Linux's **VFIO** framework give userspace processes *controlled* DMA access?  (This is how high-performance networking stacks like DPDK, and virtual machines with passthrough devices, work.)
   * Given those tools, why does the kernel still normally own DMA?
 
-**AI use is encouraged for this section.**  You are welcome to paste your completed `dma.c` into an AI tool to give it context, then discuss the question with it.  See the [Lifelong Learning: What's Next?]({% link _pages/lifelong_learning.md %}) page.
+**AI use is encouraged for this section.**  You are welcome to paste your completed `dma.cpp` into an AI tool to give it context, then discuss the question with it.  See the [Lifelong Learning: What's Next?]({% link _pages/lifelong_learning.md %}) page.
 
 When you're done, record what you learned in a few sentences in `lifelong_learning/lab8.txt`.
