@@ -12,6 +12,7 @@ In this lab you will create a specialized driver for a DMA engine, allowing for 
 ## Objectives
 * Learn about, and use, an AXI master device.
 * Learn about DMA engines, and their mode of operation.
+* Measure how offloading work to hardware, and lowering the CPU frequency, affect how much the CPU must run.
 
 ## Preliminary
 
@@ -107,12 +108,55 @@ value written to the CURDESC_PNTR register.
 
 1. Use the [dma_test](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/dma_test) application to verify that your driver is working correctly.  This application will draw a sprite in the top-left corner of the screen, and then copy it to the three other corners using the DMA engine.  
 
-1. Use the [dma_benchmarking](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/dma_benchmarking) application to test how fast the DMA is compared to using the CPU to draw sprites.  This application should report that the DMA takes about 0.07s to draw 100 sprites.  Your board may be slightly faster or slower, but it should be about the same.  The CPU runtime will depend on your implementation of the sprite drawing function, but will probably be a bit slower than the DMA.  
+1. Use the [dma_benchmarking](https://github.com/byu-cpe/ecen427_student/tree/main/userspace/apps/dma_benchmarking) application to test how fast the DMA is compared to using the CPU to draw sprites.  It copies 1000 sprites three ways (see [Power and CPU Frequency](#power-and-cpu-frequency) below) and reports both the elapsed time and the CPU time for each.  At 650 MHz, the DMA should take about 0.75 s for 1000 sprites when the CPU polls in a tight loop.  Your board may be slightly faster or slower, but it should be about the same.  The CPU drawing time will depend on your implementation of the sprite drawing function, but will probably be a bit slower than the DMA.
+
+1. Complete the power measurements below, and fill in the table and questions in *userspace/drivers/dma/power_results.md*.
 
 Any changes you make to these test applications will be discarded during grading.
 
+## Power and CPU Frequency
+
+Offloading work to a DMA engine is not only about speed.  In battery-powered and thermally limited systems, the bigger win is often **energy**: while the DMA engine moves the data, the CPU can sleep.  On ARM processors an idle CPU executes `WFI` (wait for interrupt), which stops its clock until something needs it, and a sleeping CPU draws much less power than one that is running.  That only helps if the CPU actually *does* sleep, which depends on how your code waits for the DMA to finish.
+
+The other way to save power is to run the CPU more slowly.  The dynamic power of digital logic is roughly *P ≈ αCV²f*, so lowering the clock frequency *f* lowers power, at the cost of making CPU-bound work take longer.
+
+### What *dma_benchmarking* measures
+
+For each of three modes, *dma_benchmarking* reports:
+* **Elapsed time:** wall-clock time, from `CLOCK_MONOTONIC`.
+* **CPU time:** time the CPU actually spent running this program, from `CLOCK_PROCESS_CPUTIME_ID`.  Time spent sleeping does not count.  CPU time is a reasonable stand-in for energy here, since the PYNQ board cannot measure the processor's current.
+
+The three modes are:
+1. **CPU draws the sprites:** your `drawSprite()`, with no DMA.
+1. **DMA, CPU polls in a tight loop:** start the DMA, then call `dma_is_busy()` repeatedly until it returns false.
+1. **DMA, CPU sleeps between checks:** start the DMA, then call `usleep(100)` between calls to `dma_is_busy()`.
+
+### Changing the CPU frequency
+
+The Zynq's Cortex-A9 cores normally run at 650 MHz.  The class Linux image does not include a driver for changing the CPU frequency, so one is provided as a prebuilt kernel module, *kernel/cpufreq/cpufreq_427.ko*.  Load it, then write the frequency you want (in kHz) to its *sysfs* attribute:
+
+```
+sudo insmod kernel/cpufreq/cpufreq_427.ko
+echo 325000 | sudo tee /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed
+cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
+```
+
+The only frequencies available are 650000 and 325000 (both cores always share one frequency).  To return to full speed, write 650000 the same way; rebooting also returns the board to 650 MHz with the module unloaded.  *dma_benchmarking* prints the current CPU frequency at the top of its output, so you can confirm which one you measured.
+
+### What to do
+
+1. Run *dma_benchmarking* at 650 MHz, and again at 325 MHz.
+1. Copy the elapsed and CPU times into the table in *userspace/drivers/dma/power_results.md*.
+1. Answer the questions in that file.
+1. Set the CPU back to 650 MHz when you are done.
+
 ## Submission
 Follow the instructions on the [Submission]({% link _pages/submission.md %}) page.  Reminder: your code must compile with zero warnings and run cleanly under `valgrind`.
+
+Make sure that you have pushed up, at least:
+  * Your DMA driver, *userspace/drivers/dma/dma.cpp*.
+  * Your completed *userspace/drivers/dma/power_results.md*.
+  * Your *lifelong_learning/lab8.txt*.
 
 ## Suggestions
 
