@@ -70,7 +70,7 @@ You can verify that your PIT is working correctly by testing it with the [int_ra
 
 While this application is running, you can run a command like this to change the period of your PIT on the fly:
 ```
-sudo bash -c "echo 10000 > /sys/devices/soc0/axi/\<your baseaddr\>.ecen427_pit/period"
+echo 10000 | sudo tee /sys/devices/soc0/axi/<your baseaddr>.ecen427_pit/period
 ```
 
 The above command should change the interrupt period from 16.67ms to 10ms, so *int_rate* should report interrupts more often.  
@@ -83,7 +83,7 @@ Modify your space invaders game code to use the interrupt from the PIT.  This is
 The TAs will check that your PIT works correctly by running your space invaders game, and while the game is executing, doing something like the following to see that your game speed changes on the fly.
 
 ```
-sudo bash -c "echo 33334 > /sys/devices/soc0/axi/\<your baseaddr\>.ecen427_pit/period"
+echo 33334 | sudo tee /sys/devices/soc0/axi/<your baseaddr>.ecen427_pit/period
 ```
 
 The above command should cause your game to run at half speed.  
@@ -116,7 +116,7 @@ You may find the following tutorial helpful: <https://www.cs.swarthmore.edu/~new
 
 The Linux kernel prevents you from setting certain permission bits on *sysfs* files.  You are not allowed to set the *write* or *execute* bits for all users (*others*); if you give an attribute mode `0666`, `sysfs_create_group()` prints a kernel warning and creates the file as `0664` anyway.  Give your attributes mode `0644` (owner read/write, everyone else read-only).  Anyone can then `cat` your attributes, but writing them requires root.
 
-That is why the example commands use `sudo bash -c "echo ... > ..."` rather than `sudo echo ... > ...`.  In the second form, `sudo` only applies to `echo`; the `>` redirection is performed by your own (non-root) shell, which does not have permission to open the file for writing.
+That is why the example commands use `echo ... | sudo tee <file>` rather than `sudo echo ... > <file>`.  In the second form, `sudo` only applies to `echo`; the `>` redirection is performed by your own (non-root) shell, which does not have permission to open the file for writing.  With `tee`, the program that opens and writes the file is the one running as root.  (`tee` also echoes the value back to the terminal; add `> /dev/null` if you don't want to see it.)
 
 ## Lifelong Learning: What's Next?
 
