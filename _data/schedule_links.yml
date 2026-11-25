@@ -186,6 +186,10 @@
   reading:
     - { title: "LDD3 Ch 14", url: "https://lwn.net/images/pdf/LDD3/ch14.pdf" }
 
+"2026-11-30":
+  slides:
+    "Lab 8 discussion": media/slides/22-dma.pdf
+
 "2026-12-04":
   # Same pattern as Nov 13: collapse the no-class and video items to one line.
   # Add a videos: entry with the link once the video is recorded.

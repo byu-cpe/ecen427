@@ -364,6 +364,7 @@ events:
 - date: '2026-11-30'
   lectures:
   - title: Lab 8 discussion
+    slides: media/slides/22-dma.pdf
   quizzes:
   - title: 'Quiz 13: LDD3 Ch 14, Lab 7'
     points: 18
